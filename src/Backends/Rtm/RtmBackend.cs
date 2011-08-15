@@ -443,21 +443,26 @@ namespace Tasque.Backends.RtmBackend
 		{
 			TaskSeries ts = list.TaskSeriesCollection[0];
 			if(ts != null) {
-				RtmTask rtmTask = new RtmTask(ts, this, list.ID);
-				lock(taskLock)
+				RtmTask rtmTask = null;
+				foreach(Task task in ts.TaskCollection)
 				{
-					Gtk.Application.Invoke ( delegate {
-						if(taskIters.ContainsKey(rtmTask.ID)) {
-							Gtk.TreeIter iter = taskIters[rtmTask.ID];
-							taskStore.SetValue (iter, 0, rtmTask);
-						} else {
-							Gtk.TreeIter iter = taskStore.AppendNode();
-							taskIters.Add(rtmTask.ID, iter);
-							taskStore.SetValue (iter, 0, rtmTask);
-						}
-					});
+					rtmTask = new RtmTask(ts, task, this, list.ID);
+					lock(taskLock)
+					{
+						Gtk.Application.Invoke ( delegate {
+							if(taskIters.ContainsKey(rtmTask.ID)) {
+								Gtk.TreeIter iter = taskIters[rtmTask.ID];
+								taskStore.SetValue (iter, 0, rtmTask);
+							} else {
+								Gtk.TreeIter iter = taskStore.AppendNode();
+								taskIters.Add(rtmTask.ID, iter);
+								taskStore.SetValue (iter, 0, rtmTask);
+							}
+						});
+					}
 				}
-				return rtmTask;				
+				/* Always return the last task received */
+				return rtmTask;
 			}
 			return null;
 		}
@@ -626,23 +631,26 @@ namespace Tasque.Backends.RtmBackend
 								continue;
 							foreach(TaskSeries ts in tList.TaskSeriesCollection)
 							{
-								RtmTask rtmTask = new RtmTask(ts, this, list.ID);
-								
-								lock(taskLock)
+								foreach(Task task in ts.TaskCollection)
 								{
-									Gtk.TreeIter iter;
-									
-									Gtk.Application.Invoke ( delegate {
-										Logger.Debug ("Refreshing task: " + rtmTask.Name);
-										if(taskIters.ContainsKey(rtmTask.ID)) {
-											iter = taskIters[rtmTask.ID];
-										} else {
-											iter = taskStore.AppendNode ();
-											taskIters.Add(rtmTask.ID, iter);
-										}
+									RtmTask rtmTask = new RtmTask(ts, task, this, tList.ID);
 
-										taskStore.SetValue (iter, 0, rtmTask);
-									});
+									lock(taskLock)
+									{
+										Gtk.TreeIter iter;
+
+										Gtk.Application.Invoke ( delegate {
+
+											if(taskIters.ContainsKey(rtmTask.ID)) {
+												iter = taskIters[rtmTask.ID];
+											} else {
+												iter = taskStore.AppendNode ();
+												taskIters.Add(rtmTask.ID, iter);
+											}
+
+											taskStore.SetValue (iter, 0, rtmTask);
+										});
+									}
 								}
 							}
 						}

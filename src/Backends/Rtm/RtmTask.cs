@@ -13,8 +13,9 @@ namespace Tasque.Backends.RtmBackend
 		private TaskState state;
 		private RtmCategory category;
 		private List<INote> notes;		
-		
+
 		TaskSeries taskSeries;
+		Task task;
 		
 		/// <summary>
 		/// Constructor that is created from an RTM Task Series
@@ -22,11 +23,12 @@ namespace Tasque.Backends.RtmBackend
 		/// <param name="taskSeries">
 		/// A <see cref="TaskSeries"/>
 		/// </param>
-		public RtmTask(TaskSeries taskSeries, RtmBackend be, string listID)
+		public RtmTask(TaskSeries taskSeries, Task task, RtmBackend be, string listID)
 		{
 			this.taskSeries = taskSeries;
 			this.rtmBackend = be;
 			this.category = be.GetCategory(listID);
+			this.task = task;
 			
 			if(CompletionDate == DateTime.MinValue )
 				state = TaskState.Active;
@@ -48,7 +50,7 @@ namespace Tasque.Backends.RtmBackend
 		/// </value>
 		public override string Id
 		{
-			get { return taskSeries.Task.TaskID; } 
+			get { return task.TaskID; }
 		}
 
 		/// <value>
@@ -70,9 +72,9 @@ namespace Tasque.Backends.RtmBackend
 		/// </value>
 		public override DateTime DueDate
 		{
-			get { return taskSeries.Task.Due; }
+			get { return task.Due; }
 			set { 
-				taskSeries.Task.Due = value;
+				task.Due = value;
 				rtmBackend.UpdateTaskDueDate(this);			
 			}
 		}
@@ -86,7 +88,7 @@ namespace Tasque.Backends.RtmBackend
 			get {
 				// Return the due date in UTC format
 				string format = "yyyy-MM-ddTHH:mm:ssZ";
-				string dateString = taskSeries.Task.Due.ToUniversalTime ().ToString (format);
+				string dateString = task.Due.ToUniversalTime ().ToString (format);
 				return dateString;
 			}
 		}
@@ -97,9 +99,9 @@ namespace Tasque.Backends.RtmBackend
 		/// </value>
 		public override DateTime CompletionDate
 		{
-			get { return taskSeries.Task.Completed; }
+			get { return task.Completed; }
 			set { 
-				taskSeries.Task.Completed = value;
+				task.Completed = value;
 				rtmBackend.UpdateTaskCompleteDate(this);
 			}
 		}
@@ -118,7 +120,7 @@ namespace Tasque.Backends.RtmBackend
 		public override TaskPriority Priority
 		{
 			get { 
-				switch (taskSeries.Task.Priority) {
+				switch (task.Priority) {
 					default:
 					case "N":
 						return TaskPriority.None;
@@ -134,16 +136,16 @@ namespace Tasque.Backends.RtmBackend
 				switch (value) {
 					default:
 					case TaskPriority.None:
-						taskSeries.Task.Priority = "N";
+						task.Priority = "N";
 						break;
 					case TaskPriority.High:
-						taskSeries.Task.Priority = "1";
+						task.Priority = "1";
 						break;
 					case TaskPriority.Medium:
-						taskSeries.Task.Priority = "2";
+						task.Priority = "2";
 						break;
 					case TaskPriority.Low:
-						taskSeries.Task.Priority = "3";
+						task.Priority = "3";
 						break;
 				}
 				rtmBackend.UpdateTaskPriority(this);				
@@ -152,7 +154,7 @@ namespace Tasque.Backends.RtmBackend
 		
 		public string PriorityString
 		{
-			get { return taskSeries.Task.Priority; }
+			get { return task.Priority; }
 		}		
 		
 		
@@ -220,7 +222,7 @@ namespace Tasque.Backends.RtmBackend
 		
 		public string TaskTaskID
 		{
-			get { return taskSeries.Task.TaskID; }
+			get { return task.TaskID; }
 		}
 		
 		public string ListID
@@ -237,7 +239,7 @@ namespace Tasque.Backends.RtmBackend
 		{
 			Logger.Debug("Activating Task: " + Name);
 			state = TaskState.Active;
-			taskSeries.Task.Completed = DateTime.MinValue;
+			task.Completed = DateTime.MinValue;
 			rtmBackend.UpdateTaskActive(this);
 		}
 		
@@ -248,7 +250,7 @@ namespace Tasque.Backends.RtmBackend
 		{
 			Logger.Debug("Inactivating Task: " + Name);		
 			state = TaskState.Inactive;
-			taskSeries.Task.Completed = DateTime.Now;
+			task.Completed = DateTime.Now;
 			rtmBackend.UpdateTaskInactive(this);
 		}
 		
@@ -259,8 +261,8 @@ namespace Tasque.Backends.RtmBackend
 		{
 			Logger.Debug("Completing Task: " + Name);			
 			state = TaskState.Completed;
-			if(taskSeries.Task.Completed == DateTime.MinValue)
-				taskSeries.Task.Completed = DateTime.Now;
+			if(task.Completed == DateTime.MinValue)
+				task.Completed = DateTime.Now;
 			rtmBackend.UpdateTaskCompleted(this);
 		}
 		

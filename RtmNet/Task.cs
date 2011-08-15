@@ -89,7 +89,7 @@ namespace RtmNet
 		public string source;
 
 		[XmlElement("task", Form=XmlSchemaForm.Unqualified)]
-		public Task Task;
+		public Task[] TaskCollection = new Task[0];
 
 		/// <remarks/>
 		[XmlElement("notes", Form=XmlSchemaForm.Unqualified)]
