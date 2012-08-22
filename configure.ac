@@ -157,7 +157,7 @@ fi
 AC_ARG_ENABLE(standard_backends,
 	AC_HELP_STRING([--enable-standard-backends],
 		[Enable standard (RTM, SQLite) backends. [default=yes]]),
-		final_standard_backends=$enableval, final_standard_backend=yes)
+		final_standard_backends=$enableval, final_standard_backends=yes)
 AM_CONDITIONAL(ENABLE_STANDARD_BACKENDS, test "x$final_standard_backends" != "xno")
 
 if test "x$final_standard_backends" != "xno" ; then
