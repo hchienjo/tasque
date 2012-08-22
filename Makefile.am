@@ -1,6 +1,6 @@
 SUBDIRS = RtmNet src data po
 
-pkglib_DATA =  $(DLL_REFERENCES)
+pkgdata_DATA =  $(DLL_REFERENCES)
 DLL_REFERENCES =   
 EXTRA_DIST = \
 	$(DLL_REFERENCES) \
