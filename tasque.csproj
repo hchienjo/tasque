@@ -66,6 +66,8 @@
     <None Include="data\images\tasque.svg" />
     <None Include="src\Tasque.exe.config.in" />
     <Compile Include="src\Defines.cs" />
+    <Compile Include="src\GtkTray.cs" />
+    <Compile Include="src\StatusIconTray.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\images\clock-16-0.png" />

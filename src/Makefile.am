@@ -66,6 +66,7 @@ CSFILES = \
 	$(srcdir)/CompletedTaskGroup.cs \
 	$(srcdir)/DateButton.cs \
 	$(srcdir)/GtkApplication.cs \
+	$(srcdir)/GtkTray.cs \
 	$(srcdir)/GnomeApplication.cs \
 	$(srcdir)/Logger.cs \
 	$(srcdir)/NoteDialog.cs \
@@ -74,6 +75,7 @@ CSFILES = \
 	$(srcdir)/PreferencesDialog.cs \
 	$(srcdir)/RemoteControl.cs \
 	$(srcdir)/RemoteControlProxy.cs \
+	$(srcdir)/StatusIconTray.cs \
 	$(srcdir)/TaskCalendar.cs \
 	$(srcdir)/TaskGroupModel.cs \
 	$(srcdir)/CompletedTaskGroupModel.cs \
