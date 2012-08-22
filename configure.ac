@@ -73,37 +73,9 @@ fi
 AM_CONDITIONAL(ENABLE_APPINDICATOR, test "x$appindicator" != "xno")
 
 
-AC_ARG_ENABLE(debug,
-	AC_HELP_STRING([--enable-debug],
-		[Use 'Debug' Configuration [default=yes]]),
-		enable_debug=$enableval, enable_debug=no)
+AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug], [Use 'Debug' Configuration [default=no]]),
+	enable_debug=$enableval, enable_debug=no)
 AM_CONDITIONAL(ENABLE_DEBUG, test "x$enable_debug" != "xno")
-if test "x$enable_debug" != "xno" ; then
-#	DEBUG_CONFIG_LIBRARIES=' ${pkglibdir}/Db4objects.Db4o.dll'
-#	DEBUG_CONFIG_LIBS=' -r:${pkglibdir}/Db4objects.Db4o.dll'
-#	AC_SUBST(DEBUG_CONFIG_LIBRARIES)
-#	AC_SUBST(DEBUG_CONFIG_LIBS)
-	CONFIG_REQUESTED="yes"
-fi
-AC_ARG_ENABLE(release,
-	AC_HELP_STRING([--enable-release],
-		[Use 'Release' Configuration [default=no]]),
-		enable_release=$enableval, enable_release=no)
-AM_CONDITIONAL(ENABLE_RELEASE, test "x$enable_release" != "xno")
-if test "x$enable_release" != "xno" ; then
-#	RELEASE_CONFIG_LIBRARIES=' ${pkglibdir}/Db4objects.Db4o.dll'
-#	RELEASE_CONFIG_LIBS=' -r:${pkglibdir}/Db4objects.Db4o.dll'
-#	AC_SUBST(RELEASE_CONFIG_LIBRARIES)
-#	AC_SUBST(RELEASE_CONFIG_LIBS)
-	CONFIG_REQUESTED="yes"
-fi
-if test -z "$CONFIG_REQUESTED" ; then
-#	DEBUG_CONFIG_LIBRARIES=' ${pkglibdir}/Db4objects.Db4o.dll'
-#	DEBUG_CONFIG_LIBS=' -r:${pkglibdir}/Db4objects.Db4o.dll'
-#	AC_SUBST(DEBUG_CONFIG_LIBRARIES)
-#	AC_SUBST(DEBUG_CONFIG_LIBS)
-	AM_CONDITIONAL(ENABLE_DEBUG, true)
-fi
 
 
 #
@@ -296,7 +268,6 @@ Configuration:
 
 	Prefix:            ${prefix}
 	Debug build:       ${enable_debug}
-	Release build:     ${enable_release}
 	Notification:      ${enable_notify_sharp}
 	Dummy Backend:     ${final_backend_dummy}
 	Evolution Backend: ${final_backend_eds}

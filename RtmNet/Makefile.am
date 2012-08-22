@@ -3,10 +3,7 @@ CSC = $(DMCS)
 TARGET = RtmNet.dll
 
 if ENABLE_DEBUG
-CSFLAGS =  -t:library -noconfig -codepage:utf8 -warn:4 -debug -d:DEBUG
-endif
-if ENABLE_RELEASE
-CSFLAGS =  -t:library -noconfig -codepage:utf8 -warn:4
+CSFLAGS = -debug -d:DEBUG
 endif
 
 CSFILES = \
@@ -44,7 +41,7 @@ ASSEMBLIES =  \
 	-r:System.Xml
 
 $(TARGET): $(CSFILES)
-	$(CSC) -unsafe -out:$@ $(CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)
+	$(CSC) -unsafe -out:$@ -t:library -noconfig -codepage:utf8 -warn:4 $(CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)
 
 tasquelibdir = $(libdir)/tasque
 tasquelib_DATA = $(TARGET)	

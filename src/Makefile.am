@@ -10,10 +10,7 @@ GTK_2_12_CSFLAGS = -define:GTK_2_12
 endif
 
 if ENABLE_DEBUG
-CSFLAGS =  -noconfig -codepage:utf8 -warn:4 -debug -d:DEBUG $(GTK_2_12_CSFLAGS)
-endif
-if ENABLE_RELEASE
-CSFLAGS =  -noconfig -codepage:utf8 -warn:4 $(GTK_2_12_CSFLAGS)
+CSFLAGS = -debug -d:DEBUG
 endif
 
 if ENABLE_NOTIFY_SHARP
@@ -174,7 +171,8 @@ ASSEMBLIES =  \
 	$(APPINDICATOR_SHARP_LIBS)
 
 $(TARGET): $(CSFILES) Defines.cs
-	$(CSC) -unsafe -out:$@ $(CSFLAGS) $(NOTIFY_SHARP_CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)
+	$(CSC) -unsafe -out:$@ -noconfig -codepage:utf8 -warn:4 $(CSFLAGS) \
+	$(GTK_2_12_CSFLAGS) $(NOTIFY_SHARP_CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)
 
 tasquelibdir = $(libdir)/tasque
 tasquelib_DATA = $(TARGET) $(TARGET).config $(TARGET).mdb
