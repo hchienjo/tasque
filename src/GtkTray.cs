@@ -35,7 +35,26 @@ namespace Tasque
 	{
 		public static GtkTray CreateTray ()
 		{
-			return new StatusIconTray ();
+			var desktopSession = Environment.GetEnvironmentVariable ("DESKTOP_SESSION");
+			GtkTray tray;
+			switch (desktopSession) {
+			case "ubuntu":
+				tray = new AppIndicatorTray ();
+				break;
+			case "ubuntu-2d":
+				tray = new AppIndicatorTray ();
+				break;
+			case "gnome-classic":
+				tray = new AppIndicatorTray ();
+				break;
+			case "gnome-fallback":
+				tray = new AppIndicatorTray ();
+				break;
+			default:
+				tray = new StatusIconTray ();
+				break;
+			}
+			return tray;
 		}
 
 		protected GtkTray ()
@@ -56,7 +75,9 @@ namespace Tasque
 		
 		public void RefreshTrayIconTooltip ()
 		{
+			var oldTooltip = Tooltip;
 			var sb = new StringBuilder ();
+			
 			var overdueTasks = Application.Instance.OverdueTasks;
 			if (overdueTasks != null) {
 				int count = overdueTasks.IterNChildren ();
@@ -91,9 +112,12 @@ namespace Tasque
 			}
 
 			Tooltip = sb.ToString ().TrimEnd ('\n');
+			
+			if (Tooltip != oldTooltip)
+				OnTooltipChanged ();
 		}
 
-		protected string IconName { get { return "tasque-24"; } }
+		protected string IconName { get { return "tasque"; } }
 		
 		protected Menu Menu {
 			get {

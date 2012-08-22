@@ -58,6 +58,10 @@
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>winbin\Mono.Data.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="appindicator-sharp, Version=0.2.0.0, Culture=neutral, PublicKeyToken=bcae265d1c7ab4c2">
+      <Private>False</Private>
+      <Package>appindicator-sharp-0.1</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\images\clock-16-0.svg" />
@@ -68,6 +72,7 @@
     <Compile Include="src\Defines.cs" />
     <Compile Include="src\GtkTray.cs" />
     <Compile Include="src\StatusIconTray.cs" />
+    <Compile Include="src\AppIndicatorTray.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\images\clock-16-0.png" />

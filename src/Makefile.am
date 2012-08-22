@@ -58,6 +58,12 @@ else
 HIVEMINDER_CSFILES =
 endif
 
+if ENABLE_APPINDICATOR
+APPINDICATOR_CSFILES = $(srcdir)/AppIndicatorTray.cs
+else
+APPINDICATOR_CSFILES =
+endif
+
 CSFILES = \
 	$(srcdir)/AbstractTask.cs \
 	$(srcdir)/AllCategory.cs \
@@ -96,7 +102,9 @@ CSFILES = \
 	\
 	$(EDS_CSFILES) \
 	\
-	$(HIVEMINDER_CSFILES)
+	$(HIVEMINDER_CSFILES) \
+	\
+	$(APPINDICATOR_CSFILES)
 
 TASQUEDLL_CSFILES = \
 	$(srcdir)/libtasque/DateFormatterFactory.cs \
@@ -162,7 +170,8 @@ ASSEMBLIES =  \
 	$(NDESK_DBUS_GLIB_10_LIBS) \
 	$(ICE_DESKTOP_LIBS) \
 	$(SQLITE_LIBS) \
-	$(EVOLUTION_SHARP_LIBS)
+	$(EVOLUTION_SHARP_LIBS) \
+	$(APPINDICATOR_SHARP_LIBS)
 
 $(TARGET): $(CSFILES) Defines.cs
 	$(CSC) -unsafe -out:$@ $(CSFLAGS) $(NOTIFY_SHARP_CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)

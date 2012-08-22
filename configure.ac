@@ -52,6 +52,27 @@ PKG_CHECK_MODULES(NOTIFY_SHARP, notify-sharp, enable_notify_sharp="yes", enable_
 AM_CONDITIONAL(ENABLE_NOTIFY_SHARP, test "x$enable_notify_sharp" != "xno")
 AC_SUBST(NOTIFY_SHARP_LIBS)
 
+#
+# AppIndicator
+# AppIndicator is enabled by default because it is an absolute requirement for the systray to
+# work on Ubuntu/Unity. If AppIndicator is not available on a given system it must be switched off.
+#
+appindicator=yes
+AC_ARG_ENABLE(appindicator,
+	AC_HELP_STRING([--enable-appindicator],
+		[Enables the use of Ubuntu/Unity's Application Indicator as systray icon [default=yes]]),
+		appindicator=$enableval, )
+if test "x$appindicator" != "xno" ; then
+	PKG_CHECK_MODULES([APPINDICATOR_SHARP], [appindicator-sharp-0.1], appindicator="yes", appindicator="no")
+	if test "$appindicator" == "no" ; then
+		AC_MSG_ERROR([Please install appindicator-sharp, if you want systray support on Ubuntu/Unity. \
+If appindicator-sharp is not available on your system, you probably won't need it. To disable \
+appindicator pass --enable-appindicator=no to configure."])
+	fi
+fi
+AM_CONDITIONAL(ENABLE_APPINDICATOR, test "x$appindicator" != "xno")
+
+
 AC_ARG_ENABLE(debug,
 	AC_HELP_STRING([--enable-debug],
 		[Use 'Debug' Configuration [default=yes]]),
@@ -236,6 +257,7 @@ fi
 # Define ENABLE_BACKEND_RTM here so it only gets defined once
 AM_CONDITIONAL(ENABLE_BACKEND_RTM, test "x$final_backend_rtm" != "xno")
 
+
 ### Begin GAC tool ###
 
 AC_PATH_PROG(GACUTIL, gacutil, no)
@@ -282,5 +304,6 @@ Configuration:
 	RTM Backend:       ${final_backend_rtm}
 	SQLite Backend:    ${final_backend_sqlite}
 	Hiveminder Backend: ${final_backend_hiveminder}
+	AppIndicator:      ${appindicator}
 "
 
