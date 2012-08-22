@@ -16,9 +16,9 @@ PKG_PROG_PKG_CONFIG
 
 AC_PROG_INSTALL
 
-AC_PATH_PROG(GMCS, gmcs, no)
-if test "x$GMCS" = "xno"; then
-        AC_MSG_ERROR([gmcs Not found])
+AC_PATH_PROG(DMCS, dmcs, no)
+if test "x$DMCS" = "xno"; then
+        AC_MSG_ERROR([dmcs Not found])
 fi
 
 #

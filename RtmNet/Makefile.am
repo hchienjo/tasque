@@ -1,4 +1,4 @@
-CSC = $(GMCS)
+CSC = $(DMCS)
 
 TARGET = RtmNet.dll
 
