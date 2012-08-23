@@ -597,6 +597,12 @@ namespace Tasque.Backends.RtmBackend
 			try {
 				foreach(List list in lists.listCollection)
 				{
+					// smart lists are based on criteria and therefore
+					// can contain tasks that actually belong to another list.
+					// Hence skip smart lists in task list population.
+					if (list.Smart == 1)
+						continue;
+					
 					Tasks tasks = null;
 					try {
 						tasks = rtm.TasksGetList(list.ID);
@@ -618,7 +624,7 @@ namespace Tasque.Backends.RtmBackend
 									Gtk.TreeIter iter;
 									
 									Gtk.Application.Invoke ( delegate {
-
+										Logger.Debug ("Refreshing task: " + rtmTask.Name);
 										if(taskIters.ContainsKey(rtmTask.ID)) {
 											iter = taskIters[rtmTask.ID];
 										} else {
