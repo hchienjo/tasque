@@ -21,6 +21,15 @@
     <DefineConstants>TRACE;DEBUG;WIN32</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="bin/lib/tasque/Tasque.exe" workingdir="${SolutionDir}" />
+        <Command type="Build" command="make" workingdir="${SolutionDir}" />
+        <Command type="AfterBuild" command="make install" workingdir="${SolutionDir}" />
+        <Command type="Clean" command="make uninstall" workingdir="${SolutionDir}" />
+        <Command type="AfterClean" command="make clean" workingdir="${SolutionDir}" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
