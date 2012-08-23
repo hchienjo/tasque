@@ -11,6 +11,7 @@ endif
 
 if ENABLE_DEBUG
 CSFLAGS = -debug -d:DEBUG
+MDBFILES = $(TARGET).mdb
 endif
 
 if ENABLE_NOTIFY_SHARP
@@ -175,7 +176,7 @@ $(TARGET): $(CSFILES) Defines.cs
 	$(GTK_2_12_CSFLAGS) $(NOTIFY_SHARP_CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)
 
 tasquelibdir = $(libdir)/tasque
-tasquelib_DATA = $(TARGET) $(TARGET).config $(TARGET).mdb
+tasquelib_DATA = $(TARGET) $(TARGET).config $(MDBFILES)
 
 bin_SCRIPTS = $(WRAPPER)
 
