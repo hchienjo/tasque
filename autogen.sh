@@ -17,4 +17,9 @@ which gnome-autogen.sh || {
     exit 1
 }
 
+if ! pkg-config gconf-2.0 ; then
+	echo -n "**Warning**: You should install gconf-2.0. Otherwise you"
+	echo " may experience problems when running autogen.sh/configure."
+fi
+
 REQUIRED_AUTOMAKE_VERSION=1.9 USE_GNOME2_MACROS=1 . gnome-autogen.sh
