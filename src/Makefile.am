@@ -1,4 +1,4 @@
-SUBDIRS = . Backends
+SUBDIRS = . Addins/Backends
 
 CSC = $(DMCS)
 
@@ -16,44 +16,6 @@ endif
 
 if ENABLE_NOTIFY_SHARP
 NOTIFY_SHARP_CSFLAGS = -define:ENABLE_NOTIFY_SHARP
-endif
-
-if ENABLE_BACKEND_DUMMY
-DUMMY_CSFILES = \
-	$(srcdir)/Backends/Dummy/*.cs
-else
-DUMMY_CSFILES =
-endif
-
-if ENABLE_BACKEND_RTM
-RTM_CSFILES = \
-	$(srcdir)/Backends/Rtm/*.cs 
-else
-RTM_CSFILES =
-endif
-
-if ENABLE_BACKEND_SQLITE
-SQLITE_CSFILES = \
-	$(srcdir)/Backends/Sqlite/*.cs
-SQLITE_LIBS = -r:Mono.Data.Sqlite
-else
-SQLITE_CSFILES =
-SQLITE_LIBS = 
-endif
-
-if ENABLE_BACKEND_EDS
-EDS_CSFILES = \
-       $(srcdir)/Backends/EDS/*.cs
-else
-EDS_CSFILES =
-endif
-
-if ENABLE_BACKEND_HIVEMINDER
-HIVEMINDER_CSFILES = \
-       $(srcdir)/Backends/Hiveminder/*.cs \
-       $(srcdir)/Backends/Hiveminder/service/*.cs
-else
-HIVEMINDER_CSFILES =
 endif
 
 if ENABLE_APPINDICATOR
@@ -90,19 +52,6 @@ CSFILES = \
 	$(srcdir)/TaskTreeView.cs \
 	$(srcdir)/Utilities.cs \
 	$(TASQUEDLL_CSFILES) \
-	\
-	$(DUMMY_CSFILES) \
-	\
-	$(RTM_CSFILES) \
-	\
-	$(ICECORE_CSFILES) \
-	\
-	$(SQLITE_CSFILES) \
-	\
-	$(EDS_CSFILES) \
-	\
-	$(HIVEMINDER_CSFILES) \
-	\
 	$(APPINDICATOR_CSFILES)
 
 TASQUEDLL_CSFILES = \
@@ -167,9 +116,6 @@ ASSEMBLIES =  \
 	$(NOTIFY_SHARP_LIBS) \
 	$(NDESK_DBUS_10_LIBS) \
 	$(NDESK_DBUS_GLIB_10_LIBS) \
-	$(ICE_DESKTOP_LIBS) \
-	$(SQLITE_LIBS) \
-	$(EVOLUTION_SHARP_LIBS) \
 	$(APPINDICATOR_SHARP_LIBS)
 
 $(TARGET): $(CSFILES) Defines.cs
@@ -212,13 +158,6 @@ EXTRA_DIST = \
 	$(srcdir)/Defines.cs.in		\
 	$(srcdir)/tasque.pc.in		\
 	$(srcdir)/OSXApplication.cs	\
-	$(srcdir)/Backends/Dummy/*.cs	\
-	$(srcdir)/Backends/EDS/*.cs	\
-	$(srcdir)/Backends/IceCore/*.cs \
-	$(srcdir)/Backends/Rtm/*.cs	\
-	$(srcdir)/Backends/Sqlite/*.cs  \
-	$(srcdir)/Backends/Hiveminder/*.cs \
-	$(srcdir)/Backends/Hiveminder/service/*.cs \
 	$(srcdir)/libtasque/*.cs \
 	$(srcdir)/libtasque/DateFormatters/* \
 	$(srcdir)/libtasque/libtasque.csproj

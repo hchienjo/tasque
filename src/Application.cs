@@ -47,7 +47,7 @@ using Tasque.Backends;
 
 namespace Tasque
 {
-	class Application
+	public class Application
 	{
 		private static Tasque.Application application = null;
 		private static System.Object locker = new System.Object();

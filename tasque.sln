@@ -9,6 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libtasque", "src\libtasque\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{6DC908EC-E7C2-46CD-A21D-832C0D81D946}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Addins", "Addins", "{CA8A61DA-519C-444B-8503-801DE3F0E432}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backends", "Backends", "{E2E6EE06-C957-4D1E-85CA-90F3773597DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyBackend", "src\Addins\Backends\Dummy\DummyBackend.csproj", "{0F63E512-FD5A-482C-8389-6A0DBE1301CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtmBackend", "src\Addins\Backends\Rtm\RtmBackend.csproj", "{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqliteBackend", "src\Addins\Backends\Sqlite\SqliteBackend.csproj", "{CCCC10A5-662D-4788-82D3-25689F3D4D4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +29,10 @@ Global
 		{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,6 +45,20 @@ Global
 		{B19B9840-669D-4984-9772-E1F55193A67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E2E6EE06-C957-4D1E-85CA-90F3773597DE} = {CA8A61DA-519C-444B-8503-801DE3F0E432}
+		{0F63E512-FD5A-482C-8389-6A0DBE1301CB} = {E2E6EE06-C957-4D1E-85CA-90F3773597DE}
+		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490} = {E2E6EE06-C957-4D1E-85CA-90F3773597DE}
+		{CCCC10A5-662D-4788-82D3-25689F3D4D4F} = {E2E6EE06-C957-4D1E-85CA-90F3773597DE}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = tasque.csproj

@@ -109,29 +109,6 @@
     <Compile Include="src\AbstractTask.cs" />
     <Compile Include="src\AllCategory.cs" />
     <Compile Include="src\Application.cs" />
-    <Compile Include="src\Backends\Dummy\DummyBackend.cs" />
-    <Compile Include="src\Backends\Dummy\DummyCategory.cs" />
-    <Compile Include="src\Backends\Dummy\DummyNote.cs" />
-    <Compile Include="src\Backends\Dummy\DummyTask.cs" />
-    <Compile Include="src\Backends\Hiveminder\HmBackend.cs" />
-    <Compile Include="src\Backends\Hiveminder\HmCategory.cs" />
-    <Compile Include="src\Backends\Hiveminder\HmNote.cs" />
-    <Compile Include="src\Backends\Hiveminder\HmPreferencesWidget.cs" />
-    <Compile Include="src\Backends\Hiveminder\HmTask.cs" />
-    <Compile Include="src\Backends\Hiveminder\service\Group.cs" />
-    <Compile Include="src\Backends\Hiveminder\service\Hiveminder.cs" />
-    <Compile Include="src\Backends\Hiveminder\service\HiveminderException.cs" />
-    <Compile Include="src\Backends\Hiveminder\service\Task.cs" />
-    <Compile Include="src\Backends\Rtm\RtmBackend.cs" />
-    <Compile Include="src\Backends\Rtm\RtmCategory.cs" />
-    <Compile Include="src\Backends\Rtm\RtmNote.cs" />
-    <Compile Include="src\Backends\Rtm\RtmPreferencesWidget.cs" />
-    <Compile Include="src\Backends\Rtm\RtmTask.cs" />
-    <Compile Include="src\Backends\Sqlite\Database.cs" />
-    <Compile Include="src\Backends\Sqlite\SqliteBackend.cs" />
-    <Compile Include="src\Backends\Sqlite\SqliteCategory.cs" />
-    <Compile Include="src\Backends\Sqlite\SqliteNote.cs" />
-    <Compile Include="src\Backends\Sqlite\SqliteTask.cs" />
     <Compile Include="src\CellRendererDate.cs" />
     <Compile Include="src\CompletedTaskGroup.cs" />
     <Compile Include="src\CompletedTaskGroupModel.cs" />
@@ -153,10 +130,6 @@
     <Compile Include="src\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="RtmNet\RtmNet.csproj">
-      <Project>{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}</Project>
-      <Name>RtmNet</Name>
-    </ProjectReference>
     <ProjectReference Include="src\libtasque\libtasque.csproj">
       <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
       <Name>libtasque</Name>
