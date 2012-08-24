@@ -156,8 +156,8 @@ fi
 #
 AC_ARG_ENABLE(backend_dummy,
 	AC_HELP_STRING([--enable-backend-dummy],
-		[Enable the Dummy (Debug) Backend [default=no]]),
-		final_backend_dummy=$enableval, final_backend_dummy=no)
+		[Enable the Dummy (Debug) Backend [default=if --enable-debug: yes; else: no]]),
+		final_backend_dummy=$enableval, final_backend_dummy=$enable_debug)
 AM_CONDITIONAL(ENABLE_BACKEND_DUMMY, test "x$final_backend_dummy" != "xno")
 
 #
