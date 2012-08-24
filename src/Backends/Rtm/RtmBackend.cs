@@ -560,6 +560,11 @@ namespace Tasque.Backends.RtmBackend
 			try {
 				foreach(List list in lists.listCollection)
 				{
+					if (list.Smart == 1) {
+						Logger.Warn ("Smart list \"{0}\" omitted", list.Name);
+						continue;
+					}
+					
 					RtmCategory rtmCategory = new RtmCategory(list);
 
 					lock(catLock)
