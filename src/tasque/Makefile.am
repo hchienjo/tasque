@@ -70,7 +70,7 @@ RESOURCES = \
 	-resource:$(top_srcdir)/data/images/clock-16-10.png \
 	-resource:$(top_srcdir)/data/images/clock-16-11.png
 
-ASSEMBLIES =  \
+ASSEMBLIES = \
 	-r:System \
 	-r:System.Core \
 	-r:Mono.Posix \
@@ -118,26 +118,26 @@ Defines.cs: Defines.cs.in Makefile
 		< $< > $@
 
 EXTRA_DIST = \
-	$(CSFILES)					\
-	$(WRAPPER).in				\
-	$(TARGET).config.in		\
-	Defines.cs.in		\
-	tasque.pc.in		\
+	$(CSFILES) \
+	$(WRAPPER).in \
+	$(TARGET).config.in \
+	Defines.cs.in \
+	tasque.pc.in \
 	OSXApplication.cs
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = tasque.pc
 
 CLEANFILES = \
-	$(TARGET)					\
-	$(TARGET).config	\
-	$(TARGET).mdb				\
-	$(WRAPPER)					\
+	$(TARGET) \
+	$(TARGET).config \
+	$(TARGET).mdb \
+	$(WRAPPER) \
 	Defines.cs
 
-DISTCLEANFILES =                        \
-        $(WRAPPER)			\
-	$(TARGET)			\
-	$(TARGET).config	\
-	$(TARGET).mdb		\
+DISTCLEANFILES = \
+    $(WRAPPER) \
+	$(TARGET) \
+	$(TARGET).config \
+	$(TARGET).mdb \
 	Defines.cs

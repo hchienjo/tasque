@@ -24,9 +24,6 @@ DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper
 # Ignore scrollkeeper issues for now.  @#*$& scrollkeeper (from Evince)
 distuninstallcheck_listfiles = find . -type f -print | grep -v scrollkeeper | grep -v /share/gnome/help/ | grep -v \.omf
 
-run: $(PROGRAM)
-	cd src && ./tasque
-
 dist-hook:
 	@if test -d "$(srcdir)/.git"; \
 	then \

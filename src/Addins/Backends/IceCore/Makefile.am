@@ -1,45 +1,41 @@
-include $(top_srcdir)/Makefile.include
+CSC = $(DMCS)
 
-CSFLAGS = 		\
-	-debug 		\
-	-define:DEBUG 	\
-	-target:library
+CSFILES = *.cs
 
-ASSMS = \
-	-r:$(top_builddir)/src/Tasque.exe \
+ASSEMBLIES = \
+	-r:../../../libtasque/libtasque.dll \
+	-r:../../../tasque/Tasque.exe \
+	-r:System \
+	-r:System.Xml \
+	-r:Mono.Posix \
 	$(GLIB_SHARP_20_LIBS) \
 	$(GNOME_SHARP_20_LIBS) \
 	$(GTK_DOTNET_20_LIBS) \
 	$(ICE_DESKTOP_LIBS) \
 	$(NDESK_DBUS_10_LIBS) \
-	$(NDESK_DBUS_GLIB_10_LIBS) \
-	-r:System \
-	-r:Mono.Posix
-	-r:System.xml
-
-BACKEND_NAME = IceCore.Backend
-CSFILES = \
-	IceBackend.cs \
-	IceCategory.cs \
-	IceNote.cs \
-	IceTask.cs
+	$(NDESK_DBUS_GLIB_10_LIBS)
 
 if ENABLE_BACKEND_ICECORE
-TARGET = $(BACKEND_NAME).dll
-RESOURCES =
 
-$(TARGET): $(CSFILES) $(top_builddir)/src/Tasque.exe
-	$(CSC) -out:$@ $(CSFLAGS) $(ASSMS) $(CSFILES) $(RESOURCES)
+TARGET = IceCoreBackend.dll
+
+if ENABLE_DEBUG
+CSFLAGS = -debug -d:DEBUG
+MDBFILES = $(TARGET).mdb
 endif
 
-backendsdir = $(pkglibdir)
-backends_DATA = 		\
-	$(TARGET)
+$(TARGET): $(CSFILES)
+	$(CSC) -out:$@ -t:library -noconfig -codepage:utf8 -warn:4 $(CSFLAGS) $^ $(ASSEMBLIES)
+	
+$(TARGET).mdb: $(TARGET)
 
-EXTRA_DIST =            	\
-	$(CSFILES)
+endif
 
-CLEANFILES =				\
-	$(TARGET).mdb \
-	$(TARGET)
+tasquelibdir = $(libdir)/tasque
+tasquelib_DATA = $(TARGET) $(MDBFILES)
 
+EXTRA_DIST = $(CSFILES)
+
+CLEANFILES = $(TARGET) $(TARGET).mdb
+
+DISTCLEANFILES = $(TARGET) $(TARGET).mdb

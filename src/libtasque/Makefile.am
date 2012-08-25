@@ -47,14 +47,8 @@ tasquelib_DATA = $(TARGET) $(MDBFILES)
 
 $(TARGET).mdb: $(TARGET)
 
-EXTRA_DIST = \
-	$(CSFILES) \
-	libtasque.csproj
+EXTRA_DIST = $(CSFILES) libtasque.csproj
 
-CLEANFILES = \
-	$(TARGET) \
-	$(TARGET).mdb
+CLEANFILES = $(TARGET) $(TARGET).mdb
 
-DISTCLEANFILES = \
-	$(TARGET) \
-	$(TARGET).mdb
+DISTCLEANFILES = $(TARGET) $(TARGET).mdb
