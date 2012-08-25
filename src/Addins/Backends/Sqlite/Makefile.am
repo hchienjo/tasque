@@ -1,6 +1,12 @@
 CSC = $(DMCS)
 
-CSFILES = *.cs
+CSFILES = \
+	AssemblyInfo.cs \
+	SqliteTask.cs \
+	Database.cs \
+	SqliteCategory.cs \
+	SqliteBackend.cs \
+	SqliteNote.cs
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \

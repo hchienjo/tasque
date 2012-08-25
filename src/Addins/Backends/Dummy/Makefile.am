@@ -1,6 +1,11 @@
 CSC = $(DMCS)
 
-CSFILES = *.cs
+CSFILES = \
+	AssemblyInfo.cs \
+	DummyNote.cs \
+	DummyBackend.cs \
+	DummyCategory.cs \
+	DummyTask.cs
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \

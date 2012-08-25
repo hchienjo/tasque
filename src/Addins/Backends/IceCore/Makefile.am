@@ -1,6 +1,10 @@
 CSC = $(DMCS)
 
-CSFILES = *.cs
+CSFILES = \
+	IceBackend.cs \
+	IceNote.cs \
+	IceCategory.cs \
+	IceTask.cs
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \

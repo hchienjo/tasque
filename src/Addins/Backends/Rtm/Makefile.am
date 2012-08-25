@@ -1,6 +1,12 @@
 CSC = $(DMCS)
 
-CSFILES = *.cs
+CSFILES = \
+	AssemblyInfo.cs \
+	RtmCategory.cs \
+	RtmTask.cs \
+	RtmBackend.cs \
+	RtmNote.cs \
+	RtmPreferencesWidget.cs
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \
