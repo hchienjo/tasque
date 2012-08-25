@@ -3,7 +3,8 @@ CSC = $(DMCS)
 CSFILES = *.cs
 
 ASSEMBLIES = \
-	-r:../../../Tasque.exe \
+	-r:../../../libtasque/libtasque.dll \
+	-r:../../../tasque/Tasque.exe \
 	-r:../../../../RtmNet/RtmNet.dll \
 	-r:System \
 	-r:Mono.Posix \

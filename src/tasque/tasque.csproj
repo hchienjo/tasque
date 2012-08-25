@@ -73,64 +73,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data\images\clock-16-0.svg" />
-    <None Include="data\images\note-22.svg" />
-    <None Include="data\images\tasque-icons-source.svg" />
-    <None Include="data\images\tasque.svg" />
-    <None Include="src\Tasque.exe.config.in" />
-    <Compile Include="src\Defines.cs" />
-    <Compile Include="src\GtkTray.cs" />
-    <Compile Include="src\StatusIconTray.cs" />
-    <Compile Include="src\AppIndicatorTray.cs" />
+    <None Include="Tasque.exe.config.in" />
+    <None Include="..\..\data\images\clock-16-0.svg">
+      <Link>data\images\clock-16-0.svg</Link>
+    </None>
+    <None Include="..\..\data\images\note-22.svg">
+      <Link>data\images\note-22.svg</Link>
+    </None>
+    <None Include="..\..\data\images\tasque-icons-source.svg">
+      <Link>data\images\tasque-icons-source.svg</Link>
+    </None>
+    <None Include="..\..\data\images\tasque.svg">
+      <Link>data\images\tasque.svg</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\images\clock-16-0.png" />
-    <Content Include="data\images\clock-16-1.png" />
-    <Content Include="data\images\clock-16-10.png" />
-    <Content Include="data\images\clock-16-11.png" />
-    <Content Include="data\images\clock-16-2.png" />
-    <Content Include="data\images\clock-16-3.png" />
-    <Content Include="data\images\clock-16-4.png" />
-    <Content Include="data\images\clock-16-5.png" />
-    <Content Include="data\images\clock-16-6.png" />
-    <Content Include="data\images\clock-16-7.png" />
-    <Content Include="data\images\clock-16-8.png" />
-    <Content Include="data\images\clock-16-9.png" />
-    <Content Include="data\images\note-16.png" />
-    <Content Include="data\images\rtmLogo.png" />
-    <Content Include="data\images\tasque-16.png" />
-    <Content Include="data\images\tasque-22.png" />
-    <Content Include="data\images\tasque-24.png" />
-    <Content Include="data\images\tasque-32.png" />
-    <Content Include="data\images\tasque-48.png" />
-    <Content Include="data\sounds\notify.wav" />
+    <Compile Include="Defines.cs" />
+    <Compile Include="GtkTray.cs" />
+    <Compile Include="StatusIconTray.cs" />
+    <Compile Include="AppIndicatorTray.cs" />
+    <Compile Include="AbstractTask.cs" />
+    <Compile Include="AllCategory.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="CellRendererDate.cs" />
+    <Compile Include="CompletedTaskGroup.cs" />
+    <Compile Include="CompletedTaskGroupModel.cs" />
+    <Compile Include="DateButton.cs" />
+    <None Include="GnomeApplication.cs" />
+    <Compile Include="GtkApplication.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="NoteDialog.cs" />
+    <Compile Include="NoteWidget.cs" />
+    <None Include="OSXApplication.cs" />
+    <Compile Include="Preferences.cs" />
+    <Compile Include="PreferencesDialog.cs" />
+    <Compile Include="TaskCalendar.cs" />
+    <Compile Include="TaskGroup.cs" />
+    <Compile Include="TaskGroupModel.cs" />
+    <Compile Include="TaskGroupModelFactory.cs" />
+    <Compile Include="TaskTreeView.cs" />
+    <Compile Include="TaskWindow.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\AbstractTask.cs" />
-    <Compile Include="src\AllCategory.cs" />
-    <Compile Include="src\Application.cs" />
-    <Compile Include="src\CellRendererDate.cs" />
-    <Compile Include="src\CompletedTaskGroup.cs" />
-    <Compile Include="src\CompletedTaskGroupModel.cs" />
-    <Compile Include="src\DateButton.cs" />
-    <None Include="src\GnomeApplication.cs" />
-    <Compile Include="src\GtkApplication.cs" />
-    <Compile Include="src\Logger.cs" />
-    <Compile Include="src\NoteDialog.cs" />
-    <Compile Include="src\NoteWidget.cs" />
-    <None Include="src\OSXApplication.cs" />
-    <Compile Include="src\Preferences.cs" />
-    <Compile Include="src\PreferencesDialog.cs" />
-    <Compile Include="src\TaskCalendar.cs" />
-    <Compile Include="src\TaskGroup.cs" />
-    <Compile Include="src\TaskGroupModel.cs" />
-    <Compile Include="src\TaskGroupModelFactory.cs" />
-    <Compile Include="src\TaskTreeView.cs" />
-    <Compile Include="src\TaskWindow.cs" />
-    <Compile Include="src\Utilities.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="src\libtasque\libtasque.csproj">
+    <ProjectReference Include="..\libtasque\libtasque.csproj">
       <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
       <Name>libtasque</Name>
     </ProjectReference>
@@ -143,4 +129,69 @@
     <PostBuildEvent>copy "$(SolutionDir)\winbin" "$(TargetDir)"</PostBuildEvent>
     <PreBuildEvent>copy "$(SolutionDir)\data\images\*.png" "$(ProjectDir)"</PreBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\data\images\clock-16-0.png">
+      <Link>data\images\clock-16-0.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-1.png">
+      <Link>data\images\clock-16-1.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-10.png">
+      <Link>data\images\clock-16-10.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-11.png">
+      <Link>data\images\clock-16-11.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-2.png">
+      <Link>data\images\clock-16-2.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-3.png">
+      <Link>data\images\clock-16-3.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-4.png">
+      <Link>data\images\clock-16-4.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-5.png">
+      <Link>data\images\clock-16-5.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-6.png">
+      <Link>data\images\clock-16-6.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-7.png">
+      <Link>data\images\clock-16-7.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-8.png">
+      <Link>data\images\clock-16-8.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\clock-16-9.png">
+      <Link>data\images\clock-16-9.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\note-16.png">
+      <Link>data\images\note-16.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\rtmLogo.png">
+      <Link>data\images\rtmLogo.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\tasque-16.png">
+      <Link>data\images\tasque-16.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\tasque-22.png">
+      <Link>data\images\tasque-22.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\tasque-24.png">
+      <Link>data\images\tasque-24.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\tasque-32.png">
+      <Link>data\images\tasque-32.png</Link>
+    </Content>
+    <Content Include="..\..\data\images\tasque-48.png">
+      <Link>data\images\tasque-48.png</Link>
+    </Content>
+    <Content Include="..\..\data\sounds\notify.wav">
+      <Link>data\sounds\notify.wav</Link>
+    </Content>
+  </ItemGroup>
 </Project>

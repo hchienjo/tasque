@@ -244,21 +244,23 @@ AC_SUBST(GACUTIL_FLAGS)
 ### End GAC tool ###
 
 AC_CONFIG_FILES([
-./Makefile
-./RtmNet/Makefile
-./src/Makefile
-./src/tasque.pc
-./src/Addins/Backends/Makefile
-./src/Addins/Backends/Dummy/Makefile
-./src/Addins/Backends/Eds/Makefile
-./src/Addins/Backends/Hiveminder/Makefile
-./src/Addins/Backends/IceCore/Makefile
-./src/Addins/Backends/Rtm/Makefile
-./src/Addins/Backends/Sqlite/Makefile
-./data/Makefile
-./data/images/Makefile
-./data/sounds/Makefile
-./po/Makefile.in
+Makefile
+RtmNet/Makefile
+src/Makefile
+src/libtasque/Makefile
+src/tasque/Makefile
+src/tasque/tasque.pc
+src/Addins/Backends/Makefile
+src/Addins/Backends/Dummy/Makefile
+src/Addins/Backends/Eds/Makefile
+src/Addins/Backends/Hiveminder/Makefile
+src/Addins/Backends/IceCore/Makefile
+src/Addins/Backends/Rtm/Makefile
+src/Addins/Backends/Sqlite/Makefile
+data/Makefile
+data/images/Makefile
+data/sounds/Makefile
+po/Makefile.in
 ])
 
 #./src/Backends/Dummy/Makefile
