@@ -72,13 +72,21 @@ Makefile.in
 /po/*.pot
 /po/stamp-cat-id
 
-# /src
-/src/*.exe
-/src/*.exe.config
-/src/*.mdb
-/src/*.pc
-/src/Defines.cs
-/src/tasque
+# /src/tasque/
+/src/tasque/*.exe
+/src/tasque/*.exe.config
+/src/tasque/*.mdb
+/src/tasque/*.pc
+/src/tasque/Defines.cs
+/src/tasque/tasque
+
+# /src/libtasque/
+/src/libtasque/*.dll
+/src/libtasque/*.mdb
+
+# /src/Addins/Backends/*/
+/src/Addins/Backends/*/*.dll
+/src/Addins/Backends/*/*.mdb
 
 # /RtmNet
 /RtmNet/*.dll
