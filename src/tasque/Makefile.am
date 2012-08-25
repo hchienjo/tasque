@@ -75,7 +75,6 @@ ASSEMBLIES =  \
 	-r:System.Core \
 	-r:Mono.Posix \
 	-r:System.Xml \
-	-r:$(top_builddir)/RtmNet/RtmNet \
 	-r:../libtasque/libtasque.dll \
 	$(GLIB_SHARP_20_LIBS) \
 	$(GNOME_SHARP_20_LIBS) \

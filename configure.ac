@@ -245,8 +245,8 @@ AC_SUBST(GACUTIL_FLAGS)
 
 AC_CONFIG_FILES([
 Makefile
-RtmNet/Makefile
 src/Makefile
+src/Libraries/RtmNet/Makefile
 src/libtasque/Makefile
 src/tasque/Makefile
 src/tasque/tasque.pc

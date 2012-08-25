@@ -88,6 +88,6 @@ Makefile.in
 /src/Addins/Backends/*/*.dll
 /src/Addins/Backends/*/*.mdb
 
-# /RtmNet
-/RtmNet/*.dll
-/RtmNet/*.mdb
+# /src/Libraries/RtmNet
+/src/Libraries/RtmNet/*.dll
+/src/Libraries/RtmNet/*.mdb

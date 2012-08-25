@@ -1,1 +1,1 @@
-SUBDIRS = libtasque tasque Addins/Backends
+SUBDIRS = Libraries/RtmNet libtasque tasque Addins/Backends

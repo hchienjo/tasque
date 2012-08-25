@@ -1,4 +1,4 @@
-SUBDIRS = RtmNet src data po
+SUBDIRS = src data po
 
 pkgdata_DATA =  $(DLL_REFERENCES)
 DLL_REFERENCES =   

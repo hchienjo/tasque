@@ -5,7 +5,7 @@ CSFILES = *.cs
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \
 	-r:../../../tasque/Tasque.exe \
-	-r:../../../../RtmNet/RtmNet.dll \
+	-r:../../../Libraries/RtmNet/RtmNet.dll \
 	-r:System \
 	-r:Mono.Posix \
 	$(GTK_DOTNET_20_LIBS)
