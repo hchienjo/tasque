@@ -21,7 +21,6 @@ namespace Tasque
 		private Gtk.TreeModelFilter modelFilter;
 		private ICategory filterCategory;	
 		private ITask taskBeingEdited = null;
-		private bool toggled;
 
 		private static string status;
 		
@@ -251,8 +250,6 @@ namespace Tasque
 
 		void CellRenderer_EditingStarted (object o, EditingStartedArgs args)
 		{
-			if (!toggled)
-				return;
 
 			Gtk.TreeIter iter;
 			Gtk.TreePath path = new Gtk.TreePath (args.Path);
@@ -264,6 +261,10 @@ namespace Tasque
 				return;
 
 			taskBeingEdited = task;
+
+			if (task.State != TaskState.Inactive)
+				return;
+
 			InactivateTimer.ToggleTimer (taskBeingEdited);
 		}
 		
@@ -273,11 +274,12 @@ namespace Tasque
 			renderer.EditingStarted += CellRenderer_EditingStarted;
 			// Canceled: timer can continue.
 			renderer.EditingCanceled += (o, args) => {
-				if (toggled && taskBeingEdited != null) {
-					taskBeingEdited.Inactivate ();
-					InactivateTimer.ToggleTimer (taskBeingEdited);
+				if (taskBeingEdited != null) {
+					if (taskBeingEdited.State == TaskState.Inactive) {
+						taskBeingEdited.Inactivate ();
+						InactivateTimer.ToggleTimer (taskBeingEdited);
+					}
 					taskBeingEdited = null;
-					toggled = false;
 				}
 			};
 			// Edited: after calling the delegate the timer can continue.
@@ -285,11 +287,12 @@ namespace Tasque
 				if (handler != null)
 					handler (o, args);
 
-				if (toggled && taskBeingEdited != null) {
-					taskBeingEdited.Inactivate ();
-					InactivateTimer.ToggleTimer (taskBeingEdited);
+				if (taskBeingEdited != null) {
+					if (taskBeingEdited.State == TaskState.Inactive) {
+						taskBeingEdited.Inactivate ();
+						InactivateTimer.ToggleTimer (taskBeingEdited);
+					}
 					taskBeingEdited = null;
-					toggled = false;
 				}
 			};
 		}
@@ -642,7 +645,6 @@ namespace Tasque
 					InactivateTimer timer =
 						new InactivateTimer (this, iter, task, (uint) timeout);
 					timer.StartTimer ();
-					toggled = true;
 				}
 			} else {
 				status = Catalog.GetString ("Action Canceled");
