@@ -227,8 +227,12 @@ namespace Tasque.Backends.RtmBackend
 					rtm = null;
 					rtmAuth = null;
 					Logger.Error("Exception authenticating, reverting" + e.Message);
-				} 			
-				catch (RtmNet.RtmWebException e) {
+				} catch (ResponseXmlException e) {
+					rtm = null;
+					rtmAuth = null;
+					Logger.Error ("Cannot parse RTM response. Maybe the service is down."
+					              + e.Message);
+				} catch (RtmNet.RtmWebException e) {
 					rtm = null;
 					rtmAuth = null;
 					Logger.Error("Not connected to RTM, maybe proxy: #{0}", e.Message);
