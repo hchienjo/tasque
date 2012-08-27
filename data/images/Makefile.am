@@ -18,7 +18,10 @@ tango_icons =	tasque-16.png \
 		tasque-48.png \
 		tasque.svg \
 		note-16.png \
-		rtmLogo.png
+		rtmLogo.png \
+		tasque-panel-16.png \
+		tasque-panel-22.png \
+		tasque-panel-24.png
 
 clock_icons = clock-16-0.png \
 		clock-16-1.png \
@@ -41,6 +44,9 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/tasque-32.png $(DESTDIR)$(hicolordir)/32x32/apps/tasque.png
 	$(INSTALL_DATA) $(srcdir)/tasque-48.png $(DESTDIR)$(hicolordir)/48x48/apps/tasque.png
 	$(INSTALL_DATA) $(srcdir)/tasque.svg $(DESTDIR)$(hicolordir)/scalable/apps/tasque.svg
+	$(INSTALL_DATA) $(srcdir)/tasque-panel-16.png $(DESTDIR)$(hicolordir)/16x16/apps/tasque-panel.png
+	$(INSTALL_DATA) $(srcdir)/tasque-panel-22.png $(DESTDIR)$(hicolordir)/22x22/apps/tasque-panel.png
+	$(INSTALL_DATA) $(srcdir)/tasque-panel-24.png $(DESTDIR)$(hicolordir)/24x24/apps/tasque-panel.png
 
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 
@@ -62,6 +68,9 @@ uninstall-local:
 	rm -f $(DESTDIR)$(hicolordir)/32x32/apps/tasque.png
 	rm -f $(DESTDIR)$(hicolordir)/48x48/apps/tasque.png
 	rm -f $(DESTDIR)$(hicolordir)/scalable/apps/tasque.svg
+	rm -f $(DESTDIR)$(hicolordir)/16x16/apps/tasque-panel.png
+	rm -f $(DESTDIR)$(hicolordir)/22x22/apps/tasque-panel.png
+	rm -f $(DESTDIR)$(hicolordir)/24x24/apps/tasque-panel.png
 
 noinst_DATA =
 

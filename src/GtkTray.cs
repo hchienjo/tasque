@@ -117,7 +117,7 @@ namespace Tasque
 				OnTooltipChanged ();
 		}
 
-		protected string IconName { get { return "tasque"; } }
+		protected string IconName { get { return "tasque-panel"; } }
 		
 		protected Menu Menu {
 			get {
