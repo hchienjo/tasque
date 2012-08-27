@@ -10,7 +10,7 @@ CSFILES = \
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \
-	-r:../../../tasque/Tasque.exe \
+	-r:../../../Gtk.Tasque/Tasque.exe \
 	-r:../../../Libraries/RtmNet/RtmNet.dll \
 	-r:System \
 	-r:Mono.Posix \

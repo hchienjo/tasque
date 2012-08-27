@@ -6,12 +6,12 @@
     <ProjectGuid>{B19B9840-669D-4984-9772-E1F55193A67F}</ProjectGuid>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>tasque</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <NoWin32Manifest>True</NoWin32Manifest>
-    <RootNamespace>tasque</RootNamespace>
+    <RootNamespace>Gtk.Tasque</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

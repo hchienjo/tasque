@@ -72,13 +72,13 @@ Makefile.in
 /po/*.pot
 /po/stamp-cat-id
 
-# /src/tasque/
-/src/tasque/*.exe
-/src/tasque/*.exe.config
-/src/tasque/*.mdb
-/src/tasque/*.pc
-/src/tasque/Defines.cs
-/src/tasque/tasque
+# /src/Gtk.Tasque/
+/src/Gtk.Tasque/*.exe
+/src/Gtk.Tasque/*.exe.config
+/src/Gtk.Tasque/*.mdb
+/src/Gtk.Tasque/*.pc
+/src/Gtk.Tasque/Defines.cs
+/src/Gtk.Tasque/tasque
 
 # /src/libtasque/
 /src/libtasque/*.dll

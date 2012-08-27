@@ -248,8 +248,8 @@ Makefile
 src/Makefile
 src/Libraries/RtmNet/Makefile
 src/libtasque/Makefile
-src/tasque/Makefile
-src/tasque/tasque.pc
+src/Gtk.Tasque/Makefile
+src/Gtk.Tasque/tasque.pc
 src/Addins/Backends/Makefile
 src/Addins/Backends/Dummy/Makefile
 src/Addins/Backends/Eds/Makefile

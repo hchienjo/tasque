@@ -1,1 +1,1 @@
-SUBDIRS = Libraries/RtmNet libtasque tasque Addins/Backends
+SUBDIRS = Libraries/RtmNet libtasque Gtk.Tasque Addins/Backends

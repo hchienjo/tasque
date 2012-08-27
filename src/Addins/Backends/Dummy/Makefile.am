@@ -9,7 +9,7 @@ CSFILES = \
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \
-	-r:../../../tasque/Tasque.exe \
+	-r:../../../Gtk.Tasque/Tasque.exe \
 	-r:System \
 	-r:Mono.Posix \
 	$(GTK_DOTNET_20_LIBS)
