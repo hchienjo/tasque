@@ -8,6 +8,7 @@ MDBFILES = $(TARGET).mdb
 endif
 
 CSFILES = \
+	Properties/AssemblyInfo.cs \
 	DateFormatterFactory.cs \
 	Extensions.cs \
 	IBackend.cs \

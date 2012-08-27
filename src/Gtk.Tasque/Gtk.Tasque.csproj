@@ -114,6 +114,7 @@
     <Compile Include="TaskTreeView.cs" />
     <Compile Include="TaskWindow.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libtasque\libtasque.csproj">
@@ -131,6 +132,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="data\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\data\images\clock-16-0.png">

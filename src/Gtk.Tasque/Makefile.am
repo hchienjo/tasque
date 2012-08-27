@@ -22,6 +22,7 @@ APPINDICATOR_CSFLAGS = -define:APPINDICATOR
 endif
 
 CSFILES = \
+	Properties/AssemblyInfo.cs \
 	AbstractTask.cs \
 	AllCategory.cs \
 	Application.cs \
