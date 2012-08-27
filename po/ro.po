@@ -5,9 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
-"Report-Msgid-Bugs-To: "
-"http://bugzilla.gnome.org/enter_bug.cgi?product=tasque&component=general\n"
-"POT-Creation-Date: 2010-11-30 21:11+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-27 15:15+0200\n"
 "PO-Revision-Date: 2010-12-03 21:54+0300\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
@@ -20,77 +19,16 @@ msgstr ""
 "X-Generator: Virtaal 0.6.1\n"
 
 #: ../data/tasque.desktop.in.h:1
-msgid "Easy quick task management"
-msgstr "Gestionarea ușoară a sarcinilor"
-
-#: ../data/tasque.desktop.in.h:2
-msgid "Task Manager"
-msgstr "Administrator de sarcini"
-
-#: ../data/tasque.desktop.in.h:3
 msgid "Tasque"
 msgstr "Tasque"
 
-#: ../src/Application.cs:518
-#, csharp-format
-msgid "{0} task is Overdue\n"
-msgid_plural "{0} tasks are Overdue\n"
-msgstr[0] "{0} sarcină e restantă\n"
-msgstr[1] "{0} sarcini sunt restante\n"
-msgstr[2] "{0} de sarcini sunt restante\n"
+#: ../data/tasque.desktop.in.h:2
+msgid "Easy quick task management"
+msgstr "Gestionarea ușoară a sarcinilor"
 
-#: ../src/Application.cs:526
-#, csharp-format
-msgid "{0} task for Today\n"
-msgid_plural "{0} tasks for Today\n"
-msgstr[0] "{0} sarcină pentru astăzi\n"
-msgstr[1] "{0} sarcini pentru astăzi\n"
-msgstr[2] "{0} de sarcini pentru astăzi\n"
-
-#: ../src/Application.cs:534
-#, csharp-format
-msgid "{0} task for Tomorrow\n"
-msgid_plural "{0} tasks for Tomorrow\n"
-msgstr[0] "{0} sarcină pentru mâine\n"
-msgstr[1] "{0} sarcini pentru mâine\n"
-msgstr[2] "{0} de sarcini pentru mâine\n"
-
-#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Application.cs:540
-msgid "Tasque Rocks"
-msgstr "Tasque e super"
-
-#. string [] documenters = new string [] {
-#. "Calvin Gaisford <calvinrg@gmail.com>"
-#. };
-#.
-#: ../src/Application.cs:584
-msgid "translator-credits"
-msgstr "Tabita Dolean <dtabita21@gmail.com>"
-
-#: ../src/Application.cs:593
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Drepturi de autor © 2008 Novell, Inc."
-
-#: ../src/Application.cs:594
-msgid "A Useful Task List"
-msgstr "O listă de sarcini folositoare"
-
-#: ../src/Application.cs:596
-msgid "Tasque Project Homepage"
-msgstr "Pagina de internet a proiectului Tasque"
-
-#: ../src/Application.cs:710
-msgid "New Task ..."
-msgstr "Sarcină nouă ..."
-
-#: ../src/Application.cs:717
-msgid "Show Tasks ..."
-msgstr "Arată sarcinile ..."
-
-#: ../src/Application.cs:732
-msgid "Refresh Tasks ..."
-msgstr "Reîmprospătează sarcinile ..."
+#: ../data/tasque.desktop.in.h:3
+msgid "Task Manager"
+msgstr "Administrator de sarcini"
 
 #: ../src/AllCategory.cs:28 ../src/CompletedTaskGroup.cs:174
 msgid "All"
@@ -111,6 +49,63 @@ msgstr "Ultima lună"
 #: ../src/CompletedTaskGroup.cs:171
 msgid "Last Year"
 msgstr "Ultimul an"
+
+#: ../src/GtkTray.cs:86
+#, csharp-format
+msgid "{0} task is Overdue\n"
+msgid_plural "{0} tasks are Overdue\n"
+msgstr[0] "{0} sarcină e restantă\n"
+msgstr[1] "{0} sarcini sunt restante\n"
+msgstr[2] "{0} de sarcini sunt restante\n"
+
+#: ../src/GtkTray.cs:95
+#, csharp-format
+msgid "{0} task for Today\n"
+msgid_plural "{0} tasks for Today\n"
+msgstr[0] "{0} sarcină pentru astăzi\n"
+msgstr[1] "{0} sarcini pentru astăzi\n"
+msgstr[2] "{0} de sarcini pentru astăzi\n"
+
+#: ../src/GtkTray.cs:104
+#, csharp-format
+msgid "{0} task for Tomorrow\n"
+msgid_plural "{0} tasks for Tomorrow\n"
+msgstr[0] "{0} sarcină pentru mâine\n"
+msgstr[1] "{0} sarcini pentru mâine\n"
+msgstr[2] "{0} de sarcini pentru mâine\n"
+
+#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
+#: ../src/GtkTray.cs:110
+msgid "Tasque Rocks"
+msgstr "Tasque e super"
+
+#: ../src/GtkTray.cs:155
+msgid "translator-credits"
+msgstr "Tabita Dolean <dtabita21@gmail.com>"
+
+#: ../src/GtkTray.cs:163
+msgid "Copyright © 2008 Novell, Inc."
+msgstr "Drepturi de autor © 2008 Novell, Inc."
+
+#: ../src/GtkTray.cs:164
+msgid "A Useful Task List"
+msgstr "O listă de sarcini folositoare"
+
+#: ../src/GtkTray.cs:166
+msgid "Tasque Project Homepage"
+msgstr "Pagina de internet a proiectului Tasque"
+
+#: ../src/GtkTray.cs:179
+msgid "New Task ..."
+msgstr "Sarcină nouă ..."
+
+#: ../src/GtkTray.cs:189
+msgid "Refresh Tasks ..."
+msgstr "Reîmprospătează sarcinile ..."
+
+#: ../src/GtkTray.cs:195
+msgid "Toggle Task Window"
+msgstr ""
 
 #: ../src/NoteDialog.cs:24
 #, csharp-format
@@ -480,10 +475,10 @@ msgstr "lună|luna|luni"
 #: ../src/libtasque/TaskParser.cs:65
 msgid "week|weeks"
 msgstr ""
-"saptămana|saptamană|saptamâna|saptamână|saptămana|saptămană|saptămâna|saptăm"
-"ână|săptămana|săptamană|săptamâna|săptamână|săptămana|săptămană|săptămâna|să"
-"ptămână|saptămani|saptamani|saptamâni|saptamâni|saptămâni|săptămani|săptaman"
-"i|săptamâni|săptamâni|săptămani|săptămâni"
+"saptămana|saptamană|saptamâna|saptamână|saptămana|saptămană|saptămâna|"
+"saptămână|săptămana|săptamană|săptamâna|săptamână|săptămana|săptămană|"
+"săptămâna|săptămână|saptămani|saptamani|saptamâni|saptamâni|saptămâni|"
+"săptămani|săptamani|săptamâni|săptamâni|săptămani|săptămâni"
 
 #. Token "y". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
@@ -557,3 +552,6 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|M N|M N|N|A"
+
+#~ msgid "Show Tasks ..."
+#~ msgstr "Arată sarcinile ..."

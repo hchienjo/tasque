@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-14 20:11+0200\n"
+"POT-Creation-Date: 2012-08-27 15:15+0200\n"
 "PO-Revision-Date: 2010-12-06 20:37+0200\n"
 "Last-Translator: Milonas Kostas <milonas.ko@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
@@ -20,74 +20,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/tasque.desktop.in.h:1
-msgid "Easy quick task management"
-msgstr "Εύκολη και γρήγορη διαχείριση εργασιών"
-
-#: ../data/tasque.desktop.in.h:2
-msgid "Task Manager"
-msgstr "Διαχειριστής εργασιών"
-
-#: ../data/tasque.desktop.in.h:3
 msgid "Tasque"
 msgstr "Tasque"
 
-#: ../src/Application.cs:518
-#, csharp-format
-msgid "{0} task is Overdue\n"
-msgid_plural "{0} tasks are Overdue\n"
-msgstr[0] "{0} εργασία είναι καθυστερημένη\n"
-msgstr[1] "{0} εργασίες είναι καθυστερημένες\n"
+#: ../data/tasque.desktop.in.h:2
+msgid "Easy quick task management"
+msgstr "Εύκολη και γρήγορη διαχείριση εργασιών"
 
-#: ../src/Application.cs:526
-#, csharp-format
-msgid "{0} task for Today\n"
-msgid_plural "{0} tasks for Today\n"
-msgstr[0] "{0} εργασία για σήμερα\n"
-msgstr[1] "{0} εργασίες για σήμερα\n"
-
-#: ../src/Application.cs:534
-#, csharp-format
-msgid "{0} task for Tomorrow\n"
-msgid_plural "{0} tasks for Tomorrow\n"
-msgstr[0] "{0} εργασία για αύριο\n"
-msgstr[1] "{0} εργασίες για αύριο\n"
-
-#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Application.cs:540
-msgid "Tasque Rocks"
-msgstr "Το Tasque είναι όλα τα λεφτά"
-
-#. string [] documenters = new string [] {
-#. "Calvin Gaisford <calvinrg@gmail.com>"
-#. };
-#.
-#: ../src/Application.cs:584
-msgid "translator-credits"
-msgstr "Κώστας Μυλωνάς <milonas.ko@gmail.com>"
-
-#: ../src/Application.cs:593
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Πνευματικά δικαιώματα © 2008 Novell, Inc."
-
-#: ../src/Application.cs:594
-msgid "A Useful Task List"
-msgstr "Μια χρήσιμη λίστα εργασιών"
-
-#: ../src/Application.cs:596
-msgid "Tasque Project Homepage"
-msgstr "Αρχική σελίδα του έργου Tasque"
-
-#: ../src/Application.cs:710
-msgid "New Task ..."
-msgstr "Νέα εργασία..."
-
-#: ../src/Application.cs:717
-msgid "Show Tasks ..."
-msgstr "Προβολή των εργασιών ..."
-
-#: ../src/Application.cs:732
-msgid "Refresh Tasks ..."
-msgstr "Ανανέωση των εργασιών ..."
+#: ../data/tasque.desktop.in.h:3
+msgid "Task Manager"
+msgstr "Διαχειριστής εργασιών"
 
 #: ../src/AllCategory.cs:28 ../src/CompletedTaskGroup.cs:174
 msgid "All"
@@ -108,6 +50,60 @@ msgstr "Τελευταίος μήνας"
 #: ../src/CompletedTaskGroup.cs:171
 msgid "Last Year"
 msgstr "Τελευταίο έτος"
+
+#: ../src/GtkTray.cs:86
+#, csharp-format
+msgid "{0} task is Overdue\n"
+msgid_plural "{0} tasks are Overdue\n"
+msgstr[0] "{0} εργασία είναι καθυστερημένη\n"
+msgstr[1] "{0} εργασίες είναι καθυστερημένες\n"
+
+#: ../src/GtkTray.cs:95
+#, csharp-format
+msgid "{0} task for Today\n"
+msgid_plural "{0} tasks for Today\n"
+msgstr[0] "{0} εργασία για σήμερα\n"
+msgstr[1] "{0} εργασίες για σήμερα\n"
+
+#: ../src/GtkTray.cs:104
+#, csharp-format
+msgid "{0} task for Tomorrow\n"
+msgid_plural "{0} tasks for Tomorrow\n"
+msgstr[0] "{0} εργασία για αύριο\n"
+msgstr[1] "{0} εργασίες για αύριο\n"
+
+#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
+#: ../src/GtkTray.cs:110
+msgid "Tasque Rocks"
+msgstr "Το Tasque είναι όλα τα λεφτά"
+
+#: ../src/GtkTray.cs:155
+msgid "translator-credits"
+msgstr "Κώστας Μυλωνάς <milonas.ko@gmail.com>"
+
+#: ../src/GtkTray.cs:163
+msgid "Copyright © 2008 Novell, Inc."
+msgstr "Πνευματικά δικαιώματα © 2008 Novell, Inc."
+
+#: ../src/GtkTray.cs:164
+msgid "A Useful Task List"
+msgstr "Μια χρήσιμη λίστα εργασιών"
+
+#: ../src/GtkTray.cs:166
+msgid "Tasque Project Homepage"
+msgstr "Αρχική σελίδα του έργου Tasque"
+
+#: ../src/GtkTray.cs:179
+msgid "New Task ..."
+msgstr "Νέα εργασία..."
+
+#: ../src/GtkTray.cs:189
+msgid "Refresh Tasks ..."
+msgstr "Ανανέωση των εργασιών ..."
+
+#: ../src/GtkTray.cs:195
+msgid "Toggle Task Window"
+msgstr ""
 
 #: ../src/NoteDialog.cs:24
 #, csharp-format
@@ -542,6 +538,9 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|O M|N M|O|A"
+
+#~ msgid "Show Tasks ..."
+#~ msgstr "Προβολή των εργασιών ..."
 
 #~ msgid "Sunday"
 #~ msgstr "Κυριακή"

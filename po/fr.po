@@ -8,12 +8,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=tasque&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-19 09:13+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-27 15:15+0200\n"
 "PO-Revision-Date: 2011-11-29 22:07+0100\n"
 "Last-Translator: Alexandre Franke <alexandre.franke@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,67 +30,6 @@ msgstr "Gestionnaire de tâches simple et rapide"
 #: ../data/tasque.desktop.in.h:3
 msgid "Task Manager"
 msgstr "Gestionnaire de tâches"
-
-#: ../src/Application.cs:518
-#, csharp-format
-msgid "{0} task is Overdue\n"
-msgid_plural "{0} tasks are Overdue\n"
-msgstr[0] "{0} tâche est en retard\n"
-msgstr[1] "{0} tâches sont en retard\n"
-
-#: ../src/Application.cs:526
-#, csharp-format
-msgid "{0} task for Today\n"
-msgid_plural "{0} tasks for Today\n"
-msgstr[0] "{0} tâche pour aujourd'hui\n"
-msgstr[1] "{0} tâches pour aujourd'hui\n"
-
-#: ../src/Application.cs:534
-#, csharp-format
-msgid "{0} task for Tomorrow\n"
-msgid_plural "{0} tasks for Tomorrow\n"
-msgstr[0] "{0} tâche pour demain\n"
-msgstr[1] "{0} tâches pour demain\n"
-
-#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Application.cs:540
-msgid "Tasque Rocks"
-msgstr "Tasque est génial"
-
-#. string [] documenters = new string [] {
-#. "Calvin Gaisford <calvinrg@gmail.com>"
-#. };
-#.
-#: ../src/Application.cs:584
-msgid "translator-credits"
-msgstr ""
-"Marc-Andre Lureau <marcandre.lureau@gmail.com>, 2008\n"
-"Nicolas Repentin <nicolas@shivaserv.fr>, 2010.\n"
-"Alexandre Franke <alexandre.franke@gmail.com>, 2011."
-
-#: ../src/Application.cs:593
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Copyright © 2008 Novell, Inc."
-
-#: ../src/Application.cs:594
-msgid "A Useful Task List"
-msgstr "Une liste de tâches pratique"
-
-#: ../src/Application.cs:596
-msgid "Tasque Project Homepage"
-msgstr "Page Web de Tasque"
-
-#: ../src/Application.cs:710
-msgid "New Task ..."
-msgstr "Nouvelle tâche..."
-
-#: ../src/Application.cs:717
-msgid "Show Tasks ..."
-msgstr "Afficher les tâches..."
-
-#: ../src/Application.cs:732
-msgid "Refresh Tasks ..."
-msgstr "Actualiser les tâches..."
 
 #: ../src/AllCategory.cs:28 ../src/CompletedTaskGroup.cs:174
 msgid "All"
@@ -111,6 +50,63 @@ msgstr "Le mois dernier"
 #: ../src/CompletedTaskGroup.cs:171
 msgid "Last Year"
 msgstr "L'an dernier"
+
+#: ../src/GtkTray.cs:86
+#, csharp-format
+msgid "{0} task is Overdue\n"
+msgid_plural "{0} tasks are Overdue\n"
+msgstr[0] "{0} tâche est en retard\n"
+msgstr[1] "{0} tâches sont en retard\n"
+
+#: ../src/GtkTray.cs:95
+#, csharp-format
+msgid "{0} task for Today\n"
+msgid_plural "{0} tasks for Today\n"
+msgstr[0] "{0} tâche pour aujourd'hui\n"
+msgstr[1] "{0} tâches pour aujourd'hui\n"
+
+#: ../src/GtkTray.cs:104
+#, csharp-format
+msgid "{0} task for Tomorrow\n"
+msgid_plural "{0} tasks for Tomorrow\n"
+msgstr[0] "{0} tâche pour demain\n"
+msgstr[1] "{0} tâches pour demain\n"
+
+#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
+#: ../src/GtkTray.cs:110
+msgid "Tasque Rocks"
+msgstr "Tasque est génial"
+
+#: ../src/GtkTray.cs:155
+msgid "translator-credits"
+msgstr ""
+"Marc-Andre Lureau <marcandre.lureau@gmail.com>, 2008\n"
+"Nicolas Repentin <nicolas@shivaserv.fr>, 2010.\n"
+"Alexandre Franke <alexandre.franke@gmail.com>, 2011."
+
+#: ../src/GtkTray.cs:163
+msgid "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © 2008 Novell, Inc."
+
+#: ../src/GtkTray.cs:164
+msgid "A Useful Task List"
+msgstr "Une liste de tâches pratique"
+
+#: ../src/GtkTray.cs:166
+msgid "Tasque Project Homepage"
+msgstr "Page Web de Tasque"
+
+#: ../src/GtkTray.cs:179
+msgid "New Task ..."
+msgstr "Nouvelle tâche..."
+
+#: ../src/GtkTray.cs:189
+msgid "Refresh Tasks ..."
+msgstr "Actualiser les tâches..."
+
+#: ../src/GtkTray.cs:195
+msgid "Toggle Task Window"
+msgstr ""
 
 #: ../src/NoteDialog.cs:24
 #, csharp-format
@@ -548,3 +544,6 @@ msgstr "i N d|i N w|i N m|i N y"
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|O M|N M|O|A"
+
+#~ msgid "Show Tasks ..."
+#~ msgstr "Afficher les tâches..."
