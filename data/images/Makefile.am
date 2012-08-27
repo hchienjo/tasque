@@ -55,7 +55,7 @@ update-icon-cache:
 		echo "***   $(gtk_update_icon_cache)"; \
 	fi
 
-uninstall-hook:
+uninstall-local:
 	rm -f $(DESTDIR)$(hicolordir)/16x16/apps/tasque.png
 	rm -f $(DESTDIR)$(hicolordir)/22x22/apps/tasque.png
 	rm -f $(DESTDIR)$(hicolordir)/24x24/apps/tasque.png
