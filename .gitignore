@@ -73,16 +73,20 @@ Makefile.in
 /po/stamp-cat-id
 
 # /src/Gtk.Tasque/
-/src/Gtk.Tasque/*.exe
-/src/Gtk.Tasque/*.exe.config
+/src/Gtk.Tasque/*.dll
 /src/Gtk.Tasque/*.mdb
-/src/Gtk.Tasque/*.pc
 /src/Gtk.Tasque/Defines.cs
-/src/Gtk.Tasque/tasque
 
 # /src/libtasque/
 /src/libtasque/*.dll
 /src/libtasque/*.mdb
+
+# /src/tasque/
+/src/tasque/*.exe
+/src/tasque/*.exe.config
+/src/tasque/*.mdb
+/src/tasque/*.pc
+/src/tasque/tasque
 
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll

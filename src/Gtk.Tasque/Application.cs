@@ -51,6 +51,7 @@ namespace Tasque
 	{
 		private static Tasque.Application application = null;
 		private static System.Object locker = new System.Object();
+		private bool initialized;
 		private INativeApplication nativeApp;
 #if !WIN32 && !OSX
 		private RemoteControl remoteControl;
@@ -92,11 +93,6 @@ namespace Tasque
 		{
 			get {
 				lock(locker) {
-					if(application == null) {
-						lock(locker) {
-							application = new Application();
-						}
-					}
 					return application;
 				}
 			}
@@ -129,25 +125,22 @@ namespace Tasque
 			get { return Application.Instance.preferences; }
 		}
 
-		private Application ()
+		public Application (INativeApplication nativeApp)
 		{
-			Init(null);
+			if (nativeApp == null)
+				throw new ArgumentNullException ("nativeApp");
+			this.nativeApp = nativeApp;
+			application = this;
 		}
 
-		private Application (string[] args)
+		public void Init (string[] args)
 		{
-			Init(args);
-		}
+			lock (locker) {
+				if (initialized)
+					return;
+				initialized = true;
+			}
 
-		private void Init(string[] args)
-		{
-#if OSX
-			nativeApp = new OSXApplication ();
-#elif WIN32
-			nativeApp = new GtkApplication ();
-#else
-			nativeApp = new GnomeApplication ();
-#endif
 			nativeApp.Initialize (
 				Defines.LocaleDir,
 				"Tasque",
@@ -500,35 +493,6 @@ namespace Tasque
 			app.preferencesDialog.Present ();
 		}
 
-		public static void Main(string[] args)
-		{
-			try 
-			{
-				application = GetApplicationWithArgs(args);
-				application.StartMainLoop ();
-			} 
-			catch (Exception e)
-			{
-				Tasque.Logger.Debug("Exception is: {0}", e);
-				Instance.NativeApplication.Exit (-1);
-			}
-		}
-
-		public static Application GetApplicationWithArgs(string[] args)
-		{
-			lock(locker)
-			{
-				if(application == null)
-				{
-					lock(locker)
-					{
-						application = new Application(args);
-					}
-				}
-				return application;
-			}
-		}
-
 #if ENABLE_NOTIFY_SHARP
 		public static void ShowAppNotification(Notification notification)
 		{
@@ -554,6 +518,14 @@ namespace Tasque
 			TaskWindow.SavePosition ();
 
 			nativeApp.QuitMainLoop ();
+		}
+
+		public void Exit (int exitCode)
+		{
+			if (nativeApp != null)
+				nativeApp.Exit (exitCode);
+			else
+				Environment.Exit (exitCode);
 		}
 	}
 }

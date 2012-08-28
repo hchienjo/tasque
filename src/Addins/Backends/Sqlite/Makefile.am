@@ -10,7 +10,7 @@ CSFILES = \
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \
-	-r:../../../Gtk.Tasque/Tasque.exe \
+	-r:../../../Gtk.Tasque/Gtk.Tasque.dll \
 	-r:System \
 	-r:System.Data \
 	-r:Mono.Data.Sqlite \

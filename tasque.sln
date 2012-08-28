@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtmBackend", "src\Addins\Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqliteBackend", "src\Addins\Backends\Sqlite\SqliteBackend.csproj", "{CCCC10A5-662D-4788-82D3-25689F3D4D4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tasque", "src\tasque\tasque.csproj", "{A70BD496-A280-4EF5-BBE8-254E0CA89C62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,7 +67,7 @@ Global
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F} = {E2E6EE06-C957-4D1E-85CA-90F3773597DE}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\Gtk.Tasque\Gtk.Tasque.csproj
+		StartupItem = src\tasque\tasque.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

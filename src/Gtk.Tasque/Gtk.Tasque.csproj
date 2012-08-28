@@ -23,11 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <CustomCommands>
       <CustomCommands>
-        <Command type="Execute" command="bin/lib/tasque/Tasque.exe" workingdir="${SolutionDir}" />
-        <Command type="Build" command="make" workingdir="${SolutionDir}" />
-        <Command type="AfterBuild" command="make install" workingdir="${SolutionDir}" />
-        <Command type="Clean" command="make uninstall" workingdir="${SolutionDir}" />
-        <Command type="AfterClean" command="make clean" workingdir="${SolutionDir}" />
+        <Command type="Build" command="echo &quot;&quot;" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -73,7 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tasque.exe.config.in" />
     <None Include="..\..\data\images\clock-16-0.svg">
       <Link>data\images\clock-16-0.svg</Link>
     </None>
