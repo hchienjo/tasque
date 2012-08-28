@@ -2,16 +2,16 @@
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
 data/tasque.desktop.in
-src/tasque/Application.cs
-src/tasque/AllCategory.cs
-src/tasque/CompletedTaskGroup.cs
-src/tasque/GtkTray.cs
-src/tasque/NoteDialog.cs
-src/tasque/OSXApplication.cs
-src/tasque/PreferencesDialog.cs
-src/tasque/RemoteControl.cs
-src/tasque/TaskTreeView.cs
-src/tasque/TaskWindow.cs
-src/tasque/Utilities.cs
+src/Gtk.Tasque/Application.cs
+src/Gtk.Tasque/AllCategory.cs
+src/Gtk.Tasque/CompletedTaskGroup.cs
+src/Gtk.Tasque/GtkTray.cs
+src/Gtk.Tasque/NoteDialog.cs
+src/Gtk.Tasque/OSXApplication.cs
+src/Gtk.Tasque/PreferencesDialog.cs
+src/Gtk.Tasque/RemoteControl.cs
+src/Gtk.Tasque/TaskTreeView.cs
+src/Gtk.Tasque/TaskWindow.cs
+src/Gtk.Tasque/Utilities.cs
 src/Addins/Backends/Rtm/RtmPreferencesWidget.cs
 src/libtasque/TaskParser.cs
