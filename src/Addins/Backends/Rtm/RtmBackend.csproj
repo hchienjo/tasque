@@ -59,13 +59,13 @@
       <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
       <Name>libtasque</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\tasque.csproj">
-      <Project>{B19B9840-669D-4984-9772-E1F55193A67F}</Project>
-      <Name>tasque</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\RtmNet\RtmNet.csproj">
+    <ProjectReference Include="..\..\..\Libraries\RtmNet\RtmNet.csproj">
       <Project>{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}</Project>
       <Name>RtmNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Gtk.Tasque\Gtk.Tasque.csproj">
+      <Project>{B19B9840-669D-4984-9772-E1F55193A67F}</Project>
+      <Name>Gtk.Tasque</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
