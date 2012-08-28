@@ -34,7 +34,7 @@ namespace Tasque
 			INativeApplication nativeApp;
 #if OSX
 			nativeApp = new OSXApplication ();
-#elif WIN32
+#elif WIN
 			nativeApp = new GtkApplication ();
 #else
 			nativeApp = new GnomeApplication ();

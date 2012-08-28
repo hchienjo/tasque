@@ -66,7 +66,7 @@ namespace Tasque
 		{
 			try {
 				log = File.CreateText (Path.Combine (
-#if WIN32
+#if WIN
 					Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData),
 #else
 					Environment.GetEnvironmentVariable ("HOME"), 
@@ -83,11 +83,11 @@ namespace Tasque
 		~FileLogger ()
 		{
 			if (log != null)
-#if WIN32
+#if WIN
 				try {
 #endif
 					log.Flush ();
-#if WIN32
+#if WIN
 				} catch { }
 #endif
 		}

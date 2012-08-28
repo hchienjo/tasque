@@ -53,7 +53,7 @@ namespace Tasque
 		private static System.Object locker = new System.Object();
 		private bool initialized;
 		private INativeApplication nativeApp;
-#if !WIN32 && !OSX
+#if !WIN && !OSX
 		private RemoteControl remoteControl;
 #endif
 		private Gdk.Pixbuf normalPixBuf;
@@ -149,7 +149,7 @@ namespace Tasque
 
 			preferences = new Preferences (nativeApp.ConfDir);
 			
-#if !WIN32 && !OSX
+#if !WIN && !OSX
 			// Register Tasque RemoteControl
 			try {
 				remoteControl = RemoteControlProxy.Register ();

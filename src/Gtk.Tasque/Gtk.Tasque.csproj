@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">LinuxDebug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B19B9840-669D-4984-9772-E1F55193A67F}</ProjectGuid>
     <ProductVersion>9.0.21022</ProductVersion>
@@ -13,12 +13,12 @@
     <NoWin32Manifest>True</NoWin32Manifest>
     <RootNamespace>Gtk.Tasque</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WIN32</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CustomCommands>
@@ -27,14 +27,37 @@
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinDebug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Build" command="echo &quot;&quot;" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRelease|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -69,18 +92,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\data\images\clock-16-0.svg">
-      <Link>data\images\clock-16-0.svg</Link>
-    </None>
-    <None Include="..\..\data\images\note-22.svg">
-      <Link>data\images\note-22.svg</Link>
-    </None>
-    <None Include="..\..\data\images\tasque-icons-source.svg">
-      <Link>data\images\tasque-icons-source.svg</Link>
-    </None>
-    <None Include="..\..\data\images\tasque.svg">
-      <Link>data\images\tasque.svg</Link>
-    </None>
+    <ProjectReference Include="..\libtasque\libtasque.csproj">
+      <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
+      <Name>libtasque</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Defines.cs" />
@@ -111,24 +126,10 @@
     <Compile Include="Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\libtasque\libtasque.csproj">
-      <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
-      <Name>libtasque</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio AllowExistingFolder="true" />
-  </ProjectExtensions>
-  <PropertyGroup>
+  <!--<PropertyGroup>
     <PostBuildEvent>copy "$(SolutionDir)\winbin" "$(TargetDir)"</PostBuildEvent>
     <PreBuildEvent>copy "$(SolutionDir)\data\images\*.png" "$(ProjectDir)"</PreBuildEvent>
-  </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="data\" />
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  </PropertyGroup>-->
   <ItemGroup>
     <Content Include="..\..\data\images\clock-16-0.png">
       <Link>data\images\clock-16-0.png</Link>
@@ -190,5 +191,23 @@
     <Content Include="..\..\data\sounds\notify.wav">
       <Link>data\sounds\notify.wav</Link>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\data\images\clock-16-0.svg">
+      <Link>data\images\clock-16-0.svg</Link>
+    </None>
+    <None Include="..\..\data\images\note-22.svg">
+      <Link>data\images\note-22.svg</Link>
+    </None>
+    <None Include="..\..\data\images\tasque-icons-source.svg">
+      <Link>data\images\tasque-icons-source.svg</Link>
+    </None>
+    <None Include="..\..\data\images\tasque.svg">
+      <Link>data\images\tasque.svg</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 </Project>
