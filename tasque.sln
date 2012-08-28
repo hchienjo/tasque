@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tasque", "src\Gtk.Tasque\Gtk.Tasque.csproj", "{B19B9840-669D-4984-9772-E1F55193A67F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gtk.Tasque", "src\Gtk.Tasque\Gtk.Tasque.csproj", "{B19B9840-669D-4984-9772-E1F55193A67F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RtmNet", "src\Libraries\RtmNet\RtmNet.csproj", "{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}"
 EndProject
