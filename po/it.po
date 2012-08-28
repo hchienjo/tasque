@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-27 15:15+0200\n"
+"POT-Creation-Date: 2012-08-28 13:18+0200\n"
 "PO-Revision-Date: 2009-02-23 18:49+0100\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -30,41 +30,43 @@ msgstr "Gestore attività"
 
 # (ndt) attenzione: è usato anche in tomboy, se viene modificato qui
 # va modificato anche lì!
-#: ../src/AllCategory.cs:28 ../src/CompletedTaskGroup.cs:174
+#: ../src/Gtk.Tasque/AllCategory.cs:28
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:174
 msgid "All"
 msgstr "Tutte"
 
-#: ../src/CompletedTaskGroup.cs:165 ../src/Utilities.cs:282
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:165
+#: ../src/Gtk.Tasque/Utilities.cs:282
 msgid "Yesterday"
 msgstr "Ieri"
 
-#: ../src/CompletedTaskGroup.cs:167
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
 msgid "Last 7 Days"
 msgstr "Ultimi sette giorni"
 
-#: ../src/CompletedTaskGroup.cs:169
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
 msgid "Last Month"
 msgstr "Ultimo mese"
 
-#: ../src/CompletedTaskGroup.cs:171
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
 msgid "Last Year"
 msgstr "Ultimo anno"
 
-#: ../src/GtkTray.cs:86
+#: ../src/Gtk.Tasque/GtkTray.cs:86
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/GtkTray.cs:95
+#: ../src/Gtk.Tasque/GtkTray.cs:95
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/GtkTray.cs:104
+#: ../src/Gtk.Tasque/GtkTray.cs:104
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -72,283 +74,284 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/GtkTray.cs:110
+#: ../src/Gtk.Tasque/GtkTray.cs:110
 #, fuzzy
 msgid "Tasque Rocks"
 msgstr "Tasque"
 
-#: ../src/GtkTray.cs:155
+#: ../src/Gtk.Tasque/GtkTray.cs:155
 msgid "translator-credits"
 msgstr "Milo Casagrande <milo@ubuntu.com>, 2008-2009"
 
-#: ../src/GtkTray.cs:163
+#: ../src/Gtk.Tasque/GtkTray.cs:163
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Copyright © 2008 Novell, Inc."
 
-#: ../src/GtkTray.cs:164
+#: ../src/Gtk.Tasque/GtkTray.cs:164
 msgid "A Useful Task List"
 msgstr "Un utile elenco delle attività"
 
-#: ../src/GtkTray.cs:166
+#: ../src/Gtk.Tasque/GtkTray.cs:166
 msgid "Tasque Project Homepage"
 msgstr "Sito web di Tasque"
 
-#: ../src/GtkTray.cs:179
+#: ../src/Gtk.Tasque/GtkTray.cs:179
 msgid "New Task ..."
 msgstr "Nuova attività..."
 
-#: ../src/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:189
 msgid "Refresh Tasks ..."
 msgstr "Aggiorna attività..."
 
-#: ../src/GtkTray.cs:195
+#: ../src/Gtk.Tasque/GtkTray.cs:195
 msgid "Toggle Task Window"
 msgstr ""
 
-#: ../src/NoteDialog.cs:24
+#: ../src/Gtk.Tasque/NoteDialog.cs:24
 #, csharp-format
 msgid "Notes for: {0:s}"
 msgstr "Note per: {0:s}"
 
-#: ../src/OSXApplication.cs:38
+#: ../src/Gtk.Tasque/OSXApplication.cs:38
 msgid "_File"
 msgstr "_File"
 
 # (ndt) qual è l'acceleratore corretto in Mac OS X?
-#: ../src/OSXApplication.cs:44
+#: ../src/Gtk.Tasque/OSXApplication.cs:44
 msgid "_Window"
 msgstr "_Finestra"
 
 #. Update the window title
-#: ../src/PreferencesDialog.cs:97
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:97
 msgid "Tasque Preferences"
 msgstr ""
 
-#: ../src/PreferencesDialog.cs:116
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:116
 msgid "General"
 msgstr "Generale"
 
-#: ../src/PreferencesDialog.cs:124
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:124
 msgid "Appearance"
 msgstr ""
 
-#: ../src/PreferencesDialog.cs:160
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:160
 msgid "Color Management"
 msgstr ""
 
-#: ../src/PreferencesDialog.cs:171
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:171
 #, fuzzy
 msgid "Today:"
 msgstr "Oggi"
 
-#: ../src/PreferencesDialog.cs:199
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:199
 #, fuzzy
 msgid "Overdue:"
 msgstr "Scaduto"
 
-#: ../src/PreferencesDialog.cs:243
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:243
 msgid "Task Management System"
 msgstr "Sistema gestione attività"
 
-#: ../src/PreferencesDialog.cs:285
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:285
 msgid "Task Filtering"
 msgstr "Filtraggio attività"
 
 # (ndt) opzione
-#: ../src/PreferencesDialog.cs:304
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:304
 msgid "Sh_ow completed tasks"
 msgstr "M_ostrare le attività completate"
 
 # (ndt) opzione
 #. Categories TreeView
-#: ../src/PreferencesDialog.cs:313
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:313
 msgid "Only _show these categories when \"All\" is selected:"
 msgstr "Mo_strare solo queste categorie quanto è selezionato «Tutte»:"
 
-#: ../src/PreferencesDialog.cs:331
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:331
 msgid "Category"
 msgstr "Categoria"
 
-#: ../src/RemoteControl.cs:150
+#: ../src/Gtk.Tasque/RemoteControl.cs:150
 msgid "New task created."
 msgstr "Nuova attività creata."
 
 #. Title for Completed/Checkbox Column
-#: ../src/TaskTreeView.cs:86 ../src/TaskWindow.cs:342
+#: ../src/Gtk.Tasque/TaskTreeView.cs:85 ../src/Gtk.Tasque/TaskWindow.cs:342
 msgid "Completed"
 msgstr "Completate"
 
 #. Title for Priority Column
-#: ../src/TaskTreeView.cs:103
+#: ../src/Gtk.Tasque/TaskTreeView.cs:102
 msgid "Priority"
 msgstr "Priorità"
 
-#: ../src/TaskTreeView.cs:116 ../src/TaskTreeView.cs:416
-#: ../src/TaskTreeView.cs:666
+#: ../src/Gtk.Tasque/TaskTreeView.cs:115 ../src/Gtk.Tasque/TaskTreeView.cs:419
+#: ../src/Gtk.Tasque/TaskTreeView.cs:668
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/TaskTreeView.cs:117 ../src/TaskTreeView.cs:413
-#: ../src/TaskTreeView.cs:664
+#: ../src/Gtk.Tasque/TaskTreeView.cs:116 ../src/Gtk.Tasque/TaskTreeView.cs:416
+#: ../src/Gtk.Tasque/TaskTreeView.cs:666
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/TaskTreeView.cs:118 ../src/TaskTreeView.cs:410
-#: ../src/TaskTreeView.cs:662
+#: ../src/Gtk.Tasque/TaskTreeView.cs:117 ../src/Gtk.Tasque/TaskTreeView.cs:413
+#: ../src/Gtk.Tasque/TaskTreeView.cs:664
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/TaskTreeView.cs:119 ../src/TaskTreeView.cs:419
+#: ../src/Gtk.Tasque/TaskTreeView.cs:118 ../src/Gtk.Tasque/TaskTreeView.cs:422
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/TaskTreeView.cs:133
+#: ../src/Gtk.Tasque/TaskTreeView.cs:132
 msgid "Task Name"
 msgstr "Nome attività"
 
 #. Title for Due Date Column
-#: ../src/TaskTreeView.cs:175
+#: ../src/Gtk.Tasque/TaskTreeView.cs:174
 msgid "Due Date"
 msgstr "Previsto per"
 
-#: ../src/TaskTreeView.cs:189 ../src/TaskTreeView.cs:191
-#: ../src/TaskTreeView.cs:203 ../src/TaskTreeView.cs:748
-#: ../src/TaskTreeView.cs:751 ../src/TaskTreeView.cs:756
+#: ../src/Gtk.Tasque/TaskTreeView.cs:188 ../src/Gtk.Tasque/TaskTreeView.cs:190
+#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:750
+#: ../src/Gtk.Tasque/TaskTreeView.cs:753 ../src/Gtk.Tasque/TaskTreeView.cs:758
 msgid "M/d - "
 msgstr "d/M -"
 
-#: ../src/TaskTreeView.cs:189 ../src/TaskTreeView.cs:748
-#: ../src/TaskWindow.cs:275 ../src/Utilities.cs:276
+#: ../src/Gtk.Tasque/TaskTreeView.cs:188 ../src/Gtk.Tasque/TaskTreeView.cs:750
+#: ../src/Gtk.Tasque/TaskWindow.cs:275 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "Oggi"
 
-#: ../src/TaskTreeView.cs:191 ../src/TaskTreeView.cs:751
-#: ../src/TaskWindow.cs:293 ../src/Utilities.cs:295
+#: ../src/Gtk.Tasque/TaskTreeView.cs:190 ../src/Gtk.Tasque/TaskTreeView.cs:753
+#: ../src/Gtk.Tasque/TaskWindow.cs:293 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Domani"
 
-#: ../src/TaskTreeView.cs:193 ../src/TaskTreeView.cs:195
-#: ../src/TaskTreeView.cs:197 ../src/TaskTreeView.cs:199
-#: ../src/TaskTreeView.cs:201 ../src/TaskTreeView.cs:487
-#: ../src/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:192 ../src/Gtk.Tasque/TaskTreeView.cs:194
+#: ../src/Gtk.Tasque/TaskTreeView.cs:196 ../src/Gtk.Tasque/TaskTreeView.cs:198
+#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:490
+#: ../src/Gtk.Tasque/TaskTreeView.cs:767
 msgid "M/d - ddd"
 msgstr "d/M - ddd"
 
-#: ../src/TaskTreeView.cs:203 ../src/TaskTreeView.cs:756
+#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:758
 msgid "In 1 Week"
 msgstr "In una settimana"
 
-#: ../src/TaskTreeView.cs:204 ../src/TaskTreeView.cs:753
-#: ../src/Utilities.cs:308
+#: ../src/Gtk.Tasque/TaskTreeView.cs:203 ../src/Gtk.Tasque/TaskTreeView.cs:755
+#: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "Nessuna data"
 
-#: ../src/TaskTreeView.cs:205 ../src/TaskTreeView.cs:758
+#: ../src/Gtk.Tasque/TaskTreeView.cs:204 ../src/Gtk.Tasque/TaskTreeView.cs:760
 msgid "Choose Date..."
 msgstr "Scelta data..."
 
 #. Title for Notes Column
-#: ../src/TaskTreeView.cs:221
+#: ../src/Gtk.Tasque/TaskTreeView.cs:220
 msgid "Notes"
 msgstr "Note"
 
 # (ndt) suggerimenti
 #. Title for Timer Column
-#: ../src/TaskTreeView.cs:238
+#: ../src/Gtk.Tasque/TaskTreeView.cs:237
 msgid "Timer"
 msgstr "Orologio"
 
-#: ../src/TaskTreeView.cs:328
+#: ../src/Gtk.Tasque/TaskTreeView.cs:331
 msgid "Task Completed"
 msgstr "Attività completata"
 
-#: ../src/TaskTreeView.cs:489
+#: ../src/Gtk.Tasque/TaskTreeView.cs:492
 msgid "M/d/yy - ddd"
 msgstr "d/M/yy - ddd"
 
-#: ../src/TaskTreeView.cs:648
+#: ../src/Gtk.Tasque/TaskTreeView.cs:650
 msgid "Action Canceled"
 msgstr "Azione annullata"
 
-#: ../src/TaskTreeView.cs:940
+#: ../src/Gtk.Tasque/TaskTreeView.cs:942
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Completamento attività in: {0}"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/TaskWindow.cs:149 ../src/TaskWindow.cs:837 ../src/TaskWindow.cs:893
-#: ../src/TaskWindow.cs:903 ../src/TaskWindow.cs:914
+#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:837
+#: ../src/Gtk.Tasque/TaskWindow.cs:893 ../src/Gtk.Tasque/TaskWindow.cs:903
+#: ../src/Gtk.Tasque/TaskWindow.cs:914
 msgid "New task..."
 msgstr "Nuova attività..."
 
-#: ../src/TaskWindow.cs:165
+#: ../src/Gtk.Tasque/TaskWindow.cs:165
 msgid "_Add"
 msgstr "A_ggiungi"
 
-#: ../src/TaskWindow.cs:170
+#: ../src/Gtk.Tasque/TaskWindow.cs:170
 msgid "_Add Task"
 msgstr "_Aggiungi attività"
 
-#: ../src/TaskWindow.cs:257
+#: ../src/Gtk.Tasque/TaskWindow.cs:257
 msgid "Overdue"
 msgstr "Scaduto"
 
-#: ../src/TaskWindow.cs:311
+#: ../src/Gtk.Tasque/TaskWindow.cs:311
 msgid "Next 7 Days"
 msgstr "Prossimi 7 giorni"
 
-#: ../src/TaskWindow.cs:327
+#: ../src/Gtk.Tasque/TaskWindow.cs:327
 msgid "Future"
 msgstr "Futuro"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/TaskWindow.cs:474 ../src/TaskWindow.cs:1213
+#: ../src/Gtk.Tasque/TaskWindow.cs:474 ../src/Gtk.Tasque/TaskWindow.cs:1213
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr ""
 
 #. Show error status
-#: ../src/TaskWindow.cs:801
+#: ../src/Gtk.Tasque/TaskWindow.cs:801
 msgid "Error creating a new task"
 msgstr "Errore nel creare una nuova attività"
 
 #. Show successful status
-#: ../src/TaskWindow.cs:805
+#: ../src/Gtk.Tasque/TaskWindow.cs:805
 msgid "Task created successfully"
 msgstr "Attività creata con successo"
 
-#: ../src/TaskWindow.cs:1089
+#: ../src/Gtk.Tasque/TaskWindow.cs:1089
 msgid "_Notes..."
 msgstr "_Note..."
 
-#: ../src/TaskWindow.cs:1096
+#: ../src/Gtk.Tasque/TaskWindow.cs:1096
 msgid "_Delete task"
 msgstr "_Elimina attività"
 
-#: ../src/TaskWindow.cs:1101
+#: ../src/Gtk.Tasque/TaskWindow.cs:1101
 msgid "_Edit task"
 msgstr "_Modifica attività"
 
 #. TODO Needs translation.
-#: ../src/TaskWindow.cs:1133
+#: ../src/Gtk.Tasque/TaskWindow.cs:1133
 #, fuzzy
 msgid "_Change category"
 msgstr "Categoria"
 
-#: ../src/TaskWindow.cs:1162
+#: ../src/Gtk.Tasque/TaskWindow.cs:1162
 msgid "Task deleted"
 msgstr "Attività eliminata"
 
-#: ../src/TaskWindow.cs:1204
+#: ../src/Gtk.Tasque/TaskWindow.cs:1204
 msgid "Loading tasks..."
 msgstr "Caricamento attività..."
 
-#: ../src/TaskWindow.cs:1225
+#: ../src/Gtk.Tasque/TaskWindow.cs:1225
 #, fuzzy
 msgid "Not connected."
 msgstr ""
@@ -356,63 +359,63 @@ msgstr ""
 "\n"
 "Non si è connessi"
 
-#: ../src/Utilities.cs:274
+#: ../src/Gtk.Tasque/Utilities.cs:274
 #, csharp-format
 msgid "Today, {0}"
 msgstr "Oggi, {0}"
 
-#: ../src/Utilities.cs:280
+#: ../src/Gtk.Tasque/Utilities.cs:280
 #, csharp-format
 msgid "Yesterday, {0}"
 msgstr "Ieri, {0}"
 
-#: ../src/Utilities.cs:286
+#: ../src/Gtk.Tasque/Utilities.cs:286
 #, csharp-format
 msgid "{0} days ago, {1}"
 msgstr "{0} giorni fa, {1}"
 
-#: ../src/Utilities.cs:288
+#: ../src/Gtk.Tasque/Utilities.cs:288
 #, csharp-format
 msgid "{0} days ago"
 msgstr "{0} giorni fa"
 
-#: ../src/Utilities.cs:293
+#: ../src/Gtk.Tasque/Utilities.cs:293
 #, csharp-format
 msgid "Tomorrow, {0}"
 msgstr "Domani, {0}"
 
-#: ../src/Utilities.cs:299
+#: ../src/Gtk.Tasque/Utilities.cs:299
 #, csharp-format
 msgid "In {0} days, {1}"
 msgstr "In {0} giorni, {1}"
 
-#: ../src/Utilities.cs:301
+#: ../src/Gtk.Tasque/Utilities.cs:301
 #, csharp-format
 msgid "In {0} days"
 msgstr "In {0} giorni"
 
-#: ../src/Utilities.cs:305
+#: ../src/Gtk.Tasque/Utilities.cs:305
 msgid "MMMM d, h:mm tt"
 msgstr "d MMMM, H.mm"
 
-#: ../src/Utilities.cs:306
+#: ../src/Gtk.Tasque/Utilities.cs:306
 msgid "MMMM d"
 msgstr "d MMMM"
 
-#: ../src/Utilities.cs:311
+#: ../src/Gtk.Tasque/Utilities.cs:311
 msgid "MMMM d yyyy, h:mm tt"
 msgstr "d MMMM yyyy, H.mm"
 
-#: ../src/Utilities.cs:312
+#: ../src/Gtk.Tasque/Utilities.cs:312
 msgid "MMMM d yyyy"
 msgstr "d MMMM yyyy"
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:65
 msgid "Click Here to Connect"
 msgstr "Fare clic qui per connettersi"
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:71
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:71
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:142
 #, fuzzy
 msgid "You are currently connected"
 msgstr ""
@@ -420,8 +423,8 @@ msgstr ""
 "\n"
 "Connessione avvenuta"
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:75
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:75
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:147
 #, fuzzy
 msgid "You are currently connected as"
 msgstr ""
@@ -429,7 +432,7 @@ msgstr ""
 "\n"
 "Connessione avvenuta"
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:79
 #, fuzzy
 msgid "You are not connected"
 msgstr ""
@@ -437,27 +440,27 @@ msgstr ""
 "\n"
 "Non si è connessi"
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:112
 msgid "Remember the Milk not responding. Try again later."
 msgstr "Il servizio «Remember the Milk» non risponde. Riprovare più tardi."
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:119
 msgid "Click Here After Authorizing"
 msgstr "Fare clic qui dopo l'autorizzazione"
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:122
 msgid "Set the default browser and try again"
 msgstr "Impostare il browser predefinito e riprovare"
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:125
 msgid "Processing..."
 msgstr ""
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:135
 msgid "Failed, Try Again"
 msgstr ""
 
-#: ../src/Backends/Rtm/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:139
 msgid "Thank You"
 msgstr "Grazie"
 
