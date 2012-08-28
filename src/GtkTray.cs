@@ -39,17 +39,13 @@ namespace Tasque
 			GtkTray tray;
 			switch (desktopSession) {
 			case "ubuntu":
-				tray = new AppIndicatorTray ();
-				break;
 			case "ubuntu-2d":
-				tray = new AppIndicatorTray ();
-				break;
 			case "gnome-classic":
-				tray = new AppIndicatorTray ();
-				break;
 			case "gnome-fallback":
+#if APPINDICATOR
 				tray = new AppIndicatorTray ();
 				break;
+#endif
 			default:
 				tray = new StatusIconTray ();
 				break;

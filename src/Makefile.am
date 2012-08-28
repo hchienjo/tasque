@@ -58,6 +58,7 @@ endif
 
 if ENABLE_APPINDICATOR
 APPINDICATOR_CSFILES = $(srcdir)/AppIndicatorTray.cs
+APPINDICATOR_CSFLAGS = -define:APPINDICATOR
 else
 APPINDICATOR_CSFILES =
 endif
@@ -172,8 +173,8 @@ ASSEMBLIES =  \
 	$(APPINDICATOR_SHARP_LIBS)
 
 $(TARGET): $(CSFILES) Defines.cs
-	$(CSC) -unsafe -out:$@ -noconfig -codepage:utf8 -warn:4 $(CSFLAGS) \
-	$(GTK_2_12_CSFLAGS) $(NOTIFY_SHARP_CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)
+	$(CSC) -unsafe -out:$@ -noconfig -codepage:utf8 -warn:4 $(CSFLAGS) $(GTK_2_12_CSFLAGS) \
+	$(NOTIFY_SHARP_CSFLAGS) $(APPINDICATOR_CSFLAGS) $^ $(ASSEMBLIES) $(RESOURCES)
 
 tasquelibdir = $(libdir)/tasque
 tasquelib_DATA = $(TARGET) $(TARGET).config $(MDBFILES)
