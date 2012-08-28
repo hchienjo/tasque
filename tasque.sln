@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqliteBackend", "src\Addins
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tasque", "src\tasque\tasque.csproj", "{A70BD496-A280-4EF5-BBE8-254E0CA89C62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoMac.Tasque", "src\MonoMac.Tasque\MonoMac.Tasque.csproj", "{67188C62-9332-4402-8702-E8BC1CCA8D2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67188C62-9332-4402-8702-E8BC1CCA8D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67188C62-9332-4402-8702-E8BC1CCA8D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67188C62-9332-4402-8702-E8BC1CCA8D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67188C62-9332-4402-8702-E8BC1CCA8D2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.Release|Any CPU.ActiveCfg = Release|Any CPU
