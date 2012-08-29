@@ -4,19 +4,6 @@ Website: http://live.gnome.org/Tasque
 Bugs/Issues: http://bugzilla.gnome.org/browse.cgi?product=Tasque
 Mailing list: http://groups.google.com/group/tasky
 
-Version 0.1.10 "Fresh Milk"
-* Lots of translation updates.
-* Fixed some automake issues.
-* Tasque runs now on .NET 4 profile.
-* Added support for Ubuntu/Unity's Application Indicator in addition to
-Gtk's StatusIcon.
-* Fixed "Unable to complete tasks in RTM" bug. Side effect: Smart lists
-are temporarily not supported by Tasque.
-* Evolution backend disabled.
-* Partial fix for bug #557792 thanks to Ahmad Sherif (other part pending).
-* Other bug fixes: #578279, #645040, #570517, #579428, #591090, #614505,
-#607816, #555680, #613969.
-
 Version 0.1.9
 * Support for Mono >= 2.6
 * Support for enabling groups of backends when building:
