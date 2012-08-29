@@ -6,7 +6,7 @@ CSFILES = \
 	RtmTask.cs \
 	RtmBackend.cs \
 	RtmNote.cs \
-	RtmPreferencesWidget.cs
+	Gtk/RtmPreferencesWidget.cs
 
 ASSEMBLIES = \
 	-r:../../../libtasque/libtasque.dll \
