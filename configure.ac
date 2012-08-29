@@ -65,7 +65,7 @@ AC_ARG_ENABLE(appindicator,
 if test "x$appindicator" != "xno" ; then
 	PKG_CHECK_MODULES([APPINDICATOR_SHARP], [appindicator-sharp-0.1], appindicator="yes", appindicator="no")
 	if test "$appindicator" == "no" ; then
-		AC_MSG_ERROR([Please install appindicator-sharp, if you want systray support on Ubuntu/Unity. \
+		AC_MSG_WARN([Please install appindicator-sharp, if you want systray support on Ubuntu/Unity. \
 If appindicator-sharp is not available on your system, you probably won't need it. To disable \
 appindicator pass --enable-appindicator=no to configure."])
 	fi
