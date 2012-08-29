@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BCC1964F-A6E3-4912-B120-6DA22C0EB294}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <OutputPath>.\</OutputPath>
+    <OutputPath>.</OutputPath>
     <RootNamespace>Tasque.Build</RootNamespace>
     <AssemblyName>build</AssemblyName>
   </PropertyGroup>
