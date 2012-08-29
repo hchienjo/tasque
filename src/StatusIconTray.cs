@@ -43,7 +43,8 @@ namespace Tasque
 		
 		protected override void OnTooltipChanged ()
 		{
-			tray.Tooltip = Tooltip;
+			if (tray != null)
+				tray.Tooltip = Tooltip;
 		}
 		
 		StatusIcon tray;
