@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BCC1964F-A6E3-4912-B120-6DA22C0EB294}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>.\</OutputPath>
+    <RootNamespace>Tasque.Build</RootNamespace>
+    <AssemblyName>build</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Deployment.LinuxDeployData generatePcFile="false" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <None Include="build.csproj" />
+    <None Include="..\src\Gtk.Tasque\Gtk.Tasque.csproj">
+      <Link>Gtk.Tasque.csproj</Link>
+    </None>
+    <None Include="..\src\libtasque\libtasque.csproj">
+      <Link>libtasque.csproj</Link>
+    </None>
+    <None Include="..\src\MonoMac.Tasque\MonoMac.Tasque.csproj">
+      <Link>MonoMac.Tasque.csproj</Link>
+    </None>
+    <None Include="..\src\tasque\tasque.csproj">
+      <Link>tasque.csproj</Link>
+    </None>
+    <None Include="..\src\Libraries\RtmNet\RtmNet.csproj">
+      <Link>RtmNet.csproj</Link>
+    </None>
+    <None Include="..\src\Addins\Backends\Dummy\DummyBackend.csproj">
+      <Link>Addins\Backends\DummyBackend.csproj</Link>
+    </None>
+    <None Include="..\src\Addins\Backends\Rtm\RtmBackend.csproj">
+      <Link>Addins\Backends\RtmBackend.csproj</Link>
+    </None>
+    <None Include="..\src\Addins\Backends\Sqlite\SqliteBackend.csproj">
+      <Link>Addins\Backends\SqliteBackend.csproj</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Addins\" />
+    <Folder Include="Addins\Backends\" />
+  </ItemGroup>
+</Project>
