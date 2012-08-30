@@ -163,7 +163,6 @@ ASSEMBLIES =  \
 	-r:$(top_builddir)/RtmNet/RtmNet \
 	$(GLIB_SHARP_20_LIBS) \
 	$(GNOME_SHARP_20_LIBS) \
-	$(GTK_DOTNET_20_LIBS) \
 	$(NOTIFY_SHARP_LIBS) \
 	$(NDESK_DBUS_10_LIBS) \
 	$(NDESK_DBUS_GLIB_10_LIBS) \

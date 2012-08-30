@@ -9,7 +9,6 @@ ASSMS = \
 	-r:$(top_builddir)/src/Tasque.exe \
 	$(GLIB_SHARP_20_LIBS) \
 	$(GNOME_SHARP_20_LIBS) \
-	$(GTK_DOTNET_20_LIBS) \
 	$(ICE_DESKTOP_LIBS) \
 	$(NDESK_DBUS_10_LIBS) \
 	$(NDESK_DBUS_GLIB_10_LIBS) \
