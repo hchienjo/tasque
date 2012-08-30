@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoMac.Tasque", "src\MonoM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "build", "build\build.csproj", "{BCC1964F-A6E3-4912-B120-6DA22C0EB294}"
 EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "po", "po\po.mdproj", "{51E65E50-71EE-4736-A47C-DA2ECF7F6793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		GtkLinuxDebug|Any CPU = GtkLinuxDebug|Any CPU
@@ -56,6 +58,12 @@ Global
 		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.MonoMacDebug|Any CPU.ActiveCfg = MonoMacDebug|Any CPU
 		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.MonoMacDebug|Any CPU.Build.0 = MonoMacDebug|Any CPU
 		{0F63E512-FD5A-482C-8389-6A0DBE1301CB}.MonoMacRelease|Any CPU.ActiveCfg = MonoMacDebug|Any CPU
+		{51E65E50-71EE-4736-A47C-DA2ECF7F6793}.GtkLinuxDebug|Any CPU.ActiveCfg = Default|Any CPU
+		{51E65E50-71EE-4736-A47C-DA2ECF7F6793}.GtkLinuxRelease|Any CPU.ActiveCfg = Default|Any CPU
+		{51E65E50-71EE-4736-A47C-DA2ECF7F6793}.GtkWinDebug|Any CPU.ActiveCfg = Default|Any CPU
+		{51E65E50-71EE-4736-A47C-DA2ECF7F6793}.GtkWinRelease|Any CPU.ActiveCfg = Default|Any CPU
+		{51E65E50-71EE-4736-A47C-DA2ECF7F6793}.MonoMacDebug|Any CPU.ActiveCfg = Default|Any CPU
+		{51E65E50-71EE-4736-A47C-DA2ECF7F6793}.MonoMacRelease|Any CPU.ActiveCfg = Default|Any CPU
 		{67188C62-9332-4402-8702-E8BC1CCA8D2F}.GtkLinuxDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67188C62-9332-4402-8702-E8BC1CCA8D2F}.GtkLinuxRelease|Any CPU.ActiveCfg = Release|Any CPU
 		{67188C62-9332-4402-8702-E8BC1CCA8D2F}.GtkWinDebug|Any CPU.ActiveCfg = Debug|Any CPU

@@ -68,6 +68,9 @@
     <None Include="..\src\Addins\Backends\Sqlite\SqliteBackend.csproj">
       <Link>Addins\Backends\SqliteBackend.csproj</Link>
     </None>
+    <None Include="..\po\po.mdproj">
+      <Link>po.mdproj</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Addins\" />
