@@ -124,7 +124,10 @@
     <Delete Files="%(GettextTranslation.FileName).gmo" />
   </Target>
   <Target Name="Install">
-    <Copy SourceFiles="%(GettextTranslation.FileName).gmo" DestinationFiles="$(DataDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
+    <Copy SourceFiles="%(GettextTranslation.FileName).gmo" DestinationFiles="$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
+  </Target>
+  <Target Name="Uninstall">
+    <Delete Files="$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
   </Target>
   <Target Name="Update">
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --pot" />
