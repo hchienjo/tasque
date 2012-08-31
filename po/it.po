@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-28 13:18+0200\n"
+"POT-Creation-Date: 2012-08-31 09:47+0200\n"
 "PO-Revision-Date: 2009-02-23 18:49+0100\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -52,21 +52,21 @@ msgstr "Ultimo mese"
 msgid "Last Year"
 msgstr "Ultimo anno"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:86
+#: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/Gtk.Tasque/GtkTray.cs:95
+#: ../src/Gtk.Tasque/GtkTray.cs:91
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/Gtk.Tasque/GtkTray.cs:104
+#: ../src/Gtk.Tasque/GtkTray.cs:100
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -74,36 +74,36 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:110
+#: ../src/Gtk.Tasque/GtkTray.cs:106
 #, fuzzy
 msgid "Tasque Rocks"
 msgstr "Tasque"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:155
+#: ../src/Gtk.Tasque/GtkTray.cs:151
 msgid "translator-credits"
 msgstr "Milo Casagrande <milo@ubuntu.com>, 2008-2009"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:163
+#: ../src/Gtk.Tasque/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Copyright © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:164
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "A Useful Task List"
 msgstr "Un utile elenco delle attività"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:166
+#: ../src/Gtk.Tasque/GtkTray.cs:162
 msgid "Tasque Project Homepage"
 msgstr "Sito web di Tasque"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:179
+#: ../src/Gtk.Tasque/GtkTray.cs:175
 msgid "New Task ..."
 msgstr "Nuova attività..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:185
 msgid "Refresh Tasks ..."
 msgstr "Aggiorna attività..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:195
+#: ../src/Gtk.Tasque/GtkTray.cs:191
 msgid "Toggle Task Window"
 msgstr ""
 
@@ -410,12 +410,12 @@ msgstr "d MMMM yyyy, H.mm"
 msgid "MMMM d yyyy"
 msgstr "d MMMM yyyy"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
 msgid "Click Here to Connect"
 msgstr "Fare clic qui per connettersi"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:71
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
 #, fuzzy
 msgid "You are currently connected"
 msgstr ""
@@ -423,8 +423,8 @@ msgstr ""
 "\n"
 "Connessione avvenuta"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:75
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
 #, fuzzy
 msgid "You are currently connected as"
 msgstr ""
@@ -432,7 +432,7 @@ msgstr ""
 "\n"
 "Connessione avvenuta"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
 #, fuzzy
 msgid "You are not connected"
 msgstr ""
@@ -440,27 +440,27 @@ msgstr ""
 "\n"
 "Non si è connessi"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
 msgid "Remember the Milk not responding. Try again later."
 msgstr "Il servizio «Remember the Milk» non risponde. Riprovare più tardi."
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
 msgid "Click Here After Authorizing"
 msgstr "Fare clic qui dopo l'autorizzazione"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
 msgid "Set the default browser and try again"
 msgstr "Impostare il browser predefinito e riprovare"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
 msgid "Processing..."
 msgstr ""
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
 msgid "Failed, Try Again"
 msgstr ""
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
 msgid "Thank You"
 msgstr "Grazie"
 

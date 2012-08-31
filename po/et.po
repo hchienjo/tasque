@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-28 13:18+0200\n"
+"POT-Creation-Date: 2012-08-31 09:47+0200\n"
 "PO-Revision-Date: 2009-10-09 14:11+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -55,21 +55,21 @@ msgstr "Viimane kuu"
 msgid "Last Year"
 msgstr "Viimane aasta"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:86
+#: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] "{0} ülesanne on hilinenud\n"
 msgstr[1] "{0} ülesannet on hilinenud\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:95
+#: ../src/Gtk.Tasque/GtkTray.cs:91
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] "Tänaseks on {0} ülesanne\n"
 msgstr[1] "Tänaseks on {0} ülesannet\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:104
+#: ../src/Gtk.Tasque/GtkTray.cs:100
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -77,35 +77,35 @@ msgstr[0] "Homseks on {0} ülesanne\n"
 msgstr[1] "Homseks on {0} ülesannet\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:110
+#: ../src/Gtk.Tasque/GtkTray.cs:106
 msgid "Tasque Rocks"
 msgstr "Ülesandetasku on mõnusalt tühi"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:155
+#: ../src/Gtk.Tasque/GtkTray.cs:151
 msgid "translator-credits"
 msgstr "Ivar Smolin <okul linux ee>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:163
+#: ../src/Gtk.Tasque/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Autoriõigus © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:164
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "A Useful Task List"
 msgstr "Ülesannete nimekiri"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:166
+#: ../src/Gtk.Tasque/GtkTray.cs:162
 msgid "Tasque Project Homepage"
 msgstr "Ülesandetasku projekti koduleht"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:179
+#: ../src/Gtk.Tasque/GtkTray.cs:175
 msgid "New Task ..."
 msgstr "Uus ülesanne..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:185
 msgid "Refresh Tasks ..."
 msgstr "Värskenda ülesandeid..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:195
+#: ../src/Gtk.Tasque/GtkTray.cs:191
 msgid "Toggle Task Window"
 msgstr ""
 
@@ -401,45 +401,45 @@ msgstr "d. MMMM yyyy, h:mm tt"
 msgid "MMMM d yyyy"
 msgstr "d. MMMM yyyy"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
 msgid "Click Here to Connect"
 msgstr "Ühendumiseks klõpsa siia"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:71
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
 msgid "You are currently connected"
 msgstr "Sa oled praegu ühendatud"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:75
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
 msgid "You are currently connected as"
 msgstr "Oled praegu ühendatud kasutajana"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
 msgid "You are not connected"
 msgstr "Sa pole ühendatud"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
 msgid "Remember the Milk not responding. Try again later."
 msgstr "\"Remember the Milk\" server ei vasta. Proovi hiljem uuesti."
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
 msgid "Click Here After Authorizing"
 msgstr "Pärast autoriseerimist klõpsa siia"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
 msgid "Set the default browser and try again"
 msgstr "Määra vaikimisi veebilehitseja ja proovi uuesti"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
 msgid "Processing..."
 msgstr "Töötlemine..."
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
 msgid "Failed, Try Again"
 msgstr "Nurjus, proovi uuesti"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
 msgid "Thank You"
 msgstr "Suur tänu"
 

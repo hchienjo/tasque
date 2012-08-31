@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-28 13:18+0200\n"
+"POT-Creation-Date: 2012-08-31 09:47+0200\n"
 "PO-Revision-Date: 2010-09-01 19:59+0100\n"
 "Last-Translator: Søren Juul <zpon.dk@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -51,21 +51,21 @@ msgstr "Sidste måned"
 msgid "Last Year"
 msgstr "Sidste år"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:86
+#: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] "{0} opgave er overskredet\n"
 msgstr[1] "{0} opgaver er overskredet\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:95
+#: ../src/Gtk.Tasque/GtkTray.cs:91
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] "{0} opgave i dag\n"
 msgstr[1] "{0} opgaver i dag\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:104
+#: ../src/Gtk.Tasque/GtkTray.cs:100
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -73,11 +73,11 @@ msgstr[0] "{0} opgave i morgen\n"
 msgstr[1] "{0} opgaver i morgen\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:110
+#: ../src/Gtk.Tasque/GtkTray.cs:106
 msgid "Tasque Rocks"
 msgstr "Tasque Styrer"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:155
+#: ../src/Gtk.Tasque/GtkTray.cs:151
 msgid "translator-credits"
 msgstr ""
 "Søren Juul <zpon.dk@gmail.com>\n"
@@ -85,27 +85,27 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:163
+#: ../src/Gtk.Tasque/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Ophavsret © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:164
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "A Useful Task List"
 msgstr "En nyttig opgaveliste"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:166
+#: ../src/Gtk.Tasque/GtkTray.cs:162
 msgid "Tasque Project Homepage"
 msgstr "Tasques projekthjemmeside"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:179
+#: ../src/Gtk.Tasque/GtkTray.cs:175
 msgid "New Task ..."
 msgstr "Ny opgave..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:185
 msgid "Refresh Tasks ..."
 msgstr "Genopfrisk opgaver ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:195
+#: ../src/Gtk.Tasque/GtkTray.cs:191
 msgid "Toggle Task Window"
 msgstr ""
 
@@ -401,45 +401,45 @@ msgstr "d MMMM yyyy h:mm tt"
 msgid "MMMM d yyyy"
 msgstr "d MMMM yyyy"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
 msgid "Click Here to Connect"
 msgstr "Klik her for at forbinde"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:71
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
 msgid "You are currently connected"
 msgstr "Du er forbundet"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:75
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
 msgid "You are currently connected as"
 msgstr "Du er forbundet som"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
 msgid "You are not connected"
 msgstr "Du er ikke forbundet"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
 msgid "Remember the Milk not responding. Try again later."
 msgstr "Remember the Milk svarede ikke. Prøv igen senere."
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
 msgid "Click Here After Authorizing"
 msgstr "Klik her efter godkendelsen"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
 msgid "Set the default browser and try again"
 msgstr "Set standardbrowseren og prøv igen"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
 msgid "Processing..."
 msgstr "Bearbejder..."
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
 msgid "Failed, Try Again"
 msgstr "Fejlede. Prøv Igen"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
 msgid "Thank You"
 msgstr "Tak"
 

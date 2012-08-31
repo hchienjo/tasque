@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-28 13:18+0200\n"
+"POT-Creation-Date: 2012-08-31 09:47+0200\n"
 "PO-Revision-Date: 2012-08-07 21:16+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latviešu <lata-l10n@googlegroups.com>\n"
@@ -55,7 +55,7 @@ msgstr "Pēdējais mēnesis"
 msgid "Last Year"
 msgstr "Pēdējais gads"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:86
+#: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
@@ -63,7 +63,7 @@ msgstr[0] "{0} nokavēts uzdevums\n"
 msgstr[1] "{0} nokavēti uzdevumi\n"
 msgstr[2] "{0} nokavētu uzdevumu\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:95
+#: ../src/Gtk.Tasque/GtkTray.cs:91
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
@@ -71,7 +71,7 @@ msgstr[0] "{0} uzdevums šodienai\n"
 msgstr[1] "{0} uzdevumi šodienai\n"
 msgstr[2] "{0} uzdevumu šodienai\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:104
+#: ../src/Gtk.Tasque/GtkTray.cs:100
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -80,35 +80,35 @@ msgstr[1] "{0} uzdevumi rītdienai\n"
 msgstr[2] "{0} uzdevumu rītdienai\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:110
+#: ../src/Gtk.Tasque/GtkTray.cs:106
 msgid "Tasque Rocks"
 msgstr "Tasque rullē"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:155
+#: ../src/Gtk.Tasque/GtkTray.cs:151
 msgid "translator-credits"
 msgstr "Arvis Lācis"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:163
+#: ../src/Gtk.Tasque/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Autortiesības © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:164
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "A Useful Task List"
 msgstr "Noderīgs uzdevumu saraksts"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:166
+#: ../src/Gtk.Tasque/GtkTray.cs:162
 msgid "Tasque Project Homepage"
 msgstr "Tasque projekta mājaslapa"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:179
+#: ../src/Gtk.Tasque/GtkTray.cs:175
 msgid "New Task ..."
 msgstr "Jauns uzdevums..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:185
 msgid "Refresh Tasks ..."
 msgstr "Atjaunināt uzdevumus..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:195
+#: ../src/Gtk.Tasque/GtkTray.cs:191
 msgid "Toggle Task Window"
 msgstr ""
 
@@ -404,45 +404,45 @@ msgstr "d. MMMM, yyyy, h:mm tt"
 msgid "MMMM d yyyy"
 msgstr "d. MMMM, yyyy"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
 msgid "Click Here to Connect"
 msgstr "Spiediet šeit, lai savienotos"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:71
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
 msgid "You are currently connected"
 msgstr "Jūs pašlaik esat savienots"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:75
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
 msgid "You are currently connected as"
 msgstr "Jūs pašlaik neesat savienots kā"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
 msgid "You are not connected"
 msgstr "Jūs neesat savienots"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
 msgid "Remember the Milk not responding. Try again later."
 msgstr "Remember the Milk neatbild. Mēģiniet vēlreiz vēlāk."
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
 msgid "Click Here After Authorizing"
 msgstr "Noklikšķiniet šeit pēc pieteikšanās"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
 msgid "Set the default browser and try again"
 msgstr "Iestatiet noklusēto pārlūku un mēģiniet vēlreiz"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
 msgid "Processing..."
 msgstr "Apstrādā..."
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
 msgid "Failed, Try Again"
 msgstr "Neizdevās, mēģiniet vēlreiz"
 
-#: ../src/Addins/Backends/Rtm/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
 msgid "Thank You"
 msgstr "Paldies"
 
