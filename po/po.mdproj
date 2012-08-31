@@ -98,6 +98,10 @@
     <GettextTranslation Include="zh_CN.po" />
     <GettextTranslation Include="zh_TW.po" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- Required by intltool-update -->
+    <PotfilesIn Include="POTFILES.in" />
+  </ItemGroup>
   
   <PropertyGroup>
     <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
