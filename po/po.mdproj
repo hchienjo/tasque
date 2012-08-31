@@ -107,15 +107,23 @@
     <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
     <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
     <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
-    <MsgFmt>msgfmt</MsgFmt>
-    <IntlToolUpdate>intltool-update</IntlToolUpdate>
   </PropertyGroup>
+
   <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe')">
     <MsgFmt>$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
   </PropertyGroup>
   <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe')">
     <IntlToolUpdate>$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe</IntlToolUpdate>
   </PropertyGroup>
+
+  <!-- Fallbacks -->
+  <PropertyGroup Condition=" '$(MsgFmt)' == '' ">
+    <MsgFmt>msgfmt</MsgFmt>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(IntlToolUpdate)' == '' ">
+    <IntlToolUpdate>intltool-update</IntlToolUpdate>
+  </PropertyGroup>
+
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
   <Target Name="Build">
     <Exec Command="$(MsgFmt) -o %(FileName).gmo @(GettextTranslation)" />
