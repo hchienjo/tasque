@@ -18,6 +18,13 @@
 
   <maintainer>
     <foaf:Person>
+      <foaf:name>Antonius Riha</foaf:name>
+      <foaf:mbox rdf:resource="mailto:antoniusriha@gmail.com" />
+      <gnome:userid>antoniusri</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <maintainer>
+    <foaf:Person>
       <foaf:name>Brian G. Merrell</foaf:name>
       <foaf:mbox rdf:resource="mailto:bgmerrell@gmail.com" />
       <gnome:userid>bgmerrell</gnome:userid>
