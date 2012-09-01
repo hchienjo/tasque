@@ -8,7 +8,6 @@ AM_MAINTAINER_MODE
 GNOME_COMMON_INIT
 
 AC_PROG_INSTALL
-IT_PROG_INTLTOOL([0.35])
 AC_PROG_LIBTOOL
 
 dnl pkg-config
@@ -19,6 +18,26 @@ AC_PROG_INSTALL
 AC_PATH_PROG(DMCS, dmcs, no)
 if test "x$DMCS" = "xno"; then
         AC_MSG_ERROR([dmcs Not found])
+fi
+
+#
+# Setup xbuild
+#
+AC_PATH_PROG(XBUILD, xbuild, no)
+if test "x$XBUILD" = "xno"; then
+		AC_MSG_ERROR([xbuild not found])
+fi
+
+#
+# Setup i18n tools
+#
+AC_PATH_PROG(INTLTOOL_MERGE, intltool-merge, no)
+if test "xINTLTOOL_MERGE" = "xno"; then
+		AC_MSG_ERROR([intltool-merge not found])
+fi
+AC_PATH_PROG(INTLTOOL_UPDATE, intltool-update, no)
+if test "xINTLTOOL_UPDATE" = "xno"; then
+		AC_MSG_ERROR([intltool-update not found])
 fi
 
 #
@@ -243,6 +262,12 @@ AC_SUBST(GACUTIL_FLAGS)
 
 ### End GAC tool ###
 
+#
+# Setup po.mdproj
+#
+POMDPROJ=po.mdp
+AC_SUBST(POMDPROJ)
+
 AC_CONFIG_FILES([
 Makefile
 src/Makefile
@@ -261,7 +286,8 @@ src/Addins/Backends/Sqlite/Makefile
 data/Makefile
 data/images/Makefile
 data/sounds/Makefile
-po/Makefile.in
+po/Makefile
+po/${POMDPROJ}:po/po.mdproj
 ])
 
 AC_OUTPUT

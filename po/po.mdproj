@@ -99,14 +99,23 @@
     <GettextTranslation Include="zh_TW.po" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Required by intltool-update -->
-    <PotfilesIn Include="POTFILES.in" />
+    <DistFile Include="@(GettextTranslation)" />
+    <DistFile Include="POTFILES.in" />
+    <DistFile Include="po.mdproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <DistCleanFile Include="POTFILES" />
+    <DistCleanFile Include="Makefile" />
+    <DistCleanFile Include="po.mdp" />
+    <DistCleanFile Include="*.gmo" />
   </ItemGroup>
   
   <PropertyGroup>
+    <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
     <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
     <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
     <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
+    <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
   </PropertyGroup>
 
   <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe')">
@@ -126,21 +135,32 @@
 
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
   <Target Name="Build">
-    <Exec Command="$(MsgFmt) -o %(FileName).gmo @(GettextTranslation)" />
+    <Exec Command="$(MsgFmt) -o %(FileName).gmo $(SrcDir)\@(GettextTranslation)" />
   </Target>
   <Target Name="Clean">
     <Delete Files="%(GettextTranslation.FileName).gmo" />
   </Target>
   <Target Name="Install">
-    <Copy SourceFiles="%(GettextTranslation.FileName).gmo" DestinationFiles="$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
+    <Copy SourceFiles="%(GettextTranslation.FileName).gmo" DestinationFiles="$(DestDir)$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
   </Target>
   <Target Name="Uninstall">
-    <Delete Files="$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
+    <Delete Files="$(DestDir)$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
   </Target>
   <Target Name="Update">
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --pot" />
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --dist -o %(GettextTranslation.FileName).new.po %(GettextTranslation.FileName)" />
     <Copy SourceFiles="%(FileName).new.po" DestinationFiles="@(GettextTranslation)" />
     <Delete Files="%(GettextTranslation.FileName).new.po" />
+  </Target>
+  <Target Name="Dist">
+    <Copy SourceFiles="$(SrcDir)\%(DistFile.Identity)" DestinationFolder="$(DistDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="DistClean" DependsOnTargets="Clean">
+    <Delete Files="@(DistCleanFile)" />
+  </Target>
+  <Target Name="Check">
+    <Delete Files="missing;notexist" />
+    <Exec Command="srcdir=$(SrcDir) $(IntlToolUpdate) -m" />
+    <Error Condition="Exists('missing') Or Exists('notexist')" Text="Some files which should have been listed in POTFILES.in or POTFILES.skip have been left out." />
   </Target>
 </Project>

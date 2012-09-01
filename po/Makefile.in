@@ -1,0 +1,52 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+prefix = @prefix@
+datarootdir = @datarootdir@
+datadir = @datadir@
+localedir = @localedir@
+
+XBUILD = @XBUILD@
+MSGFMT = @MSGFMT@
+INTLTOOL_UPDATE = @INTLTOOL_UPDATE@
+
+POMDPROJ = @POMDPROJ@
+
+PROPERTIES = \
+	/property:SrcDir=$(srcdir) \
+	/property:Prefix=$(prefix) \
+	/property:DataDir=$(datadir) \
+	/property:LocaleDir=$(localedir) \
+	/property:MsgFmt=$(MSGFMT) \
+	/property:IntlToolUpdate=$(INTLTOOL_UPDATE) \
+	/property:DistDir=../$(PACKAGE)-$(VERSION)/po \
+	/property:DestDir=$(DESTDIR)
+
+all:
+	$(XBUILD) $(PROPERTIES) $(POMDPROJ)
+
+clean:
+	$(XBUILD) $(PROPERTIES) /target:clean $(POMDPROJ)
+
+install:
+	$(XBUILD) $(PROPERTIES) /target:install $(POMDPROJ)
+
+uninstall:
+	$(XBUILD) $(PROPERTIES) /target:uninstall $(POMDPROJ)
+
+update-po:
+	$(XBUILD) $(PROPERTIES) /target:update $(POMDPROJ)
+
+dist distdir:
+	$(XBUILD) $(PROPERTIES) /target:dist $(POMDPROJ)
+
+distclean:
+	$(XBUILD) $(PROPERTIES) /target:distclean $(POMDPROJ)
+
+check:
+	$(XBUILD) $(PROPERTIES) /target:check $(POMDPROJ)
+
+dvi installcheck:

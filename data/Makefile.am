@@ -1,10 +1,10 @@
 
 SUBDIRS = images sounds 
 
-@INTLTOOL_DESKTOP_RULE@
-
 desktop_in_files = tasque.desktop.in
 desktop_files    = $(desktop_in_files:.desktop.in=.desktop)
+
+%.desktop:   %.desktop.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; $(INTLTOOL_V_MERGE)LC_ALL=C $(INTLTOOL_MERGE) $(INTLTOOL_V_MERGE_OPTIONS) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@
 
 desktopdir   = $(datadir)/applications
 desktop_DATA = $(desktop_files)
