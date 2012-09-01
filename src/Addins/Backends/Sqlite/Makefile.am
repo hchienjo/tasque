@@ -15,7 +15,7 @@ ASSEMBLIES = \
 	-r:System.Data \
 	-r:Mono.Data.Sqlite \
 	-r:Mono.Posix \
-	$(GTK_DOTNET_20_LIBS)
+	$(GTK_SHARP_20_LIBS)
 
 if ENABLE_BACKEND_SQLITE
 

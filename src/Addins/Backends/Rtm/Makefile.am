@@ -14,7 +14,7 @@ ASSEMBLIES = \
 	-r:../../../Libraries/RtmNet/RtmNet.dll \
 	-r:System \
 	-r:Mono.Posix \
-	$(GTK_DOTNET_20_LIBS)
+	$(GTK_SHARP_20_LIBS)
 
 if ENABLE_BACKEND_RTM
 

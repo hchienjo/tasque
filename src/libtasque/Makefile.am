@@ -38,7 +38,7 @@ ASSEMBLIES = \
 	-r:System \
 	-r:System.Core \
 	-r:Mono.Posix \
-	$(GTK_DOTNET_20_LIBS)
+	$(GTK_SHARP_20_LIBS)
 
 $(TARGET): $(CSFILES)
 	$(CSC) -out:$@ -t:library -noconfig -codepage:utf8 -warn:4 $(CSFLAGS) $^ $(ASSEMBLIES)

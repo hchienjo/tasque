@@ -1,7 +1,7 @@
 dnl Warning: This is an automatically generated file, do not edit!
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.54])
-AC_INIT([tasque], [0.1.10])
+AC_INIT([tasque], [0.1.12])
 AM_INIT_AUTOMAKE([foreign tar-ustar])
 AM_MAINTAINER_MODE
 
@@ -57,7 +57,6 @@ AM_GCONF_SOURCE_2
 
 PKG_CHECK_MODULES([GLIB_SHARP_20], [glib-sharp-2.0])
 PKG_CHECK_MODULES([GNOME_SHARP_20], [gnome-sharp-2.0])
-PKG_CHECK_MODULES([GTK_DOTNET_20], [gtk-dotnet-2.0])
 PKG_CHECK_MODULES([GTK_SHARP_20], [gtk-sharp-2.0 >= 2.10.0])
 PKG_CHECK_MODULES([GTK_SHARP_2_12], gtk-sharp-2.0 >= 2.12.0, GTK_2_12="yes", GTK_2_12="no")
 AM_CONDITIONAL(GTK_2_12, test "$GTK_2_12" = "yes")
@@ -84,7 +83,7 @@ AC_ARG_ENABLE(appindicator,
 if test "x$appindicator" != "xno" ; then
 	PKG_CHECK_MODULES([APPINDICATOR_SHARP], [appindicator-sharp-0.1], appindicator="yes", appindicator="no")
 	if test "$appindicator" == "no" ; then
-		AC_MSG_ERROR([Please install appindicator-sharp, if you want systray support on Ubuntu/Unity. \
+		AC_MSG_WARN([Please install appindicator-sharp, if you want systray support on Ubuntu/Unity. \
 If appindicator-sharp is not available on your system, you probably won't need it. To disable \
 appindicator pass --enable-appindicator=no to configure."])
 	fi

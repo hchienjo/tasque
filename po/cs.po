@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the tasque package.
 #
 # Petr Pulc <petrpulc@gmail.com>, 2009, 2010.
-# Marek Černocký <marek@manet.cz>, 2010.
+# Marek Černocký <marek@manet.cz>, 2010, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-31 09:47+0200\n"
-"PO-Revision-Date: 2010-09-19 09:55+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-08-29 18:16+0000\n"
+"PO-Revision-Date: 2012-08-30 17:18+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -111,7 +112,7 @@ msgstr "Obnovit úkoly…"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:191
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Přepnout okno s úkoly"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:24
 #, csharp-format
@@ -547,6 +548,3 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|M O|M N|O|A"
-
-#~ msgid "Show Tasks ..."
-#~ msgstr "Zobrazit úkoly…"

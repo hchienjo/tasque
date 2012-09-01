@@ -6,11 +6,11 @@
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 msgid ""
 msgstr ""
-"Project-Id-Version: Tasque\n"
+"Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-31 09:47+0200\n"
-"PO-Revision-Date: 2009-09-14 13:42+0100\n"
-"Last-Translator: Tomasz Dominikowski <dominikowski@gmail.com>\n"
+"POT-Creation-Date: 2012-08-29 23:47+0200\n"
+"PO-Revision-Date: 2012-08-29 23:48+0200\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Language: Polish\n"
-"X-Poedit-Country: POLAND\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: Poland\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -60,36 +59,36 @@ msgstr "Ostatni rok"
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} zadanie jest zaległe\n"
+msgstr[1] "{0} zadania są zaległe\n"
+msgstr[2] "{0} zadań jest zaległych\n"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:91
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} zadanie na dzisiaj\n"
+msgstr[1] "{0} zadania na dzisiaj\n"
+msgstr[2] "{0} zadań na dzisiaj\n"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:100
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} zadanie na jutro\n"
+msgstr[1] "{0} zadania na jutro\n"
+msgstr[2] "{0} zadań na jutro\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:106
 #, fuzzy
 msgid "Tasque Rocks"
-msgstr "Tasque"
+msgstr "Tasque wymiata"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:151
 msgid "translator-credits"
 msgstr ""
-"Aviary.pl <gnomepl@aviary.pl>, 2008, 2009\n"
+"Aviary.pl <gnomepl@aviary.pl>, 2008, 2009, 2012\n"
 "Piotr Makowski <pmakowski@aviary.pl>, 2008"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:159
@@ -102,7 +101,7 @@ msgstr "Użyteczna lista zadań"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:162
 msgid "Tasque Project Homepage"
-msgstr "Strona domowa projektu Tasque"
+msgstr "Witryna projektu Tasque"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:175
 msgid "New Task ..."
@@ -114,7 +113,7 @@ msgstr "Odśwież zadania..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:191
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Przełącz okno zadań"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:24
 #, csharp-format
@@ -132,7 +131,7 @@ msgstr "_Okno"
 #. Update the window title
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:97
 msgid "Tasque Preferences"
-msgstr ""
+msgstr "Preferencje programu Tasque"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:116
 msgid "General"
@@ -140,21 +139,21 @@ msgstr "Ogólne"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:124
 msgid "Appearance"
-msgstr ""
+msgstr "Wygląd"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:160
 msgid "Color Management"
-msgstr ""
+msgstr "Zarządzanie kolorami"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:171
 #, fuzzy
 msgid "Today:"
-msgstr "Dzisiaj"
+msgstr "Dzisiaj:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:199
 #, fuzzy
 msgid "Overdue:"
-msgstr "Zaległe"
+msgstr "Zaległe:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:243
 msgid "Task Management System"
@@ -319,7 +318,7 @@ msgstr "Przyszłość"
 #: ../src/Gtk.Tasque/TaskWindow.cs:474 ../src/Gtk.Tasque/TaskWindow.cs:1213
 #, csharp-format
 msgid "Tasks loaded: {0}"
-msgstr ""
+msgstr "Wczytano zadania: {0}"
 
 #. Show error status
 #: ../src/Gtk.Tasque/TaskWindow.cs:801
@@ -329,7 +328,7 @@ msgstr "Błąd podczas tworzenia nowego zadania"
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:805
 msgid "Task created successfully"
-msgstr "Poprawnie utworzono zadanie"
+msgstr "Pomyślnie utworzono zadanie"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1089
 msgid "_Notes..."
@@ -347,7 +346,7 @@ msgstr "Mo_dyfikuj zadanie"
 #: ../src/Gtk.Tasque/TaskWindow.cs:1133
 #, fuzzy
 msgid "_Change category"
-msgstr "Kategoria"
+msgstr "Zmień _kategorię"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1162
 msgid "Task deleted"
@@ -360,10 +359,7 @@ msgstr "Wczytywanie zadań..."
 #: ../src/Gtk.Tasque/TaskWindow.cs:1225
 #, fuzzy
 msgid "Not connected."
-msgstr ""
-"\n"
-"\n"
-"Brak połączenia"
+msgstr "Brak połączenia."
 
 #: ../src/Gtk.Tasque/Utilities.cs:274
 #, csharp-format
@@ -418,33 +414,24 @@ msgstr "d MMMM yyyy"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
 msgid "Click Here to Connect"
-msgstr "Proszę kliknąć tutaj, aby się połączyć"
+msgstr "Kliknięcie tutaj połączy"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
 #, fuzzy
 msgid "You are currently connected"
-msgstr ""
-"\n"
-"\n"
-"Połączenie dostępne"
+msgstr "Obecnie połączono"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
 #, fuzzy
 msgid "You are currently connected as"
-msgstr ""
-"\n"
-"\n"
-"Połączenie dostępne"
+msgstr "Obecnie połączono jako"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
 #, fuzzy
 msgid "You are not connected"
-msgstr ""
-"\n"
-"\n"
-"Brak połączenia"
+msgstr "Brak połączenia"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
 msgid "Remember the Milk not responding. Try again later."
@@ -452,7 +439,7 @@ msgstr "Remember the Milk nie odpowiada. Proszę spróbować później."
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
 msgid "Click Here After Authorizing"
-msgstr "Proszę kliknąć tutaj po uwierzytelnieniu"
+msgstr "Proszę kliknąć tutaj po upoważnieniu"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
 msgid "Set the default browser and try again"
@@ -460,11 +447,11 @@ msgstr "Proszę ustawić domyślną przeglądarkę i spróbować ponownie"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
 msgid "Processing..."
-msgstr ""
+msgstr "Przetwarzanie..."
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
 msgid "Failed, Try Again"
-msgstr ""
+msgstr "Nie powiodło się, proszę spróbować ponownie"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
 msgid "Thank You"
@@ -479,40 +466,38 @@ msgstr ""
 #. Token "T"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:53
-#, fuzzy
 msgid "today"
-msgstr "Dzisiaj"
+msgstr "dzisiaj"
 
 #. Token "T"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:57
-#, fuzzy
 msgid "tomorrow"
-msgstr "Jutro"
+msgstr "jutro"
 
 #. Token "m". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:61
 msgid "month|months"
-msgstr ""
+msgstr "miesiąc|miesiące|miesięcy"
 
 #. Token "w". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:65
 msgid "week|weeks"
-msgstr ""
+msgstr "tydzień|tygodnie|tygodni"
 
 #. Token "y". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:69
 msgid "year|years"
-msgstr ""
+msgstr "rok|lata"
 
 #. Token "d". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:73
 msgid "day|days"
-msgstr ""
+msgstr "dzień|dni"
 
 #. Token "u". More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:207
@@ -523,19 +508,19 @@ msgstr ""
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:233
 msgid "next"
-msgstr ""
+msgstr "następny"
 
 #. Token "o". Examples could be: "On April 1st", "On Wednesday"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:239
 msgid "on"
-msgstr ""
+msgstr "w"
 
 #. Token "i". Examples could be: "In 2 weeks", "In 3 months"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:245
 msgid "in"
-msgstr ""
+msgstr "za"
 
 #. Represents "Today and Tomorrow" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
@@ -572,37 +557,3 @@ msgstr ""
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr ""
-
-#~ msgid "Show Tasks ..."
-#~ msgstr "Wyświetl zadania..."
-
-#, fuzzy
-#~ msgid "New task1..."
-#~ msgstr "Nowe zadanie..."
-
-#~ msgid "Sunday"
-#~ msgstr "Niedziela"
-
-#~ msgid "Monday"
-#~ msgstr "Poniedziałek"
-
-#~ msgid "Tuesday"
-#~ msgstr "Wtorek"
-
-#~ msgid "Wednesday"
-#~ msgstr "Środa"
-
-#~ msgid "Thursday"
-#~ msgstr "Czwartek"
-
-#~ msgid "Friday"
-#~ msgstr "Piątek"
-
-#~ msgid "Saturday"
-#~ msgstr "Sobota"
-
-#~ msgid "^(?<task>.+)\\s+today\\W*$"
-#~ msgstr "^(?<task>.+)\\s+dzisiaj\\W*$"
-
-#~ msgid "^(?<task>.+)\\s+tomorrow\\W*$"
-#~ msgstr "^(?<task>.+)\\s+jutr\\W*$"
