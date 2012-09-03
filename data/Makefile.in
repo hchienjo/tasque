@@ -42,9 +42,6 @@ install:
 uninstall:
 	$(XBUILD) $(PROPERTIES) /target:uninstall $(DATAMDPROJ)
 
-update-po:
-	$(XBUILD) $(PROPERTIES) /target:update $(DATAMDPROJ)
-
 dist distdir:
 	$(XBUILD) $(PROPERTIES) /target:dist $(DATAMDPROJ)
 
