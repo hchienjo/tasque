@@ -55,20 +55,20 @@ RESOURCES = \
 	-resource:$(top_srcdir)/data/images/tasque-24.png \
 	-resource:$(top_srcdir)/data/images/tasque-32.png \
 	-resource:$(top_srcdir)/data/images/tasque-48.png \
-	-resource:$(top_srcdir)/data/images/note-16.png,note.png \
-	-resource:$(top_srcdir)/data/images/rtmLogo.png \
-	-resource:$(top_srcdir)/data/images/clock-16-0.png \
-	-resource:$(top_srcdir)/data/images/clock-16-1.png \
-	-resource:$(top_srcdir)/data/images/clock-16-2.png \
-	-resource:$(top_srcdir)/data/images/clock-16-3.png \
-	-resource:$(top_srcdir)/data/images/clock-16-4.png \
-	-resource:$(top_srcdir)/data/images/clock-16-5.png \
-	-resource:$(top_srcdir)/data/images/clock-16-6.png \
-	-resource:$(top_srcdir)/data/images/clock-16-7.png \
-	-resource:$(top_srcdir)/data/images/clock-16-8.png \
-	-resource:$(top_srcdir)/data/images/clock-16-9.png \
-	-resource:$(top_srcdir)/data/images/clock-16-10.png \
-	-resource:$(top_srcdir)/data/images/clock-16-11.png
+	-resource:$(top_srcdir)/data/images/tasque-note.png \
+	-resource:$(top_srcdir)/data/images/tasque-rtm-logo.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-0.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-1.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-2.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-3.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-4.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-5.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-6.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-7.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-8.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-9.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-10.png \
+	-resource:$(top_srcdir)/data/images/tasque-completing-11.png
 
 ASSEMBLIES = \
 	-r:System \

@@ -131,47 +131,47 @@
     <PreBuildEvent>copy "$(SolutionDir)\data\images\*.png" "$(ProjectDir)"</PreBuildEvent>
   </PropertyGroup>-->
   <ItemGroup>
-    <Content Include="..\..\data\images\clock-16-0.png">
-      <Link>data\images\clock-16-0.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-0.png">
+      <Link>data\images\tasque-completing-0.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-1.png">
-      <Link>data\images\clock-16-1.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-1.png">
+      <Link>data\images\tasque-completing-1.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-10.png">
-      <Link>data\images\clock-16-10.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-10.png">
+      <Link>data\images\tasque-completing-10.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-11.png">
-      <Link>data\images\clock-16-11.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-11.png">
+      <Link>data\images\tasque-completing-11.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-2.png">
-      <Link>data\images\clock-16-2.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-2.png">
+      <Link>data\images\tasque-completing-2.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-3.png">
-      <Link>data\images\clock-16-3.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-3.png">
+      <Link>data\images\tasque-completing-3.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-4.png">
-      <Link>data\images\clock-16-4.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-4.png">
+      <Link>data\images\tasque-completing-4.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-5.png">
-      <Link>data\images\clock-16-5.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-5.png">
+      <Link>data\images\tasque-completing-5.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-6.png">
-      <Link>data\images\clock-16-6.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-6.png">
+      <Link>data\images\tasque-completing-6.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-7.png">
-      <Link>data\images\clock-16-7.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-7.png">
+      <Link>data\images\tasque-completing-7.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-8.png">
-      <Link>data\images\clock-16-8.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-8.png">
+      <Link>data\images\tasque-completing-8.png</Link>
     </Content>
-    <Content Include="..\..\data\images\clock-16-9.png">
-      <Link>data\images\clock-16-9.png</Link>
+    <Content Include="..\..\data\images\tasque-completing-9.png">
+      <Link>data\images\tasque-completing-9.png</Link>
     </Content>
-    <Content Include="..\..\data\images\note-16.png">
-      <Link>data\images\note-16.png</Link>
+    <Content Include="..\..\data\images\tasque-note.png">
+      <Link>data\images\tasque-note.png</Link>
     </Content>
-    <Content Include="..\..\data\images\rtmLogo.png">
-      <Link>data\images\rtmLogo.png</Link>
+    <Content Include="..\..\data\images\tasque-rtm-logo.png">
+      <Link>data\images\tasque-rtm-logo.png</Link>
     </Content>
     <Content Include="..\..\data\images\tasque-16.png">
       <Link>data\images\tasque-16.png</Link>
@@ -193,11 +193,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\data\images\clock-16-0.svg">
-      <Link>data\images\clock-16-0.svg</Link>
+    <None Include="..\..\data\images\tasque-completing-0.svg">
+      <Link>data\images\tasque-completing-0.svg</Link>
     </None>
-    <None Include="..\..\data\images\note-22.svg">
-      <Link>data\images\note-22.svg</Link>
+    <None Include="..\..\data\images\tasque-note.svg">
+      <Link>data\images\tasque-note.svg</Link>
     </None>
     <None Include="..\..\data\images\tasque-icons-source.svg">
       <Link>data\images\tasque-icons-source.svg</Link>

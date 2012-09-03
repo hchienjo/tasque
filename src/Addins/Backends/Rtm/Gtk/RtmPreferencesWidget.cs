@@ -20,7 +20,7 @@ namespace Tasque.Backends.RtmBackend
 		
 		static RtmPreferencesWidget ()
 		{
-			normalPixbuf = Utilities.GetIcon ("rtmLogo", 122);
+			normalPixbuf = Utilities.GetIcon ("tasque-rtm-logo", 128);
 		}
 		
 		public RtmPreferencesWidget () : base ()
