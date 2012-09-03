@@ -1,13 +1,7 @@
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = 	tasque-16.png \
-		tasque-22.png \
-		tasque-24.png \
-		tasque-32.png \
-		tasque-48.png \
-		tasque.svg \
-		note-16.png \
-		rtmLogo.png
+		tasque-32.png
 
 hicolordir = $(datadir)/icons/hicolor
 
