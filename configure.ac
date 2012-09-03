@@ -267,6 +267,12 @@ AC_SUBST(GACUTIL_FLAGS)
 POMDPROJ=po.mdp
 AC_SUBST(POMDPROJ)
 
+#
+# Setup data.mdproj
+#
+DATAMDPROJ=data.mdp
+AC_SUBST(DATAMDPROJ)
+
 AC_CONFIG_FILES([
 Makefile
 src/Makefile
@@ -283,8 +289,7 @@ src/Addins/Backends/IceCore/Makefile
 src/Addins/Backends/Rtm/Makefile
 src/Addins/Backends/Sqlite/Makefile
 data/Makefile
-data/images/Makefile
-data/sounds/Makefile
+data/${DATAMDPROJ}:data/data.mdproj
 po/Makefile
 po/${POMDPROJ}:po/po.mdproj
 ])

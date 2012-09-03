@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "build", "build\build.csproj
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "po", "po\po.mdproj", "{51E65E50-71EE-4736-A47C-DA2ECF7F6793}"
 EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "data", "data\data.mdproj", "{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		GtkLinuxDebug|Any CPU = GtkLinuxDebug|Any CPU
@@ -81,6 +83,18 @@ Global
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.MonoMacDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.MonoMacDebug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC908EC-E7C2-46CD-A21D-832C0D81D946}.MonoMacRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkLinuxDebug|Any CPU.ActiveCfg = Linux|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkLinuxDebug|Any CPU.Build.0 = Linux|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkLinuxRelease|Any CPU.ActiveCfg = Linux|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkLinuxRelease|Any CPU.Build.0 = Linux|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkWinDebug|Any CPU.ActiveCfg = Windows|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkWinDebug|Any CPU.Build.0 = Windows|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkWinRelease|Any CPU.ActiveCfg = Windows|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.GtkWinRelease|Any CPU.Build.0 = Windows|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.MonoMacDebug|Any CPU.ActiveCfg = MacOsx|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.MonoMacDebug|Any CPU.Build.0 = MacOsx|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.MonoMacRelease|Any CPU.ActiveCfg = MacOsx|Any CPU
+		{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}.MonoMacRelease|Any CPU.Build.0 = MacOsx|Any CPU
 		{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}.GtkLinuxDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}.GtkLinuxDebug|Any CPU.Build.0 = Debug|Any CPU
 		{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}.GtkLinuxRelease|Any CPU.ActiveCfg = Release|Any CPU

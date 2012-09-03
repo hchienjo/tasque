@@ -71,6 +71,9 @@
     <None Include="..\po\po.mdproj">
       <Link>po.mdproj</Link>
     </None>
+    <None Include="..\data\data.mdproj">
+      <Link>data.mdproj</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Addins\" />

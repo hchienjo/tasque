@@ -51,6 +51,8 @@ Makefile.in
 /data/tomboy-addins.pc
 /data/*.desktop
 /data/*.schemas
+/data/data.mdp
+!/data/Makefile.in
 
 # /help
 /help/*.omf

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Linux</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ItemType>GenericProject</ItemType>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Linux' ">
+    <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
+    <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
+    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
+    <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
+    <DesktopDir Condition=" '$(DesktopDir)' == '' ">$(DataDir)\applications</DesktopDir>
+    <DbusServiceDir Condition=" '$(DbusServiceDir)' == '' ">$(DataDir)\dbus-1\services</DbusServiceDir>
+    <PixmapDir Condition=" '$(PixmapDir)' == '' ">$(DataDir)\pixmaps</PixmapDir>
+    <HiColorDir Condition=" '$(HiColorDir)' == '' ">$(DataDir)\icons\hicolor</HiColorDir>
+    <LocalHiColorDir Condition=" '$(LocalHiColorDir)' == '' ">$(DataDir)\tasque\icons\hicolor</LocalHiColorDir>
+    <SoundsDir>$(DataDir)/tasque/sounds</SoundsDir>
+    <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
+    <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Windows' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'MacOsx' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MacOsx|AnyCPU' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <DesktopInFile Include="tasque.desktop.in" />
+    <DbusServiceInFile Include="org.gnome.Tasque.service.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <GlobalIcon Include="images\tasque-16.png">
+      <Name>tasque.png</Name>
+      <Context>apps</Context>
+      <Size>16x16</Size>
+      <Pixmaps>true</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque-22.png">
+      <Name>tasque.png</Name>
+      <Context>apps</Context>
+      <Size>22x22</Size>
+      <Pixmaps>false</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque-24.png">
+      <Name>tasque.png</Name>
+      <Context>apps</Context>
+      <Size>24x24</Size>
+      <Pixmaps>false</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque-32.png">
+      <Name>tasque.png</Name>
+      <Context>apps</Context>
+      <Size>32x32</Size>
+      <Pixmaps>true</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque-48.png">
+      <Name>tasque.png</Name>
+      <Context>apps</Context>
+      <Size>48x48</Size>
+      <Pixmaps>false</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque.svg">
+      <Name>tasque.svg</Name>
+      <Context>apps</Context>
+      <Size>scalable</Size>
+      <Pixmaps>false</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque-panel-16.png">
+      <Name>tasque-panel.png</Name>
+      <Context>apps</Context>
+      <Size>16x16</Size>
+      <Pixmaps>false</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque-panel-22.png">
+      <Name>tasque-panel.png</Name>
+      <Context>apps</Context>
+      <Size>22x22</Size>
+      <Pixmaps>false</Pixmaps>
+    </GlobalIcon>
+    <GlobalIcon Include="images\tasque-panel-24.png">
+      <Name>tasque-panel.png</Name>
+      <Context>apps</Context>
+      <Size>24x24</Size>
+      <Pixmaps>false</Pixmaps>
+    </GlobalIcon>
+    <LocalIcon Include="images\tasque-note.png">
+      <Name>tasque-note.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-rtm-logo.png">
+      <Name>tasque-rtm-logo.png</Name>
+      <Context>places</Context>
+      <Size>128x128</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-0.png">
+      <Name>tasque-completing-0.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-1.png">
+      <Name>tasque-completing-1.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-2.png">
+      <Name>tasque-completing-2.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-3.png">
+      <Name>tasque-completing-3.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-4.png">
+      <Name>tasque-completing-4.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-5.png">
+      <Name>tasque-completing-5.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-6.png">
+      <Name>tasque-completing-6.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-7.png">
+      <Name>tasque-completing-7.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-8.png">
+      <Name>tasque-completing-8.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-9.png">
+      <Name>tasque-completing-9.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-10.png">
+      <Name>tasque-completing-10.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+    <LocalIcon Include="images\tasque-completing-11.png">
+      <Name>tasque-completing-11.png</Name>
+      <Context>status</Context>
+      <Size>16x16</Size>
+    </LocalIcon>
+  </ItemGroup>
+  <ItemGroup>
+    <LocalSound Include="sounds\notify.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\" />
+    <Folder Include="sounds\" />
+  </ItemGroup>
+  <!-- Linux targets -->
+  <Target Name="LinuxBuild">
+    <Exec Command="LC_ALL=C $(IntlToolMerge) -d -u -c ..\po\.intltool-merge-cache $(SrcDir)\..\po $(SrcDir)\%(DesktopInFile.Identity) tasque.desktop" />
+    <Exec Command="sed -e %22s|%5C%40bindir%5C%40|$(BinDir)|g%22 -e %22s|%5C%40wrapper%5C%40|tasque|g%22 &lt; $(SrcDir)\%(DbusServiceInFile.Identity) &gt; org.gnome.Tasque.service" />
+  </Target>
+  <Target Name="LinuxClean">
+    <Delete Files="%(DesktopInFile.FileName);%(DbusServiceInFile.FileName)" />
+  </Target>
+  <Target Name="LinuxInstall">
+    <Copy SourceFiles="%(DesktopInFile.FileName)" DestinationFiles="$(DestDir)$(DesktopDir)\%(DesktopInFile.FileName)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="%(DbusServiceInFile.FileName)" DestinationFiles="$(DestDir)$(DbusServiceDir)\%(DbusServiceInFile.FileName)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(SrcDir)\%(GlobalIcon.Identity)" DestinationFiles="$(DestDir)$(HiColorDir)\%(Size)\%(Context)\%(Name)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(SrcDir)\%(LocalIcon.Identity)" DestinationFiles="$(DestDir)$(LocalHiColorDir)\%(Size)\%(Context)\%(Name)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(SrcDir)\%(GlobalIcon.Identity)" DestinationFolder="$(DestDir)$(PixmapDir)" Condition="'%(Pixmaps)'" SkipUnchangedFiles="true" />
+    <CallTarget Targets="UpdateIconCache" />
+    <Copy SourceFiles="$(SrcDir)\%(LocalSound.Identity)" DestinationFolder="$(DestDir)$(SoundsDir)" />
+  </Target>
+  <Target Name="LinuxUninstall">
+    <Delete Files="$(DestDir)$(DesktopDir)\%(DesktopInFile.FileName)" />
+    <Delete Files="$(DestDir)$(DbusServiceDir)\%(DbusServiceInFile.FileName)" />
+    <Delete Files="$(DestDir)$(HiColorDir)\%(GlobalIcon.Size)\%(Context)\%(Name)" />
+    <Delete Files="$(DestDir)$(LocalHiColorDir)\%(LocalIcon.Size)\%(Context)\%(Name)" />
+    <Delete Files="$(DestDir)$(PixmapDir)\%(GlobalIcon.FileName)%(Extension)" Condition="'%(Pixmaps)'" />
+    <CallTarget Targets="UpdateIconCache" />
+    <Delete Files="$(DestDir)$(SoundsDir)\%(LocalSound.FileName)%(Extension)" />
+  </Target>
+  <Target Name="UpdateIconCache">
+    <Exec Command="gtk-update-icon-cache -f -t $(HiColorDir)" IgnoreExitCode="true" />
+    <Exec Command="gtk-update-icon-cache -f -t $(LocalHiColorDir)" IgnoreExitCode="true" />
+  </Target>
+  <Target Name="Dist">
+    <CreateItem Include="data.mdproj;@(DesktopInFile);@(DbusServiceInFile);@(GlobalIcon);@(LocalIcon);@(LocalSound)">
+      <Output TaskParameter="Include" ItemName="DistFile" />
+    </CreateItem>
+    <Copy SourceFiles="$(SrcDir)\%(DistFile.Identity)" DestinationFiles="$(DistDir)\%(DistFile.Identity)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="DistClean" DependsOnTargets="Clean">
+    <CreateItem Include="Makefile;data.mdp;%(DesktopInFile.FileName);%(DbusServiceInFile.FileName)">
+      <Output TaskParameter="Include" ItemName="DistCleanFile" />
+    </CreateItem>
+    <Delete Files="@(DistCleanFile)" />
+  </Target>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
+  <Target Name="Build" DependsOnTargets="$(Configuration)Build" />
+  <Target Name="Clean" DependsOnTargets="$(Configuration)Clean" />
+  <Target Name="Install" DependsOnTargets="$(Configuration)Install" />
+  <Target Name="Uninstall" DependsOnTargets="$(Configuration)Uninstall" />
+</Project>

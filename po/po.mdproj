@@ -58,10 +58,8 @@
     </translations>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' " />
-  
   <!-- The above is only for the MD Gettext addin, which provides a convenient environment for translation -->
   <!-- Below are the xbuild instructions. New translations should be added to the GettextTranslation ItemGroup. -->
-  
   <ItemGroup>
     <GettextTranslation Include="ca.po" />
     <GettextTranslation Include="ca@valencia.po" />
@@ -109,7 +107,6 @@
     <DistCleanFile Include="po.mdp" />
     <DistCleanFile Include="*.gmo" />
   </ItemGroup>
-  
   <PropertyGroup>
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
     <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
@@ -117,14 +114,12 @@
     <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
     <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
   </PropertyGroup>
-
   <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe')">
     <MsgFmt>$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
   </PropertyGroup>
   <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe')">
     <IntlToolUpdate>$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe</IntlToolUpdate>
   </PropertyGroup>
-
   <!-- Fallbacks -->
   <PropertyGroup Condition=" '$(MsgFmt)' == '' ">
     <MsgFmt>msgfmt</MsgFmt>
@@ -132,7 +127,6 @@
   <PropertyGroup Condition=" '$(IntlToolUpdate)' == '' ">
     <IntlToolUpdate>intltool-update</IntlToolUpdate>
   </PropertyGroup>
-
   <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
   <Target Name="Build">
     <Exec Command="$(MsgFmt) -o %(FileName).gmo $(SrcDir)\@(GettextTranslation)" />
