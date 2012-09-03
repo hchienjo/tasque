@@ -5,19 +5,22 @@
 #
 # Jorge González <jorgegonz@svn.gnome.org>, 2008, 2009.
 # Mario Carrion <mario@carrion.mx>, 2010
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-27 15:15+0200\n"
-"PO-Revision-Date: 2010-03-30 11:28+0100\n"
-"Last-Translator: Mario Carrion <mario@carrion.mx>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-08-29 18:16+0000\n"
+"PO-Revision-Date: 2012-09-03 13:47+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -51,21 +54,21 @@ msgstr "Último mes"
 msgid "Last Year"
 msgstr "Último año"
 
-#: ../src/GtkTray.cs:86
+#: ../src/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] "{0} tarea está atrasada\n"
 msgstr[1] "{0} tareas están atrasadas\n"
 
-#: ../src/GtkTray.cs:95
+#: ../src/GtkTray.cs:91
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] "{0} tarea para hoy\n"
 msgstr[1] "{0} tareas para hoy\n"
 
-#: ../src/GtkTray.cs:104
+#: ../src/GtkTray.cs:100
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -73,37 +76,37 @@ msgstr[0] "{0} tarea para mañana\n"
 msgstr[1] "{0} tareas para mañana\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/GtkTray.cs:110
+#: ../src/GtkTray.cs:106
 msgid "Tasque Rocks"
 msgstr "Tasque mola"
 
-#: ../src/GtkTray.cs:155
+#: ../src/GtkTray.cs:151
 msgid "translator-credits"
 msgstr "Nacho Hermoso de Mendoza <gnacho@gmail.com>"
 
-#: ../src/GtkTray.cs:163
+#: ../src/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Copyright © 2008 Novell, Inc."
 
-#: ../src/GtkTray.cs:164
+#: ../src/GtkTray.cs:160
 msgid "A Useful Task List"
 msgstr "Una lista de tareas útil"
 
-#: ../src/GtkTray.cs:166
+#: ../src/GtkTray.cs:162
 msgid "Tasque Project Homepage"
 msgstr "Página web del proyecto Tasque"
 
-#: ../src/GtkTray.cs:179
+#: ../src/GtkTray.cs:175
 msgid "New Task ..."
 msgstr "Tarea nueva..."
 
-#: ../src/GtkTray.cs:189
+#: ../src/GtkTray.cs:185
 msgid "Refresh Tasks ..."
 msgstr "Actualizar tareas..."
 
-#: ../src/GtkTray.cs:195
+#: ../src/GtkTray.cs:191
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Alternar la ventana de tareas"
 
 #: ../src/NoteDialog.cs:24
 #, csharp-format
@@ -169,106 +172,106 @@ msgid "New task created."
 msgstr "Nueva tarea creada."
 
 #. Title for Completed/Checkbox Column
-#: ../src/TaskTreeView.cs:86 ../src/TaskWindow.cs:342
+#: ../src/TaskTreeView.cs:85 ../src/TaskWindow.cs:342
 msgid "Completed"
 msgstr "Completada"
 
 #. Title for Priority Column
-#: ../src/TaskTreeView.cs:103
+#: ../src/TaskTreeView.cs:102
 msgid "Priority"
 msgstr "Prioridad"
 
-#: ../src/TaskTreeView.cs:116 ../src/TaskTreeView.cs:416
-#: ../src/TaskTreeView.cs:666
+#: ../src/TaskTreeView.cs:115 ../src/TaskTreeView.cs:419
+#: ../src/TaskTreeView.cs:668
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/TaskTreeView.cs:117 ../src/TaskTreeView.cs:413
-#: ../src/TaskTreeView.cs:664
+#: ../src/TaskTreeView.cs:116 ../src/TaskTreeView.cs:416
+#: ../src/TaskTreeView.cs:666
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/TaskTreeView.cs:118 ../src/TaskTreeView.cs:410
-#: ../src/TaskTreeView.cs:662
+#: ../src/TaskTreeView.cs:117 ../src/TaskTreeView.cs:413
+#: ../src/TaskTreeView.cs:664
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/TaskTreeView.cs:119 ../src/TaskTreeView.cs:419
+#: ../src/TaskTreeView.cs:118 ../src/TaskTreeView.cs:422
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/TaskTreeView.cs:133
+#: ../src/TaskTreeView.cs:132
 msgid "Task Name"
 msgstr "Nombre de la tarea"
 
 #. Title for Due Date Column
-#: ../src/TaskTreeView.cs:175
+#: ../src/TaskTreeView.cs:174
 msgid "Due Date"
 msgstr "Fecha de vencimiento"
 
-#: ../src/TaskTreeView.cs:189 ../src/TaskTreeView.cs:191
-#: ../src/TaskTreeView.cs:203 ../src/TaskTreeView.cs:748
-#: ../src/TaskTreeView.cs:751 ../src/TaskTreeView.cs:756
+#: ../src/TaskTreeView.cs:188 ../src/TaskTreeView.cs:190
+#: ../src/TaskTreeView.cs:202 ../src/TaskTreeView.cs:750
+#: ../src/TaskTreeView.cs:753 ../src/TaskTreeView.cs:758
 msgid "M/d - "
 msgstr "d/M - "
 
-#: ../src/TaskTreeView.cs:189 ../src/TaskTreeView.cs:748
+#: ../src/TaskTreeView.cs:188 ../src/TaskTreeView.cs:750
 #: ../src/TaskWindow.cs:275 ../src/Utilities.cs:276
 msgid "Today"
 msgstr "Hoy"
 
-#: ../src/TaskTreeView.cs:191 ../src/TaskTreeView.cs:751
+#: ../src/TaskTreeView.cs:190 ../src/TaskTreeView.cs:753
 #: ../src/TaskWindow.cs:293 ../src/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Mañana"
 
-#: ../src/TaskTreeView.cs:193 ../src/TaskTreeView.cs:195
-#: ../src/TaskTreeView.cs:197 ../src/TaskTreeView.cs:199
-#: ../src/TaskTreeView.cs:201 ../src/TaskTreeView.cs:487
-#: ../src/TaskTreeView.cs:765
+#: ../src/TaskTreeView.cs:192 ../src/TaskTreeView.cs:194
+#: ../src/TaskTreeView.cs:196 ../src/TaskTreeView.cs:198
+#: ../src/TaskTreeView.cs:200 ../src/TaskTreeView.cs:490
+#: ../src/TaskTreeView.cs:767
 msgid "M/d - ddd"
 msgstr "d/M - ddd"
 
-#: ../src/TaskTreeView.cs:203 ../src/TaskTreeView.cs:756
+#: ../src/TaskTreeView.cs:202 ../src/TaskTreeView.cs:758
 msgid "In 1 Week"
 msgstr "En 1 semana"
 
-#: ../src/TaskTreeView.cs:204 ../src/TaskTreeView.cs:753
+#: ../src/TaskTreeView.cs:203 ../src/TaskTreeView.cs:755
 #: ../src/Utilities.cs:308
 msgid "No Date"
 msgstr "Sin fecha"
 
-#: ../src/TaskTreeView.cs:205 ../src/TaskTreeView.cs:758
+#: ../src/TaskTreeView.cs:204 ../src/TaskTreeView.cs:760
 msgid "Choose Date..."
 msgstr "Elegir una fecha..."
 
 #. Title for Notes Column
-#: ../src/TaskTreeView.cs:221
+#: ../src/TaskTreeView.cs:220
 msgid "Notes"
 msgstr "Notas"
 
 #. Title for Timer Column
-#: ../src/TaskTreeView.cs:238
+#: ../src/TaskTreeView.cs:237
 msgid "Timer"
 msgstr "Temporizador"
 
-#: ../src/TaskTreeView.cs:328
+#: ../src/TaskTreeView.cs:331
 msgid "Task Completed"
 msgstr "Tarea completada"
 
-#: ../src/TaskTreeView.cs:489
+#: ../src/TaskTreeView.cs:492
 msgid "M/d/yy - ddd"
 msgstr "d/M/yy - ddd"
 
-#: ../src/TaskTreeView.cs:648
+#: ../src/TaskTreeView.cs:650
 msgid "Action Canceled"
 msgstr "Acción cancelada"
 
-#: ../src/TaskTreeView.cs:940
+#: ../src/TaskTreeView.cs:942
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Completando tarea en: {0}"
