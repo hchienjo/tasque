@@ -4,12 +4,17 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Wadim Dziedzic <wdziedzic@aviary.pl>, 2008.
+# Piotr Zaryk <pzaryk@aviary.pl>, 2008.
+# Tomasz Dominikowski <dominikowski@gmail.com>, 2009.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012.
+# Aviary.pl <gnomepl@aviary.pl>, 2008-2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-03 16:45+0200\n"
-"PO-Revision-Date: 2012-08-29 23:48+0200\n"
+"POT-Creation-Date: 2012-09-04 20:57+0200\n"
+"PO-Revision-Date: 2012-09-04 20:58+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -85,8 +90,11 @@ msgstr "Tasque wymiata"
 #: ../src/GtkTray.cs:151
 msgid "translator-credits"
 msgstr ""
-"Aviary.pl <gnomepl@aviary.pl>, 2008, 2009, 2012\n"
-"Piotr Makowski <pmakowski@aviary.pl>, 2008"
+"Wadim Dziedzic <wdziedzic@aviary.pl>, 2008\n"
+"Piotr Zaryk <pzaryk@aviary.pl>, 2008\n"
+"Tomasz Dominikowski <dominikowski@gmail.com>, 2009\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012\n"
+"Aviary.pl <gnomepl@aviary.pl>, 2008-2012"
 
 #: ../src/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
