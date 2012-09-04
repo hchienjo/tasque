@@ -3,85 +3,65 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Tasque</RootNamespace>
     <AssemblyName>libtasque</AssemblyName>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefix Condition=" '$(Prefix)' == '' ">..\..\build\bin</Prefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Build" command="echo &quot;&quot;" />
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Mono.Posix">
-      <HintPath>..\..\winbin\Mono.Posix.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBackend.cs" />
-    <Compile Include="ICategory.cs" />
-    <Compile Include="INote.cs" />
-    <Compile Include="ITask.cs" />
-    <Compile Include="TaskPriority.cs" />
-    <Compile Include="TaskState.cs" />
-    <Compile Include="TaskParser.cs" />
-    <Compile Include="DateFormatterFactory.cs" />
-    <Compile Include="DateFormatters\IDateFormatter.cs" />
-    <Compile Include="DateFormatters\WeekdayFormatter.cs" />
-    <Compile Include="DateFormatters\OrdinalFormatter.cs" />
-    <Compile Include="DateFormatters\WeekFormatter.cs" />
-    <Compile Include="DateFormatters\StringInsensitiveComparer.cs" />
-    <Compile Include="DateFormatters\QuantityFormatter.cs" />
-    <Compile Include="DateFormatters\YearFormatter.cs" />
-    <Compile Include="DateFormatters\DateFormatter.cs" />
-    <Compile Include="DateFormatters\MonthFormatter.cs" />
-    <Compile Include="DateFormatters\TodayTomorrowFormatter.cs" />
-    <Compile Include="RegularExpressionFormatter.cs" />
-    <Compile Include="TranslatableToken.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="DateFormatters\DayFormatter.cs" />
-    <Compile Include="DateFormatters\DateSeparatedFormatter.cs" />
-    <Compile Include="INativeApplication.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <TasqueCompile Include="IBackend.cs" />
+    <TasqueCompile Include="ICategory.cs" />
+    <TasqueCompile Include="INote.cs" />
+    <TasqueCompile Include="ITask.cs" />
+    <TasqueCompile Include="TaskPriority.cs" />
+    <TasqueCompile Include="TaskState.cs" />
+    <TasqueCompile Include="TaskParser.cs" />
+    <TasqueCompile Include="DateFormatterFactory.cs" />
+    <TasqueCompile Include="DateFormatters\IDateFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\WeekdayFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\OrdinalFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\WeekFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\StringInsensitiveComparer.cs" />
+    <TasqueCompile Include="DateFormatters\QuantityFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\YearFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\DateFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\MonthFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\TodayTomorrowFormatter.cs" />
+    <TasqueCompile Include="RegularExpressionFormatter.cs" />
+    <TasqueCompile Include="TranslatableToken.cs" />
+    <TasqueCompile Include="Extensions.cs" />
+    <TasqueCompile Include="DateFormatters\DayFormatter.cs" />
+    <TasqueCompile Include="DateFormatters\DateSeparatedFormatter.cs" />
+    <TasqueCompile Include="INativeApplication.cs" />
+    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />
     <Folder Include="Properties\" />
   </ItemGroup>
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <Policies>
-          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedHierarchical" ResourceNamePolicy="MSBuild" />
-          <StandardHeader Text="Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA;Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA;Permission is hereby granted, free of charge, to any person obtaining a copy&#xA;of this software and associated documentation files (the &quot;Software&quot;), to deal&#xA;in the Software without restriction, including without limitation the rights&#xA;to use, copy, modify, merge, publish, distribute, sublicense, and/or sell&#xA;copies of the Software, and to permit persons to whom the Software is&#xA;furnished to do so, subject to the following conditions:&#xA;&#xA;The above copyright notice and this permission notice shall be included in&#xA;all copies or substantial portions of the Software.&#xA;&#xA;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR&#xA;IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,&#xA;FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE&#xA;AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER&#xA;LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,&#xA;OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN&#xA;THE SOFTWARE." IncludeInNewFiles="True" />
-        </Policies>
-      </Properties>
-    </MonoDevelop>
-  </ProjectExtensions>
 </Project>

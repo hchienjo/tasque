@@ -94,6 +94,7 @@ AM_CONDITIONAL(ENABLE_APPINDICATOR, test "x$appindicator" != "xno")
 AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug], [Use 'Debug' Configuration [default=no]]),
 	enable_debug=$enableval, enable_debug=no)
 AM_CONDITIONAL(ENABLE_DEBUG, test "x$enable_debug" != "xno")
+AC_SUBST(enable_debug)
 
 
 #
@@ -273,11 +274,19 @@ AC_SUBST(POMDPROJ)
 DATAMDPROJ=data.mdp
 AC_SUBST(DATAMDPROJ)
 
+#
+# Setup libtasque.csproj
+#
+LIBTASQUECSPROJ=libtasque.csp
+AC_SUBST(LIBTASQUECSPROJ)
+
 AC_CONFIG_FILES([
 Makefile
+build/Tasque.CSharp.targets:build/Tasque.CSharp.targets
 src/Makefile
 src/Libraries/RtmNet/Makefile
 src/libtasque/Makefile
+src/libtasque/${LIBTASQUECSPROJ}:src/libtasque/libtasque.csproj
 src/Gtk.Tasque/Makefile
 src/tasque/Makefile
 src/tasque/tasque.pc

@@ -83,6 +83,9 @@ Makefile.in
 # /src/libtasque/
 /src/libtasque/*.dll
 /src/libtasque/*.mdb
+/src/libtasque/libtasque.csp
+/src/libtasque/obj/
+!/src/libtasque/Makefile.in
 
 # /src/tasque/
 /src/tasque/*.exe

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" InitialTargets="_CheckProperties" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+  	<_tmpInstallFileNames>obj\Tasque.RelInstallFileNames.txt</_tmpInstallFileNames>
+    <OutputPath>.</OutputPath>
+    <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
+    <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib\tasque</LibDir>
+    <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <InstallFileName Include="$(TargetFileName)" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="_CheckProperties">
+    <Message Text="SrcDir=$(SrcDir)" />
+    <Message Text="Prefix=$(Prefix)" />
+    <Message Text="LibDir=$(LibDir)" />
+    <Message Text="DestDir=$(DestDir)" />
+    <Error Condition=" '$(Prefix)' == '' " Text="Prefix is not set." />
+  </Target>
+  <Target Name="BeforeBuild">
+    <CreateItem Include="$(SrcDir)\%(TasqueCompile.RelativeDir)%(FileName)%(Extension)">
+      <Output TaskParameter="Include" ItemName="Compile" />
+    </CreateItem>
+  </Target>
+  <Target Name="Install">
+    <CreateItem Condition="Exists('$(TargetFileName).mdb')" Include="$(TargetFileName).mdb">
+      <Output TaskParameter="Include" ItemName="InstallFileName" />
+    </CreateItem>
+    <Copy SourceFiles="@(InstallFileName)" DestinationFiles="$(DestDir)$(LibDir)\%(RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
+    <WriteLinesToFile File="$(_tmpInstallFileNames)" Lines="@(InstallFileName)" Overwrite="true" />
+  </Target>
+  <Target Name="Uninstall">
+    <ReadLinesFromFile File="$(_tmpInstallFileNames)" >
+      <Output TaskParameter="Lines" ItemName="InstallFileName" />
+    </ReadLinesFromFile>
+    <Delete Files="$(DestDir)$(LibDir)\%(InstallFileName.RelativeDir)%(FileName)%(Extension)" />
+    <Delete Files="$(_tmpInstallFileNames)" />
+  </Target>
+  <Target Name="Dist">
+    <Message Text="DistDir=$(DistDir)" />
+    <Error Condition=" '$(DistDir)' == '' " Text="Property DistDir not set. Target Dist requires DistDir to be set." />
+    <CreateItem Include="*.csproj;@(TasqueCompile)">
+      <Output TaskParameter="Include" ItemName="DistFile" />
+    </CreateItem>
+    <Message Text="@(DistFile)" />
+    <Copy SourceFiles="$(SrcDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" DestinationFiles="$(DistDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="DistClean" DependsOnTargets="Clean">
+    <CreateItem Include="Makefile;*.csp">
+      <Output TaskParameter="Include" ItemName="DistCleanFile" />
+    </CreateItem>
+    <Delete Files="%(DistCleanFile.RelativeDir)%(FileName)%(Extension)" />
+  </Target>
+</Project>

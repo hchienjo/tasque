@@ -1,0 +1,43 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+libdir = @libdir@/tasque
+
+XBUILD = @XBUILD@
+
+LIBTASQUECSPROJ = @LIBTASQUECSPROJ@
+
+conf=$(shell if test "x@enable_debug@" != "xno" ; then echo "Debug" ; else echo "Release" ; fi)
+
+PROPERTIES = \
+	/property:Configuration=$(conf) \
+	/property:SrcDir=$(srcdir) \
+	/property:Prefix=$(prefix) \
+	/property:LibDir=$(libdir) \
+	/property:DestDir=$(DESTDIR) \
+	/property:DistDir=../../$(PACKAGE)-$(VERSION)/src/libtasque
+
+all:
+	$(XBUILD) $(PROPERTIES) $(LIBTASQUECSPROJ)
+
+clean:
+	$(XBUILD) $(PROPERTIES) /target:clean $(LIBTASQUECSPROJ)
+
+install:
+	$(XBUILD) $(PROPERTIES) /target:install $(LIBTASQUECSPROJ)
+
+uninstall:
+	$(XBUILD) $(PROPERTIES) /target:uninstall $(LIBTASQUECSPROJ)
+
+dist distdir:
+	$(XBUILD) $(PROPERTIES) /target:dist $(LIBTASQUECSPROJ)
+
+distclean:
+	$(XBUILD) $(PROPERTIES) /target:distclean $(LIBTASQUECSPROJ)
+
+dvi installcheck check:
