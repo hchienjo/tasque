@@ -1,0 +1,43 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+libdir = @libdir@/tasque
+
+XBUILD = @XBUILD@
+
+HIVEMINDERBACKENDCSPROJ = @HIVEMINDERBACKENDCSPROJ@
+
+conf=$(shell if test "x@enable_debug@" != "xno" ; then echo "GtkDebug" ; else echo "GtkRelease" ; fi)
+
+PROPERTIES = \
+	/property:Configuration=$(conf) \
+	/property:SrcDir=$(srcdir) \
+	/property:Prefix=$(prefix) \
+	/property:LibDir=$(libdir) \
+	/property:DestDir=$(DESTDIR) \
+	/property:DistDir=../../../../$(PACKAGE)-$(VERSION)/src/Addins/Backends/Hiveminder
+
+all:
+	$(XBUILD) $(PROPERTIES) $(HIVEMINDERBACKENDCSPROJ)
+
+clean:
+	$(XBUILD) $(PROPERTIES) /target:clean $(HIVEMINDERBACKENDCSPROJ)
+
+install:
+	$(XBUILD) $(PROPERTIES) /target:install $(HIVEMINDERBACKENDCSPROJ)
+
+uninstall:
+	$(XBUILD) $(PROPERTIES) /target:uninstall $(HIVEMINDERBACKENDCSPROJ)
+
+dist distdir:
+	$(XBUILD) $(PROPERTIES) /target:dist $(HIVEMINDERBACKENDCSPROJ)
+
+distclean:
+	$(XBUILD) $(PROPERTIES) /target:distclean $(HIVEMINDERBACKENDCSPROJ)
+
+dvi installcheck check:

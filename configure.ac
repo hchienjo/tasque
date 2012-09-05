@@ -298,6 +298,42 @@ AC_SUBST(RTMNETCSPROJ)
 TASQUECSPROJ=tasque.csp
 AC_SUBST(TASQUECSPROJ)
 
+#
+# Setup DummyBackend.csproj
+#
+DUMMYBACKENDCSPROJ=DummyBackend.csp
+AC_SUBST(DUMMYBACKENDCSPROJ)
+
+#
+# Setup EdsBackend.csproj
+#
+EDSBACKENDCSPROJ=EdsBackend.csp
+AC_SUBST(EDSBACKENDCSPROJ)
+
+#
+# Setup HiveminderBackend.csproj
+#
+HIVEMINDERBACKENDCSPROJ=HiveminderBackend.csp
+AC_SUBST(HIVEMINDERBACKENDCSPROJ)
+
+#
+# Setup IceCoreBackend.csproj
+#
+ICECOREBACKENDCSPROJ=IceCoreBackend.csp
+AC_SUBST(ICECOREBACKENDCSPROJ)
+
+#
+# Setup RtmBackend.csproj
+#
+RTMBACKENDCSPROJ=RtmBackend.csp
+AC_SUBST(RTMBACKENDCSPROJ)
+
+#
+# Setup SqliteBackend.csproj
+#
+SQLITEBACKENDCSPROJ=SqliteBackend.csp
+AC_SUBST(SQLITEBACKENDCSPROJ)
+
 AC_CONFIG_FILES([
 Makefile
 build/Tasque.CSharp.targets:build/Tasque.CSharp.targets
@@ -313,11 +349,17 @@ src/tasque/${TASQUECSPROJ}:src/tasque/tasque.csproj
 src/tasque/tasque.pc
 src/Addins/Backends/Makefile
 src/Addins/Backends/Dummy/Makefile
+src/Addins/Backends/Dummy/${DUMMYBACKENDCSPROJ}:src/Addins/Backends/Dummy/DummyBackend.csproj
 src/Addins/Backends/Eds/Makefile
+src/Addins/Backends/Eds/${EDSBACKENDCSPROJ}:src/Addins/Backends/Eds/EdsBackend.csproj
 src/Addins/Backends/Hiveminder/Makefile
+src/Addins/Backends/Hiveminder/${HIVEMINDERBACKENDCSPROJ}:src/Addins/Backends/Hiveminder/HiveminderBackend.csproj
 src/Addins/Backends/IceCore/Makefile
+src/Addins/Backends/IceCore/${ICECOREBACKENDCSPROJ}:src/Addins/Backends/IceCore/IceCoreBackend.csproj
 src/Addins/Backends/Rtm/Makefile
+src/Addins/Backends/Rtm/${RTMBACKENDCSPROJ}:src/Addins/Backends/Rtm/RtmBackend.csproj
 src/Addins/Backends/Sqlite/Makefile
+src/Addins/Backends/Sqlite/${SQLITEBACKENDCSPROJ}:src/Addins/Backends/Sqlite/SqliteBackend.csproj
 data/Makefile
 data/${DATAMDPROJ}:data/data.mdproj
 po/Makefile

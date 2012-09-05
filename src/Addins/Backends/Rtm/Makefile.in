@@ -1,0 +1,43 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+libdir = @libdir@/tasque
+
+XBUILD = @XBUILD@
+
+RTMBACKENDCSPROJ = @RTMBACKENDCSPROJ@
+
+conf=$(shell if test "x@enable_debug@" != "xno" ; then echo "GtkDebug" ; else echo "GtkRelease" ; fi)
+
+PROPERTIES = \
+	/property:Configuration=$(conf) \
+	/property:SrcDir=$(srcdir) \
+	/property:Prefix=$(prefix) \
+	/property:LibDir=$(libdir) \
+	/property:DestDir=$(DESTDIR) \
+	/property:DistDir=../../../../$(PACKAGE)-$(VERSION)/src/Addins/Backends/Rtm
+
+all:
+	$(XBUILD) $(PROPERTIES) $(RTMBACKENDCSPROJ)
+
+clean:
+	$(XBUILD) $(PROPERTIES) /target:clean $(RTMBACKENDCSPROJ)
+
+install:
+	$(XBUILD) $(PROPERTIES) /target:install $(RTMBACKENDCSPROJ)
+
+uninstall:
+	$(XBUILD) $(PROPERTIES) /target:uninstall $(RTMBACKENDCSPROJ)
+
+dist distdir:
+	$(XBUILD) $(PROPERTIES) /target:dist $(RTMBACKENDCSPROJ)
+
+distclean:
+	$(XBUILD) $(PROPERTIES) /target:distclean $(RTMBACKENDCSPROJ)
+
+dvi installcheck check:

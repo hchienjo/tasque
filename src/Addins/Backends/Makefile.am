@@ -1,1 +1,21 @@
-SUBDIRS = Dummy Eds Hiveminder IceCore Rtm Sqlite
+SUBDIRS = Rtm
+
+if ENABLE_BACKEND_DUMMY
+SUBDIRS += Dummy
+endif
+
+if ENABLE_BACKEND_EDS
+SUBDIRS += Eds
+endif
+
+if ENABLE_BACKEND_HIVEMINDER
+SUBDIRS += Hiveminder
+endif
+
+if ENABLE_BACKEND_ICECORE
+SUBDIRS += IceCore
+endif
+
+if ENABLE_BACKEND_SQLITE
+SUBDIRS += Sqlite
+endif

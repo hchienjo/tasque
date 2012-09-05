@@ -7,53 +7,35 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <OutputPath>.</OutputPath>
     <RootNamespace>Tasque.Backends.Rtm</RootNamespace>
     <AssemblyName>RtmBackend</AssemblyName>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE;GTK</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Build" command="echo &quot;&quot;" />
-      </CustomCommands>
-    </CustomCommands>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <DefineConstants>TRACE;GTK</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE;OSX</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <DefineConstants>TRACE;OSX</DefineConstants>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
@@ -81,12 +63,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="RtmTask.cs" />
-    <Compile Include="RtmNote.cs" />
-    <Compile Include="RtmCategory.cs" />
-    <Compile Include="RtmBackend.cs" />
-    <Compile Include="Gtk\RtmPreferencesWidget.cs" />
+    <TasqueCompile Include="AssemblyInfo.cs" />
+    <TasqueCompile Include="RtmTask.cs" />
+    <TasqueCompile Include="RtmNote.cs" />
+    <TasqueCompile Include="RtmCategory.cs" />
+    <TasqueCompile Include="RtmBackend.cs" />
+    <TasqueCompile Include="Gtk\RtmPreferencesWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Gtk\" />

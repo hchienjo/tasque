@@ -7,53 +7,35 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CCCC10A5-662D-4788-82D3-25689F3D4D4F}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <OutputPath>.</OutputPath>
     <RootNamespace>Tasque.Backends.Sqlite</RootNamespace>
     <AssemblyName>SqliteBackend</AssemblyName>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE;GTK</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Build" command="echo &quot;&quot;" />
-      </CustomCommands>
-    </CustomCommands>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <DefineConstants>TRACE;GTK</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;TRACE;OSX</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <DefineConstants>TRACE;OSX</DefineConstants>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
@@ -75,11 +57,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="SqliteTask.cs" />
-    <Compile Include="SqliteNote.cs" />
-    <Compile Include="SqliteCategory.cs" />
-    <Compile Include="SqliteBackend.cs" />
-    <Compile Include="Database.cs" />
+    <TasqueCompile Include="AssemblyInfo.cs" />
+    <TasqueCompile Include="SqliteTask.cs" />
+    <TasqueCompile Include="SqliteNote.cs" />
+    <TasqueCompile Include="SqliteCategory.cs" />
+    <TasqueCompile Include="SqliteBackend.cs" />
+    <TasqueCompile Include="Database.cs" />
   </ItemGroup>
 </Project>

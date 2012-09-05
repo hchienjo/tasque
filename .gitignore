@@ -103,6 +103,9 @@ Makefile.in
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll
 /src/Addins/Backends/*/*.mdb
+/src/Addins/Backends/*/*.csp
+/src/Addins/Backends/*/obj/
+!/src/Addins/Backends/*/Makefile.in
 
 # /src/Libraries/RtmNet
 /src/Libraries/RtmNet/*.dll
