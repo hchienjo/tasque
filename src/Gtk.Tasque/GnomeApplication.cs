@@ -36,6 +36,10 @@ namespace Tasque
 			} catch {} // Ignore exception if fail (not needed to run)
 
 			Gtk.Application.Init ();
+
+			// add package icon path to default icon theme search paths
+			Gtk.IconTheme.Default.PrependSearchPath (Defines.IconsDir);
+
 			program = new Gnome.Program (display_name,
 			                             Defines.Version,
 			                             Gnome.Modules.UI,

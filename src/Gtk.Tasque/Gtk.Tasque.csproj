@@ -4,60 +4,41 @@
     <Configuration Condition=" '$(Configuration)' == '' ">LinuxDebug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B19B9840-669D-4984-9772-E1F55193A67F}</ProjectGuid>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Library</OutputType>
-    <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>tasque</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <NoWin32Manifest>True</NoWin32Manifest>
+    <OutputPath>.</OutputPath>
+    <AssemblyName>Gtk.Tasque</AssemblyName>
     <RootNamespace>Gtk.Tasque</RootNamespace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GtkSharp12 Condition=" '$(EnableGtkSharp12)' == '' Or '$(EnableGtkSharp12)' ">GTK_2_12</GtkSharp12>
+    <NotifySharp Condition=" '$(EnableNotifySharp)' == '' Or '$(EnableNotifySharp)' ">ENABLE_NOTIFY_SHARP</NotifySharp>
+    <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Build" command="echo &quot;&quot;" />
-      </CustomCommands>
-    </CustomCommands>
+    <DefineConstants>DEBUG;TRACE;LINUX;$(GtkSharp12);$(NotifySharp);$(AppIndicator)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;LINUX</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;LINUX;$(GtkSharp12);$(NotifySharp);$(AppIndicator)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;WIN</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Build" command="echo &quot;&quot;" />
-      </CustomCommands>
-    </CustomCommands>
+    <DefineConstants>DEBUG;TRACE;WIN;$(GtkSharp12)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRelease|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;WIN</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;WIN;$(GtkSharp12)</DefineConstants>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -80,15 +61,23 @@
     <Reference Include="NDesk.DBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099">
       <Package>ndesk-dbus-1.0</Package>
     </Reference>
-    <Reference Include="Mono.Posix">
-      <HintPath>winbin\Mono.Posix.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>winbin\Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="appindicator-sharp, Version=0.2.0.0, Culture=neutral, PublicKeyToken=bcae265d1c7ab4c2">
       <Private>False</Private>
       <Package>appindicator-sharp-0.1</Package>
+    </Reference>
+    <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a">
+      <Private>False</Private>
+      <Package>notify-sharp</Package>
+    </Reference>
+    <Reference Include="gnome-sharp, Version=2.24.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gnome-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="NDesk.DBus.GLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099">
+      <Private>False</Private>
+      <Package>ndesk-dbus-glib-1.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -98,116 +87,51 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defines.cs" />
-    <Compile Include="GtkTray.cs" />
-    <Compile Include="StatusIconTray.cs" />
-    <Compile Include="AppIndicatorTray.cs" />
-    <Compile Include="AbstractTask.cs" />
-    <Compile Include="AllCategory.cs" />
-    <Compile Include="Application.cs" />
-    <Compile Include="CellRendererDate.cs" />
-    <Compile Include="CompletedTaskGroup.cs" />
-    <Compile Include="CompletedTaskGroupModel.cs" />
-    <Compile Include="DateButton.cs" />
-    <None Include="GnomeApplication.cs" />
-    <Compile Include="GtkApplication.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="NoteDialog.cs" />
-    <Compile Include="NoteWidget.cs" />
+    <TasqueCompile Condition=" '$(Configuration)' == 'WinDebug' Or '$(Configuration)' == 'WinRelease' " Include="Defines.WIN32.cs" />
+    <TasqueCompile Include="GtkTray.cs" />
+    <TasqueCompile Include="StatusIconTray.cs" />
+    <TasqueCompile Condition=" '$(AppIndicator)' != '' " Include="AppIndicatorTray.cs" />
+    <TasqueCompile Include="AbstractTask.cs" />
+    <TasqueCompile Include="AllCategory.cs" />
+    <TasqueCompile Include="Application.cs" />
+    <TasqueCompile Include="CellRendererDate.cs" />
+    <TasqueCompile Include="CompletedTaskGroup.cs" />
+    <TasqueCompile Include="CompletedTaskGroupModel.cs" />
+    <TasqueCompile Include="DateButton.cs" />
+    <TasqueCompile Include="GnomeApplication.cs" />
+    <TasqueCompile Include="GtkApplication.cs" />
+    <TasqueCompile Include="Logger.cs" />
+    <TasqueCompile Include="NoteDialog.cs" />
+    <TasqueCompile Include="NoteWidget.cs" />
     <None Include="OSXApplication.cs" />
-    <Compile Include="Preferences.cs" />
-    <Compile Include="PreferencesDialog.cs" />
-    <Compile Include="TaskCalendar.cs" />
-    <Compile Include="TaskGroup.cs" />
-    <Compile Include="TaskGroupModel.cs" />
-    <Compile Include="TaskGroupModelFactory.cs" />
-    <Compile Include="TaskTreeView.cs" />
-    <Compile Include="TaskWindow.cs" />
-    <Compile Include="Utilities.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <!--<PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)\winbin" "$(TargetDir)"</PostBuildEvent>
-    <PreBuildEvent>copy "$(SolutionDir)\data\images\*.png" "$(ProjectDir)"</PreBuildEvent>
-  </PropertyGroup>-->
-  <ItemGroup>
-    <Content Include="..\..\data\images\tasque-completing-0.png">
-      <Link>data\images\tasque-completing-0.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-1.png">
-      <Link>data\images\tasque-completing-1.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-10.png">
-      <Link>data\images\tasque-completing-10.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-11.png">
-      <Link>data\images\tasque-completing-11.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-2.png">
-      <Link>data\images\tasque-completing-2.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-3.png">
-      <Link>data\images\tasque-completing-3.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-4.png">
-      <Link>data\images\tasque-completing-4.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-5.png">
-      <Link>data\images\tasque-completing-5.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-6.png">
-      <Link>data\images\tasque-completing-6.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-7.png">
-      <Link>data\images\tasque-completing-7.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-8.png">
-      <Link>data\images\tasque-completing-8.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-completing-9.png">
-      <Link>data\images\tasque-completing-9.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-note.png">
-      <Link>data\images\tasque-note.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-rtm-logo.png">
-      <Link>data\images\tasque-rtm-logo.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-16.png">
-      <Link>data\images\tasque-16.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-22.png">
-      <Link>data\images\tasque-22.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-24.png">
-      <Link>data\images\tasque-24.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-32.png">
-      <Link>data\images\tasque-32.png</Link>
-    </Content>
-    <Content Include="..\..\data\images\tasque-48.png">
-      <Link>data\images\tasque-48.png</Link>
-    </Content>
-    <Content Include="..\..\data\sounds\notify.wav">
-      <Link>data\sounds\notify.wav</Link>
-    </Content>
+    <TasqueCompile Include="Preferences.cs" />
+    <TasqueCompile Include="PreferencesDialog.cs" />
+    <TasqueCompile Include="TaskCalendar.cs" />
+    <TasqueCompile Include="TaskGroup.cs" />
+    <TasqueCompile Include="TaskGroupModel.cs" />
+    <TasqueCompile Include="TaskGroupModelFactory.cs" />
+    <TasqueCompile Include="TaskTreeView.cs" />
+    <TasqueCompile Include="TaskWindow.cs" />
+    <TasqueCompile Include="Utilities.cs" />
+    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\data\images\tasque-completing-0.svg">
-      <Link>data\images\tasque-completing-0.svg</Link>
-    </None>
-    <None Include="..\..\data\images\tasque-note.svg">
-      <Link>data\images\tasque-note.svg</Link>
-    </None>
-    <None Include="..\..\data\images\tasque-icons-source.svg">
-      <Link>data\images\tasque-icons-source.svg</Link>
-    </None>
-    <None Include="..\..\data\images\tasque.svg">
-      <Link>data\images\tasque.svg</Link>
-    </None>
+    <DistFile Include="Defines.cs.in" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="data\" />
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
+    <Compile Include="Defines.cs" />
+    <TasqueCompile Include="RemoteControl.cs" />
+    <TasqueCompile Include="RemoteControlProxy.cs" />
+  </ItemGroup>
+  <Target Name="BeforeBeforeBuild" Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
+    <Exec Command="sed -e %22s|%5C%40version%5C%40|$(Version)|%22 -e %22s|%5C%40datadir%5C%40|$(DataDir)|%22 &lt; $(SrcDir)\Defines.cs.in &gt; Defines.cs" />
+  </Target>
+  <Target Name="BeforeClean">
+    <CreateItem Include="Defines.cs">
+      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+    </CreateItem>
+  </Target>
 </Project>

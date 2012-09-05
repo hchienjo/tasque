@@ -6,6 +6,7 @@
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
     <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(Prefix)\lib\tasque</PkgLibDir>
     <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
+    <BuildingSolutionFile>True</BuildingSolutionFile>
   </PropertyGroup>
   <ItemGroup>
     <InstallFileName Include="$(TargetFileName)" />
@@ -22,6 +23,9 @@
   <Target Name="BeforeBuild" DependsOnTargets="BeforeBeforeBuild">
     <CreateItem Include="$(SrcDir)\%(TasqueCompile.RelativeDir)%(FileName)%(Extension)">
       <Output TaskParameter="Include" ItemName="Compile" />
+    </CreateItem>
+    <CreateItem Condition=" '@(ProjectReference)' != '' " Include="%(ProjectReference.RelativeDir)\*.dll" >
+      <Output TaskParameter="Include" ItemName="ChildProjectReferences" />
     </CreateItem>
   </Target>
   <Target Name="Install">
@@ -46,6 +50,13 @@
     </CreateItem>
     <Message Text="@(DistFile)" />
     <Copy SourceFiles="$(SrcDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" DestinationFiles="$(DistDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="AfterClean">
+    <CreateItem Include="*.dll;*.mdb">
+      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+    </CreateItem>
+    <Message Text="TasqueCleanFile: @(TasqueCleanFile)" />
+    <Delete Files="@(TasqueCleanFile)" />
   </Target>
   <Target Name="DistClean" DependsOnTargets="Clean">
     <CreateItem Include="Makefile;*.csp">

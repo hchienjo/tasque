@@ -35,6 +35,7 @@ namespace Tasque
 		public const string Version		= "@version@";
 		public const string DataDir		= "@datadir@";
 		public const string LocaleDir	= "@datadir@/locale";
+		public const string IconsDir		= "@datadir@/tasque/icons";
 		public const string SoundDir		= "@datadir@/tasque/sounds";
 	}
 }

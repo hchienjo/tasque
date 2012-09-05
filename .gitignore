@@ -79,6 +79,9 @@ Makefile.in
 /src/Gtk.Tasque/*.dll
 /src/Gtk.Tasque/*.mdb
 /src/Gtk.Tasque/Defines.cs
+/src/Gtk.Tasque/Gtk.Tasque.csp
+/src/Gtk.Tasque/obj/
+!/src/Gtk.Tasque/Makefile.in
 
 # /src/libtasque/
 /src/libtasque/*.dll

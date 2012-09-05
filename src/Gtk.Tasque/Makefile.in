@@ -1,0 +1,53 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+pkglibdir = @libdir@/$(PACKAGE)
+datarootdir = @datarootdir@
+datadir = @datadir@
+
+XBUILD = @XBUILD@
+
+GTKTASQUECSPROJ = @GTKTASQUECSPROJ@
+
+conf=$(shell if test "x@enable_debug@" != "xno" ; then echo "LinuxDebug" ; else echo "LinuxRelease" ; fi)
+enable_gtk_sharp_2_12=$(shell if test "x@GTK_2_12@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_notify_sharp=$(shell if test "x@enable_notify_sharp@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_appindicator=$(shell if test "x@appindicator@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+
+PROPERTIES = \
+	/property:Configuration=$(conf) \
+	/property:SrcDir=$(srcdir) \
+	/property:Prefix=$(prefix) \
+	/property:PkgLibDir=$(pkglibdir) \
+	/property:DestDir=$(DESTDIR) \
+	/property:DistDir=../../$(PACKAGE)-$(VERSION)/src/Gtk.Tasque \
+	/property:EnableGtkSharp12=$(enable_gtk_sharp_2_12) \
+	/property:EnableNotifySharp=$(enable_notify_sharp) \
+	/property:EnableAppIndicator=$(enable_appindicator) \
+	/property:Version=$(VERSION) \
+	/property:DataDir=$(datadir)
+
+all:
+	$(XBUILD) $(PROPERTIES) $(GTKTASQUECSPROJ)
+
+clean:
+	$(XBUILD) $(PROPERTIES) /target:clean $(GTKTASQUECSPROJ)
+
+install:
+	$(XBUILD) $(PROPERTIES) /target:install $(GTKTASQUECSPROJ)
+
+uninstall:
+	$(XBUILD) $(PROPERTIES) /target:uninstall $(GTKTASQUECSPROJ)
+
+dist distdir:
+	$(XBUILD) $(PROPERTIES) /target:dist $(GTKTASQUECSPROJ)
+
+distclean:
+	$(XBUILD) $(PROPERTIES) /target:distclean $(GTKTASQUECSPROJ)
+
+dvi installcheck check:

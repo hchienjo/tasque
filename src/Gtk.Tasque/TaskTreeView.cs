@@ -26,7 +26,7 @@ namespace Tasque
 		
 		static TaskTreeView ()
 		{
-			notePixbuf = Utilities.GetIcon ("tasque-note", 16);
+			notePixbuf = Utilities.GetIcon ("tasque-note", 12);
 			
 			inactiveAnimPixbufs = new Gdk.Pixbuf [12];
 			for (int i = 0; i < 12; i++) {

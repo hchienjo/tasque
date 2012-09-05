@@ -7,7 +7,6 @@ src/Gtk.Tasque/AllCategory.cs
 src/Gtk.Tasque/CompletedTaskGroup.cs
 src/Gtk.Tasque/GtkTray.cs
 src/Gtk.Tasque/NoteDialog.cs
-src/Gtk.Tasque/OSXApplication.cs
 src/Gtk.Tasque/PreferencesDialog.cs
 src/Gtk.Tasque/RemoteControl.cs
 src/Gtk.Tasque/TaskTreeView.cs
