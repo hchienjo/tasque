@@ -286,11 +286,18 @@ AC_SUBST(LIBTASQUECSPROJ)
 GTKTASQUECSPROJ=Gtk.Tasque.csp
 AC_SUBST(GTKTASQUECSPROJ)
 
+#
+# Setup RtmNet.csproj
+#
+RTMNETCSPROJ=RtmNet.csp
+AC_SUBST(RTMNETCSPROJ)
+
 AC_CONFIG_FILES([
 Makefile
 build/Tasque.CSharp.targets:build/Tasque.CSharp.targets
 src/Makefile
 src/Libraries/RtmNet/Makefile
+src/Libraries/RtmNet/${RTMNETCSPROJ}:src/Libraries/RtmNet/RtmNet.csproj
 src/libtasque/Makefile
 src/libtasque/${LIBTASQUECSPROJ}:src/libtasque/libtasque.csproj
 src/Gtk.Tasque/Makefile

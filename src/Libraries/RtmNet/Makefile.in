@@ -1,0 +1,43 @@
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+libdir = @libdir@/tasque
+
+XBUILD = @XBUILD@
+
+RTMNETCSPROJ = @RTMNETCSPROJ@
+
+conf=$(shell if test "x@enable_debug@" != "xno" ; then echo "Debug" ; else echo "Release" ; fi)
+
+PROPERTIES = \
+	/property:Configuration=$(conf) \
+	/property:SrcDir=$(srcdir) \
+	/property:Prefix=$(prefix) \
+	/property:LibDir=$(libdir) \
+	/property:DestDir=$(DESTDIR) \
+	/property:DistDir=../../../$(PACKAGE)-$(VERSION)/src/Libraries/RtmNet
+
+all:
+	$(XBUILD) $(PROPERTIES) $(RTMNETCSPROJ)
+
+clean:
+	$(XBUILD) $(PROPERTIES) /target:clean $(RTMNETCSPROJ)
+
+install:
+	$(XBUILD) $(PROPERTIES) /target:install $(RTMNETCSPROJ)
+
+uninstall:
+	$(XBUILD) $(PROPERTIES) /target:uninstall $(RTMNETCSPROJ)
+
+dist distdir:
+	$(XBUILD) $(PROPERTIES) /target:dist $(RTMNETCSPROJ)
+
+distclean:
+	$(XBUILD) $(PROPERTIES) /target:distclean $(RTMNETCSPROJ)
+
+dvi installcheck check:
