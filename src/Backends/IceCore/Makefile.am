@@ -8,10 +8,10 @@ CSFLAGS = 		\
 ASSMS = \
 	-r:$(top_builddir)/src/Tasque.exe \
 	$(GLIB_SHARP_20_LIBS) \
-	$(GNOME_SHARP_20_LIBS) \
+	$(GTK_SHARP_20_LIBS) \
 	$(ICE_DESKTOP_LIBS) \
-	$(NDESK_DBUS_10_LIBS) \
-	$(NDESK_DBUS_GLIB_10_LIBS) \
+	$(DBUS_SHARP_10_LIBS) \
+	$(DBUS_SHARP_GLIB_10_LIBS) \
 	-r:System \
 	-r:Mono.Posix
 	-r:System.xml

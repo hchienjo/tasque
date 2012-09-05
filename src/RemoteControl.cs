@@ -14,7 +14,7 @@ using Notifications;
 #endif
 
 using org.freedesktop.DBus;
-using NDesk.DBus;
+using DBus;
 
 namespace Tasque
 {
