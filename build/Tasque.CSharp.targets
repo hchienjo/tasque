@@ -4,7 +4,7 @@
   	<_tmpInstallFileNames>obj\Tasque.RelInstallFileNames.txt</_tmpInstallFileNames>
     <OutputPath>.</OutputPath>
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
-    <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib\tasque</LibDir>
+    <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(Prefix)\lib\tasque</PkgLibDir>
     <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
   </PropertyGroup>
   <ItemGroup>
@@ -14,7 +14,7 @@
   <Target Name="_CheckProperties">
     <Message Text="SrcDir=$(SrcDir)" />
     <Message Text="Prefix=$(Prefix)" />
-    <Message Text="LibDir=$(LibDir)" />
+    <Message Text="PkgLibDir=$(PkgLibDir)" />
     <Message Text="DestDir=$(DestDir)" />
     <Error Condition=" '$(Prefix)' == '' " Text="Prefix is not set." />
   </Target>
@@ -27,14 +27,14 @@
     <CreateItem Condition="Exists('$(TargetFileName).mdb')" Include="$(TargetFileName).mdb">
       <Output TaskParameter="Include" ItemName="InstallFileName" />
     </CreateItem>
-    <Copy SourceFiles="@(InstallFileName)" DestinationFiles="$(DestDir)$(LibDir)\%(RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(InstallFileName)" DestinationFiles="$(DestDir)$(PkgLibDir)\%(RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
     <WriteLinesToFile File="$(_tmpInstallFileNames)" Lines="@(InstallFileName)" Overwrite="true" />
   </Target>
   <Target Name="Uninstall">
     <ReadLinesFromFile File="$(_tmpInstallFileNames)" >
       <Output TaskParameter="Lines" ItemName="InstallFileName" />
     </ReadLinesFromFile>
-    <Delete Files="$(DestDir)$(LibDir)\%(InstallFileName.RelativeDir)%(FileName)%(Extension)" />
+    <Delete Files="$(DestDir)$(PkgLibDir)\%(InstallFileName.RelativeDir)%(FileName)%(Extension)" />
     <Delete Files="$(_tmpInstallFileNames)" />
   </Target>
   <Target Name="Dist">
