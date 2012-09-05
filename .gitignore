@@ -92,10 +92,13 @@ Makefile.in
 
 # /src/tasque/
 /src/tasque/*.exe
-/src/tasque/*.exe.config
+/src/tasque/*.dll
 /src/tasque/*.mdb
 /src/tasque/*.pc
 /src/tasque/tasque
+/src/tasque/tasque.csp
+/src/tasque/obj/
+!/src/tasque/Makefile.in
 
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll

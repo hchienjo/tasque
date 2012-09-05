@@ -28,14 +28,20 @@
       <Output TaskParameter="Include" ItemName="ChildProjectReferences" />
     </CreateItem>
   </Target>
-  <Target Name="Install">
+  <Target Name="Install" DependsOnTargets="BeforeInstall;CoreInstall;AfterInstall" />
+  <Target Name="BeforeInstall" />
+  <Target Name="AfterInstall" />
+  <Target Name="CoreInstall">
     <CreateItem Condition="Exists('$(TargetFileName).mdb')" Include="$(TargetFileName).mdb">
       <Output TaskParameter="Include" ItemName="InstallFileName" />
     </CreateItem>
     <Copy SourceFiles="@(InstallFileName)" DestinationFiles="$(DestDir)$(PkgLibDir)\%(RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
     <WriteLinesToFile File="$(_tmpInstallFileNames)" Lines="@(InstallFileName)" Overwrite="true" />
   </Target>
-  <Target Name="Uninstall">
+  <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
+  <Target Name="BeforeUninstall" />
+  <Target Name="AfterUninstall" />
+  <Target Name="CoreUninstall">
     <ReadLinesFromFile File="$(_tmpInstallFileNames)" >
       <Output TaskParameter="Lines" ItemName="InstallFileName" />
     </ReadLinesFromFile>

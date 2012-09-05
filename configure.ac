@@ -292,6 +292,12 @@ AC_SUBST(GTKTASQUECSPROJ)
 RTMNETCSPROJ=RtmNet.csp
 AC_SUBST(RTMNETCSPROJ)
 
+#
+# Setup tasque.csproj
+#
+TASQUECSPROJ=tasque.csp
+AC_SUBST(TASQUECSPROJ)
+
 AC_CONFIG_FILES([
 Makefile
 build/Tasque.CSharp.targets:build/Tasque.CSharp.targets
@@ -303,6 +309,7 @@ src/libtasque/${LIBTASQUECSPROJ}:src/libtasque/libtasque.csproj
 src/Gtk.Tasque/Makefile
 src/Gtk.Tasque/${GTKTASQUECSPROJ}:src/Gtk.Tasque/Gtk.Tasque.csproj
 src/tasque/Makefile
+src/tasque/${TASQUECSPROJ}:src/tasque/tasque.csproj
 src/tasque/tasque.pc
 src/Addins/Backends/Makefile
 src/Addins/Backends/Dummy/Makefile

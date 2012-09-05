@@ -3,9 +3,9 @@
 prefix="@prefix@"
 exec_prefix="@exec_prefix@"
 libdir="@libdir@"
-tasque_libdir="${libdir}/tasque"
+pkglibdir="@pkglibdir@"
 
-cd ${tasque_libdir}
+cd ${pkglibdir}
 
 for arg in $*; do
 	case "x--debug" in ("x$arg")
