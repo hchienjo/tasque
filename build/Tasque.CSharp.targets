@@ -18,7 +18,8 @@
     <Message Text="DestDir=$(DestDir)" />
     <Error Condition=" '$(Prefix)' == '' " Text="Prefix is not set." />
   </Target>
-  <Target Name="BeforeBuild">
+  <Target Name="BeforeBeforeBuild" />
+  <Target Name="BeforeBuild" DependsOnTargets="BeforeBeforeBuild">
     <CreateItem Include="$(SrcDir)\%(TasqueCompile.RelativeDir)%(FileName)%(Extension)">
       <Output TaskParameter="Include" ItemName="Compile" />
     </CreateItem>
