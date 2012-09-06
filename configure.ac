@@ -5,6 +5,8 @@ AC_INIT([tasque], [0.1.12])
 AM_INIT_AUTOMAKE([foreign tar-ustar])
 AM_MAINTAINER_MODE
 
+m4_include([m4/GAC_CHECK_MODULES.m4])
+
 GNOME_COMMON_INIT
 
 AC_PROG_INSTALL
@@ -13,6 +15,16 @@ AC_PROG_LIBTOOL
 
 dnl pkg-config
 PKG_PROG_PKG_CONFIG
+
+### Begin GAC tool ###
+PKG_PROG_GACUTIL
+if test -z "$GACUTIL"; then
+        AC_MSG_ERROR([No gacutil tool found])
+fi
+
+GACUTIL_FLAGS='/gacdir $(DESTDIR)$(prefix)'
+AC_SUBST(GACUTIL_FLAGS)
+### End GAC tool ###
 
 AC_PROG_INSTALL
 
@@ -167,6 +179,9 @@ AC_ARG_ENABLE(backend_sqlite,
 	AC_HELP_STRING([--enable-backend-sqlite],
 		[Enable the SQLite Backend [default=no]]),
 		final_backend_sqlite=$enableval, )
+if test "x$final_backend_sqlite" != "xno"; then
+	GAC_CHECK_MODULES([MONO_DATA_SQLITE], [Mono.Data.Sqlite])
+fi
 AM_CONDITIONAL(ENABLE_BACKEND_SQLITE, test "x$final_backend_sqlite" != "xno")
 
 #
@@ -221,19 +236,6 @@ fi
 # Define ENABLE_BACKEND_RTM here so it only gets defined once
 AM_CONDITIONAL(ENABLE_BACKEND_RTM, test "x$final_backend_rtm" != "xno")
 
-
-### Begin GAC tool ###
-
-AC_PATH_PROG(GACUTIL, gacutil, no)
-if test "x$GACUTIL" = "xno" ; then
-        AC_MSG_ERROR([No gacutil tool found])
-fi
-
-AC_SUBST(GACUTIL)
-GACUTIL_FLAGS='/gacdir $(DESTDIR)$(prefix)'
-AC_SUBST(GACUTIL_FLAGS)
-
-### End GAC tool ###
 
 AC_CONFIG_FILES([
 Makefile
