@@ -9,12 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-03 16:45+0200\n"
 "PO-Revision-Date: 2009-02-23 18:49+0100\n"
-"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
+"Last-Translator: Alessio Sandri <alessio.sandri@email.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -54,32 +55,34 @@ msgstr "Ultimo anno"
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} attività scaduta\n"
+msgstr[1] "{0} attività scadute\n"
 
 #: ../src/GtkTray.cs:91
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} attività per oggi\n"
+msgstr[1] "{0} attività per oggi\n"
 
 #: ../src/GtkTray.cs:100
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} attività per domani\n"
+msgstr[1] "{0} attività per domani\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/GtkTray.cs:106
 #, fuzzy
 msgid "Tasque Rocks"
-msgstr "Tasque"
+msgstr "Tasque Rocks"
 
 #: ../src/GtkTray.cs:151
 msgid "translator-credits"
-msgstr "Milo Casagrande <milo@ubuntu.com>, 2008-2009"
+msgstr ""
+"Milo Casagrande <milo@ubuntu.com>, 2008-2009\n"
+"Alessio Sandri <alessio.sandri@email.it>, 2012"
 
 #: ../src/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
@@ -122,7 +125,7 @@ msgstr "_Finestra"
 #. Update the window title
 #: ../src/PreferencesDialog.cs:97
 msgid "Tasque Preferences"
-msgstr ""
+msgstr "Tasque configurazione"
 
 #: ../src/PreferencesDialog.cs:116
 msgid "General"
@@ -130,11 +133,11 @@ msgstr "Generale"
 
 #: ../src/PreferencesDialog.cs:124
 msgid "Appearance"
-msgstr ""
+msgstr "Aspetto"
 
 #: ../src/PreferencesDialog.cs:160
 msgid "Color Management"
-msgstr ""
+msgstr "Configurazione colore"
 
 #: ../src/PreferencesDialog.cs:171
 #, fuzzy
@@ -254,7 +257,7 @@ msgstr "Scelta data..."
 #. Title for Notes Column
 #: ../src/TaskTreeView.cs:220
 msgid "Notes"
-msgstr "Note"
+msgstr "Appunti"
 
 # (ndt) suggerimenti
 #. Title for Timer Column
@@ -310,7 +313,7 @@ msgstr "Futuro"
 #: ../src/TaskWindow.cs:474 ../src/TaskWindow.cs:1213
 #, csharp-format
 msgid "Tasks loaded: {0}"
-msgstr ""
+msgstr "Attività caricata: {0}"
 
 #. Show error status
 #: ../src/TaskWindow.cs:801
@@ -324,7 +327,7 @@ msgstr "Attività creata con successo"
 
 #: ../src/TaskWindow.cs:1089
 msgid "_Notes..."
-msgstr "_Note..."
+msgstr "A_ppunti..."
 
 #: ../src/TaskWindow.cs:1096
 msgid "_Delete task"
@@ -338,7 +341,7 @@ msgstr "_Modifica attività"
 #: ../src/TaskWindow.cs:1133
 #, fuzzy
 msgid "_Change category"
-msgstr "Categoria"
+msgstr "_Cambia categoria"
 
 #: ../src/TaskWindow.cs:1162
 msgid "Task deleted"
@@ -451,11 +454,11 @@ msgstr "Impostare il browser predefinito e riprovare"
 
 #: ../src/Backends/Rtm/RtmPreferencesWidget.cs:125
 msgid "Processing..."
-msgstr ""
+msgstr "Caricando..."
 
 #: ../src/Backends/Rtm/RtmPreferencesWidget.cs:135
 msgid "Failed, Try Again"
-msgstr ""
+msgstr "Sbagliato, riprova ancora"
 
 #: ../src/Backends/Rtm/RtmPreferencesWidget.cs:139
 msgid "Thank You"
@@ -465,7 +468,7 @@ msgstr "Grazie"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:49
 msgid "th,st,nd,rd"
-msgstr ""
+msgstr "°"
 
 #. Token "T"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
@@ -485,48 +488,48 @@ msgstr "Domani"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:61
 msgid "month|months"
-msgstr ""
+msgstr "mese|mesi"
 
 #. Token "w". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:65
 msgid "week|weeks"
-msgstr ""
+msgstr "settimana|settimane"
 
 #. Token "y". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:69
 msgid "year|years"
-msgstr ""
+msgstr "anno|anni"
 
 #. Token "d". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:73
 msgid "day|days"
-msgstr ""
+msgstr "giorno|giorni"
 
 #. Token "u". More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:207
 msgid "due before|due by|due"
-msgstr ""
+msgstr "scade prima|scade il|scade"
 
 #. Token "n". Examples could be: "Next Month", "Next Monday"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:233
 msgid "next"
-msgstr ""
+msgstr "prossimo"
 
 #. Token "o". Examples could be: "On April 1st", "On Wednesday"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:239
 msgid "on"
-msgstr ""
+msgstr "il"
 
 #. Token "i". Examples could be: "In 2 weeks", "In 3 months"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:245
 msgid "in"
-msgstr ""
+msgstr "fra"
 
 #. Represents "Today and Tomorrow" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
