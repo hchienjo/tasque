@@ -103,7 +103,7 @@ msgstr "Aggiorna attività..."
 
 #: ../src/GtkTray.cs:191
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Mostra/Nascondi finestra"
 
 #: ../src/NoteDialog.cs:24
 #, csharp-format
