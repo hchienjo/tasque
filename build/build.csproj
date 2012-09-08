@@ -74,6 +74,7 @@
     <None Include="..\data\data.mdproj">
       <Link>data.mdproj</Link>
     </None>
+    <None Include="Tasque.CSharp.targets" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Addins\" />
