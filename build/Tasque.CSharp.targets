@@ -19,6 +19,8 @@
     <Message Text="DestDir=$(DestDir)" />
     <Error Condition=" '$(Prefix)' == '' " Text="Prefix is not set." />
   </Target>
+  
+  <!-- Build -->
   <Target Name="BeforeBeforeBuild" />
   <Target Name="BeforeBuild" DependsOnTargets="BeforeBeforeBuild">
     <CreateItem Include="$(SrcDir)\%(TasqueCompile.RelativeDir)%(FileName)%(Extension)">
@@ -28,6 +30,17 @@
       <Output TaskParameter="Include" ItemName="ChildProjectReferences" />
     </CreateItem>
   </Target>
+  
+  <!-- Clean -->
+  <Target Name="AfterClean">
+    <CreateItem Include="*.dll;*.mdb">
+      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+    </CreateItem>
+    <Message Text="TasqueCleanFile: @(TasqueCleanFile)" />
+    <Delete Files="@(TasqueCleanFile)" />
+  </Target>
+  
+  <!-- Install -->
   <Target Name="Install" DependsOnTargets="BeforeInstall;CoreInstall;AfterInstall" />
   <Target Name="BeforeInstall" />
   <Target Name="AfterInstall" />
@@ -38,6 +51,8 @@
     <Copy SourceFiles="@(InstallFileName)" DestinationFiles="$(DestDir)$(PkgLibDir)\%(RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
     <WriteLinesToFile File="$(_tmpInstallFileNames)" Lines="@(InstallFileName)" Overwrite="true" />
   </Target>
+  
+  <!-- Uninstall -->
   <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
   <Target Name="BeforeUninstall" />
   <Target Name="AfterUninstall" />
@@ -48,6 +63,8 @@
     <Delete Files="$(DestDir)$(PkgLibDir)\%(InstallFileName.RelativeDir)%(FileName)%(Extension)" />
     <Delete Files="$(_tmpInstallFileNames)" />
   </Target>
+  
+  <!-- Dist -->
   <Target Name="Dist">
     <Message Text="DistDir=$(DistDir)" />
     <Error Condition=" '$(DistDir)' == '' " Text="Property DistDir not set. Target Dist requires DistDir to be set." />
@@ -57,13 +74,8 @@
     <Message Text="@(DistFile)" />
     <Copy SourceFiles="$(SrcDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" DestinationFiles="$(DistDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
   </Target>
-  <Target Name="AfterClean">
-    <CreateItem Include="*.dll;*.mdb">
-      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
-    </CreateItem>
-    <Message Text="TasqueCleanFile: @(TasqueCleanFile)" />
-    <Delete Files="@(TasqueCleanFile)" />
-  </Target>
+  
+  <!-- Distclean -->
   <Target Name="DistClean" DependsOnTargets="Clean">
     <CreateItem Include="Makefile;*.csp">
       <Output TaskParameter="Include" ItemName="DistCleanFile" />
