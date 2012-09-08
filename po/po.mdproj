@@ -60,6 +60,19 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' " />
   <!-- The above is only for the MD Gettext addin, which provides a convenient environment for translation -->
   <!-- Below are the xbuild instructions. New translations should be added to the GettextTranslation ItemGroup. -->
+  <PropertyGroup>
+    <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
+    <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
+    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
+    <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
+    <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe')">
+    <MsgFmt>$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe')">
+    <IntlToolUpdate>$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe</IntlToolUpdate>
+  </PropertyGroup>
   <ItemGroup>
     <GettextTranslation Include="ca.po" />
     <GettextTranslation Include="ca@valencia.po" />
@@ -107,19 +120,6 @@
     <DistCleanFile Include="po.mdp" />
     <DistCleanFile Include="*.gmo" />
   </ItemGroup>
-  <PropertyGroup>
-    <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
-    <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
-    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
-    <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
-    <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe')">
-    <MsgFmt>$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
-  </PropertyGroup>
-  <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe')">
-    <IntlToolUpdate>$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe</IntlToolUpdate>
-  </PropertyGroup>
   <!-- Fallbacks -->
   <PropertyGroup Condition=" '$(MsgFmt)' == '' ">
     <MsgFmt>msgfmt</MsgFmt>
