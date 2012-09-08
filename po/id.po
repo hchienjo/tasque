@@ -2,21 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tasque package.
 # Imam Musthaqim <userindesign@gmail.com>, 2009.
+# Andika Triwidada <andika@gmail.com>, 2010, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-03 16:45+0200\n"
-"PO-Revision-Date: 2010-04-14 15:37+0700\n"
+"Project-Id-Version: tasque master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-03 14:58+0000\n"
+"PO-Revision-Date: 2012-09-09 01:43+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"Language-Team: INDONESIA <userindesign@gmail.com>\n"
-"Language: \n"
+"Language-Team: INDONESIA <gnome@i15n.org>\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Indonesian\n"
-"X-Poedit-Country: INDONESIA\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/tasque.desktop.in.h:1
@@ -78,7 +78,7 @@ msgstr "Tasque Hebat"
 msgid "translator-credits"
 msgstr ""
 "Imam Musthaqim <userindesign@gmail.com>, 2009\n"
-"Andika Triwidada <andika@gmail.com>, 2010."
+"Andika Triwidada <andika@gmail.com>, 2010, 2012."
 
 #: ../src/GtkTray.cs:159
 msgid "Copyright © 2008 Novell, Inc."
@@ -102,7 +102,7 @@ msgstr "Perbarui Tugas ..."
 
 #: ../src/GtkTray.cs:191
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Jungkitkan Jendela Tugas"
 
 #: ../src/NoteDialog.cs:24
 #, csharp-format
@@ -212,9 +212,8 @@ msgstr "Tanggal Selesai"
 #: ../src/TaskTreeView.cs:188 ../src/TaskTreeView.cs:190
 #: ../src/TaskTreeView.cs:202 ../src/TaskTreeView.cs:750
 #: ../src/TaskTreeView.cs:753 ../src/TaskTreeView.cs:758
-#, fuzzy
 msgid "M/d - "
-msgstr "B/t -"
+msgstr "d/M - "
 
 #: ../src/TaskTreeView.cs:188 ../src/TaskTreeView.cs:750
 #: ../src/TaskWindow.cs:275 ../src/Utilities.cs:276
@@ -230,9 +229,8 @@ msgstr "Besok"
 #: ../src/TaskTreeView.cs:196 ../src/TaskTreeView.cs:198
 #: ../src/TaskTreeView.cs:200 ../src/TaskTreeView.cs:490
 #: ../src/TaskTreeView.cs:767
-#, fuzzy
 msgid "M/d - ddd"
-msgstr "B/t - ttt"
+msgstr "d/M - ddd"
 
 #: ../src/TaskTreeView.cs:202 ../src/TaskTreeView.cs:758
 msgid "In 1 Week"
@@ -262,9 +260,8 @@ msgid "Task Completed"
 msgstr "Tugas Selesai"
 
 #: ../src/TaskTreeView.cs:492
-#, fuzzy
 msgid "M/d/yy - ddd"
-msgstr "B/t/t - ttt"
+msgstr "d/M/yy - ddd"
 
 #: ../src/TaskTreeView.cs:650
 msgid "Action Canceled"
@@ -383,24 +380,20 @@ msgid "In {0} days"
 msgstr "Dalam {0} hari"
 
 #: ../src/Utilities.cs:305
-#, fuzzy
 msgid "MMMM d, h:mm tt"
-msgstr "BBBB t, j:mm tt"
+msgstr "d MMMM, H:mm"
 
 #: ../src/Utilities.cs:306
-#, fuzzy
 msgid "MMMM d"
-msgstr "BBBB t"
+msgstr "d MMMM"
 
 #: ../src/Utilities.cs:311
-#, fuzzy
 msgid "MMMM d yyyy, h:mm tt"
-msgstr "BBBB t tttt, j:mm tt"
+msgstr "d MMMM yyyy, H:mm"
 
 #: ../src/Utilities.cs:312
-#, fuzzy
 msgid "MMMM d yyyy"
-msgstr "BBB t tttt"
+msgstr "d MMMM yyyy"
 
 #: ../src/Backends/Rtm/RtmPreferencesWidget.cs:65
 msgid "Click Here to Connect"
@@ -447,7 +440,6 @@ msgstr "Terima Kasih"
 #. Token "O". Notice only the suffix is translated.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:49
-#, fuzzy
 msgid "th,st,nd,rd"
 msgstr "NULL"
 
@@ -489,7 +481,6 @@ msgstr "hari"
 
 #. Token "u". More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:207
-#, fuzzy
 msgid "due before|due by|due"
 msgstr "jatuh tempo sebelum|jatuh tempo"
 
@@ -546,6 +537,3 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|O M|N M|O|A"
-
-#~ msgid "Show Tasks ..."
-#~ msgstr "Tampilkan Tugas ..."
