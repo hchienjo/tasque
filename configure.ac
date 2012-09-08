@@ -336,7 +336,7 @@ AC_SUBST(SQLITEBACKENDCSPROJ)
 
 AC_CONFIG_FILES([
 Makefile
-build/Tasque.CSharp.targets:build/Tasque.CSharp.targets
+build/Tasque.targets:build/Tasque.targets
 src/Makefile
 src/Libraries/RtmNet/Makefile
 src/Libraries/RtmNet/${RTMNETCSPROJ}:src/Libraries/RtmNet/RtmNet.csproj

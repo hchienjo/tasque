@@ -5,6 +5,8 @@
     <OutputPath>.</OutputPath>
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
     <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(Prefix)\lib\tasque</PkgLibDir>
+    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
+    <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
     <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
     <BuildingSolutionFile>True</BuildingSolutionFile>
   </PropertyGroup>
@@ -16,6 +18,8 @@
     <Message Text="SrcDir=$(SrcDir)" />
     <Message Text="Prefix=$(Prefix)" />
     <Message Text="PkgLibDir=$(PkgLibDir)" />
+    <Message Text="DataDir=$(DataDir)" />
+    <Message Text="BinDir=$(BinDir)" />
     <Message Text="DestDir=$(DestDir)" />
     <Error Condition=" '$(Prefix)' == '' " Text="Prefix is not set." />
   </Target>

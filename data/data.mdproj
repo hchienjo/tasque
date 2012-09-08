@@ -8,34 +8,23 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}</ProjectGuid>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Linux' ">
-    <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
     <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
-    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
-    <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
     <DesktopDir Condition=" '$(DesktopDir)' == '' ">$(DataDir)\applications</DesktopDir>
     <DbusServiceDir Condition=" '$(DbusServiceDir)' == '' ">$(DataDir)\dbus-1\services</DbusServiceDir>
     <PixmapDir Condition=" '$(PixmapDir)' == '' ">$(DataDir)\pixmaps</PixmapDir>
     <HiColorDir Condition=" '$(HiColorDir)' == '' ">$(DataDir)\icons\hicolor</HiColorDir>
     <LocalHiColorDir Condition=" '$(LocalHiColorDir)' == '' ">$(DataDir)\tasque\icons\hicolor</LocalHiColorDir>
     <SoundsDir>$(DataDir)/tasque/sounds</SoundsDir>
-    <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
     <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Windows' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'MacOsx' ">
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
+    <DesktopFileName>tasque.desktop</DesktopFileName>
+    <DBusServiceFileName>org.gnome.Tasque.service</DBusServiceFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MacOsx|AnyCPU' ">
   </PropertyGroup>
-  <ItemGroup>
-    <DesktopInFile Include="tasque.desktop.in" />
-    <DbusServiceInFile Include="org.gnome.Tasque.service.in" />
-  </ItemGroup>
+  <Import Project="..\build\Tasque.targets" />
   <ItemGroup>
     <GlobalIcon Include="images\tasque-16.png">
       <Name>tasque.png</Name>
@@ -166,20 +155,24 @@
     <LocalSound Include="sounds\notify.wav" />
   </ItemGroup>
   <ItemGroup>
+    <DistFile Include="tasque.desktop.in" />
+    <DistFile Include="org.gnome.Tasque.service.in" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="images\" />
     <Folder Include="sounds\" />
   </ItemGroup>
   <!-- Linux targets -->
   <Target Name="LinuxBuild">
-    <Exec Command="LC_ALL=C $(IntlToolMerge) -d -u -c ..\po\.intltool-merge-cache $(SrcDir)\..\po $(SrcDir)\%(DesktopInFile.Identity) tasque.desktop" />
-    <Exec Command="sed -e %22s|%5C%40bindir%5C%40|$(BinDir)|g%22 -e %22s|%5C%40wrapper%5C%40|tasque|g%22 &lt; $(SrcDir)\%(DbusServiceInFile.Identity) &gt; org.gnome.Tasque.service" />
+    <Exec Command="LC_ALL=C $(IntlToolMerge) -d -u -c ..\po\.intltool-merge-cache $(SrcDir)\..\po $(SrcDir)\$(DesktopFileName).in $(DesktopFileName)" />
+    <Exec Command="sed -e %22s|%5C%40bindir%5C%40|$(BinDir)|g%22 -e %22s|%5C%40wrapper%5C%40|tasque|g%22 &lt; $(SrcDir)\$(DBusServiceFileName).in &gt; $(DBusServiceFileName)" />
   </Target>
   <Target Name="LinuxClean">
-    <Delete Files="%(DesktopInFile.FileName);%(DbusServiceInFile.FileName)" />
+    <Delete Files="$(DesktopFileName);$(DBusServiceFileName)" />
   </Target>
   <Target Name="LinuxInstall">
-    <Copy SourceFiles="%(DesktopInFile.FileName)" DestinationFiles="$(DestDir)$(DesktopDir)\%(DesktopInFile.FileName)" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="%(DbusServiceInFile.FileName)" DestinationFiles="$(DestDir)$(DbusServiceDir)\%(DbusServiceInFile.FileName)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(DesktopFileName)" DestinationFiles="$(DestDir)$(DesktopDir)\$(DesktopFileName)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(DBusServiceFileName)" DestinationFiles="$(DestDir)$(DbusServiceDir)\$(DBusServiceFileName)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="$(SrcDir)\%(GlobalIcon.Identity)" DestinationFiles="$(DestDir)$(HiColorDir)\%(Size)\%(Context)\%(Name)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="$(SrcDir)\%(LocalIcon.Identity)" DestinationFiles="$(DestDir)$(LocalHiColorDir)\%(Size)\%(Context)\%(Name)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="$(SrcDir)\%(GlobalIcon.Identity)" DestinationFolder="$(DestDir)$(PixmapDir)" Condition="'%(Pixmaps)'" SkipUnchangedFiles="true" />
@@ -187,8 +180,8 @@
     <Copy SourceFiles="$(SrcDir)\%(LocalSound.Identity)" DestinationFolder="$(DestDir)$(SoundsDir)" />
   </Target>
   <Target Name="LinuxUninstall">
-    <Delete Files="$(DestDir)$(DesktopDir)\%(DesktopInFile.FileName)" />
-    <Delete Files="$(DestDir)$(DbusServiceDir)\%(DbusServiceInFile.FileName)" />
+    <Delete Files="$(DestDir)$(DesktopDir)\$(DesktopFileName)" />
+    <Delete Files="$(DestDir)$(DbusServiceDir)\$(DBusServiceFileName)" />
     <Delete Files="$(DestDir)$(HiColorDir)\%(GlobalIcon.Size)\%(Context)\%(Name)" />
     <Delete Files="$(DestDir)$(LocalHiColorDir)\%(LocalIcon.Size)\%(Context)\%(Name)" />
     <Delete Files="$(DestDir)$(PixmapDir)\%(GlobalIcon.FileName)%(Extension)" Condition="'%(Pixmaps)'" />
@@ -200,13 +193,13 @@
     <Exec Command="gtk-update-icon-cache -f -t $(LocalHiColorDir)" IgnoreExitCode="true" />
   </Target>
   <Target Name="Dist">
-    <CreateItem Include="data.mdproj;@(DesktopInFile);@(DbusServiceInFile);@(GlobalIcon);@(LocalIcon);@(LocalSound)">
+    <CreateItem Include="data.mdproj;$(DesktopFileName).in;$(DBusServiceFileName).in;@(GlobalIcon);@(LocalIcon);@(LocalSound)">
       <Output TaskParameter="Include" ItemName="DistFile" />
     </CreateItem>
     <Copy SourceFiles="$(SrcDir)\%(DistFile.Identity)" DestinationFiles="$(DistDir)\%(DistFile.Identity)" SkipUnchangedFiles="true" />
   </Target>
   <Target Name="DistClean" DependsOnTargets="Clean">
-    <CreateItem Include="Makefile;data.mdp;%(DesktopInFile.FileName);%(DbusServiceInFile.FileName)">
+    <CreateItem Include="Makefile;data.mdp;$(DesktopFileName);$(DBusServiceFileName)">
       <Output TaskParameter="Include" ItemName="DistCleanFile" />
     </CreateItem>
     <Delete Files="@(DistCleanFile)" />
