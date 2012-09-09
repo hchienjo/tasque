@@ -90,7 +90,7 @@ namespace Tasque
 				text = value == null ? string.Empty : value.Trim ();
 				
 				if (Page == this.viewPageId) {
-					textLabel.Text = GLib.Markup.EscapeText (text);
+					textLabel.Text = text;
 				} else {
 					textView.Buffer.Text = text;
 				}
@@ -121,7 +121,7 @@ namespace Tasque
 			textLabel.UseUnderline = false;
 			textLabel.Justify = Gtk.Justification.Left;
 			textLabel.Wrap = true;
-			textLabel.Text = GLib.Markup.EscapeText (text);
+			textLabel.Text = text;
 			textLabel.Show ();
 			vbox.PackStart (textLabel, true, true, 0);
 			
@@ -294,7 +294,7 @@ namespace Tasque
 		{
 			// Update the text
 			text = textView.Buffer.Text.Trim ();
-			textLabel.Text = GLib.Markup.EscapeText (text);
+			textLabel.Text = text;
 			if(note != null)
 				note.Text = text;
 			
