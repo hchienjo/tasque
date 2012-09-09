@@ -204,6 +204,7 @@ namespace Tasque
 
 			innerEb = new EventBox();
 			innerEb.BorderWidth = 0;
+			innerEb.ButtonPressEvent += OnTargetVBoxButtonPress;
 			Gdk.Color backgroundColor = GetBackgroundColor ();
 			innerEb.ModifyBg (StateType.Normal, backgroundColor);
 			innerEb.ModifyBase (StateType.Normal, backgroundColor);
@@ -1144,6 +1145,33 @@ namespace Tasque
 			}
 		}
 		
+		void OnTargetVBoxButtonPress (object sender, Gtk.ButtonPressEventArgs args)
+		{
+			if (args.Event.Button == 1) {
+				Gtk.TreeIter iter;
+				if (!categoryComboBox.GetActiveIter (out iter))
+					return;
+
+				ICategory category =
+					categoryComboBox.Model.GetValue (iter, 0) as ICategory;
+
+				TaskTreeView tree = futureGroup.TreeView as TaskTreeView;
+
+				// Don't add a new empty task if we're still editing a task
+				if (tree.TaskBeingEdited != null)
+					return;
+
+				ITask task = CreateTask (String.Empty, category);
+				if (task == null)
+					return; // TODO: explain error to user
+
+				// Since we added an empty task, it'll always be on top
+				// Looks like a hack
+				Gtk.TreePath path = new Gtk.TreePath ("0");
+				tree.SetCursor (path, tree.GetColumn (2), true);
+			}
+		}
+
 		private void OnShowTaskNotes (object sender, EventArgs args)
 		{
 			if (clickedTask == null)

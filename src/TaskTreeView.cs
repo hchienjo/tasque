@@ -37,6 +37,11 @@ namespace Tasque
 		
 		public event EventHandler NumberOfTasksChanged;
 
+		public ITask TaskBeingEdited
+		{
+			get { return taskBeingEdited; }
+		}
+
 		public TaskTreeView (Gtk.TreeModel model)
 			: base ()
 		{		
