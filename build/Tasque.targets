@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" InitialTargets="_CheckProperties" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" InitialTargets="_CheckProperties;_GetSrcDir" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-  	<_tmpInstallFileNames>obj\Tasque.RelInstallFileNames.txt</_tmpInstallFileNames>
+    <BuildingSolutionFile>True</BuildingSolutionFile>
+
+    <!-- Global dirs -->
     <OutputPath>.</OutputPath>
+    <Prefix Condition=" '$(Prefix)' == '' ">$(MSBuildProjectDirectory)\$(RelPrefix)</Prefix>
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
     <!-- TopBuildDir is usually TopSrcDir, hence default to TopSrcDir -->
     <TopBuildDir Condition=" '$(TopBuildDir)' == '' ">$(TopSrcDir)</TopBuildDir>
@@ -58,6 +61,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="Tasque.Build.Substitute" AssemblyFile="build.dll" />
+  <UsingTask TaskName="Tasque.Build.GetRelPath" AssemblyFile="build.dll" />
+  <UsingTask TaskName="Tasque.Build.GetSrcDirStrip" AssemblyFile="build.dll" />
+  <UsingTask TaskName="Tasque.Build.GetAbsSrcDir" AssemblyFile="build.dll" />
 	
   <!-- Substitute -->
   <Target Name="Substitute" DependsOnTargets="BeforeSubstitute;CoreSubstitute;AfterSubstitute" />
@@ -191,6 +197,27 @@
     <Error Condition=" '$(TopSrcDir)' == '' " Text="TopSrcDir is not set." />
     <Error Condition=" '$(RelPrefix)' == '' " Text="RelPrefix is not set." />
     <Message Text="Prefix=$(Prefix)" />
+  </Target>
+
+  <Target Name="_GetSrcDirStrip">
+    <GetSrcDirStrip MSBuildProjectDir="$(MSBuildProjectDirectory)" AbsTopBuildDir="$(AbsTopBuildDir)">
+      <Output TaskParameter="SrcDirStrip" PropertyName="SrcDirStrip" />
+    </GetSrcDirStrip>
+    <Message Text="SrcDirStrip=$(SrcDirStrip)" />
+  </Target>
+
+  <Target Name="_GetSrcDir" Condition=" '$(AbsTopSrcDir)' != '$(AbsTopBuildDir)' "
+      DependsOnTargets="_GetSrcDirStrip">
+    <Message Text="AbsTopSrcDir=$(AbsTopSrcDir)" />
+    <Message Text="AbsTopBuildDir=$(AbsTopBuildDir)" />
+    <Message Text="MSBuildProjectDirectory=$(MSBuildProjectDirectory)" />
+    <GetAbsSrcDir AbsTopSrcDir="$(AbsTopSrcDir)" SrcDirStrip="$(SrcDirStrip)">
+      <Output TaskParameter="AbsSrcDir" PropertyName="AbsSrcDir" />
+    </GetAbsSrcDir>
+    <GetRelPath FromPath="$(MSBuildProjectDirectory)" ToPath="$(AbsSrcDir)">
+      <Output TaskParameter="RelativePath" PropertyName="SrcDir" />
+    </GetRelPath>
+    <Message Text="SrcDir=$(SrcDir)" />
   </Target>
   
   <Target Name="_SetupBinInstallFile">
