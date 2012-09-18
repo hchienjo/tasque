@@ -12,6 +12,9 @@
     <RootNamespace>RtmNet</RootNamespace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PackageName>tasque</PackageName>
+    <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\..\..\build\bin</RelPrefix>
+    <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..\..\..</TopSrcDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,7 +27,7 @@
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
-  <Import Project="..\..\..\build\Tasque.targets" />
+  <Import Project="..\..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
