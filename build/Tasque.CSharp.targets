@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="Tasque.targets" />
+  
+  <!-- Build -->
+  <Target Name="BeforeTasqueBuild">
+    <CreateItem Include="$(SrcDir)\%(TasqueCompile.RelativeDir)%(FileName)%(Extension)">
+      <Output TaskParameter="Include" ItemName="Compile" />
+    </CreateItem>
+    <CreateItem Condition=" '@(ProjectReference)' != '' " Include="%(ProjectReference.RelativeDir)\*.dll" >
+      <Output TaskParameter="Include" ItemName="ChildProjectReferences" />
+    </CreateItem>
+  </Target>
+  
+  <!-- Clean -->
+  <Target Name="BeforeTasqueClean">
+    <CreateItem Include="*.dll;*.mdb;*.exe">
+      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+    </CreateItem>
+  </Target>
+</Project>
