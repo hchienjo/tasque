@@ -75,6 +75,28 @@
     <Exec Command="$(MsgFmt) -o %(FileName).gmo $(PoSrcDir)\@(GettextCompile)" />
   </Target>
   
+  <!-- Build -->
+  <!-- Switch between regular targets and alternative targets -->
+  <PropertyGroup Condition=" '$(AltTarget)' != '' ">
+    <BuildDependsOn>
+      BeforeBuild;
+      AfterBuild;
+    </BuildDependsOn>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <TasqueBuildDependsOn>
+      Substitute;
+      GettextCompile;
+      Translate;
+      BeforeTasqueBuild;
+    </TasqueBuildDependsOn>
+    <TasqueBuildDependsOn Condition=" '$(AltTarget)' != '' ">$(AltTarget)</TasqueBuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="BeforeBuild" DependsOnTargets="$(TasqueBuildDependsOn)" />
+  <Target Name="BeforeTasqueBuild" />
+  
   <!-- Uninstall -->
   <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
   <Target Name="BeforeUninstall" />
