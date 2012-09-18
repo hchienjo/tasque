@@ -4,14 +4,28 @@
   	<_tmpInstallFileNames>obj\Tasque.RelInstallFileNames.txt</_tmpInstallFileNames>
     <OutputPath>.</OutputPath>
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
-    <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(Prefix)\lib\tasque</PkgLibDir>
-    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
+    <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib</LibDir>
     <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
+    <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(LibDir)\$(PackageName)</PkgLibDir>
+    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
+    <PkgDataDir Condition=" '$(PkgDataDir)' == '' ">$(DataDir)\$(PackageName)</PkgDataDir>
+    <PkgConfigDir Condition=" '$(PkgConfigDir)' == '' ">$(LibDir)\pkgconfig</PkgConfigDir>
     <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
     <BuildingSolutionFile>True</BuildingSolutionFile>
+    <Wrapper Condition=" '$(Wrapper)' == '' ">$(PackageName)</Wrapper>
+    <Version Condition=" '$(Version)' == '' ">1.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <InstallFileName Include="$(TargetFileName)" />
+    <Substitution Include="@prefix@|$(Prefix)|text" />
+    <Substitution Include="@libdir@|$(LibDir)|text" />
+    <Substitution Include="@pkglibdir@|$(PkgLibDir)|text" />
+    <Substitution Include="@bindir@|$(BinDir)|text" />
+    <Substitution Include="@exec_prefix@|$(BinDir)|text" />
+    <Substitution Include="@datadir@|$(DataDir)|text" />
+    <Substitution Include="@wrapper@|$(Wrapper)|text" />
+    <Substitution Include="@version@|$(Version)|text" />
+    <Substitution Include="@PACKAGE@|$(PackageName)|text" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="_CheckProperties">
@@ -54,6 +68,21 @@
     </CreateItem>
     <Copy SourceFiles="@(InstallFileName)" DestinationFiles="$(DestDir)$(PkgLibDir)\%(RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
     <WriteLinesToFile File="$(_tmpInstallFileNames)" Lines="@(InstallFileName)" Overwrite="true" />
+  </Target>
+  <UsingTask TaskName="Tasque.Build.Substitute" AssemblyFile="build.dll" />
+	
+  <!-- Substitute -->
+  <Target Name="Substitute" DependsOnTargets="BeforeSubstitute;CoreSubstitute;AfterSubstitute" />
+  <Target Name="BeforeSubstitute" />
+  <Target Name="AfterSubstitute" />
+  <Target Name="CoreSubstitute" Condition=" '@(Substitute)' != '' ">
+    <CreateItem Include="$(SrcDir)\%(Substitute.RelativeDir)%(FileName)%(Extension)">
+      <Output TaskParameter="Include" ItemName="_SubstSourceFiles" />
+    </CreateItem>
+    <CreateItem Include="%(Substitute.RelativeDir)%(FileName)">
+      <Output TaskParameter="Include" ItemName="_SubstDestFiles" />
+    </CreateItem>
+    <Substitute SourceFiles="@(_SubstSourceFiles)" DestinationFiles="@(_SubstDestFiles)" Substitutions="@(Substitution)" />
   </Target>
   
   <!-- Uninstall -->
