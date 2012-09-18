@@ -46,7 +46,7 @@
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;OSX</DefineConstants>
   </PropertyGroup>
-  <Import Project="..\..\build\Tasque.targets" />
+  <Import Project="..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
