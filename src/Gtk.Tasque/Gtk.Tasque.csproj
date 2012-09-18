@@ -118,23 +118,15 @@
     <TasqueCompile Include="Utilities.cs" />
     <TasqueCompile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <DistFile Include="Defines.cs.in" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <Compile Include="Defines.cs" />
     <TasqueCompile Include="RemoteControl.cs" />
     <TasqueCompile Include="RemoteControlProxy.cs" />
   </ItemGroup>
-  <Target Name="BeforeBeforeBuild" Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
-    <Exec Command="sed -e %22s|%5C%40version%5C%40|$(Version)|%22 -e %22s|%5C%40datadir%5C%40|$(DataDir)|%22 &lt; $(SrcDir)\Defines.cs.in &gt; Defines.cs" />
-  </Target>
-  <Target Name="BeforeClean">
-    <CreateItem Include="Defines.cs">
-      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
-    </CreateItem>
-  </Target>
+  <ItemGroup>
+    <Substitute Include="Defines.cs.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>
