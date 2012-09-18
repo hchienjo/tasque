@@ -23,11 +23,13 @@
     <When Condition=" '$(OS)' == 'Windows_NT' ">
       <PropertyGroup>
         <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe</IntlToolMerge>
+        <MsgFmt Condition=" '$(MsgFmt)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
       </PropertyGroup>
     </When>
     <Otherwise>
       <PropertyGroup>
         <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
+        <MsgFmt Condition=" '$(MsgFmt)' == '' ">msgfmt</MsgFmt>
       </PropertyGroup>
     </Otherwise>
   </Choose>
@@ -67,7 +69,12 @@
   <Target Name="CoreTranslate" Condition=" '@(Translate)' != '' ">
     <Exec Command="LC_ALL=C $(IntlToolMerge) -d -u -c $(PoBuildDir)\.intltool-merge-cache $(PoSrcDir) $(SrcDir)\%(Translate.RelativeDir)%(FileName)%(Extension) %(RelativeDir)%(FileName)" />
   </Target>
-
+  
+  <!-- Compile translations -->
+  <Target Name="GettextCompile" Condition=" '@(GettextCompile)' != '' ">
+    <Exec Command="$(MsgFmt) -o %(FileName).gmo $(PoSrcDir)\@(GettextCompile)" />
+  </Target>
+  
   <!-- Uninstall -->
   <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
   <Target Name="BeforeUninstall" />
