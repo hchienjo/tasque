@@ -112,6 +112,25 @@
   </Target>
   <Target Name="BeforeTasqueClean" />
   
+  <!-- Install -->
+  <PropertyGroup>
+    <InstallDependsOn>
+      BeforeInstall;
+      SetupInstallFile;
+      CoreInstall;
+      AfterInstall;
+    </InstallDependsOn>
+  </PropertyGroup>
+  <Target Name="Install" DependsOnTargets="$(InstallDependsOn)" />
+  <Target Name="BeforeInstall" />
+  <Target Name="AfterInstall" />
+  <Target Name="CoreInstall">
+    <Copy SourceFiles="@(InstallFile)" DestinationFiles="$(DestDir)%(InstallPath)\%(InstallFileName)" SkipUnchangedFiles="true" />
+  </Target>
+  
+  <!-- Hook for consuming projects to register extra files for install -->
+  <Target Name="SetupInstallFile" />
+  
   <!-- Uninstall -->
   <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
   <Target Name="BeforeUninstall" />
