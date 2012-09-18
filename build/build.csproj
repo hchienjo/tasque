@@ -96,4 +96,6 @@
     <Copy SourceFiles="$(TopSrcDir)\..\build\%(Proj.Identity)" DestinationFiles="$(TopBuildDir)\..\build\%(Identity)" SkipUnchangedFiles="true" />
     <Copy SourceFiles="$(TopSrcDir)\..\build\%(Compile.Identity)" DestinationFiles="$(TopBuildDir)\..\build\%(Identity)" SkipUnchangedFiles="true" />
   </Target>
+  <!-- Override default clean target, since build.dll needs to be arround during other project's clean. -->
+  <Target Name="CoreClean" />
 </Project>

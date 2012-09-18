@@ -1,22 +1,80 @@
-SUBDIRS = src data po
+if ENABLE_DEBUG
+conf = "GtkLinuxDebug"
+else
+conf = "GtkLinuxRelease"
+endif
+
+PROPERTIES = \
+	/property:Configuration=$(conf) \
+	/property:AbsTopSrcDir=$(abs_top_srcdir) \
+	/property:AbsTopBuildDir=$(abs_top_builddir) \
+	/property:AbsDistDir="`pwd`/$(distdir)" \
+	/property:Prefix=$(prefix)
 
 pkgdata_DATA =  $(DLL_REFERENCES)
+
 DLL_REFERENCES =   
+
 EXTRA_DIST = \
 	$(DLL_REFERENCES) \
 	MAINTAINERS \
-	TRANSLATORS
+	TRANSLATORS \
+	tasque.sln \
+	build/build.csproj \
+	build/AssemblyInfo.cs \
+	build/Substitute.cs \
+	build/GetRelPath.cs \
+	build/GetSrcDirStrip.cs \
+	build/GetAbsSrcDir.cs \
+	build/Tasque.targets \
+	build/Tasque.CSharp.targets \
+	src/Libraries/RtmNet/RtmNet.csproj \
+	src/libtasque/libtasque.csproj \
+	src/Gtk.Tasque/Gtk.Tasque.csproj \
+	src/tasque/tasque.csproj \
+	src/Addins/Backends/Dummy/DummyBackend.csproj \
+	src/Addins/Backends/Eds/EdsBackend.csproj \
+	src/Addins/Backends/Hiveminder/HiveminderBackend.csproj \
+	src/Addins/Backends/IceCore/IceCoreBackend.csproj \
+	src/Addins/Backends/Rtm/RtmBackend.csproj \
+	src/Addins/Backends/Sqlite/SqliteBackend.csproj \
+	data/data.mdproj \
+	tests/tests.csproj \
+	po/po.mdproj
 
-DISTCLEANFILES =                        \
-        \
-        po/.intltool-merge-cache
+DISTCLEANFILES = \
+        $(EXTRA_DIST) \
+        po/.intltool-merge-cache \
+        po/POTFILES
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper
 
 # Ignore scrollkeeper issues for now.  @#*$& scrollkeeper (from Evince)
 distuninstallcheck_listfiles = find . -type f -print | grep -v scrollkeeper | grep -v /share/gnome/help/ | grep -v \.omf
 
-dist-hook:
+all:
+	$(XBUILD) $(PROPERTIES) tasque.sln
+
+clean:
+	$(XBUILD) $(PROPERTIES) /target:clean tasque.sln
+
+install:
+	$(XBUILD) $(PROPERTIES) /property:alttarget=install tasque.sln
+
+uninstall:
+	$(XBUILD) $(PROPERTIES) /property:alttarget=uninstall tasque.sln
+
+dist-hook: change-log
+	$(XBUILD) $(PROPERTIES) /property:alttarget=dist tasque.sln
+
+distcheck-hook:
+	$(XBUILD) $(PROPERTIES) /property:alttarget=distcheck tasque.sln
+
+clean-generic: clean
+	rm -f build/build.dll build/build.dll.mdb
+	rm -rf build/obj
+
+change-log:
 	@if test -d "$(srcdir)/.git"; \
 	then \
 		echo Creating ChangeLog && \
