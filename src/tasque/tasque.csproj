@@ -68,28 +68,27 @@
     <TasqueCompile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <DistFile Include="tasque.in" />
     <DistFile Include="Tasque.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Substitute Include="tasque.in" />
+    <Substitute Include="tasque.pc.in" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Target Name="BeforeBeforeBuild" Condition=" '$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' ">
-    <Exec Command="sed -e %22s|%5C%40prefix%5C%40|$(Prefix)|g%22 -e %22s|%5C%40exec_prefix%5C%40|$(BinDir)|g%22	-e %22s|%5C%40libdir%5C%40|$(LibDir)|g%22 -e %22s|%5C%40pkglibdir%5C%40|$(PkgLibDir)|g%22 &lt; $(SrcDir)\$(Wrapper).in &gt; $(Wrapper) %3B chmod +x $(Wrapper)" />
+  <Target Name="AfterSubstitute" Condition=" '$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' ">
+    <Exec Command="chmod +x tasque" />
   </Target>
-  <Target Name="BeforeClean">
-    <CreateItem Include="$(Wrapper);tasque.pc">
-      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+  <Target Name="SetupInstallFile">
+    <CreateItem Include="$(SrcDir)\Tasque.exe.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.config">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
-  </Target>
-  <Target Name="AfterInstall">
-    <Copy SourceFiles="$(SrcDir)\Tasque.exe.config" DestinationFolder="$(DestDir)$(PkgLibDir)" />
-    <Copy SourceFiles="tasque.pc" DestinationFolder="$(DestDir)$(LibDir)\pkgconfig" />
-    <Copy SourceFiles="$(Wrapper)" DestinationFolder="$(DestDir)$(BinDir)" />
-  </Target>
-  <Target Name="BeforeUninstall">
-    <Delete Files="$(DestDir)$(PkgLibDir)\Tasque.exe.config" />
-    <Delete Files="$(DestDir)$(LibDir)\pkgconfig\tasque.pc" />
-    <Delete Files="$(DestDir)$(BinDir)\$(Wrapper)" />
+    <CreateItem Include="tasque.pc" AdditionalMetadata="InstallPath=$(PkgConfigDir);InstallFileName=tasque.pc">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Include="tasque" AdditionalMetadata="InstallPath=$(BinDir);InstallFileName=tasque">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
   </Target>
 </Project>
