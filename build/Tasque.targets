@@ -132,15 +132,19 @@
   <Target Name="SetupInstallFile" />
   
   <!-- Uninstall -->
-  <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
+  <PropertyGroup>
+    <UninstallDependsOn>
+      BeforeUninstall;
+      SetupInstallFile;
+      CoreUninstall;
+      AfterUninstall;
+    </UninstallDependsOn>
+  </PropertyGroup>
+  <Target Name="Uninstall" DependsOnTargets="$(UninstallDependsOn)" />
   <Target Name="BeforeUninstall" />
   <Target Name="AfterUninstall" />
   <Target Name="CoreUninstall">
-    <ReadLinesFromFile File="$(_tmpInstallFileNames)" >
-      <Output TaskParameter="Lines" ItemName="InstallFileName" />
-    </ReadLinesFromFile>
-    <Delete Files="$(DestDir)$(PkgLibDir)\%(InstallFileName.RelativeDir)%(FileName)%(Extension)" />
-    <Delete Files="$(_tmpInstallFileNames)" />
+    <Delete Files="$(DestDir)%(InstallFile.InstallPath)\%(InstallFileName)" />
   </Target>
   
   <!-- Dist -->
