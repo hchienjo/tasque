@@ -28,15 +28,6 @@
     <Substitution Include="@PACKAGE@|$(PackageName)|text" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Target Name="_CheckProperties">
-    <Message Text="SrcDir=$(SrcDir)" />
-    <Message Text="Prefix=$(Prefix)" />
-    <Message Text="PkgLibDir=$(PkgLibDir)" />
-    <Message Text="DataDir=$(DataDir)" />
-    <Message Text="BinDir=$(BinDir)" />
-    <Message Text="DestDir=$(DestDir)" />
-    <Error Condition=" '$(Prefix)' == '' " Text="Prefix is not set." />
-  </Target>
   
   <!-- Build -->
   <Target Name="BeforeBeforeBuild" />
