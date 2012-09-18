@@ -165,4 +165,12 @@
     </CreateItem>
     <Delete Files="%(DistCleanFile.RelativeDir)%(FileName)%(Extension)" />
   </Target>
+   
+  <!-- Private -->
+  <Target Name="_CheckProperties">
+    <Error Condition=" '$(PackageName)' == '' " Text="PackageName is not set." />
+    <Error Condition=" '$(TopSrcDir)' == '' " Text="TopSrcDir is not set." />
+    <Error Condition=" '$(RelPrefix)' == '' " Text="RelPrefix is not set." />
+    <Message Text="Prefix=$(Prefix)" />
+  </Target>
 </Project>
