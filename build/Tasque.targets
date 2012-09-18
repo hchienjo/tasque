@@ -28,38 +28,6 @@
     <Substitution Include="@PACKAGE@|$(PackageName)|text" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  
-  <!-- Build -->
-  <Target Name="BeforeBeforeBuild" />
-  <Target Name="BeforeBuild" DependsOnTargets="BeforeBeforeBuild">
-    <CreateItem Include="$(SrcDir)\%(TasqueCompile.RelativeDir)%(FileName)%(Extension)">
-      <Output TaskParameter="Include" ItemName="Compile" />
-    </CreateItem>
-    <CreateItem Condition=" '@(ProjectReference)' != '' " Include="%(ProjectReference.RelativeDir)\*.dll" >
-      <Output TaskParameter="Include" ItemName="ChildProjectReferences" />
-    </CreateItem>
-  </Target>
-  
-  <!-- Clean -->
-  <Target Name="AfterClean">
-    <CreateItem Include="*.dll;*.mdb">
-      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
-    </CreateItem>
-    <Message Text="TasqueCleanFile: @(TasqueCleanFile)" />
-    <Delete Files="@(TasqueCleanFile)" />
-  </Target>
-  
-  <!-- Install -->
-  <Target Name="Install" DependsOnTargets="BeforeInstall;CoreInstall;AfterInstall" />
-  <Target Name="BeforeInstall" />
-  <Target Name="AfterInstall" />
-  <Target Name="CoreInstall">
-    <CreateItem Condition="Exists('$(TargetFileName).mdb')" Include="$(TargetFileName).mdb">
-      <Output TaskParameter="Include" ItemName="InstallFileName" />
-    </CreateItem>
-    <Copy SourceFiles="@(InstallFileName)" DestinationFiles="$(DestDir)$(PkgLibDir)\%(RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
-    <WriteLinesToFile File="$(_tmpInstallFileNames)" Lines="@(InstallFileName)" Overwrite="true" />
-  </Target>
   <UsingTask TaskName="Tasque.Build.Substitute" AssemblyFile="build.dll" />
 	
   <!-- Substitute -->
