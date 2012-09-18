@@ -4,6 +4,10 @@
   	<_tmpInstallFileNames>obj\Tasque.RelInstallFileNames.txt</_tmpInstallFileNames>
     <OutputPath>.</OutputPath>
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
+    <!-- TopBuildDir is usually TopSrcDir, hence default to TopSrcDir -->
+    <TopBuildDir Condition=" '$(TopBuildDir)' == '' ">$(TopSrcDir)</TopBuildDir>
+    <PoSrcDir Condition=" '$(PoSrcDir)' == '' ">$(AbsTopSrcDir)\po</PoSrcDir>
+    <PoBuildDir Condition=" '$(PoBuildDir)' == '' ">$(TopBuildDir)\po</PoBuildDir>
     <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib</LibDir>
     <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
     <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(LibDir)\$(PackageName)</PkgLibDir>
@@ -15,6 +19,18 @@
     <Wrapper Condition=" '$(Wrapper)' == '' ">$(PackageName)</Wrapper>
     <Version Condition=" '$(Version)' == '' ">1.0.0</Version>
   </PropertyGroup>
+  <Choose>
+    <When Condition=" '$(OS)' == 'Windows_NT' ">
+      <PropertyGroup>
+        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe</IntlToolMerge>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
   <ItemGroup>
     <InstallFileName Include="$(TargetFileName)" />
     <Substitution Include="@prefix@|$(Prefix)|text" />
@@ -44,6 +60,14 @@
     <Substitute SourceFiles="@(_SubstSourceFiles)" DestinationFiles="@(_SubstDestFiles)" Substitutions="@(Substitution)" />
   </Target>
   
+  <!-- Translate -->
+  <Target Name="Translate" DependsOnTargets="BeforeTranslate;CoreTranslate;AfterTranslate" />
+  <Target Name="BeforeTranslate" />
+  <Target Name="AfterTranslate" />
+  <Target Name="CoreTranslate" Condition=" '@(Translate)' != '' ">
+    <Exec Command="LC_ALL=C $(IntlToolMerge) -d -u -c $(PoBuildDir)\.intltool-merge-cache $(PoSrcDir) $(SrcDir)\%(Translate.RelativeDir)%(FileName)%(Extension) %(RelativeDir)%(FileName)" />
+  </Target>
+
   <!-- Uninstall -->
   <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
   <Target Name="BeforeUninstall" />
