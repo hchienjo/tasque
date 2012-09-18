@@ -97,6 +97,21 @@
   <Target Name="BeforeBuild" DependsOnTargets="$(TasqueBuildDependsOn)" />
   <Target Name="BeforeTasqueBuild" />
   
+  <!-- Clean -->
+  <Target Name="AfterClean" DependsOnTargets="BeforeTasqueClean">
+    <CreateItem Condition=" '@(Translate)' != '' " Include="%(Translate.RelativeDir)%(Translate.FileName)">
+      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+    </CreateItem>
+    <CreateItem Condition=" '@(Substitute)' != '' " Include="%(Substitute.RelativeDir)%(Substitute.FileName)">
+      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+    </CreateItem>
+    <CreateItem Condition=" '@(GettextCompile)' != '' " Include="%(GettextCompile.FileName).gmo">
+      <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
+    </CreateItem>
+    <Delete Files="@(TasqueCleanFile)" />
+  </Target>
+  <Target Name="BeforeTasqueClean" />
+  
   <!-- Uninstall -->
   <Target Name="Uninstall" DependsOnTargets="BeforeUninstall;CoreUninstall;AfterUninstall" />
   <Target Name="BeforeUninstall" />
