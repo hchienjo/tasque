@@ -10,9 +10,11 @@
     <OutputPath>.</OutputPath>
     <RootNamespace>Tasque.Tests</RootNamespace>
     <AssemblyName>Tasque.Tests</AssemblyName>
-    <PackageName>tasque</PackageName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PackageName>tasque</PackageName>
+    <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\build\bin</RelPrefix>
+    <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..</TopSrcDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -15,6 +15,9 @@
     <GtkSharp12 Condition=" '$(EnableGtkSharp12)' == '' Or '$(EnableGtkSharp12)' ">GTK_2_12</GtkSharp12>
     <NotifySharp Condition=" '$(EnableNotifySharp)' == '' Or '$(EnableNotifySharp)' ">ENABLE_NOTIFY_SHARP</NotifySharp>
     <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
+    <PackageName>tasque</PackageName>
+    <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\..\build\bin</RelPrefix>
+    <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..\..</TopSrcDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
