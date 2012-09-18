@@ -42,6 +42,8 @@
       <Private>False</Private>
       <Package>gtk-sharp-2.0</Package>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
     <TasqueCompile Include="AssemblyInfo.cs" />
@@ -50,5 +52,11 @@
     <TasqueCompile Include="HmNote.cs" />
     <TasqueCompile Include="HmPreferencesWidget.cs" />
     <TasqueCompile Include="HmTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libtasque\libtasque.csproj">
+      <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
+      <Name>libtasque</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
