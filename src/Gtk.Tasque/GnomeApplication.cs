@@ -7,12 +7,12 @@ using System.Xml;
 
 using Mono.Unix;
 using Mono.Unix.Native;
+using System.Diagnostics;
 
 namespace Tasque
 {
 	public class GnomeApplication : INativeApplication
 	{
-		private Gnome.Program program;
 		private string confDir;
 
 		public GnomeApplication ()
@@ -39,11 +39,6 @@ namespace Tasque
 
 			// add package icon path to default icon theme search paths
 			Gtk.IconTheme.Default.PrependSearchPath (Defines.IconsDir);
-
-			program = new Gnome.Program (display_name,
-			                             Defines.Version,
-			                             Gnome.Modules.UI,
-			                             args);
 		}
 
 		public void InitializeIdle ()
@@ -60,7 +55,7 @@ namespace Tasque
 
 		public void StartMainLoop ()
 		{
-			program.Run ();
+			Gtk.Application.Run ();
 		}
 
 		public void QuitMainLoop ()
@@ -99,7 +94,11 @@ namespace Tasque
 		
 		public void OpenUrl (string url)
 		{
-			Gnome.Url.Show (url);
+			try {
+				Process.Start (url);
+			} catch (Exception e) {
+				Logger.Error ("Error opening url [{0}]:\n{1}", url, e.ToString ());
+			}
 		}
 		
 		public string ConfDir {

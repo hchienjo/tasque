@@ -5,6 +5,8 @@ AC_INIT([tasque], [0.1.12])
 AM_INIT_AUTOMAKE([foreign tar-ustar])
 AM_MAINTAINER_MODE
 
+m4_include([m4/GAC_CHECK_MODULES.m4])
+
 GNOME_COMMON_INIT
 
 AC_PROG_INSTALL
@@ -12,6 +14,16 @@ AC_PROG_LIBTOOL
 
 dnl pkg-config
 PKG_PROG_PKG_CONFIG
+
+### Begin GAC tool ###
+PKG_PROG_GACUTIL
+if test -z "$GACUTIL"; then
+        AC_MSG_ERROR([No gacutil tool found])
+fi
+
+GACUTIL_FLAGS='/gacdir $(DESTDIR)$(prefix)'
+AC_SUBST(GACUTIL_FLAGS)
+### End GAC tool ###
 
 AC_PROG_INSTALL
 
@@ -49,19 +61,12 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package])
 AM_GLIB_GNU_GETTEXT
 
-#
-# Find gconftool-2
-#
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
-AM_GCONF_SOURCE_2
-
 PKG_CHECK_MODULES([GLIB_SHARP_20], [glib-sharp-2.0])
-PKG_CHECK_MODULES([GNOME_SHARP_20], [gnome-sharp-2.0])
 PKG_CHECK_MODULES([GTK_SHARP_20], [gtk-sharp-2.0 >= 2.10.0])
 PKG_CHECK_MODULES([GTK_SHARP_2_12], gtk-sharp-2.0 >= 2.12.0, GTK_2_12="yes", GTK_2_12="no")
-AC_SUBST(GTK_2_12)
-PKG_CHECK_MODULES([NDESK_DBUS_10], [ndesk-dbus-1.0])
-PKG_CHECK_MODULES([NDESK_DBUS_GLIB_10], [ndesk-dbus-glib-1.0])
+AM_CONDITIONAL(GTK_2_12, test "$GTK_2_12" = "yes")
+PKG_CHECK_MODULES([DBUS_SHARP_10], [dbus-sharp-1.0])
+PKG_CHECK_MODULES([DBUS_SHARP_GLIB_10], [dbus-sharp-glib-1.0])
 
 #
 # Allow the project to build without notify-sharp
@@ -194,6 +199,9 @@ AC_ARG_ENABLE(backend_sqlite,
 	AC_HELP_STRING([--enable-backend-sqlite],
 		[Enable the SQLite Backend [default=no]]),
 		final_backend_sqlite=$enableval, )
+if test "x$final_backend_sqlite" != "xno"; then
+	GAC_CHECK_MODULES([MONO_DATA_SQLITE], [Mono.Data.Sqlite])
+fi
 AM_CONDITIONAL(ENABLE_BACKEND_SQLITE, test "x$final_backend_sqlite" != "xno")
 
 #
@@ -247,20 +255,6 @@ if test "x$final_backend_dummy" = "xno" -a "x$final_backend_rtm" = "xno" \
 fi
 # Define ENABLE_BACKEND_RTM here so it only gets defined once
 AM_CONDITIONAL(ENABLE_BACKEND_RTM, test "x$final_backend_rtm" != "xno")
-
-
-### Begin GAC tool ###
-
-AC_PATH_PROG(GACUTIL, gacutil, no)
-if test "x$GACUTIL" = "xno" ; then
-        AC_MSG_ERROR([No gacutil tool found])
-fi
-
-AC_SUBST(GACUTIL)
-GACUTIL_FLAGS='/gacdir $(DESTDIR)$(prefix)'
-AC_SUBST(GACUTIL_FLAGS)
-
-### End GAC tool ###
 
 
 AC_CONFIG_FILES([

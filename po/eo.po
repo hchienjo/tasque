@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-31 09:47+0200\n"
+"POT-Creation-Date: 2012-09-18 18:29+0200\n"
 "PO-Revision-Date: 2010-07-20 15:33+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
@@ -114,14 +114,6 @@ msgstr ""
 msgid "Notes for: {0:s}"
 msgstr "Notoj por: {0:s}"
 
-#: ../src/Gtk.Tasque/OSXApplication.cs:38
-msgid "_File"
-msgstr "_Dosiero"
-
-#: ../src/Gtk.Tasque/OSXApplication.cs:44
-msgid "_Window"
-msgstr "_Fenestro"
-
 #. Update the window title
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:97
 msgid "Tasque Preferences"
@@ -173,115 +165,115 @@ msgid "New task created."
 msgstr "Nova tasko kreita."
 
 #. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:85 ../src/Gtk.Tasque/TaskWindow.cs:342
+#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:343
 msgid "Completed"
 msgstr "Plenumite"
 
 #. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:102
+#: ../src/Gtk.Tasque/TaskTreeView.cs:107
 msgid "Priority"
 msgstr "Prioritato"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:115 ../src/Gtk.Tasque/TaskTreeView.cs:419
-#: ../src/Gtk.Tasque/TaskTreeView.cs:668
+#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:424
+#: ../src/Gtk.Tasque/TaskTreeView.cs:673
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:116 ../src/Gtk.Tasque/TaskTreeView.cs:416
-#: ../src/Gtk.Tasque/TaskTreeView.cs:666
+#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:421
+#: ../src/Gtk.Tasque/TaskTreeView.cs:671
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:117 ../src/Gtk.Tasque/TaskTreeView.cs:413
-#: ../src/Gtk.Tasque/TaskTreeView.cs:664
+#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:418
+#: ../src/Gtk.Tasque/TaskTreeView.cs:669
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:118 ../src/Gtk.Tasque/TaskTreeView.cs:422
+#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:427
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:132
+#: ../src/Gtk.Tasque/TaskTreeView.cs:137
 msgid "Task Name"
 msgstr "Tasknomo"
 
 #. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:174
+#: ../src/Gtk.Tasque/TaskTreeView.cs:179
 msgid "Due Date"
 msgstr "Limdato"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:188 ../src/Gtk.Tasque/TaskTreeView.cs:190
-#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:750
-#: ../src/Gtk.Tasque/TaskTreeView.cs:753 ../src/Gtk.Tasque/TaskTreeView.cs:758
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:755
+#: ../src/Gtk.Tasque/TaskTreeView.cs:758 ../src/Gtk.Tasque/TaskTreeView.cs:763
 msgid "M/d - "
 msgstr "d/M - "
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:188 ../src/Gtk.Tasque/TaskTreeView.cs:750
-#: ../src/Gtk.Tasque/TaskWindow.cs:275 ../src/Gtk.Tasque/Utilities.cs:276
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:755
+#: ../src/Gtk.Tasque/TaskWindow.cs:276 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "Hodiaŭ"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:190 ../src/Gtk.Tasque/TaskTreeView.cs:753
-#: ../src/Gtk.Tasque/TaskWindow.cs:293 ../src/Gtk.Tasque/Utilities.cs:295
+#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:758
+#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Morgaŭ"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:192 ../src/Gtk.Tasque/TaskTreeView.cs:194
-#: ../src/Gtk.Tasque/TaskTreeView.cs:196 ../src/Gtk.Tasque/TaskTreeView.cs:198
-#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:490
-#: ../src/Gtk.Tasque/TaskTreeView.cs:767
+#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
+#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
+#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:495
+#: ../src/Gtk.Tasque/TaskTreeView.cs:772
 msgid "M/d - ddd"
 msgstr "d/M - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:758
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:763
 msgid "In 1 Week"
 msgstr "Post 1 semajno"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:203 ../src/Gtk.Tasque/TaskTreeView.cs:755
+#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:760
 #: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "Neniu dato"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:204 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "Choose Date..."
 msgstr "Elekti daton..."
 
 #. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:220
+#: ../src/Gtk.Tasque/TaskTreeView.cs:225
 msgid "Notes"
 msgstr "Notoj"
 
 #. Title for Timer Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:237
+#: ../src/Gtk.Tasque/TaskTreeView.cs:242
 msgid "Timer"
 msgstr "Horloĝo"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:331
+#: ../src/Gtk.Tasque/TaskTreeView.cs:336
 msgid "Task Completed"
 msgstr "Tasko estas plenumite"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:492
+#: ../src/Gtk.Tasque/TaskTreeView.cs:497
 msgid "M/d/yy - ddd"
 msgstr "d/M/yy - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:650
+#: ../src/Gtk.Tasque/TaskTreeView.cs:655
 msgid "Action Canceled"
 msgstr "Ago nuligita"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:942
+#: ../src/Gtk.Tasque/TaskTreeView.cs:947
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Plenumi taskon en: {0}"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:837
-#: ../src/Gtk.Tasque/TaskWindow.cs:893 ../src/Gtk.Tasque/TaskWindow.cs:903
-#: ../src/Gtk.Tasque/TaskWindow.cs:914
+#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:838
+#: ../src/Gtk.Tasque/TaskWindow.cs:894 ../src/Gtk.Tasque/TaskWindow.cs:904
+#: ../src/Gtk.Tasque/TaskWindow.cs:915
 msgid "New task..."
 msgstr "Nova tasko..."
 
@@ -293,60 +285,60 @@ msgstr "_Aldoni"
 msgid "_Add Task"
 msgstr "_Aldoni taskon"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:257
+#: ../src/Gtk.Tasque/TaskWindow.cs:258
 msgid "Overdue"
 msgstr "Posttempe"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:311
+#: ../src/Gtk.Tasque/TaskWindow.cs:312
 msgid "Next 7 Days"
 msgstr "Sekvantaj 7 tagoj"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:327
+#: ../src/Gtk.Tasque/TaskWindow.cs:328
 msgid "Future"
 msgstr "Estonteco"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:474 ../src/Gtk.Tasque/TaskWindow.cs:1213
+#: ../src/Gtk.Tasque/TaskWindow.cs:475 ../src/Gtk.Tasque/TaskWindow.cs:1241
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr "Taskoj ŝargitaj: {0}"
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:801
+#: ../src/Gtk.Tasque/TaskWindow.cs:802
 msgid "Error creating a new task"
 msgstr "Eraro dum kreado de novan taskon"
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:805
+#: ../src/Gtk.Tasque/TaskWindow.cs:806
 msgid "Task created successfully"
 msgstr "Taskon kreitas sukcese"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1089
+#: ../src/Gtk.Tasque/TaskWindow.cs:1090
 msgid "_Notes..."
 msgstr "_Notoj..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1096
+#: ../src/Gtk.Tasque/TaskWindow.cs:1097
 msgid "_Delete task"
 msgstr "_Forigi taskon"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1101
+#: ../src/Gtk.Tasque/TaskWindow.cs:1102
 msgid "_Edit task"
 msgstr "_Redakti taskon"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1133
+#: ../src/Gtk.Tasque/TaskWindow.cs:1134
 msgid "_Change category"
 msgstr "_Ŝanĝi kategorio"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1162
+#: ../src/Gtk.Tasque/TaskWindow.cs:1190
 msgid "Task deleted"
 msgstr "Tasko forigita"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1204
+#: ../src/Gtk.Tasque/TaskWindow.cs:1232
 msgid "Loading tasks..."
 msgstr "Ŝarĝanta taskojn..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1225
+#: ../src/Gtk.Tasque/TaskWindow.cs:1253
 msgid "Not connected."
 msgstr "Ne konekite."
 
@@ -543,6 +535,12 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|M O|M N|O|A"
+
+#~ msgid "_File"
+#~ msgstr "_Dosiero"
+
+#~ msgid "_Window"
+#~ msgstr "_Fenestro"
 
 #~ msgid "Show Tasks ..."
 #~ msgstr "Montri taskojn..."

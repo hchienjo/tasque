@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-31 09:47+0200\n"
+"POT-Creation-Date: 2012-09-18 18:29+0200\n"
 "PO-Revision-Date: 2009-04-28 14:17+0700\n"
 "Last-Translator: Sira Nokyoongotong <gumaraa@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -110,14 +110,6 @@ msgstr ""
 msgid "Notes for: {0:s}"
 msgstr "บันทึกสำหรับ: {0:s}"
 
-#: ../src/Gtk.Tasque/OSXApplication.cs:38
-msgid "_File"
-msgstr "แ_ฟ้ม"
-
-#: ../src/Gtk.Tasque/OSXApplication.cs:44
-msgid "_Window"
-msgstr "_หน้าต่าง"
-
 #. Update the window title
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:97
 msgid "Tasque Preferences"
@@ -171,115 +163,115 @@ msgid "New task created."
 msgstr "สร้างภารกิจใหม่แล้ว"
 
 #. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:85 ../src/Gtk.Tasque/TaskWindow.cs:342
+#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:343
 msgid "Completed"
 msgstr "เสร็จแล้ว"
 
 #. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:102
+#: ../src/Gtk.Tasque/TaskTreeView.cs:107
 msgid "Priority"
 msgstr "ความสำคัญ"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:115 ../src/Gtk.Tasque/TaskTreeView.cs:419
-#: ../src/Gtk.Tasque/TaskTreeView.cs:668
+#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:424
+#: ../src/Gtk.Tasque/TaskTreeView.cs:673
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:116 ../src/Gtk.Tasque/TaskTreeView.cs:416
-#: ../src/Gtk.Tasque/TaskTreeView.cs:666
+#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:421
+#: ../src/Gtk.Tasque/TaskTreeView.cs:671
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:117 ../src/Gtk.Tasque/TaskTreeView.cs:413
-#: ../src/Gtk.Tasque/TaskTreeView.cs:664
+#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:418
+#: ../src/Gtk.Tasque/TaskTreeView.cs:669
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:118 ../src/Gtk.Tasque/TaskTreeView.cs:422
+#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:427
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:132
+#: ../src/Gtk.Tasque/TaskTreeView.cs:137
 msgid "Task Name"
 msgstr "ชื่อภารกิจ"
 
 #. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:174
+#: ../src/Gtk.Tasque/TaskTreeView.cs:179
 msgid "Due Date"
 msgstr "กำหนดเสร็จ"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:188 ../src/Gtk.Tasque/TaskTreeView.cs:190
-#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:750
-#: ../src/Gtk.Tasque/TaskTreeView.cs:753 ../src/Gtk.Tasque/TaskTreeView.cs:758
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:755
+#: ../src/Gtk.Tasque/TaskTreeView.cs:758 ../src/Gtk.Tasque/TaskTreeView.cs:763
 msgid "M/d - "
 msgstr "d/M - "
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:188 ../src/Gtk.Tasque/TaskTreeView.cs:750
-#: ../src/Gtk.Tasque/TaskWindow.cs:275 ../src/Gtk.Tasque/Utilities.cs:276
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:755
+#: ../src/Gtk.Tasque/TaskWindow.cs:276 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "วันนี้"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:190 ../src/Gtk.Tasque/TaskTreeView.cs:753
-#: ../src/Gtk.Tasque/TaskWindow.cs:293 ../src/Gtk.Tasque/Utilities.cs:295
+#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:758
+#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "พรุ่งนี้"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:192 ../src/Gtk.Tasque/TaskTreeView.cs:194
-#: ../src/Gtk.Tasque/TaskTreeView.cs:196 ../src/Gtk.Tasque/TaskTreeView.cs:198
-#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:490
-#: ../src/Gtk.Tasque/TaskTreeView.cs:767
+#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
+#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
+#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:495
+#: ../src/Gtk.Tasque/TaskTreeView.cs:772
 msgid "M/d - ddd"
 msgstr "d/M - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:758
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:763
 msgid "In 1 Week"
 msgstr "ใน 1 สัปดาห์"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:203 ../src/Gtk.Tasque/TaskTreeView.cs:755
+#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:760
 #: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "ไม่กำหนดวัน"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:204 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "Choose Date..."
 msgstr "เลือกวัน ..."
 
 #. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:220
+#: ../src/Gtk.Tasque/TaskTreeView.cs:225
 msgid "Notes"
 msgstr "หมายเหตุ"
 
 #. Title for Timer Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:237
+#: ../src/Gtk.Tasque/TaskTreeView.cs:242
 msgid "Timer"
 msgstr "ตั้งเวลา"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:331
+#: ../src/Gtk.Tasque/TaskTreeView.cs:336
 msgid "Task Completed"
 msgstr "ภารกิจที่เสร็จแล้ว"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:492
+#: ../src/Gtk.Tasque/TaskTreeView.cs:497
 msgid "M/d/yy - ddd"
 msgstr "d/M/yy - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:650
+#: ../src/Gtk.Tasque/TaskTreeView.cs:655
 msgid "Action Canceled"
 msgstr "ยกเลิกการกระทำแล้ว"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:942
+#: ../src/Gtk.Tasque/TaskTreeView.cs:947
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "ภารกิจจะเสร็จในอีก: {0}"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:837
-#: ../src/Gtk.Tasque/TaskWindow.cs:893 ../src/Gtk.Tasque/TaskWindow.cs:903
-#: ../src/Gtk.Tasque/TaskWindow.cs:914
+#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:838
+#: ../src/Gtk.Tasque/TaskWindow.cs:894 ../src/Gtk.Tasque/TaskWindow.cs:904
+#: ../src/Gtk.Tasque/TaskWindow.cs:915
 msgid "New task..."
 msgstr "ภารกิจใหม่..."
 
@@ -291,61 +283,61 @@ msgstr "เ_พิ่ม"
 msgid "_Add Task"
 msgstr "เ_พิ่มภารกิจ"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:257
+#: ../src/Gtk.Tasque/TaskWindow.cs:258
 msgid "Overdue"
 msgstr "เลยกำหนด"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:311
+#: ../src/Gtk.Tasque/TaskWindow.cs:312
 msgid "Next 7 Days"
 msgstr "7 วันข้างหน้า"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:327
+#: ../src/Gtk.Tasque/TaskWindow.cs:328
 msgid "Future"
 msgstr "ในอนาคต"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:474 ../src/Gtk.Tasque/TaskWindow.cs:1213
+#: ../src/Gtk.Tasque/TaskWindow.cs:475 ../src/Gtk.Tasque/TaskWindow.cs:1241
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr ""
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:801
+#: ../src/Gtk.Tasque/TaskWindow.cs:802
 msgid "Error creating a new task"
 msgstr "เกิดข้อผิดพลาดในการสร้างภารกิจใหม่"
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:805
+#: ../src/Gtk.Tasque/TaskWindow.cs:806
 msgid "Task created successfully"
 msgstr "สร้างภารกิจเสร็จแล้ว"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1089
+#: ../src/Gtk.Tasque/TaskWindow.cs:1090
 msgid "_Notes..."
 msgstr "ห_มายเหตุ..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1096
+#: ../src/Gtk.Tasque/TaskWindow.cs:1097
 msgid "_Delete task"
 msgstr "_ลบภารกิจ"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1101
+#: ../src/Gtk.Tasque/TaskWindow.cs:1102
 msgid "_Edit task"
 msgstr "แ_ก้ไขภารกิจ"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1133
+#: ../src/Gtk.Tasque/TaskWindow.cs:1134
 #, fuzzy
 msgid "_Change category"
 msgstr "หมวดหมู่"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1162
+#: ../src/Gtk.Tasque/TaskWindow.cs:1190
 msgid "Task deleted"
 msgstr "ลบภารกิจแล้ว"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1204
+#: ../src/Gtk.Tasque/TaskWindow.cs:1232
 msgid "Loading tasks..."
 msgstr "กำลังอ่านข้อมูลภารกิจ..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1225
+#: ../src/Gtk.Tasque/TaskWindow.cs:1253
 #, fuzzy
 msgid "Not connected."
 msgstr ""
@@ -560,6 +552,12 @@ msgstr ""
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr ""
+
+#~ msgid "_File"
+#~ msgstr "แ_ฟ้ม"
+
+#~ msgid "_Window"
+#~ msgstr "_หน้าต่าง"
 
 #~ msgid "Show Tasks ..."
 #~ msgstr "แสดงภารกิจ ..."
