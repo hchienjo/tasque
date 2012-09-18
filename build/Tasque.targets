@@ -173,24 +173,28 @@
   </Target>
   
   <!-- Dist -->
-  <Target Name="Dist">
-    <Message Text="DistDir=$(DistDir)" />
-    <Error Condition=" '$(DistDir)' == '' " Text="Property DistDir not set. Target Dist requires DistDir to be set." />
-    <CreateItem Include="*.csproj;@(TasqueCompile)">
-      <Output TaskParameter="Include" ItemName="DistFile" />
-    </CreateItem>
-    <Message Text="@(DistFile)" />
-    <Copy SourceFiles="$(SrcDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" DestinationFiles="$(DistDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
+  <Target Name="Dist" DependsOnTargets="BeforeDist;_SetupDistFile;SetupDistFile;CoreDist;AfterDist" />
+  <Target Name="BeforeDist" />
+  <Target Name="AfterDist" />
+  <Target Name="CoreDist" DependsOnTargets="_CheckAbsDistDir;_GetSrcDirStrip">
+    <Copy Condition=" '@(DistFile)' != '' " SourceFiles="$(SrcDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)"
+        DestinationFiles="$(AbsDistDir)\$(SrcDirStrip)\%(DistFile.RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
   </Target>
   
+  <!-- DistCheck -->
+  <Target Name="DistCheck" />
+
+  <!-- Hook for consuming projects to register extra files for dist -->
+  <Target Name="SetupDistFile" />
+  
   <!-- Distclean -->
-  <Target Name="DistClean" DependsOnTargets="Clean">
-    <CreateItem Include="Makefile;*.csp">
-      <Output TaskParameter="Include" ItemName="DistCleanFile" />
-    </CreateItem>
-    <Delete Files="%(DistCleanFile.RelativeDir)%(FileName)%(Extension)" />
+  <Target Name="DistClean" DependsOnTargets="BeforeDistClean;CoreDistClean;AfterDistClean" />
+  <Target Name="BeforeDistClean" />
+  <Target Name="AfterDistClean" />
+  <Target Name="CoreDistClean" DependsOnTargets="Clean;_CheckAbsDistDir">
+    <Delete Files="$(AbsDistDir)\%(DistCleanFile.RelativeDir)%(FileName)%(Extension)" />
   </Target>
-   
+  
   <!-- Private -->
   <Target Name="_CheckProperties">
     <Error Condition=" '$(PackageName)' == '' " Text="PackageName is not set." />
@@ -218,6 +222,11 @@
       <Output TaskParameter="RelativePath" PropertyName="SrcDir" />
     </GetRelPath>
     <Message Text="SrcDir=$(SrcDir)" />
+  </Target>
+  
+  <Target Name="_CheckAbsDistDir">
+    <Message Text="AbsDistDir=$(AbsDistDir)" />
+    <Error Condition=" '$(AbsDistDir)' == '' " Text="Property AbsDistDir not set. Target Dist requires AbsDistDir to be set." />
   </Target>
   
   <Target Name="_SetupBinInstallFile">
@@ -260,5 +269,11 @@
   <Target Name="_UpdateIconCache" Condition=" '@(Icon)' != '' Or '@(PkgIcon)' != '' ">
     <Exec Command="$(UpdateIconCache) -f -t $(HiColorDir)" IgnoreExitCode="true" />
     <Exec Command="$(UpdateIconCache) -f -t $(PkgHiColorDir)" IgnoreExitCode="true" />
+  </Target>
+  
+  <Target Name="_SetupDistFile">
+    <CreateItem Include="@(TasqueCompile);@(Icon);@(PkgIcon);@(PkgSound);@(GettextCompile);@(Translate);@(Substitute)">
+      <Output TaskParameter="Include" ItemName="DistFile" />
+    </CreateItem>
   </Target>
 </Project>
