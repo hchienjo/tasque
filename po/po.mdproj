@@ -60,97 +60,62 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' " />
   <!-- The above is only for the MD Gettext addin, which provides a convenient environment for translation -->
   <!-- Below are the xbuild instructions. New translations should be added to the GettextTranslation ItemGroup. -->
-  <PropertyGroup>
-    <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>
-    <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe')">
-    <MsgFmt>$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
-  </PropertyGroup>
-  <PropertyGroup Condition="Exists('$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe')">
-    <IntlToolUpdate>$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe</IntlToolUpdate>
-  </PropertyGroup>
   <Import Project="..\build\Tasque.targets" />
+  <PropertyGroup>
+    <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\build\bin</RelPrefix>
+    <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..</TopSrcDir>
+    <PackageName>tasque</PackageName>
+    <!-- Disable regular build, since the above is not MSBuild conform. -->
+    <BuildDependsOn>BeforeBuild;AfterBuild</BuildDependsOn>
+  </PropertyGroup>
   <ItemGroup>
-    <GettextTranslation Include="ca.po" />
-    <GettextTranslation Include="ca@valencia.po" />
-    <GettextTranslation Include="cs.po" />
-    <GettextTranslation Include="da.po" />
-    <GettextTranslation Include="de.po" />
-    <GettextTranslation Include="el.po" />
-    <GettextTranslation Include="en_GB.po" />
-    <GettextTranslation Include="eo.po" />
-    <GettextTranslation Include="es.po" />
-    <GettextTranslation Include="et.po" />
-    <GettextTranslation Include="fi.po" />
-    <GettextTranslation Include="fr.po" />
-    <GettextTranslation Include="gl.po" />
-    <GettextTranslation Include="hu.po" />
-    <GettextTranslation Include="id.po" />
-    <GettextTranslation Include="it.po" />
-    <GettextTranslation Include="ja.po" />
-    <GettextTranslation Include="lv.po" />
-    <GettextTranslation Include="nb.po" />
-    <GettextTranslation Include="nds.po" />
-    <GettextTranslation Include="nl.po" />
-    <GettextTranslation Include="pl.po" />
-    <GettextTranslation Include="pt_BR.po" />
-    <GettextTranslation Include="pt.po" />
-    <GettextTranslation Include="ro.po" />
-    <GettextTranslation Include="ru.po" />
-    <GettextTranslation Include="sl.po" />
-    <GettextTranslation Include="sr@latin.po" />
-    <GettextTranslation Include="sr.po" />
-    <GettextTranslation Include="sv.po" />
-    <GettextTranslation Include="th.po" />
-    <GettextTranslation Include="tr.po" />
-    <GettextTranslation Include="zh_CN.po" />
-    <GettextTranslation Include="zh_TW.po" />
+    <GettextCompile Include="ca.po" />
+    <GettextCompile Include="ca@valencia.po" />
+    <GettextCompile Include="cs.po" />
+    <GettextCompile Include="da.po" />
+    <GettextCompile Include="de.po" />
+    <GettextCompile Include="el.po" />
+    <GettextCompile Include="en_GB.po" />
+    <GettextCompile Include="eo.po" />
+    <GettextCompile Include="es.po" />
+    <GettextCompile Include="et.po" />
+    <GettextCompile Include="fi.po" />
+    <GettextCompile Include="fr.po" />
+    <GettextCompile Include="gl.po" />
+    <GettextCompile Include="hu.po" />
+    <GettextCompile Include="id.po" />
+    <GettextCompile Include="it.po" />
+    <GettextCompile Include="ja.po" />
+    <GettextCompile Include="lv.po" />
+    <GettextCompile Include="nb.po" />
+    <GettextCompile Include="nds.po" />
+    <GettextCompile Include="nl.po" />
+    <GettextCompile Include="pl.po" />
+    <GettextCompile Include="pt_BR.po" />
+    <GettextCompile Include="pt.po" />
+    <GettextCompile Include="ro.po" />
+    <GettextCompile Include="ru.po" />
+    <GettextCompile Include="sl.po" />
+    <GettextCompile Include="sr@latin.po" />
+    <GettextCompile Include="sr.po" />
+    <GettextCompile Include="sv.po" />
+    <GettextCompile Include="th.po" />
+    <GettextCompile Include="tr.po" />
+    <GettextCompile Include="zh_CN.po" />
+    <GettextCompile Include="zh_TW.po" />
   </ItemGroup>
   <ItemGroup>
     <DistFile Include="@(GettextTranslation)" />
     <DistFile Include="POTFILES.in" />
     <DistFile Include="po.mdproj" />
   </ItemGroup>
-  <ItemGroup>
-    <DistCleanFile Include="POTFILES" />
-    <DistCleanFile Include="Makefile" />
-    <DistCleanFile Include="po.mdp" />
-    <DistCleanFile Include="*.gmo" />
-  </ItemGroup>
-  <!-- Fallbacks -->
-  <PropertyGroup Condition=" '$(MsgFmt)' == '' ">
-    <MsgFmt>msgfmt</MsgFmt>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(IntlToolUpdate)' == '' ">
-    <IntlToolUpdate>intltool-update</IntlToolUpdate>
-  </PropertyGroup>
-  <Target Name="Rebuild" DependsOnTargets="Clean;Build" />
-  <Target Name="Build">
-    <Exec Command="$(MsgFmt) -o %(FileName).gmo $(SrcDir)\@(GettextTranslation)" />
-  </Target>
-  <Target Name="Clean">
-    <Delete Files="%(GettextTranslation.FileName).gmo" />
-  </Target>
-  <Target Name="Install">
-    <Copy SourceFiles="%(GettextTranslation.FileName).gmo" DestinationFiles="$(DestDir)$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
-  </Target>
-  <Target Name="Uninstall">
-    <Delete Files="$(DestDir)$(LocaleDir)\%(GettextTranslation.FileName)\LC_MESSAGES\tasque.mo" />
-  </Target>
   <Target Name="Update">
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --pot" />
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --dist -o %(GettextTranslation.FileName).new.po %(GettextTranslation.FileName)" />
     <Copy SourceFiles="%(FileName).new.po" DestinationFiles="@(GettextTranslation)" />
     <Delete Files="%(GettextTranslation.FileName).new.po" />
   </Target>
-  <Target Name="Dist">
-    <Copy SourceFiles="$(SrcDir)\%(DistFile.Identity)" DestinationFolder="$(DistDir)" SkipUnchangedFiles="true" />
-  </Target>
-  <Target Name="DistClean" DependsOnTargets="Clean">
-    <Delete Files="@(DistCleanFile)" />
-  </Target>
-  <Target Name="Check">
+  <Target Name="DistCheck">
     <Delete Files="missing;notexist" />
     <Exec Command="srcdir=$(SrcDir) $(IntlToolUpdate) -m" />
     <Error Condition="Exists('missing') Or Exists('notexist')" Text="Some files which should have been listed in POTFILES.in or POTFILES.skip have been left out." />
