@@ -38,41 +38,62 @@
     <Compile Include="GetSrcDirStrip.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="build.csproj" />
-    <None Include="..\src\Gtk.Tasque\Gtk.Tasque.csproj">
+    <Proj Include="..\src\Gtk.Tasque\Gtk.Tasque.csproj">
       <Link>Gtk.Tasque.csproj</Link>
-    </None>
-    <None Include="..\src\libtasque\libtasque.csproj">
+    </Proj>
+    <Proj Include="..\src\libtasque\libtasque.csproj">
       <Link>libtasque.csproj</Link>
-    </None>
+    </Proj>
+    <Proj Include="..\src\tasque\tasque.csproj">
+      <Link>tasque.csproj</Link>
+    </Proj>
+    <Proj Include="..\src\Libraries\RtmNet\RtmNet.csproj">
+      <Link>RtmNet.csproj</Link>
+    </Proj>
+    <Proj Include="..\src\Addins\Backends\Dummy\DummyBackend.csproj">
+      <Link>Addins\Backends\DummyBackend.csproj</Link>
+    </Proj>
+    <Proj Include="..\src\Addins\Backends\Rtm\RtmBackend.csproj">
+      <Link>Addins\Backends\RtmBackend.csproj</Link>
+    </Proj>
+    <Proj Include="..\src\Addins\Backends\Sqlite\SqliteBackend.csproj">
+      <Link>Addins\Backends\SqliteBackend.csproj</Link>
+    </Proj>
+    <Proj Include="..\po\po.mdproj">
+      <Link>po.mdproj</Link>
+    </Proj>
+    <Proj Include="..\data\data.mdproj">
+      <Link>data.mdproj</Link>
+    </Proj>
+    <Proj Include="Tasque.targets" />
+    <Proj Include="Tasque.CSharp.targets" />
+    <Proj Include="..\src\Addins\Backends\IceCore\IceCoreBackend.csproj">
+      <Link>Addins\Backends\IceCoreBackend.csproj</Link>
+    </Proj>
+    <Proj Include="..\src\Addins\Backends\Hiveminder\HiveminderBackend.csproj">
+      <Link>Addins\Backends\HiveminderBackend.csproj</Link>
+    </Proj>
+    <Proj Include="..\tests\tests.csproj">
+      <Link>tests.csproj</Link>
+    </Proj>
+    <Proj Include="..\tasque.sln">
+      <Link>tasque.sln</Link>
+    </Proj>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build.csproj" />
     <None Include="..\src\MonoMac.Tasque\MonoMac.Tasque.csproj">
       <Link>MonoMac.Tasque.csproj</Link>
     </None>
-    <None Include="..\src\tasque\tasque.csproj">
-      <Link>tasque.csproj</Link>
-    </None>
-    <None Include="..\src\Libraries\RtmNet\RtmNet.csproj">
-      <Link>RtmNet.csproj</Link>
-    </None>
-    <None Include="..\src\Addins\Backends\Dummy\DummyBackend.csproj">
-      <Link>Addins\Backends\DummyBackend.csproj</Link>
-    </None>
-    <None Include="..\src\Addins\Backends\Rtm\RtmBackend.csproj">
-      <Link>Addins\Backends\RtmBackend.csproj</Link>
-    </None>
-    <None Include="..\src\Addins\Backends\Sqlite\SqliteBackend.csproj">
-      <Link>Addins\Backends\SqliteBackend.csproj</Link>
-    </None>
-    <None Include="..\po\po.mdproj">
-      <Link>po.mdproj</Link>
-    </None>
-    <None Include="..\data\data.mdproj">
-      <Link>data.mdproj</Link>
-    </None>
-    <None Include="Tasque.targets" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Addins\" />
     <Folder Include="Addins\Backends\" />
   </ItemGroup>
+  <Target Name="Bootstrap">
+    <Error Condition=" '$(TopSrcDir)' == '' " Text="TopSrcDir cannot be empty." />
+    <Error Condition=" '$(TopBuildDir)' == '' " Text="TopBuildDir cannot be empty." />
+    <Copy SourceFiles="$(TopSrcDir)\..\build\%(Proj.Identity)" DestinationFiles="$(TopBuildDir)\..\build\%(Identity)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(TopSrcDir)\..\build\%(Compile.Identity)" DestinationFiles="$(TopBuildDir)\..\build\%(Identity)" SkipUnchangedFiles="true" />
+  </Target>
 </Project>

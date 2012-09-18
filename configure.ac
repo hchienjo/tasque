@@ -336,37 +336,13 @@ AC_SUBST(SQLITEBACKENDCSPROJ)
 
 AC_CONFIG_FILES([
 Makefile
-build/Tasque.targets:build/Tasque.targets
-src/Makefile
-src/Libraries/RtmNet/Makefile
-src/Libraries/RtmNet/${RTMNETCSPROJ}:src/Libraries/RtmNet/RtmNet.csproj
-src/libtasque/Makefile
-src/libtasque/${LIBTASQUECSPROJ}:src/libtasque/libtasque.csproj
-src/Gtk.Tasque/Makefile
-src/Gtk.Tasque/${GTKTASQUECSPROJ}:src/Gtk.Tasque/Gtk.Tasque.csproj
-src/tasque/Makefile
-src/tasque/${TASQUECSPROJ}:src/tasque/tasque.csproj
-src/tasque/tasque.pc
-src/Addins/Backends/Makefile
-src/Addins/Backends/Dummy/Makefile
-src/Addins/Backends/Dummy/${DUMMYBACKENDCSPROJ}:src/Addins/Backends/Dummy/DummyBackend.csproj
-src/Addins/Backends/Eds/Makefile
-src/Addins/Backends/Eds/${EDSBACKENDCSPROJ}:src/Addins/Backends/Eds/EdsBackend.csproj
-src/Addins/Backends/Hiveminder/Makefile
-src/Addins/Backends/Hiveminder/${HIVEMINDERBACKENDCSPROJ}:src/Addins/Backends/Hiveminder/HiveminderBackend.csproj
-src/Addins/Backends/IceCore/Makefile
-src/Addins/Backends/IceCore/${ICECOREBACKENDCSPROJ}:src/Addins/Backends/IceCore/IceCoreBackend.csproj
-src/Addins/Backends/Rtm/Makefile
-src/Addins/Backends/Rtm/${RTMBACKENDCSPROJ}:src/Addins/Backends/Rtm/RtmBackend.csproj
-src/Addins/Backends/Sqlite/Makefile
-src/Addins/Backends/Sqlite/${SQLITEBACKENDCSPROJ}:src/Addins/Backends/Sqlite/SqliteBackend.csproj
-data/Makefile
-data/${DATAMDPROJ}:data/data.mdproj
-po/Makefile
-po/${POMDPROJ}:po/po.mdproj
+build/build.csproj:build/build.csproj
 ])
 
 AC_OUTPUT
+
+$XBUILD /target:bootstrap /property:TopSrcDir=$srcdir /property:TopBuildDir=. build/build.csproj
+
 
 echo "
 Configuration:
