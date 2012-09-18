@@ -7,6 +7,7 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}</ProjectGuid>
+    <OutputPath>.</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
     <Prefix Condition=" '$(Prefix)' == '' ">..\build\bin</Prefix>

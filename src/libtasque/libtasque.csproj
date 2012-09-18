@@ -7,6 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <OutputPath>.</OutputPath>
     <RootNamespace>Tasque</RootNamespace>
     <AssemblyName>libtasque</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
