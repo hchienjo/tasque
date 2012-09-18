@@ -99,7 +99,6 @@ AC_SUBST(appindicator)
 AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug], [Use 'Debug' Configuration [default=no]]),
 	enable_debug=$enableval, enable_debug=no)
 AM_CONDITIONAL(ENABLE_DEBUG, test "x$enable_debug" != "xno")
-AC_SUBST(enable_debug)
 
 
 #
