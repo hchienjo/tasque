@@ -15,26 +15,37 @@
     <PkgDataDir Condition=" '$(PkgDataDir)' == '' ">$(DataDir)\$(PackageName)</PkgDataDir>
     <PkgConfigDir Condition=" '$(PkgConfigDir)' == '' ">$(LibDir)\pkgconfig</PkgConfigDir>
     <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
-    <BuildingSolutionFile>True</BuildingSolutionFile>
     <Wrapper Condition=" '$(Wrapper)' == '' ">$(PackageName)</Wrapper>
     <Version Condition=" '$(Version)' == '' ">1.0.0</Version>
+    
+    <!-- Icon and sound dirs -->
+    <HiColorDir Condition=" '$(HiColorDir)' == '' ">$(DataDir)\icons\hicolor</HiColorDir>
+    <PkgHiColorDir Condition=" '$(PkgHiColorDir)' == '' ">$(PkgDataDir)\icons\hicolor</PkgHiColorDir>
+    <PixmapDir Condition=" '$(PixmapDir)' == '' ">$(DataDir)\pixmaps</PixmapDir>
+    <PkgSoundsDir Condition=" '$(PkgSoundsDir)' == '' ">$(PkgDataDir)\sounds</PkgSoundsDir>
+    
+    <!-- I18n dirs -->
+    <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
   </PropertyGroup>
   <Choose>
     <When Condition=" '$(OS)' == 'Windows_NT' ">
       <PropertyGroup>
         <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe</IntlToolMerge>
+        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe</IntlToolUpdate>
         <MsgFmt Condition=" '$(MsgFmt)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
+        <UpdateIconCache Condition=" '$(UpdateIconCache)' == '' ">$(MSBuildProgramFiles32)\GTK2-Runtime\bin\gtk-update-icon-cache.exe</UpdateIconCache>
       </PropertyGroup>
     </When>
     <Otherwise>
       <PropertyGroup>
         <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
+        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">intltool-update</IntlToolUpdate>
         <MsgFmt Condition=" '$(MsgFmt)' == '' ">msgfmt</MsgFmt>
+        <UpdateIconCache Condition=" '$(UpdateIconCache)' == '' ">gtk-update-icon-cache</UpdateIconCache>
       </PropertyGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <InstallFileName Include="$(TargetFileName)" />
     <Substitution Include="@prefix@|$(Prefix)|text" />
     <Substitution Include="@libdir@|$(LibDir)|text" />
     <Substitution Include="@pkglibdir@|$(PkgLibDir)|text" />
@@ -116,9 +127,13 @@
   <PropertyGroup>
     <InstallDependsOn>
       BeforeInstall;
+      _SetupBinInstallFile;
+      _SetupDataInstallFile;
+      _SetupPoInstallFile;
       SetupInstallFile;
       CoreInstall;
       AfterInstall;
+      _UpdateIconCache;
     </InstallDependsOn>
   </PropertyGroup>
   <Target Name="Install" DependsOnTargets="$(InstallDependsOn)" />
@@ -135,9 +150,13 @@
   <PropertyGroup>
     <UninstallDependsOn>
       BeforeUninstall;
+      _SetupBinInstallFile;
+      _SetupDataInstallFile;
+      _SetupPoInstallFile;
       SetupInstallFile;
       CoreUninstall;
       AfterUninstall;
+      _UpdateIconCache;
     </UninstallDependsOn>
   </PropertyGroup>
   <Target Name="Uninstall" DependsOnTargets="$(UninstallDependsOn)" />
@@ -172,5 +191,47 @@
     <Error Condition=" '$(TopSrcDir)' == '' " Text="TopSrcDir is not set." />
     <Error Condition=" '$(RelPrefix)' == '' " Text="RelPrefix is not set." />
     <Message Text="Prefix=$(Prefix)" />
+  </Target>
+  
+  <Target Name="_SetupBinInstallFile">
+    <Message Text="$(TargetFileName)" />
+    <CreateItem Include="$(TargetFileName)" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=$(TargetFileName)">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Condition="Exists('$(TargetFileName).mdb')" Include="$(TargetFileName).mdb"
+        AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=$(TargetFileName).mdb">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+  </Target>
+  
+  <Target Name="_SetupDataInstallFile">
+    <CreateItem Condition=" '@(Icon)' != '' " Include="$(SrcDir)\%(Icon.Identity)"
+        AdditionalMetadata="InstallPath=$(HiColorDir)\%(Size)\%(Context);InstallFileName=%(Name)">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Condition=" '@(PkgIcon)' != '' " Include="$(SrcDir)\%(PkgIcon.Identity)"
+        AdditionalMetadata="InstallPath=$(PkgHiColorDir)\%(Size)\%(Context);InstallFileName=%(Name)">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Condition=" '@(Icon)' != '' And '%(Pixmaps)'" Include="$(SrcDir)\%(Icon.Identity)"
+        AdditionalMetadata="InstallPath=$(PixmapDir);InstallFileName=%(FileName)%(Extension)">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Condition=" '@(PkgSound)' != '' " Include="$(SrcDir)\%(PkgSound.Identity)"
+        AdditionalMetadata="InstallPath=$(PkgSoundsDir);InstallFileName=%(FileName)%(Extension)">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+  </Target>
+  
+  <Target Name="_SetupPoInstallFile" Condition=" '@(GettextCompile)' != '' ">
+    <CreateItem Include="%(GettextCompile.FileName).gmo"
+        AdditionalMetadata="InstallPath=$(LocaleDir)\%(GettextCompile.FileName)\LC_MESSAGES;InstallFileName=$(PackageName).mo" >
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+  </Target>
+  
+  <Target Name="_UpdateIconCache" Condition=" '@(Icon)' != '' Or '@(PkgIcon)' != '' ">
+    <Exec Command="$(UpdateIconCache) -f -t $(HiColorDir)" IgnoreExitCode="true" />
+    <Exec Command="$(UpdateIconCache) -f -t $(PkgHiColorDir)" IgnoreExitCode="true" />
   </Target>
 </Project>
