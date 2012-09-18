@@ -119,3 +119,8 @@ Makefile.in
 /build/*.mdb
 /build/obj/
 /build/bin/
+
+# /tests/
+/tests/*.dll
+/tests/*.mdb
+/tests/obj/
