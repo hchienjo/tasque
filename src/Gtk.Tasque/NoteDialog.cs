@@ -24,7 +24,7 @@ namespace Tasque
 			this.Title = String.Format(Catalog.GetString("Notes for: {0:s}"), task.Name);
 			this.HasSeparator = false;
 			this.SetSizeRequest(500,320);
-			this.Icon = Utilities.GetIcon ("tasque-16", 16);
+			this.Icon = Utilities.GetIcon ("tasque", 16);
 			//this.Flags = Gtk.DialogFlags.DestroyWithParent;
 			
 			

@@ -80,7 +80,7 @@ namespace Tasque
 		
 		static TaskWindow ()
 		{
-			noteIcon = Utilities.GetIcon ("note", 16);
+			noteIcon = Utilities.GetIcon ("tasque-note", 16);
 		}
 		
 		public TaskWindow (IBackend aBackend) : base (Gtk.WindowType.Toplevel)
@@ -98,7 +98,7 @@ namespace Tasque
 			int height;
 			int width;
 			
-			this.Icon = Utilities.GetIcon ("tasque-48", 48);
+			this.Icon = Utilities.GetIcon ("tasque", 48);
 			// Update the window title
 			Title = string.Format ("Tasque");	
 

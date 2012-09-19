@@ -155,7 +155,7 @@ namespace Tasque
 			var about = new AboutDialog ();
 			about.ProgramName = "Tasque";
 			about.Version = Defines.Version;
-			about.Logo = Utilities.GetIcon("tasque-48", 48);
+			about.Logo = Utilities.GetIcon("tasque", 48);
 			about.Copyright = Catalog.GetString ("Copyright \xa9 2008 Novell, Inc.");
 			about.Comments = Catalog.GetString ("A Useful Task List");
 			about.Website = "http://live.gnome.org/Tasque";

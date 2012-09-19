@@ -24,7 +24,7 @@ namespace Tasque
 		static Gdk.Pixbuf tasqueIcon;
 		static RemoteControl ()
 		{
-			tasqueIcon = Utilities.GetIcon ("tasque-48", 48);
+			tasqueIcon = Utilities.GetIcon ("tasque", 48);
 		}
 		
 		public RemoteControl()
