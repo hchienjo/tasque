@@ -44,11 +44,11 @@ fi
 # Setup i18n tools
 #
 AC_PATH_PROG(INTLTOOL_MERGE, intltool-merge, no)
-if test "xINTLTOOL_MERGE" = "xno"; then
+if test "x$INTLTOOL_MERGE" = "xno"; then
 		AC_MSG_ERROR([intltool-merge not found])
 fi
 AC_PATH_PROG(INTLTOOL_UPDATE, intltool-update, no)
-if test "xINTLTOOL_UPDATE" = "xno"; then
+if test "x$INTLTOOL_UPDATE" = "xno"; then
 		AC_MSG_ERROR([intltool-update not found])
 fi
 
