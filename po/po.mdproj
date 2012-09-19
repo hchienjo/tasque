@@ -56,6 +56,7 @@
         <Translation isoCode="zh_TW" />
       </translations>
     </translations>
+    <ReleaseVersion>0.1.12</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' " />
   <!-- The above is only for the MD Gettext addin, which provides a convenient environment for translation -->

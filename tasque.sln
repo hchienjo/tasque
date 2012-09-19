@@ -155,16 +155,16 @@ Global
 		{B19B9840-669D-4984-9772-E1F55193A67F}.MonoMacRelease|Any CPU.ActiveCfg = LinuxRelease|Any CPU
 		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkLinuxDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkLinuxDebug|Any CPU.Build.0 = Debug|Any CPU
-		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkLinuxRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkLinuxRelease|Any CPU.Build.0 = Release|Any CPU
+		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkLinuxRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkLinuxRelease|Any CPU.Build.0 = Debug|Any CPU
 		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkWinDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkWinDebug|Any CPU.Build.0 = Debug|Any CPU
-		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkWinRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkWinRelease|Any CPU.Build.0 = Release|Any CPU
+		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkWinRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.GtkWinRelease|Any CPU.Build.0 = Debug|Any CPU
 		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.MonoMacDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.MonoMacDebug|Any CPU.Build.0 = Debug|Any CPU
-		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.MonoMacRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.MonoMacRelease|Any CPU.Build.0 = Release|Any CPU
+		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.MonoMacRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC1964F-A6E3-4912-B120-6DA22C0EB294}.MonoMacRelease|Any CPU.Build.0 = Debug|Any CPU
 		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.GtkLinuxDebug|Any CPU.ActiveCfg = GtkDebug|Any CPU
 		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.GtkLinuxDebug|Any CPU.Build.0 = GtkDebug|Any CPU
 		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.GtkLinuxRelease|Any CPU.ActiveCfg = GtkRelease|Any CPU
@@ -207,6 +207,7 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = src\tasque\tasque.csproj
+		version = 0.1.12
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

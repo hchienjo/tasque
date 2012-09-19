@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>MonoMac.Tasque</RootNamespace>
     <AssemblyName>MonoMac.Tasque</AssemblyName>
+    <ReleaseVersion>0.1.12</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
