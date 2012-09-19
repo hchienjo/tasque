@@ -23,7 +23,7 @@
     <DefineConstants>TRACE;DEBUG;LINUX</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkLinuxRelease|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;LINUX</DefineConstants>
   </PropertyGroup>
@@ -34,7 +34,7 @@
     <DefineConstants>TRACE;DEBUG;WIN</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkWinRelease|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;WIN</DefineConstants>
   </PropertyGroup>
@@ -45,7 +45,7 @@
     <DefineConstants>TRACE;DEBUG;OSX</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacRelease|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE;OSX</DefineConstants>
   </PropertyGroup>
