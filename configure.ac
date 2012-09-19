@@ -64,16 +64,15 @@ AM_GLIB_GNU_GETTEXT
 PKG_CHECK_MODULES([GLIB_SHARP_20], [glib-sharp-2.0])
 PKG_CHECK_MODULES([GTK_SHARP_20], [gtk-sharp-2.0 >= 2.10.0])
 PKG_CHECK_MODULES([GTK_SHARP_2_12], gtk-sharp-2.0 >= 2.12.0, GTK_2_12="yes", GTK_2_12="no")
-AM_CONDITIONAL(GTK_2_12, test "$GTK_2_12" = "yes")
+AC_SUBST(GTK_2_12)
 PKG_CHECK_MODULES([DBUS_SHARP_10], [dbus-sharp-1.0])
 PKG_CHECK_MODULES([DBUS_SHARP_GLIB_10], [dbus-sharp-glib-1.0])
 
 #
 # Allow the project to build without notify-sharp
 #
-PKG_CHECK_MODULES(NOTIFY_SHARP, notify-sharp, enable_notify_sharp="yes", enable_notify_sharp="no")
-AC_SUBST(enable_notify_sharp)
-AC_SUBST(NOTIFY_SHARP_LIBS)
+PKG_CHECK_MODULES(NOTIFY_SHARP, notify-sharp, notify_sharp="yes", notify_sharp="no")
+AC_SUBST(notify_sharp)
 
 #
 # AppIndicator
@@ -271,7 +270,7 @@ Configuration:
 
 	Prefix:            ${prefix}
 	Debug build:       ${enable_debug}
-	Notification:      ${enable_notify_sharp}
+	Notification:      ${notify_sharp}
 	Dummy Backend:     ${final_backend_dummy}
 	Evolution Backend: ${final_backend_eds}
 	ICECore Backend:   ${final_backend_icecore}

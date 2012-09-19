@@ -4,12 +4,19 @@ else
 conf = "GtkLinuxRelease"
 endif
 
+enable_appindicator=$(shell if test "x@appindicator@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_notify_sharp=$(shell if test "x@notify_sharp@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_gtk_2_12=$(shell if test "x@GTK_2_12@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+
 PROPERTIES = \
 	/property:Configuration=$(conf) \
 	/property:AbsTopSrcDir=$(abs_top_srcdir) \
 	/property:AbsTopBuildDir=$(abs_top_builddir) \
 	/property:AbsDistDir="`pwd`/$(distdir)" \
-	/property:Prefix=$(prefix)
+	/property:Prefix=$(prefix) \
+	/property:EnableAppIndicator=$(enable_appindicator) \
+	/property:EnableNotifySharp=$(enable_notify_sharp) \
+	/property:EnableGtkSharp12=$(enable_gtk_2_12)
 
 pkgdata_DATA =  $(DLL_REFERENCES)
 
