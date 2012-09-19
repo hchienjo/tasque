@@ -8,6 +8,14 @@ enable_appindicator=$(shell if test "x@appindicator@" != "xno" ; then echo "true
 enable_notify_sharp=$(shell if test "x@notify_sharp@" != "xno" ; then echo "true" ; else echo "false" ; fi)
 enable_gtk_2_12=$(shell if test "x@GTK_2_12@" != "xno" ; then echo "true" ; else echo "false" ; fi)
 
+enable_backend_dummy=$(shell if test "x@final_backend_dummy@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_backend_rtm=$(shell if test "x@final_backend_rtm@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_backend_sqlite=$(shell if test "x@final_backend_sqlite@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_backend_icecore=$(shell if test "x@final_backend_icecore@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_backend_eds=$(shell if test "x@final_backend_eds@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+enable_backend_hiveminder=$(shell if test "x@final_backend_hiveminder@" != "xno" ; then echo "true" ; else echo "false" ; fi)
+
+
 PROPERTIES = \
 	/property:Configuration=$(conf) \
 	/property:AbsTopSrcDir=$(abs_top_srcdir) \
@@ -16,7 +24,13 @@ PROPERTIES = \
 	/property:Prefix=$(prefix) \
 	/property:EnableAppIndicator=$(enable_appindicator) \
 	/property:EnableNotifySharp=$(enable_notify_sharp) \
-	/property:EnableGtkSharp12=$(enable_gtk_2_12)
+	/property:EnableGtkSharp12=$(enable_gtk_2_12) \
+	/property:EnableBackendDummy=$(enable_backend_dummy) \
+	/property:EnableBackendRtm=$(enable_backend_rtm) \
+	/property:EnableBackendSqlite=$(enable_backend_sqlite) \
+	/property:EnableBackendIceCore=$(enable_backend_icecore) \
+	/property:EnableBackendEds=$(enable_backend_eds) \
+	/property:EnableBackendHiveminder=$(enable_backend_hiveminder)
 
 pkgdata_DATA =  $(DLL_REFERENCES)
 

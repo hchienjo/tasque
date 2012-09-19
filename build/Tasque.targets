@@ -2,6 +2,7 @@
 <Project DefaultTargets="Build" InitialTargets="_CheckProperties;_GetSrcDir" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <BuildingSolutionFile>True</BuildingSolutionFile>
+    <BuildEnabled Condition=" '$(BuildEnabled)' == '' ">true</BuildEnabled>
 
     <!-- Global dirs -->
     <OutputPath>.</OutputPath>
@@ -99,6 +100,11 @@
       BeforeBuild;
       AfterBuild;
     </BuildDependsOn>
+  </PropertyGroup>
+  
+  <!-- Provide the possibility to opt out of build -->
+  <PropertyGroup Condition=" !'$(BuildEnabled)' ">
+    <BuildDependsOn></BuildDependsOn>
   </PropertyGroup>
   
   <PropertyGroup>

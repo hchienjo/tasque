@@ -138,8 +138,6 @@ AC_ARG_ENABLE(all_backends,
 	AC_HELP_STRING([--enable-all-backends],
 		[Enable all backends, including standard and experimental [default=no]]),
 		final_all_backends=$enableval, final_all_backends=no)
-AM_CONDITIONAL(ENABLE_ALL_BACKENDS, test "x$final_all_backends" != "xno")
-
 if test "x$final_all_backends" != "xno" ; then
    final_standard_backends=yes
    final_experimental_backends=yes
@@ -152,8 +150,6 @@ AC_ARG_ENABLE(standard_backends,
 	AC_HELP_STRING([--enable-standard-backends],
 		[Enable standard (RTM, SQLite) backends. [default=yes]]),
 		final_standard_backends=$enableval, final_standard_backends=yes)
-AM_CONDITIONAL(ENABLE_STANDARD_BACKENDS, test "x$final_standard_backends" != "xno")
-
 if test "x$final_standard_backends" != "xno" ; then
    final_backend_rtm=yes
    final_backend_sqlite=yes
@@ -166,8 +162,6 @@ AC_ARG_ENABLE(experimental_backends,
 	AC_HELP_STRING([--enable-experimental-backends],
 		[Enable experimental (Hiveminder, ICECore) backends. [default=no]]),
 		final_experimental_backends=$enableval, )
-AM_CONDITIONAL(ENABLE_EXPERIMENTAL_BACKENDS, test "x$final_experimental_backends" != "xno")
-
 if test "x$final_experimental_backends" != "xno" ; then
    final_backend_hiveminder=yes
    final_backend_icecore=yes
@@ -180,7 +174,7 @@ AC_ARG_ENABLE(backend_dummy,
 	AC_HELP_STRING([--enable-backend-dummy],
 		[Enable the Dummy (Debug) Backend [default=if --enable-debug: yes; else: no]]),
 		final_backend_dummy=$enableval, final_backend_dummy=$enable_debug)
-AM_CONDITIONAL(ENABLE_BACKEND_DUMMY, test "x$final_backend_dummy" != "xno")
+AC_SUBST(final_backend_dummy)
 
 #
 # Remember the Milk Backend
@@ -200,7 +194,7 @@ AC_ARG_ENABLE(backend_sqlite,
 if test "x$final_backend_sqlite" != "xno"; then
 	GAC_CHECK_MODULES([MONO_DATA_SQLITE], [Mono.Data.Sqlite])
 fi
-AM_CONDITIONAL(ENABLE_BACKEND_SQLITE, test "x$final_backend_sqlite" != "xno")
+AC_SUBST(final_backend_sqlite)
 
 #
 # ICEcore for IceBackend Support
@@ -209,7 +203,7 @@ AC_ARG_ENABLE(backend_icecore,
 	AC_HELP_STRING([--enable-backend-icecore],
 		[Enable the ICEcore Backend [default=no]]),
 		final_backend_icecore=$enableval, )
-AM_CONDITIONAL(ENABLE_BACKEND_ICECORE, test "x$final_backend_icecore" != "xno")
+AC_SUBST(final_backend_icecore)
 if test "x$final_backend_icecore" != "xno" ; then
        # FIXME : Is this the right way to do this ?
        PKG_CHECK_MODULES(ICE_DESKTOP, Novell.IceDesktop)
@@ -219,12 +213,11 @@ AC_SUBST(ICE_DESKTOP_LIBS)
 #
 # Evolution-Sharp for EDSBackend Support
 #
-
 AC_ARG_ENABLE(backend_eds,
        AC_HELP_STRING([--enable-backend-eds],
                [Enable the EDS Backend [default=no]]),
                final_backend_eds=$enableval, )
-AM_CONDITIONAL(ENABLE_BACKEND_EDS, test "x$final_backend_eds" != "xno")
+AC_SUBST(final_backend_eds)
 if test "x$final_backend_eds" != "xno" ; then
        # FIXME : Is this the right way to do this ?
        PKG_CHECK_MODULES(EVOLUTION_SHARP, evolution-sharp >= 0.18.1)
@@ -238,7 +231,7 @@ AC_ARG_ENABLE(backend_hiveminder,
 	AC_HELP_STRING([--enable-backend-hiveminder],
 		[Enable the Hiveminder Backend [default=no]]),
 		final_backend_hiveminder=$enableval, )
-AM_CONDITIONAL(ENABLE_BACKEND_HIVEMINDER, test "x$final_backend_hiveminder" != "xno")
+AC_SUBST(final_backend_hiveminder)
 
 #
 # If no backends were enabled,
@@ -252,7 +245,7 @@ if test "x$final_backend_dummy" = "xno" -a "x$final_backend_rtm" = "xno" \
 	final_backend_rtm=yes
 fi
 # Define ENABLE_BACKEND_RTM here so it only gets defined once
-AM_CONDITIONAL(ENABLE_BACKEND_RTM, test "x$final_backend_rtm" != "xno")
+AC_SUBST(final_backend_rtm)
 
 
 AC_CONFIG_FILES([

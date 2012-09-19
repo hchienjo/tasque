@@ -16,6 +16,7 @@
     <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..\..\..\..</TopSrcDir>
     <PackageName>tasque</PackageName>
     <ReleaseVersion>0.1.12</ReleaseVersion>
+    <BuildEnabled>$(EnableBackendIceCore)</BuildEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

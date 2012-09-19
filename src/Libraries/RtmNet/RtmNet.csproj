@@ -16,6 +16,7 @@
     <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\..\..\build\bin</RelPrefix>
     <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..\..\..</TopSrcDir>
     <ReleaseVersion>0.1.12</ReleaseVersion>
+    <BuildEnabled>$(EnableBackendRtm)</BuildEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
