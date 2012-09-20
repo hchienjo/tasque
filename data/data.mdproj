@@ -150,7 +150,7 @@
     <PkgSound Include="sounds\notify.wav" />
   </ItemGroup>
   <ItemGroup>
-    <Translate Include="tasque.desktop.in" />
+    <Translate Condition=" '$(Configuration)' == 'Linux' " Include="tasque.desktop.in" />
   </ItemGroup>
   <ItemGroup>
     <Substitute Include="org.gnome.Tasque.service.in" />

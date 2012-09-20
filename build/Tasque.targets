@@ -308,7 +308,7 @@
     <Exec Command="$(UpdateIconCache) -f -t $(PkgHiColorDir)" IgnoreExitCode="true" />
   </Target>
   
-  <Target Name="_FixPermissions">
+  <Target Name="_FixPermissions" Condition=" '$(OS)' != 'Windows_NT' ">
     <Exec Condition=" Exists('$(DestDir)%(InstallFile.InstallPath)\%(InstallFileName)') And !'%(Executable)' "
         Command="chmod a-x $(DestDir)%(InstallPath)\%(InstallFileName)" />
   </Target>
