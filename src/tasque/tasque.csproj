@@ -102,7 +102,7 @@
     <Exec Command="chmod +x tasque" />
   </Target>
   <Target Name="SetupInstallFile">
-    <CreateItem Include="$(SrcDir)\Tasque.exe.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.config;Executable=false">
+    <CreateItem Condition="'$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' " Include="$(SrcDir)\Tasque.exe.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.config;Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
     <CreateItem Include="tasque.pc" AdditionalMetadata="InstallPath=$(PkgConfigDir);InstallFileName=tasque.pc;Executable=false">
