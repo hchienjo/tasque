@@ -38,5 +38,8 @@ namespace Tasque
 		public static string LocaleDir	= Path.Combine (@"@datadir@", "locale");
 		public static string IconsDir	= Path.Combine (@"@datadir@", "tasque", "icons");
 		public static string SoundDir	= Path.Combine (@"@datadir@", "tasque", "sounds");
+#if WIN
+		public static string GlobalIconsDir = Path.Combine (@"@datadir@", "icons");
+#endif
 	}
 }

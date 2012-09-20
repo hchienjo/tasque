@@ -50,6 +50,10 @@ namespace Tasque
 		public virtual void Initialize (string locale_dir, string display_name, string process_name, string[] args)
 		{
 			Gtk.Application.Init ();
+
+			// add package icon path to default icon theme search paths
+			Gtk.IconTheme.Default.PrependSearchPath (Defines.IconsDir);
+			Gtk.IconTheme.Default.PrependSearchPath (Defines.GlobalIconsDir);
 		}
 
 		public virtual void InitializeIdle ()

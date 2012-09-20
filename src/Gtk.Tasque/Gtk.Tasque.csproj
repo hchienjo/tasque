@@ -76,7 +76,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Condition=" '$(Configuration)' == 'WinDebug' Or '$(Configuration)' == 'WinRelease' " Include="Defines.WIN32.cs" />
+    <Compile Include="Defines.cs" />
     <TasqueCompile Include="GtkTray.cs" />
     <TasqueCompile Include="StatusIconTray.cs" />
     <TasqueCompile Condition=" '$(AppIndicator)' != '' " Include="AppIndicatorTray.cs" />
@@ -105,7 +105,6 @@
     <TasqueCompile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
-    <Compile Include="Defines.cs" />
     <TasqueCompile Include="RemoteControl.cs" />
     <TasqueCompile Include="RemoteControlProxy.cs" />
   </ItemGroup>
