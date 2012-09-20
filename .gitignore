@@ -99,6 +99,7 @@ Makefile.in
 /src/tasque/tasque.csp
 /src/tasque/obj/
 !/src/tasque/Makefile.in
+/src/tasque/locale/
 
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll
