@@ -43,11 +43,21 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <DefineConstants>TRACE;DEBUG;WIN</DefineConstants>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="${SolutionDir}\build\bin\lib\tasque\Tasque.exe" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkWinRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
     <DefineConstants>TRACE;WIN</DefineConstants>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="${SolutionDir}\build\bin\lib\tasque\Tasque.exe" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
