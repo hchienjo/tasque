@@ -82,13 +82,13 @@
     <Exec Command="chmod +x tasque" />
   </Target>
   <Target Name="SetupInstallFile">
-    <CreateItem Include="$(SrcDir)\Tasque.exe.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.config">
+    <CreateItem Include="$(SrcDir)\Tasque.exe.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.config;Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
-    <CreateItem Include="tasque.pc" AdditionalMetadata="InstallPath=$(PkgConfigDir);InstallFileName=tasque.pc">
+    <CreateItem Include="tasque.pc" AdditionalMetadata="InstallPath=$(PkgConfigDir);InstallFileName=tasque.pc;Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
-    <CreateItem Include="tasque" AdditionalMetadata="InstallPath=$(BinDir);InstallFileName=tasque">
+    <CreateItem Include="tasque" AdditionalMetadata="InstallPath=$(BinDir);InstallFileName=tasque;Executable=true">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
   </Target>

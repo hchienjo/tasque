@@ -169,10 +169,10 @@
     <CreateProperty Value="$(DataDir)\dbus-1\services">
       <Output TaskParameter="Value" PropertyName="DbusServiceDir" />
     </CreateProperty>
-    <CreateItem Include="%(Translate.FileName)" AdditionalMetadata="InstallPath=$(DesktopDir);InstallFileName=%(Translate.FileName)">
+    <CreateItem Include="%(Translate.FileName)" AdditionalMetadata="InstallPath=$(DesktopDir);InstallFileName=%(Translate.FileName);Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
-    <CreateItem Include="%(Substitute.FileName)" AdditionalMetadata="InstallPath=$(DbusServiceDir);InstallFileName=%(Substitute.FileName)">
+    <CreateItem Include="%(Substitute.FileName)" AdditionalMetadata="InstallPath=$(DbusServiceDir);InstallFileName=%(Substitute.FileName);Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
   </Target>

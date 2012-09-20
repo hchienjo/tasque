@@ -144,6 +144,7 @@
       _SetupPoInstallFile;
       SetupInstallFile;
       CoreInstall;
+      _FixPermissions;
       AfterInstall;
       _UpdateIconCache;
     </InstallDependsOn>
@@ -238,36 +239,42 @@
   <Target Name="_SetupBinInstallFile">
     <Message Text="$(TargetFileName)" />
     <CreateItem Include="$(TargetFileName)" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=$(TargetFileName)">
+      <Output TaskParameter="Include" ItemName="_PreInstallFile" />
+    </CreateItem>
+    <CreateItem Condition=" '%(Extension)' != '.exe' " Include="@(_PreInstallFile)" AdditionalMetadata="Executable=false">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Condition=" '%(Extension)' == '.exe' " Include="@(_PreInstallFile)" AdditionalMetadata="Executable=true">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
     <CreateItem Condition="Exists('$(TargetFileName).mdb')" Include="$(TargetFileName).mdb"
-        AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=$(TargetFileName).mdb">
+        AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=$(TargetFileName).mdb;Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
   </Target>
   
   <Target Name="_SetupDataInstallFile">
     <CreateItem Condition=" '@(Icon)' != '' " Include="$(SrcDir)\%(Icon.Identity)"
-        AdditionalMetadata="InstallPath=$(HiColorDir)\%(Size)\%(Context);InstallFileName=%(Name)">
+        AdditionalMetadata="InstallPath=$(HiColorDir)\%(Size)\%(Context);InstallFileName=%(Name);Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
     <CreateItem Condition=" '@(PkgIcon)' != '' " Include="$(SrcDir)\%(PkgIcon.Identity)"
-        AdditionalMetadata="InstallPath=$(PkgHiColorDir)\%(Size)\%(Context);InstallFileName=%(Name)">
+        AdditionalMetadata="InstallPath=$(PkgHiColorDir)\%(Size)\%(Context);InstallFileName=%(Name);Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
     <CreateItem Condition=" '@(Icon)' != '' And '%(Pixmaps)'" Include="$(SrcDir)\%(Icon.Identity)"
-        AdditionalMetadata="InstallPath=$(PixmapDir);InstallFileName=%(FileName)%(Extension)">
+        AdditionalMetadata="InstallPath=$(PixmapDir);InstallFileName=%(FileName)%(Extension);Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
     <CreateItem Condition=" '@(PkgSound)' != '' " Include="$(SrcDir)\%(PkgSound.Identity)"
-        AdditionalMetadata="InstallPath=$(PkgSoundsDir);InstallFileName=%(FileName)%(Extension)">
+        AdditionalMetadata="InstallPath=$(PkgSoundsDir);InstallFileName=%(FileName)%(Extension);Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
   </Target>
   
   <Target Name="_SetupPoInstallFile" Condition=" '@(GettextCompile)' != '' ">
     <CreateItem Include="%(GettextCompile.FileName).gmo"
-        AdditionalMetadata="InstallPath=$(LocaleDir)\%(GettextCompile.FileName)\LC_MESSAGES;InstallFileName=$(PackageName).mo" >
+        AdditionalMetadata="InstallPath=$(LocaleDir)\%(GettextCompile.FileName)\LC_MESSAGES;InstallFileName=$(PackageName).mo;Executable=false" >
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
   </Target>
@@ -275,6 +282,11 @@
   <Target Name="_UpdateIconCache" Condition=" '@(Icon)' != '' Or '@(PkgIcon)' != '' ">
     <Exec Command="$(UpdateIconCache) -f -t $(HiColorDir)" IgnoreExitCode="true" />
     <Exec Command="$(UpdateIconCache) -f -t $(PkgHiColorDir)" IgnoreExitCode="true" />
+  </Target>
+  
+  <Target Name="_FixPermissions">
+    <Exec Condition=" Exists('$(DestDir)%(InstallFile.InstallPath)\%(InstallFileName)') And !'%(Executable)' "
+        Command="chmod a-x $(DestDir)%(InstallPath)\%(InstallFileName)" />
   </Target>
   
   <Target Name="_SetupDistFile">
