@@ -72,8 +72,7 @@ PKG_CHECK_MODULES([DBUS_SHARP_GLIB_10], [dbus-sharp-glib-1.0])
 # Allow the project to build without notify-sharp
 #
 PKG_CHECK_MODULES(NOTIFY_SHARP, notify-sharp, enable_notify_sharp="yes", enable_notify_sharp="no")
-AC_SUBST(enable_notify_sharp)
-AC_SUBST(NOTIFY_SHARP_LIBS)
+AM_CONDITIONAL(ENABLE_NOTIFY_SHARP, test "x$enable_notify_sharp" != "xno")
 
 #
 # AppIndicator
@@ -93,7 +92,7 @@ If appindicator-sharp is not available on your system, you probably won't need i
 appindicator pass --enable-appindicator=no to configure."])
 	fi
 fi
-AC_SUBST(appindicator)
+AM_CONDITIONAL(ENABLE_APPINDICATOR, test "x$appindicator" != "xno")
 
 
 AC_ARG_ENABLE(debug, AC_HELP_STRING([--enable-debug], [Use 'Debug' Configuration [default=no]]),
@@ -139,8 +138,6 @@ AC_ARG_ENABLE(all_backends,
 	AC_HELP_STRING([--enable-all-backends],
 		[Enable all backends, including standard and experimental [default=no]]),
 		final_all_backends=$enableval, final_all_backends=no)
-AM_CONDITIONAL(ENABLE_ALL_BACKENDS, test "x$final_all_backends" != "xno")
-
 if test "x$final_all_backends" != "xno" ; then
    final_standard_backends=yes
    final_experimental_backends=yes
@@ -153,8 +150,6 @@ AC_ARG_ENABLE(standard_backends,
 	AC_HELP_STRING([--enable-standard-backends],
 		[Enable standard (RTM, SQLite) backends. [default=yes]]),
 		final_standard_backends=$enableval, final_standard_backends=yes)
-AM_CONDITIONAL(ENABLE_STANDARD_BACKENDS, test "x$final_standard_backends" != "xno")
-
 if test "x$final_standard_backends" != "xno" ; then
    final_backend_rtm=yes
    final_backend_sqlite=yes
@@ -167,8 +162,6 @@ AC_ARG_ENABLE(experimental_backends,
 	AC_HELP_STRING([--enable-experimental-backends],
 		[Enable experimental (Hiveminder, ICECore) backends. [default=no]]),
 		final_experimental_backends=$enableval, )
-AM_CONDITIONAL(ENABLE_EXPERIMENTAL_BACKENDS, test "x$final_experimental_backends" != "xno")
-
 if test "x$final_experimental_backends" != "xno" ; then
    final_backend_hiveminder=yes
    final_backend_icecore=yes
@@ -215,7 +208,6 @@ if test "x$final_backend_icecore" != "xno" ; then
        # FIXME : Is this the right way to do this ?
        PKG_CHECK_MODULES(ICE_DESKTOP, Novell.IceDesktop)
 fi
-AC_SUBST(ICE_DESKTOP_LIBS)
 
 #
 # Evolution-Sharp for EDSBackend Support
@@ -230,7 +222,6 @@ if test "x$final_backend_eds" != "xno" ; then
        # FIXME : Is this the right way to do this ?
        PKG_CHECK_MODULES(EVOLUTION_SHARP, evolution-sharp >= 0.18.1)
 fi
-AC_SUBST(EVOLUTION_SHARP_LIBS)
 
 #
 # Hiveminder Backend

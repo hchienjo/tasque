@@ -4,12 +4,75 @@ else
 conf = "GtkLinuxRelease"
 endif
 
+if GTK_2_12
+enable_gtk_2_12 = "true"
+else
+enable_gtk_2_12 = "false"
+endif
+
+if ENABLE_NOTIFY_SHARP
+enable_notify_sharp = "true"
+else
+enable_notify_sharp = "false"
+endif
+
+if ENABLE_APPINDICATOR
+enable_appindicator = "true"
+else
+enable_appindicator = "false"
+endif
+
+if ENABLE_BACKEND_DUMMY
+enable_backend_dummy = "true"
+else
+enable_backend_dummy = "false"
+endif
+
+if ENABLE_BACKEND_SQLITE
+enable_backend_sqlite = "true"
+else
+enable_backend_sqlite = "false"
+endif
+
+if ENABLE_BACKEND_ICECORE
+enable_backend_icecore = "true"
+else
+enable_backend_icecore = "false"
+endif
+
+if ENABLE_BACKEND_EDS
+enable_backend_eds = "true"
+else
+enable_backend_eds = "false"
+endif
+
+if ENABLE_BACKEND_HIVEMINDER
+enable_backend_hiveminder = "true"
+else
+enable_backend_hiveminder = "false"
+endif
+
+if ENABLE_BACKEND_RTM
+enable_backend_rtm = "true"
+else
+enable_backend_rtm = "false"
+endif
+
 PROPERTIES = \
 	/property:Configuration=$(conf) \
 	/property:AbsTopSrcDir=$(abs_top_srcdir) \
 	/property:AbsTopBuildDir=$(abs_top_builddir) \
 	/property:AbsDistDir="`pwd`/$(distdir)" \
-	/property:Prefix=$(prefix)
+	/property:Prefix=$(prefix) \
+	/property:EnableGtkSharp12=$(enable_gtk_2_12) \
+	/property:EnableNotifySharp=$(enable_notify_sharp) \
+	/property:EnableAppIndicator=$(enable_appindicator) \
+	/property:EnableBackendDummy=$(enable_backend_dummy) \
+	/property:EnableBackendSqlite=$(enable_backend_sqlite) \
+	/property:EnableBackendIceCore=$(enable_backend_icecore) \
+	/property:EnableBackendEds=$(enable_backend_eds) \
+	/property:EnableBackendHiveminder=$(enable_backend_hiveminder) \
+	/property:EnableBackendRtm=$(enable_backend_rtm)
 
 pkgdata_DATA =  $(DLL_REFERENCES)
 
