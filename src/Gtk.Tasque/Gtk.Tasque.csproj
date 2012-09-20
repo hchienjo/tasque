@@ -13,8 +13,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GtkSharp12 Condition=" '$(EnableGtkSharp12)' == '' Or '$(EnableGtkSharp12)' ">GTK_2_12</GtkSharp12>
-    <NotifySharp Condition=" '$(EnableNotifySharp)' == '' Or '$(EnableNotifySharp)' ">ENABLE_NOTIFY_SHARP</NotifySharp>
-    <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
     <PackageName>tasque</PackageName>
     <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\..\build\bin</RelPrefix>
     <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..\..</TopSrcDir>
@@ -24,11 +22,15 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
+    <NotifySharp Condition=" '$(EnableNotifySharp)' == '' Or '$(EnableNotifySharp)' ">ENABLE_NOTIFY_SHARP</NotifySharp>
+    <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
     <DefineConstants>DEBUG;TRACE;LINUX;$(GtkSharp12);$(NotifySharp);$(AppIndicator)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
+    <NotifySharp Condition=" '$(EnableNotifySharp)' == '' Or '$(EnableNotifySharp)' ">ENABLE_NOTIFY_SHARP</NotifySharp>
+    <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
     <DefineConstants>TRACE;LINUX;$(GtkSharp12);$(NotifySharp);$(AppIndicator)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinDebug|AnyCPU' ">
