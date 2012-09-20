@@ -3,6 +3,9 @@
   <PropertyGroup>
     <BuildingSolutionFile>True</BuildingSolutionFile>
     <BuildEnabled Condition=" '$(BuildEnabled)' == '' ">true</BuildEnabled>
+    <AutoInstall Condition=" '$(AutoInstall)' == '' ">true</AutoInstall>
+    <!-- if AltTarget is set, disable AutoInstall -->
+    <AutoInstall Condition=" '$(AltTarget)' != '' ">false</AutoInstall>
 
     <!-- Global dirs -->
     <OutputPath>.</OutputPath>
@@ -120,8 +123,30 @@
   <Target Name="BeforeBuild" DependsOnTargets="$(TasqueBuildDependsOn)" />
   <Target Name="BeforeTasqueBuild" />
   
+  <PropertyGroup>
+    <AfterBuildDependsOn>
+      Install;
+      AfterTasqueBuild;
+    </AfterBuildDependsOn>
+    <AfterBuildDependsOn Condition=" !'$(AutoInstall)' ">AfterTasqueBuild</AfterBuildDependsOn>
+  </PropertyGroup>
+  
+  <Target Name="AfterBuild"  DependsOnTargets="$(AfterBuildDependsOn)" />
+  <Target Name="AfterTasqueBuild" />
+  
   <!-- Clean -->
-  <Target Name="AfterClean" DependsOnTargets="BeforeTasqueClean">
+  <PropertyGroup>
+    <BeforeCleanDependsOn>
+      BeforeTasqueClean;
+      Uninstall;
+    </BeforeCleanDependsOn>
+    <BeforeCleanDependsOn Condition=" !'$(AutoInstall)' ">BeforeTasqueClean</BeforeCleanDependsOn>
+  </PropertyGroup>
+  
+  <Target Name="BeforeClean" DependsOnTargets="$(BeforeCleanDependsOn)" />
+  <Target Name="BeforeTasqueClean" />
+  
+  <Target Name="AfterClean">
     <CreateItem Condition=" '@(Translate)' != '' " Include="%(Translate.RelativeDir)%(Translate.FileName)">
       <Output TaskParameter="Include" ItemName="TasqueCleanFile" />
     </CreateItem>
@@ -133,7 +158,6 @@
     </CreateItem>
     <Delete Files="@(TasqueCleanFile)" />
   </Target>
-  <Target Name="BeforeTasqueClean" />
   
   <!-- Install -->
   <PropertyGroup>

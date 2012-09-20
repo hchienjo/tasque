@@ -72,7 +72,8 @@ PROPERTIES = \
 	/property:EnableBackendIceCore=$(enable_backend_icecore) \
 	/property:EnableBackendEds=$(enable_backend_eds) \
 	/property:EnableBackendHiveminder=$(enable_backend_hiveminder) \
-	/property:EnableBackendRtm=$(enable_backend_rtm)
+	/property:EnableBackendRtm=$(enable_backend_rtm) \
+	/property:AutoInstall="false"
 
 pkgdata_DATA =  $(DLL_REFERENCES)
 
