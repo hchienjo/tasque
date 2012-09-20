@@ -262,7 +262,7 @@
   
   <Target Name="_SetupBinInstallFile">
     <Message Text="$(TargetFileName)" />
-    <CreateItem Include="$(TargetFileName)" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=$(TargetFileName)">
+    <CreateItem Condition=" Exists('$(TargetFileName)') " Include="$(TargetFileName)" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=$(TargetFileName)">
       <Output TaskParameter="Include" ItemName="_PreInstallFile" />
     </CreateItem>
     <CreateItem Condition=" '%(Extension)' != '.exe' " Include="@(_PreInstallFile)" AdditionalMetadata="Executable=false">
