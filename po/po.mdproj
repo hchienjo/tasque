@@ -12,10 +12,10 @@
     <packageName>tasque</packageName>
     <projectInformations>
       <projectInformations>
-        <TranslationProjectInformation projectName="build" isIncluded="false" />
-        <TranslationProjectInformation projectName="tests" isIncluded="false" />
-        <TranslationProjectInformation projectName="RtmNet" isIncluded="false" />
-        <TranslationProjectInformation projectName="tasque" isIncluded="false" />
+        <TranslationProjectInformation projectName="build" isIncluded="False" />
+        <TranslationProjectInformation projectName="tests" isIncluded="False" />
+        <TranslationProjectInformation projectName="RtmNet" isIncluded="False" />
+        <TranslationProjectInformation projectName="tasque" isIncluded="False" />
       </projectInformations>
     </projectInformations>
     <translations>
