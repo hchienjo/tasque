@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 print_status_message() {
 	echo ""
 	echo "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-"
@@ -19,6 +17,8 @@ make uninstall && print_status_message "Make uninstall: Complete" && \
 make clean && print_status_message "Make clean: Complete" && \
 ./configure && print_status_message "Configure for distcheck: Complete" && \
 make distcheck && print_status_message "Make distcheck: Complete" && \
+echo -e '\E[;32m'"---------Build test succeeded---------" && \
+tput sgr0 && \
 exit 0 || \
 echo -e '\E[;31m'"---------Build test failed---------" && \
 tput sgr0 && \
