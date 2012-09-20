@@ -78,6 +78,7 @@ Makefile.in
 # /src/Gtk.Tasque/
 /src/Gtk.Tasque/*.dll
 /src/Gtk.Tasque/*.mdb
+/src/Gtk.Tasque/*.pdb
 /src/Gtk.Tasque/Defines.cs
 /src/Gtk.Tasque/Gtk.Tasque.csp
 /src/Gtk.Tasque/obj/
@@ -86,6 +87,7 @@ Makefile.in
 # /src/libtasque/
 /src/libtasque/*.dll
 /src/libtasque/*.mdb
+/src/libtasque/*.pdb
 /src/libtasque/libtasque.csp
 /src/libtasque/obj/
 !/src/libtasque/Makefile.in
@@ -94,6 +96,7 @@ Makefile.in
 /src/tasque/*.exe
 /src/tasque/*.dll
 /src/tasque/*.mdb
+/src/tasque/*.pdb
 /src/tasque/*.pc
 /src/tasque/tasque
 /src/tasque/tasque.csp
@@ -104,6 +107,7 @@ Makefile.in
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll
 /src/Addins/Backends/*/*.mdb
+/src/Addins/Backends/*/*.pdb
 /src/Addins/Backends/*/*.csp
 /src/Addins/Backends/*/obj/
 !/src/Addins/Backends/*/Makefile.in
@@ -111,6 +115,7 @@ Makefile.in
 # /src/Libraries/RtmNet
 /src/Libraries/RtmNet/*.dll
 /src/Libraries/RtmNet/*.mdb
+/src/Libraries/RtmNet/*.pdb
 /src/Libraries/RtmNet/RtmNet.csp
 /src/Libraries/RtmNet/obj/
 !/src/Libraries/RtmNet/Makefile.in
@@ -118,10 +123,12 @@ Makefile.in
 # /build/
 /build/*.dll
 /build/*.mdb
+/build/*.pdb
 /build/obj/
 /build/bin/
 
 # /tests/
 /tests/*.dll
 /tests/*.mdb
+/tests/*.pdb
 /tests/obj/
