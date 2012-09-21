@@ -40,11 +40,24 @@ namespace Tasque
 			ToggleTaskWindowAction.ConnectProxy (toggleTaskWindowMenuItem);
 			menu.Insert (toggleTaskWindowMenuItem, 0);
 			menu.Insert (new SeparatorMenuItem (), 1);
+
+			tooltipProxyMenuItem = new MenuItem (Tooltip);
+			tooltipProxyMenuItem.Sensitive = false;
+			menu.Insert (tooltipProxyMenuItem, 2);
+			menu.Insert (new SeparatorMenuItem (), 3);
+
 			menu.ShowAll ();
 			
 			appIndicator.Menu = menu;
 		}
 
+		protected override void OnTooltipChanged ()
+		{
+			if (tooltipProxyMenuItem != null)
+				((Label)tooltipProxyMenuItem.Child).Text = Tooltip;
+		}
+
 		ApplicationIndicator appIndicator;
+		MenuItem tooltipProxyMenuItem;
 	}
 }
