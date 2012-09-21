@@ -48,6 +48,7 @@
         <Command type="Execute" command="${SolutionDir}\build\bin\lib\tasque\Tasque.exe" />
       </CustomCommands>
     </CustomCommands>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkWinRelease|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -58,6 +59,7 @@
         <Command type="Execute" command="${SolutionDir}\build\bin\lib\tasque\Tasque.exe" />
       </CustomCommands>
     </CustomCommands>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
