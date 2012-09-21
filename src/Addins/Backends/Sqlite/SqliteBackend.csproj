@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">GtkDebug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">GtkLinuxDebug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -18,16 +18,29 @@
     <ReleaseVersion>0.1.12</ReleaseVersion>
     <BuildEnabled>$(EnableBackendSqlite)</BuildEnabled>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkDebug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkLinuxDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <DefineConstants>DEBUG;TRACE;GTK</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;GTKLINUX</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkRelease|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkLinuxRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <DefineConstants>TRACE;GTK</DefineConstants>
+    <DefineConstants>TRACE;GTKLINUX</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkWinDebug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <DefineConstants>DEBUG;TRACE;GTKWIN</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkWinRelease|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <DefineConstants>TRACE;GTKWIN</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -75,5 +88,17 @@
     <TasqueCompile Include="SqliteCategory.cs" />
     <TasqueCompile Include="SqliteBackend.cs" />
     <TasqueCompile Include="Database.cs" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'GtkWinDebug' Or '$(Configuration)' == 'GtkWinRelease' ">
+    <InstallFile Include="..\..\..\..\winbin\sqlite3.dll">
+      <Link>winbin\sqlite3.dll</Link>
+      <InstallPath>$(PkgLibDir)</InstallPath>
+      <InstallFileName>sqlite3.dll</InstallFileName>
+    </InstallFile>
+    <InstallFile Include="..\..\..\..\winbin\Mono.Data.Sqlite.dll">
+      <Link>winbin\Mono.Data.Sqlite.dll</Link>
+      <InstallPath>$(PkgLibDir)</InstallPath>
+      <InstallFileName>Mono.Data.Sqlite.dll</InstallFileName>
+    </InstallFile>
   </ItemGroup>
 </Project>
