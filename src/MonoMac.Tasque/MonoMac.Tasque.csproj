@@ -35,7 +35,6 @@
     <ConsolePause>False</ConsolePause>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -45,4 +44,5 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

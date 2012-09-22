@@ -46,7 +46,6 @@
     <DefineConstants>TRACE;WIN;$(GtkSharp12)</DefineConstants>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
-  <Import Project="..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -116,4 +115,5 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <Import Project="..\..\build\Tasque.CSharp.targets" />
 </Project>

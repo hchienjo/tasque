@@ -29,7 +29,6 @@
     <Optimize>True</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
-  <Import Project="..\..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -67,4 +66,5 @@
   <ItemGroup>
     <None Include="example_app.config" />
   </ItemGroup>
+  <Import Project="..\..\..\build\Tasque.CSharp.targets" />
 </Project>
