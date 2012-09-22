@@ -72,7 +72,6 @@
     <Optimize>True</Optimize>
     <DefineConstants>TRACE;OSX</DefineConstants>
   </PropertyGroup>
-  <Import Project="..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -100,6 +99,7 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <Import Project="..\..\build\Tasque.CSharp.targets" />
   <Target Name="AfterSubstitute" Condition=" '$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' ">
     <Exec Command="chmod +x tasque" />
   </Target>

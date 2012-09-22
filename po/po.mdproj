@@ -61,7 +61,6 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' " />
   <!-- The above is only for the MD Gettext addin, which provides a convenient environment for translation -->
   <!-- Below are the xbuild instructions. New translations should be added to the GettextTranslation ItemGroup. -->
-  <Import Project="..\build\Tasque.targets" />
   <PropertyGroup>
     <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\build\bin</RelPrefix>
     <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..</TopSrcDir>
@@ -110,6 +109,7 @@
     <DistFile Include="POTFILES.in" />
     <DistFile Include="po.mdproj" />
   </ItemGroup>
+  <Import Project="..\build\Tasque.targets" />
   <Target Name="Update">
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --pot" />
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --dist -o %(GettextCompile.FileName).new.po %(GettextCompile.FileName)" />
