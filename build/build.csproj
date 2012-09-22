@@ -25,7 +25,6 @@
     <Optimize>True</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
@@ -91,6 +90,7 @@
     <Folder Include="Addins\" />
     <Folder Include="Addins\Backends\" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Bootstrap">
     <Error Condition=" '$(TopSrcDir)' == '' " Text="TopSrcDir cannot be empty." />
     <Error Condition=" '$(TopBuildDir)' == '' " Text="TopBuildDir cannot be empty." />

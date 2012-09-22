@@ -28,7 +28,6 @@
     <Optimize>True</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
-  <Import Project="..\..\build\Tasque.CSharp.targets" />
   <ItemGroup>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System" />
@@ -72,4 +71,5 @@
     <Folder Include="DateFormatters\" />
     <Folder Include="Properties\" />
   </ItemGroup>
+  <Import Project="..\..\build\Tasque.CSharp.targets" />
 </Project>
