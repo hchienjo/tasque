@@ -49,5 +49,5 @@
     <TasqueCompile Include="EdsNote.cs" />
     <TasqueCompile Include="EdsTask.cs" />
   </ItemGroup>
-  <Import Project="..\..\..\..\build\Tasque.targets" />
+  <Import Project="..\..\..\..\build\X.Common.targets" />
 </Project>

@@ -109,7 +109,7 @@
     <DistFile Include="POTFILES.in" />
     <DistFile Include="po.mdproj" />
   </ItemGroup>
-  <Import Project="..\build\Tasque.targets" />
+  <Import Project="..\build\X.Common.targets" />
   <Target Name="Update">
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --pot" />
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --dist -o %(GettextCompile.FileName).new.po %(GettextCompile.FileName)" />

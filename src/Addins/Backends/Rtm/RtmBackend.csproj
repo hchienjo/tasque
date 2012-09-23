@@ -83,5 +83,5 @@
   <ItemGroup>
     <Folder Include="Gtk\" />
   </ItemGroup>
-  <Import Project="..\..\..\..\build\Tasque.CSharp.targets" />
+  <Import Project="..\..\..\..\build\X.CSharp.targets" />
 </Project>

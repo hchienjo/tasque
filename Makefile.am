@@ -90,8 +90,8 @@ EXTRA_DIST = \
 	build/GetRelPath.cs \
 	build/GetSrcDirStrip.cs \
 	build/GetAbsSrcDir.cs \
-	build/Tasque.targets \
-	build/Tasque.CSharp.targets \
+	build/X.Common.targets \
+	build/X.CSharp.targets \
 	src/Libraries/RtmNet/RtmNet.csproj \
 	src/libtasque/libtasque.csproj \
 	src/Gtk.Tasque/Gtk.Tasque.csproj \
