@@ -99,7 +99,7 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\build\Tasque.CSharp.targets" />
+  <Import Project="..\..\build\X.CSharp.targets" />
   <Target Name="AfterSubstitute" Condition=" '$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' ">
     <Exec Command="chmod +x tasque" />
   </Target>

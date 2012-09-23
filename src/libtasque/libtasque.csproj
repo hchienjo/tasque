@@ -71,5 +71,5 @@
     <Folder Include="DateFormatters\" />
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\build\Tasque.CSharp.targets" />
+  <Import Project="..\..\build\X.CSharp.targets" />
 </Project>

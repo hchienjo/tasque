@@ -65,8 +65,6 @@
     <Proj Include="..\data\data.mdproj">
       <Link>data.mdproj</Link>
     </Proj>
-    <Proj Include="Tasque.targets" />
-    <Proj Include="Tasque.CSharp.targets" />
     <Proj Include="..\src\Addins\Backends\IceCore\IceCoreBackend.csproj">
       <Link>Addins\Backends\IceCoreBackend.csproj</Link>
     </Proj>
@@ -79,6 +77,8 @@
     <Proj Include="..\tasque.sln">
       <Link>tasque.sln</Link>
     </Proj>
+    <Proj Include="X.CSharp.targets" />
+    <Proj Include="X.Common.targets" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build.csproj" />

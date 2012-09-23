@@ -64,5 +64,5 @@
       <Name>libtasque</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\..\..\..\build\Tasque.CSharp.targets" />
+  <Import Project="..\..\..\..\build\X.CSharp.targets" />
 </Project>
