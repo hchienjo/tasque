@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 18:29+0200\n"
+"POT-Creation-Date: 2012-09-26 16:18+0200\n"
 "PO-Revision-Date: 2012-08-07 21:16+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latviešu <lata-l10n@googlegroups.com>\n"
@@ -84,31 +84,31 @@ msgstr[2] "{0} uzdevumu rītdienai\n"
 msgid "Tasque Rocks"
 msgstr "Tasque rullē"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:151
+#: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "translator-credits"
 msgstr "Arvis Lācis"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:159
+#: ../src/Gtk.Tasque/GtkTray.cs:157
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Autortiesības © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:158
 msgid "A Useful Task List"
 msgstr "Noderīgs uzdevumu saraksts"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:162
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "Tasque Project Homepage"
 msgstr "Tasque projekta mājaslapa"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:175
+#: ../src/Gtk.Tasque/GtkTray.cs:173
 msgid "New Task ..."
 msgstr "Jauns uzdevums..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:185
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Refresh Tasks ..."
 msgstr "Atjaunināt uzdevumus..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:191
+#: ../src/Gtk.Tasque/GtkTray.cs:189
 msgid "Toggle Task Window"
 msgstr ""
 

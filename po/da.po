@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 18:29+0200\n"
+"POT-Creation-Date: 2012-09-26 16:18+0200\n"
 "PO-Revision-Date: 2010-09-01 19:59+0100\n"
 "Last-Translator: Søren Juul <zpon.dk@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -77,7 +77,7 @@ msgstr[1] "{0} opgaver i morgen\n"
 msgid "Tasque Rocks"
 msgstr "Tasque Styrer"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:151
+#: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "translator-credits"
 msgstr ""
 "Søren Juul <zpon.dk@gmail.com>\n"
@@ -85,27 +85,27 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:159
+#: ../src/Gtk.Tasque/GtkTray.cs:157
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Ophavsret © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:158
 msgid "A Useful Task List"
 msgstr "En nyttig opgaveliste"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:162
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "Tasque Project Homepage"
 msgstr "Tasques projekthjemmeside"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:175
+#: ../src/Gtk.Tasque/GtkTray.cs:173
 msgid "New Task ..."
 msgstr "Ny opgave..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:185
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Refresh Tasks ..."
 msgstr "Genopfrisk opgaver ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:191
+#: ../src/Gtk.Tasque/GtkTray.cs:189
 msgid "Toggle Task Window"
 msgstr ""
 
