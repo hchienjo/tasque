@@ -36,6 +36,7 @@
     <Compile Include="GetRelPath.cs" />
     <Compile Include="GetAbsSrcDir.cs" />
     <Compile Include="GetSrcDirStrip.cs" />
+    <Compile Include="NormalizePath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Proj Include="..\src\Gtk.Tasque\Gtk.Tasque.csproj">
