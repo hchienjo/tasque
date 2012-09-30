@@ -12,7 +12,25 @@
       <Output TaskParameter="RelativePath" PropertyName="TopSrcDir" />
     </GetRelPath>
     
+    <!--
+      Get src dir strip: The path fragment from TopSrcDir to SrcDir.
+      This is the same as the fragment from AbsTopBuildDir to AbsBuildDir.
+    -->
+    <GetRelPath FromPath="AbsTopBuildDir" ToPath="AbsBuildDir">
+      <Output TaskParameter="RelativePath" Value="_SrcDirStrip" />
+    </GetRelPath>
+    
+    <!-- AbsSrcDir -->
+    <CreateProperty Value="$(AbsTopSrcDir)\$(_SrcDirStrip)">
+      <Output TaskParameter="Value" PropertyName="AbsSrcDir" />
+    </CreateProperty>
+    
+    <!-- SrcDir -->
+    <CreateProperty Value="$(TopSrcDir)\$(_SrcDirStrip)">
+      <Output TaskParameter="Value" PropertyName="SrcDir" />
+    </CreateProperty>
   </Target>
+  
   <PropertyGroup>
     <BuildingSolutionFile>True</BuildingSolutionFile>
     <BuildEnabled Condition=" '$(BuildEnabled)' == '' ">true</BuildEnabled>
@@ -30,9 +48,9 @@
     <!-- Assume AbsTopSrcDir is the same as AbsTopBuildDir (usually is) -->
     <AbsTopSrcDir Condition=" '$(AbsTopSrcDir)' == '' " >$(AbsTopBuildDir)</AbsTopSrcDir>
     
-    <BuildDir></BuildDir>
-    
-    <SrcDir></SrcDir>
+    <!-- AbsBuildDir is current dir -->
+    <AbsBuildDir>$(MSBuildProjectDirectory)</AbsBuildDir>
+    <BuildDir>.</BuildDir>
     
     <!-- TopBuildDir is usually TopSrcDir, hence default to TopSrcDir -->
     <TopBuildDir Condition=" '$(TopBuildDir)' == '' ">$(TopSrcDir)</TopBuildDir>
