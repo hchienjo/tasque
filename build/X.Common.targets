@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" InitialTargets="_CheckProperties;_GetSrcDir" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" InitialTargets="_SetupInitialProperties;_CheckProperties;_GetSrcDir" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="_SetupInitialProperties">
+    
+    <!-- TopBuildDir: Get rel path for AbsTopBuildDir -->
+    <GetRelPath FromPath="$(MSBuildProjectDirectory)" ToPath="$(AbsTopBuildDir)">
+      <Output TaskParameter="RelativePath" PropertyName="TopBuildDir" />
+    </GetRelPath>
+    
+    <!-- TopSrcDir: Get rel path for AbsTopSrcDir -->
+    <GetRelPath FromPath="$(MSBuildProjectDirectory)" ToPath="$(AbsTopSrcDir)">
+      <Output TaskParameter="RelativePath" PropertyName="TopSrcDir" />
+    </GetRelPath>
+    
+  </Target>
   <PropertyGroup>
     <BuildingSolutionFile>True</BuildingSolutionFile>
     <BuildEnabled Condition=" '$(BuildEnabled)' == '' ">true</BuildEnabled>
     <AutoInstall Condition=" '$(AutoInstall)' == '' ">true</AutoInstall>
     <!-- if AltTarget is set, disable AutoInstall -->
     <AutoInstall Condition=" '$(AltTarget)' != '' ">false</AutoInstall>
-
+    
     <!-- Global dirs -->
     <OutputPath>.</OutputPath>
     <Prefix Condition=" '$(Prefix)' == '' ">$(MSBuildProjectDirectory)\$(RelPrefix)</Prefix>
     <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
+    
+    <!-- Assume AbsTopBuildDir is the dir, where the sln resides -->
+    <AbsTopBuildDir Condition=" '$(AbsTopBuildDir)' == '' ">$(SolutionDir)</AbsTopBuildDir>
+    <!-- Assume AbsTopSrcDir is the same as AbsTopBuildDir (usually is) -->
+    <AbsTopSrcDir Condition=" '$(AbsTopSrcDir)' == '' " >$(AbsTopBuildDir)</AbsTopSrcDir>
+    
+    <BuildDir></BuildDir>
+    
+    <SrcDir></SrcDir>
+    
     <!-- TopBuildDir is usually TopSrcDir, hence default to TopSrcDir -->
     <TopBuildDir Condition=" '$(TopBuildDir)' == '' ">$(TopSrcDir)</TopBuildDir>
     <PoSrcDir Condition=" '$(PoSrcDir)' == '' ">$(AbsTopSrcDir)\po</PoSrcDir>
