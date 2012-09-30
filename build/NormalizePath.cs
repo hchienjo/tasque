@@ -1,5 +1,5 @@
 // 
-// GetAbsSrcDir.cs
+// NormalizePath.cs
 //  
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,38 +24,41 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.IO;
+using IO = System.IO;
+using System.Text;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
 namespace Tasque.Build
 {
-	public class GetAbsSrcDir : Task
+	public class NormalizePath : Task
 	{
 		[Required]
-		public string AbsTopSrcDir { get; set; }
-		
-		[Required]
-		public string SrcDirStrip { get; set; }
-		
 		[Output]
-		public string AbsSrcDir { get; set; }
-		
+		public string Path { get; set; }
+
 		public override bool Execute ()
 		{
 			try {
-				if (!Path.IsPathRooted (AbsTopSrcDir))
-					throw new Exception ("AbsTopSrcDir must be an absolute path.");
-				
-				// normalize paths
-				var topSrcPath = NormalizePath.InternalNormalizePath (AbsTopSrcDir);
-
-				AbsSrcDir = Path.Combine (topSrcPath, SrcDirStrip);
+				Path = InternalNormalizePath (Path);
 			} catch (Exception ex) {
 				Log.LogErrorFromException (ex, true);
 				return false;
 			}
 			return true;
+		}
+
+		internal static string InternalNormalizePath (string path)
+		{
+			if (path == null)
+				throw new ArgumentNullException ("path");
+
+			if (IO.Path.IsPathRooted (path))
+				return IO.Path.GetFullPath (path).TrimEnd (IO.Path.DirectorySeparatorChar);
+
+			var basePath = Environment.CurrentDirectory;
+			var targetPath = IO.Path.GetFullPath (path);
+			return GetRelPath.InternalGetRelPath (basePath, targetPath);
 		}
 	}
 }

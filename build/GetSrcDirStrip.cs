@@ -48,8 +48,8 @@ namespace Tasque.Build
 					throw new Exception ("MSBuildProjectDir and AbsTopBuildDir paths must be absolute.");
 				
 				// normalize paths
-				var projPath = Path.GetFullPath (MSBuildProjectDir).TrimEnd (Path.DirectorySeparatorChar);
-				var topBuildPath = Path.GetFullPath (AbsTopBuildDir).TrimEnd (Path.DirectorySeparatorChar);
+				var projPath = NormalizePath.InternalNormalizePath (MSBuildProjectDir);
+				var topBuildPath = NormalizePath.InternalNormalizePath (AbsTopBuildDir);
 				
 				if (!projPath.Contains (topBuildPath))
 					throw new Exception ("AbsTopBuildDir must be a subpath of MSBuildProjectDir.");
