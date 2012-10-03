@@ -30,6 +30,14 @@
       <Output TaskParameter="Value" PropertyName="SrcDir" />
     </CreateProperty>
     
+    <!-- po dirs: Assume it's <top_level>/po -->
+    <CreateProperty Condition=" '$(PoBuildDir)' == '' " Value="$(TopBuildDir)\po">
+      <Output TaskParameter="Value" PropertyName="PoBuildDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(PoSrcDir)' == '' " Value="$(TopSrcDir)\po">
+      <Output TaskParameter="Value" PropertyName="PoSrcDir" />
+    </CreateProperty>
+    
     <!-- Debug output -->
     <Message Text="AbsTopBuildDir=$(AbsTopBuildDir)" />
     <Message Text="AbsTopSrcDir=$(AbsTopSrcDir)" />
@@ -62,10 +70,6 @@
     <!-- AbsBuildDir is current dir -->
     <AbsBuildDir>$(MSBuildProjectDirectory)</AbsBuildDir>
     <BuildDir>.</BuildDir>
-    
-    <!-- po dirs: Assume it's <top_level>/po -->
-    <PoBuildDir Condition=" '$(PoBuildDir)' == '' ">$(TopBuildDir)\po</PoBuildDir>
-    <PoSrcDir Condition=" '$(PoSrcDir)' == '' ">$(TopSrcDir)\po</PoSrcDir>
     
     <!-- Output paths for build and install -->
     <OutputPath>.</OutputPath>
