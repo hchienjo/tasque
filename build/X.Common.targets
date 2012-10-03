@@ -39,9 +39,6 @@
     <AutoInstall Condition=" '$(AltTarget)' != '' ">false</AutoInstall>
     
     <!-- Global dirs -->
-    <OutputPath>.</OutputPath>
-    <Prefix Condition=" '$(Prefix)' == '' ">$(MSBuildProjectDirectory)\$(RelPrefix)</Prefix>
-    
     <!-- Assume AbsTopBuildDir is the dir, where the sln resides -->
     <AbsTopBuildDir Condition=" '$(AbsTopBuildDir)' == '' ">$(SolutionDir)</AbsTopBuildDir>
     <!-- Assume AbsTopSrcDir is the same as AbsTopBuildDir (usually is) -->
@@ -55,6 +52,11 @@
     <PoBuildDir Condition=" '$(PoBuildDir)' == '' ">$(TopBuildDir)\po</PoBuildDir>
     <PoSrcDir Condition=" '$(PoSrcDir)' == '' ">$(TopSrcDir)\po</PoSrcDir>
     
+    <!-- Output paths for build and install -->
+    <OutputPath>.</OutputPath>
+    <!-- Prefix defaults to <top_level>/build/bin -->
+    <Prefix Condition=" '$(Prefix)' == '' ">$(AbsTopBuildDir)\build\bin</Prefix>
+
     <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib</LibDir>
     <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
     <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(LibDir)\$(PackageName)</PkgLibDir>
