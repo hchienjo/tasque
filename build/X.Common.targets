@@ -52,8 +52,6 @@
     <AbsBuildDir>$(MSBuildProjectDirectory)</AbsBuildDir>
     <BuildDir>.</BuildDir>
     
-    <!-- TopBuildDir is usually TopSrcDir, hence default to TopSrcDir -->
-    <TopBuildDir Condition=" '$(TopBuildDir)' == '' ">$(TopSrcDir)</TopBuildDir>
     <PoSrcDir Condition=" '$(PoSrcDir)' == '' ">$(AbsTopSrcDir)\po</PoSrcDir>
     <PoBuildDir Condition=" '$(PoBuildDir)' == '' ">$(TopBuildDir)\po</PoBuildDir>
     <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib</LibDir>
