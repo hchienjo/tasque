@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" InitialTargets="_SetupInitialProperties;_CheckProperties;_GetSrcDir" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" InitialTargets="_SetupInitialProperties;_CheckProperties;" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="_SetupInitialProperties">
     
     <!-- TopBuildDir: Get rel path for AbsTopBuildDir -->
@@ -279,20 +279,6 @@
       <Output TaskParameter="SrcDirStrip" PropertyName="SrcDirStrip" />
     </GetSrcDirStrip>
     <Message Text="SrcDirStrip=$(SrcDirStrip)" />
-  </Target>
-
-  <Target Name="_GetSrcDir" Condition=" '$(AbsTopSrcDir)' != '$(AbsTopBuildDir)' "
-      DependsOnTargets="_GetSrcDirStrip">
-    <Message Text="AbsTopSrcDir=$(AbsTopSrcDir)" />
-    <Message Text="AbsTopBuildDir=$(AbsTopBuildDir)" />
-    <Message Text="MSBuildProjectDirectory=$(MSBuildProjectDirectory)" />
-    <GetAbsSrcDir AbsTopSrcDir="$(AbsTopSrcDir)" SrcDirStrip="$(SrcDirStrip)">
-      <Output TaskParameter="AbsSrcDir" PropertyName="AbsSrcDir" />
-    </GetAbsSrcDir>
-    <GetRelPath FromPath="$(MSBuildProjectDirectory)" ToPath="$(AbsSrcDir)">
-      <Output TaskParameter="RelativePath" PropertyName="SrcDir" />
-    </GetRelPath>
-    <Message Text="SrcDir=$(SrcDir)" />
   </Target>
   
   <Target Name="_CheckAbsDistDir">
