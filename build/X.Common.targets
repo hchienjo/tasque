@@ -16,8 +16,8 @@
       Get src dir strip: The path fragment from TopSrcDir to SrcDir.
       This is the same as the fragment from AbsTopBuildDir to AbsBuildDir.
     -->
-    <GetRelPath FromPath="AbsTopBuildDir" ToPath="AbsBuildDir">
-      <Output TaskParameter="RelativePath" Value="_SrcDirStrip" />
+    <GetRelPath FromPath="$(AbsTopBuildDir)" ToPath="$(AbsBuildDir)">
+      <Output TaskParameter="RelativePath" PropertyName="_SrcDirStrip" />
     </GetRelPath>
     
     <!-- AbsSrcDir -->
