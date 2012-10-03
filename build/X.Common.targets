@@ -29,6 +29,18 @@
     <CreateProperty Value="$(TopSrcDir)\$(_SrcDirStrip)">
       <Output TaskParameter="Value" PropertyName="SrcDir" />
     </CreateProperty>
+    
+    <!-- Debug output -->
+    <Message Text="AbsTopBuildDir=$(AbsTopBuildDir)" />
+    <Message Text="AbsTopSrcDir=$(AbsTopSrcDir)" />
+    <Message Text="TopBuildDir=$(TopBuildDir)" />
+    <Message Text="TopSrcDir=$(TopSrcDir)" />
+    <Message Text="AbsBuildDir=$(AbsBuildDir)" />
+    <Message Text="AbsSrcDir=$(AbsSrcDir)" />
+    <Message Text="BuildDir=$(BuildDir)" />
+    <Message Text="SrcDir=$(SrcDir)" />
+    <Message Text="PoBuildDir=$(PoBuildDir)" />
+    <Message Text="PoSrcDir=$(PoSrcDir)" />
   </Target>
   
   <PropertyGroup>
