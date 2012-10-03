@@ -51,8 +51,10 @@
     <AbsBuildDir>$(MSBuildProjectDirectory)</AbsBuildDir>
     <BuildDir>.</BuildDir>
     
-    <PoSrcDir Condition=" '$(PoSrcDir)' == '' ">$(AbsTopSrcDir)\po</PoSrcDir>
+    <!-- po dirs: Assume it's <top_level>/po -->
     <PoBuildDir Condition=" '$(PoBuildDir)' == '' ">$(TopBuildDir)\po</PoBuildDir>
+    <PoSrcDir Condition=" '$(PoSrcDir)' == '' ">$(TopSrcDir)\po</PoSrcDir>
+    
     <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib</LibDir>
     <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
     <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(LibDir)\$(PackageName)</PkgLibDir>
