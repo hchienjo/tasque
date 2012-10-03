@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" InitialTargets="_SetupInitialProperties;_CheckProperties;" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" InitialTargets="_SetupInitialProperties" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="_SetupInitialProperties">
     
     <!-- TopBuildDir: Get rel path for AbsTopBuildDir -->
@@ -37,6 +37,9 @@
     <AutoInstall Condition=" '$(AutoInstall)' == '' ">true</AutoInstall>
     <!-- if AltTarget is set, disable AutoInstall -->
     <AutoInstall Condition=" '$(AltTarget)' != '' ">false</AutoInstall>
+    
+    <!-- Package name defaults to solution name -->
+    <PackageName>$(SolutionName)</PackageName>
     
     <!-- Global dirs -->
     <!-- Assume AbsTopBuildDir is the dir, where the sln resides -->
@@ -269,11 +272,6 @@
   </Target>
   
   <!-- Private -->
-  <Target Name="_CheckProperties">
-    <Error Condition=" '$(PackageName)' == '' " Text="PackageName is not set." />
-    <Message Text="Prefix=$(Prefix)" />
-  </Target>
-
   <Target Name="_GetSrcDirStrip">
     <GetSrcDirStrip MSBuildProjectDir="$(MSBuildProjectDirectory)" AbsTopBuildDir="$(AbsTopBuildDir)">
       <Output TaskParameter="SrcDirStrip" PropertyName="SrcDirStrip" />

@@ -8,7 +8,6 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}</ProjectGuid>
     <OutputPath>.</OutputPath>
-    <PackageName>tasque</PackageName>
     <ReleaseVersion>0.1.12</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">

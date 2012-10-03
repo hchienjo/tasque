@@ -12,7 +12,6 @@
     <AssemblyName>SqliteBackend</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PackageName>tasque</PackageName>
     <ReleaseVersion>0.1.12</ReleaseVersion>
     <BuildEnabled>$(EnableBackendSqlite)</BuildEnabled>
   </PropertyGroup>
