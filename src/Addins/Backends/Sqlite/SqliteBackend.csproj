@@ -97,4 +97,5 @@
       <InstallFileName>Mono.Data.Sqlite.dll</InstallFileName>
     </InstallFile>
   </ItemGroup>
+  <Import Project="..\..\..\..\build\X.CSharp.targets" />
 </Project>
