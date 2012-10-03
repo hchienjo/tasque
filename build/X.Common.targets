@@ -159,7 +159,8 @@
   
   <!-- Build -->
   <!-- Switch between regular targets and alternative targets -->
-  <PropertyGroup Condition=" '$(AltTarget)' != '' ">
+  <!-- CoreBuild is disable on AltTargets and if the consuming proj is a TranslationProject (which is not MSBuild conform) -->
+  <PropertyGroup Condition=" '$(AltTarget)' != '' Or '$(ItemType)' == 'TranslationProject' ">
     <BuildDependsOn>
       BeforeBuild;
       AfterBuild;
