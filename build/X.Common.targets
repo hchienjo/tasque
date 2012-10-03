@@ -41,7 +41,6 @@
     <!-- Global dirs -->
     <OutputPath>.</OutputPath>
     <Prefix Condition=" '$(Prefix)' == '' ">$(MSBuildProjectDirectory)\$(RelPrefix)</Prefix>
-    <SrcDir Condition=" '$(SrcDir)' == '' ">.</SrcDir>
     
     <!-- Assume AbsTopBuildDir is the dir, where the sln resides -->
     <AbsTopBuildDir Condition=" '$(AbsTopBuildDir)' == '' ">$(SolutionDir)</AbsTopBuildDir>
