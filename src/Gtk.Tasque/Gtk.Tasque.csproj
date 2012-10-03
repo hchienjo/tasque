@@ -14,8 +14,6 @@
     <WarningLevel>4</WarningLevel>
     <GtkSharp12 Condition=" '$(EnableGtkSharp12)' == '' Or '$(EnableGtkSharp12)' ">GTK_2_12</GtkSharp12>
     <PackageName>tasque</PackageName>
-    <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\..\build\bin</RelPrefix>
-    <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..\..</TopSrcDir>
     <ReleaseVersion>0.1.12</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxDebug|AnyCPU' ">

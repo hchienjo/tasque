@@ -62,8 +62,6 @@
   <!-- The above is only for the MD Gettext addin, which provides a convenient environment for translation -->
   <!-- Below are the xbuild instructions. New translations should be added to the GettextTranslation ItemGroup. -->
   <PropertyGroup>
-    <RelPrefix Condition=" '$(RelPrefix)' == '' ">..\build\bin</RelPrefix>
-    <TopSrcDir Condition=" '$(TopSrcDir)' == '' ">..</TopSrcDir>
     <PackageName>tasque</PackageName>
     <!-- Disable regular build, since the above is not MSBuild conform. -->
     <BuildDependsOn>BeforeBuild;AfterBuild</BuildDependsOn>
