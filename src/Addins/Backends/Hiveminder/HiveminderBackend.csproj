@@ -13,6 +13,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ReleaseVersion>0.1.12</ReleaseVersion>
+    <EnableBackendHiveminder Condition=" '$(EnableBackendHiveminder)' == '' " >false</EnableBackendHiveminder>
     <BuildEnabled>$(EnableBackendHiveminder)</BuildEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkDebug|AnyCPU' ">
