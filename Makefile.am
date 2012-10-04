@@ -88,7 +88,6 @@ EXTRA_DIST = \
 	build/AssemblyInfo.cs \
 	build/Substitute.cs \
 	build/GetRelPath.cs \
-	build/GetSrcDirStrip.cs \
 	build/GetAbsSrcDir.cs \
 	build/X.Common.targets \
 	build/X.CSharp.targets \
