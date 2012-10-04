@@ -127,8 +127,8 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="Tasque.Build.Substitute" AssemblyFile="build.dll" />
   <UsingTask TaskName="Tasque.Build.GetRelPath" AssemblyFile="build.dll" />
-  <UsingTask TaskName="Tasque.Build.GetSrcDirStrip" AssemblyFile="build.dll" />
   <UsingTask TaskName="Tasque.Build.GetAbsSrcDir" AssemblyFile="build.dll" />
+  <UsingTask TaskName="Tasque.Build.NormalizePath" AssemblyFile="build.dll" />
 	
   <!-- Substitute -->
   <Target Name="Substitute" DependsOnTargets="BeforeSubstitute;CoreSubstitute;AfterSubstitute" />
@@ -269,9 +269,9 @@
   <Target Name="Dist" DependsOnTargets="BeforeDist;_SetupDistFile;SetupDistFile;CoreDist;AfterDist" />
   <Target Name="BeforeDist" />
   <Target Name="AfterDist" />
-  <Target Name="CoreDist" DependsOnTargets="_CheckAbsDistDir;_GetSrcDirStrip">
+  <Target Name="CoreDist" DependsOnTargets="_CheckAbsDistDir">
     <Copy Condition=" '@(DistFile)' != '' " SourceFiles="$(SrcDir)\%(DistFile.RelativeDir)%(FileName)%(Extension)"
-        DestinationFiles="$(AbsDistDir)\$(SrcDirStrip)\%(DistFile.RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
+        DestinationFiles="$(AbsDistDir)\$(_SrcDirStrip)\%(DistFile.RelativeDir)%(FileName)%(Extension)" SkipUnchangedFiles="true" />
   </Target>
   
   <!-- DistCheck -->
@@ -288,14 +288,7 @@
     <Delete Files="$(AbsDistDir)\%(DistCleanFile.RelativeDir)%(FileName)%(Extension)" />
   </Target>
   
-  <!-- Private -->
-  <Target Name="_GetSrcDirStrip">
-    <GetSrcDirStrip MSBuildProjectDir="$(MSBuildProjectDirectory)" AbsTopBuildDir="$(AbsTopBuildDir)">
-      <Output TaskParameter="SrcDirStrip" PropertyName="SrcDirStrip" />
-    </GetSrcDirStrip>
-    <Message Text="SrcDirStrip=$(SrcDirStrip)" />
-  </Target>
-  
+  <!-- Private -->  
   <Target Name="_CheckAbsDistDir">
     <Message Text="AbsDistDir=$(AbsDistDir)" />
     <Error Condition=" '$(AbsDistDir)' == '' " Text="Property AbsDistDir not set. Target Dist requires AbsDistDir to be set." />
