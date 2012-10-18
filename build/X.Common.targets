@@ -59,7 +59,7 @@
     <AutoInstall Condition=" '$(AltTarget)' != '' ">false</AutoInstall>
     
     <!-- Package name defaults to solution name -->
-    <PackageName>$(SolutionName)</PackageName>
+    <PackageName Condition=" '$(PackageName)' == '' " >$(SolutionName)</PackageName>
     
     <!-- Global dirs -->
     <!-- Assume AbsTopBuildDir is the dir, where the sln resides -->
