@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" InitialTargets="_SetupInitialProperties" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="_SetupInitialProperties">
+  <Target Name="_SetupInitialProperties" DependsOnTargets="_SetupInitialPropertiesDependsOn">
+    <Error Condition=" '$(PackageName)' == '' " Text="PackageName is not set." />
+    <Error Condition=" '$(AbsTopBuildDir)' == '' " Text="AbsTopBuildDir is not set." />
     
-    <!-- TopBuildDir: Get rel path for AbsTopBuildDir -->
-    <GetRelPath FromPath="$(MSBuildProjectDirectory)" ToPath="$(AbsTopBuildDir)">
-      <Output TaskParameter="RelativePath" PropertyName="TopBuildDir" />
-    </GetRelPath>
+    <!-- Assume AbsTopSrcDir is the same as AbsTopBuildDir (usually is) -->
+    <CreateProperty Condition=" '$(AbsTopSrcDir)' == '' " Value="$(AbsTopBuildDir)">
+      <Output TaskParameter="Value" PropertyName="AbsTopSrcDir" />
+    </CreateProperty>
     
     <!-- TopSrcDir: Get rel path for AbsTopSrcDir -->
     <GetRelPath FromPath="$(MSBuildProjectDirectory)" ToPath="$(AbsTopSrcDir)">
@@ -38,6 +40,49 @@
       <Output TaskParameter="Value" PropertyName="PoSrcDir" />
     </CreateProperty>
     
+    <!-- Prefix defaults to <top_level>/build/bin -->
+    <CreateProperty Condition=" '$(Prefix)' == '' " Value="$(AbsTopBuildDir)\build\bin">
+      <Output TaskParameter="Value" PropertyName="Prefix" />
+    </CreateProperty>
+    
+    <CreateProperty Condition=" '$(LibDir)' == '' " Value="$(Prefix)\lib">
+      <Output TaskParameter="Value" PropertyName="LibDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(BinDir)' == '' " Value="$(Prefix)\bin">
+      <Output TaskParameter="Value" PropertyName="BinDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(PkgLibDir)' == '' " Value="$(LibDir)\$(PackageName)">
+      <Output TaskParameter="Value" PropertyName="PkgLibDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(DataDir)' == '' " Value="$(Prefix)\share">
+      <Output TaskParameter="Value" PropertyName="DataDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(PkgDataDir)' == '' " Value="$(DataDir)\$(PackageName)">
+      <Output TaskParameter="Value" PropertyName="PkgDataDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(PkgConfigDir)' == '' " Value="$(LibDir)\pkgconfig">
+      <Output TaskParameter="Value" PropertyName="PkgConfigDir" />
+    </CreateProperty>
+    
+    <!-- Icon and sound dirs -->
+    <CreateProperty Condition=" '$(HiColorDir)' == '' " Value="$(DataDir)\icons\hicolor">
+      <Output TaskParameter="Value" PropertyName="HiColorDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(PkgHiColorDir)' == '' " Value="$(PkgDataDir)\icons\hicolor">
+      <Output TaskParameter="Value" PropertyName="PkgHiColorDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(PixmapDir)' == '' " Value="$(DataDir)\pixmaps">
+      <Output TaskParameter="Value" PropertyName="PixmapDir" />
+    </CreateProperty>
+    <CreateProperty Condition=" '$(PkgSoundsDir)' == '' " Value="$(PkgDataDir)\sounds">
+      <Output TaskParameter="Value" PropertyName="PkgSoundsDir" />
+    </CreateProperty>
+    
+    <!-- I18n dirs -->
+    <CreateProperty Condition=" '$(LocaleDir)' == '' " Value="$(DataDir)\locale">
+      <Output TaskParameter="Value" PropertyName="LocaleDir" />
+    </CreateProperty>
+    
     <!-- Debug output -->
     <Message Text="AbsTopBuildDir=$(AbsTopBuildDir)" />
     <Message Text="AbsTopSrcDir=$(AbsTopSrcDir)" />
@@ -51,6 +96,37 @@
     <Message Text="PoSrcDir=$(PoSrcDir)" />
   </Target>
   
+  <Target Name="_SetupInSlnBuild">
+    <!-- Assume AbsTopBuildDir is the dir, where the sln resides -->
+    <CreateProperty Condition=" '$(AbsTopBuildDir)' == '' " Value="$(SolutionDir)">
+      <Output TaskParameter="Value" PropertyName="AbsTopBuildDir" />
+    </CreateProperty>
+    <!-- TopBuildDir: Get rel path for AbsTopBuildDir -->
+    <GetRelPath FromPath="$(MSBuildProjectDirectory)" ToPath="$(AbsTopBuildDir)">
+      <Output TaskParameter="RelativePath" PropertyName="TopBuildDir" />
+    </GetRelPath>
+  </Target>
+  
+  <Target Name="_SetupInOtherBuild">
+    <!-- When SolutionDir property not set, resort to explicitly set TopBuildDir property in proj file -->
+    <GetAbsPath Condition=" '$(AbsTopBuildDir)' == '' " Path="$(TopBuildDir)">
+      <Output TaskParameter="AbsolutePath" PropertyName="AbsTopBuildDir" />
+    </GetAbsPath>
+  </Target>
+  
+  <!--
+    Here we have to check if this is a solution build, or if it is a build-all-projects-in-the-solution build
+    The latter is terrible, because it doesn't give us information about the root directory (SolutionDir). In
+    such a case those information must be provided explicitly by each proj file, therefore each file has to
+    define the properties PackageName and TopBuildDir if it is to be used with MD.
+  -->
+  <PropertyGroup>
+    <!-- Solution build -->
+    <_SetupInitialPropertiesDependsOn>_SetupInSlnBuild</_SetupInitialPropertiesDependsOn>
+    <!-- Other build -->
+    <_SetupInitialPropertiesDependsOn Condition=" '$(SolutionDir)' == '' ">_SetupInOtherBuild</_SetupInitialPropertiesDependsOn>
+  </PropertyGroup>
+  
   <PropertyGroup>
     <BuildingSolutionFile>True</BuildingSolutionFile>
     <BuildEnabled Condition=" '$(BuildEnabled)' == '' ">true</BuildEnabled>
@@ -61,40 +137,18 @@
     <!-- Package name defaults to solution name -->
     <PackageName Condition=" '$(PackageName)' == '' " >$(SolutionName)</PackageName>
     
-    <!-- Global dirs -->
-    <!-- Assume AbsTopBuildDir is the dir, where the sln resides -->
-    <AbsTopBuildDir Condition=" '$(AbsTopBuildDir)' == '' ">$(SolutionDir)</AbsTopBuildDir>
-    <!-- Assume AbsTopSrcDir is the same as AbsTopBuildDir (usually is) -->
-    <AbsTopSrcDir Condition=" '$(AbsTopSrcDir)' == '' " >$(AbsTopBuildDir)</AbsTopSrcDir>
-    
     <!-- AbsBuildDir is current dir -->
     <AbsBuildDir>$(MSBuildProjectDirectory)</AbsBuildDir>
     <BuildDir>.</BuildDir>
     
     <!-- Output paths for build and install -->
     <OutputPath>.</OutputPath>
-    <!-- Prefix defaults to <top_level>/build/bin -->
-    <Prefix Condition=" '$(Prefix)' == '' ">$(AbsTopBuildDir)\build\bin</Prefix>
 
-    <LibDir Condition=" '$(LibDir)' == '' ">$(Prefix)\lib</LibDir>
-    <BinDir Condition=" '$(BinDir)' == '' ">$(Prefix)\bin</BinDir>
-    <PkgLibDir Condition=" '$(PkgLibDir)' == '' ">$(LibDir)\$(PackageName)</PkgLibDir>
-    <DataDir Condition=" '$(DataDir)' == '' ">$(Prefix)\share</DataDir>
-    <PkgDataDir Condition=" '$(PkgDataDir)' == '' ">$(DataDir)\$(PackageName)</PkgDataDir>
-    <PkgConfigDir Condition=" '$(PkgConfigDir)' == '' ">$(LibDir)\pkgconfig</PkgConfigDir>
     <DestDir Condition=" '$(DestDir)' != '' And !HasTrailingSlash('$(DestDir)')">$(DestDir)\</DestDir>
     <Wrapper Condition=" '$(Wrapper)' == '' ">$(PackageName)</Wrapper>
     <Version Condition=" '$(Version)' == '' ">$(ReleaseVersion)</Version>
-    
-    <!-- Icon and sound dirs -->
-    <HiColorDir Condition=" '$(HiColorDir)' == '' ">$(DataDir)\icons\hicolor</HiColorDir>
-    <PkgHiColorDir Condition=" '$(PkgHiColorDir)' == '' ">$(PkgDataDir)\icons\hicolor</PkgHiColorDir>
-    <PixmapDir Condition=" '$(PixmapDir)' == '' ">$(DataDir)\pixmaps</PixmapDir>
-    <PkgSoundsDir Condition=" '$(PkgSoundsDir)' == '' ">$(PkgDataDir)\sounds</PkgSoundsDir>
-    
-    <!-- I18n dirs -->
-    <LocaleDir Condition=" '$(LocaleDir)' == '' ">$(DataDir)\locale</LocaleDir>
   </PropertyGroup>
+  
   <Choose>
     <When Condition=" '$(OS)' == 'Windows_NT' ">
       <PropertyGroup>
