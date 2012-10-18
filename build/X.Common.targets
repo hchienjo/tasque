@@ -94,6 +94,35 @@
     <Message Text="SrcDir=$(SrcDir)" />
     <Message Text="PoBuildDir=$(PoBuildDir)" />
     <Message Text="PoSrcDir=$(PoSrcDir)" />
+    
+    <!-- Create subst items here -->
+    <CreateItem Include="@prefix@|$(Prefix)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@libdir@|$(LibDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@pkglibdir@|$(PkgLibDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@bindir@|$(BinDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@exec_prefix@|$(BinDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@datadir@|$(DataDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@wrapper@|$(Wrapper)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@version@|$(Version)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@PACKAGE@|$(PackageName)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
   </Target>
   
   <Target Name="_SetupInSlnBuild">
@@ -167,17 +196,7 @@
       </PropertyGroup>
     </Otherwise>
   </Choose>
-  <ItemGroup>
-    <Substitution Include="@prefix@|$(Prefix)|text" />
-    <Substitution Include="@libdir@|$(LibDir)|text" />
-    <Substitution Include="@pkglibdir@|$(PkgLibDir)|text" />
-    <Substitution Include="@bindir@|$(BinDir)|text" />
-    <Substitution Include="@exec_prefix@|$(BinDir)|text" />
-    <Substitution Include="@datadir@|$(DataDir)|text" />
-    <Substitution Include="@wrapper@|$(Wrapper)|text" />
-    <Substitution Include="@version@|$(Version)|text" />
-    <Substitution Include="@PACKAGE@|$(PackageName)|text" />
-  </ItemGroup>
+  
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="Tasque.Build.Substitute" AssemblyFile="build.dll" />
   <UsingTask TaskName="Tasque.Build.GetRelPath" AssemblyFile="build.dll" />
