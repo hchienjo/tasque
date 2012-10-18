@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" InitialTargets="_SetupInitialProperties" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="_SetupInitialProperties" DependsOnTargets="_SetupInitialPropertiesDependsOn">
+  <Target Name="_SetupInitialProperties" DependsOnTargets="$(_SetupInitialPropertiesDependsOn)">
     <Error Condition=" '$(PackageName)' == '' " Text="PackageName is not set." />
     <Error Condition=" '$(AbsTopBuildDir)' == '' " Text="AbsTopBuildDir is not set." />
     
