@@ -88,7 +88,9 @@ EXTRA_DIST = \
 	build/AssemblyInfo.cs \
 	build/Substitute.cs \
 	build/GetRelPath.cs \
+	build/GetAbsPath.cs \
 	build/GetAbsSrcDir.cs \
+	build/NormalizePath.cs \
 	build/X.Common.targets \
 	build/X.CSharp.targets \
 	src/Libraries/RtmNet/RtmNet.csproj \
