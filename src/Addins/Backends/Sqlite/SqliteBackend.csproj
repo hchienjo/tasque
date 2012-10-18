@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <ReleaseVersion>0.1.12</ReleaseVersion>
     <BuildEnabled>$(EnableBackendSqlite)</BuildEnabled>
+    <PackageName>tasque</PackageName>
+    <TopBuildDir>..\..\..\..</TopBuildDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkLinuxDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>

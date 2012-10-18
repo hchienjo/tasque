@@ -10,6 +10,8 @@
     <RootNamespace>MonoMac.Tasque</RootNamespace>
     <AssemblyName>MonoMac.Tasque</AssemblyName>
     <ReleaseVersion>0.1.12</ReleaseVersion>
+    <PackageName>tasque</PackageName>
+    <TopBuildDir>..\..</TopBuildDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
