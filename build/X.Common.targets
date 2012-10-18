@@ -127,9 +127,10 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="Tasque.Build.Substitute" AssemblyFile="build.dll" />
   <UsingTask TaskName="Tasque.Build.GetRelPath" AssemblyFile="build.dll" />
+  <UsingTask TaskName="Tasque.Build.GetAbsPath" AssemblyFile="build.dll" />
   <UsingTask TaskName="Tasque.Build.GetAbsSrcDir" AssemblyFile="build.dll" />
   <UsingTask TaskName="Tasque.Build.NormalizePath" AssemblyFile="build.dll" />
-	
+  
   <!-- Substitute -->
   <Target Name="Substitute" DependsOnTargets="BeforeSubstitute;CoreSubstitute;AfterSubstitute" />
   <Target Name="BeforeSubstitute" />
