@@ -72,6 +72,9 @@
     <Proj Include="..\src\Addins\Backends\Hiveminder\HiveminderBackend.csproj">
       <Link>Addins\Backends\HiveminderBackend.csproj</Link>
     </Proj>
+    <Proj Include="..\src\Addins\Backends\Eds\EdsBackend.csproj">
+      <Link>Addins\Backends\EdsBackend.csproj</Link>
+    </Proj>
     <Proj Include="..\tests\tests.csproj">
       <Link>tests.csproj</Link>
     </Proj>
