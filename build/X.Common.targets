@@ -28,9 +28,9 @@
     </CreateProperty>
     
     <!-- SrcDir -->
-    <CreateProperty Value="$(TopSrcDir)\$(_SrcDirStrip)">
-      <Output TaskParameter="Value" PropertyName="SrcDir" />
-    </CreateProperty>
+    <NormalizePath Path="$(TopSrcDir)\$(_SrcDirStrip)">
+      <Output TaskParameter="Path" PropertyName="SrcDir" />
+    </NormalizePath>
     
     <!-- po dirs: Assume it's <top_level>/po -->
     <CreateProperty Condition=" '$(PoBuildDir)' == '' " Value="$(TopBuildDir)\po">

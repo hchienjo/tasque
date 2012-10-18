@@ -58,7 +58,10 @@ namespace Tasque.Build
 
 			var basePath = Environment.CurrentDirectory;
 			var targetPath = IO.Path.GetFullPath (path);
-			return GetRelPath.InternalGetRelPath (basePath, targetPath);
+			path = GetRelPath.InternalGetRelPath (basePath, targetPath);
+			if (string.IsNullOrWhiteSpace (path))
+				path = ".";
+			return path;
 		}
 	}
 }
