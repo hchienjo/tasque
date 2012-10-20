@@ -87,17 +87,15 @@
     <TasqueCompile Include="SqliteBackend.cs" />
     <TasqueCompile Include="Database.cs" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)' == 'GtkWinDebug' Or '$(Configuration)' == 'GtkWinRelease' ">
-    <InstallFile Include="..\..\..\..\winbin\sqlite3.dll">
-      <Link>winbin\sqlite3.dll</Link>
-      <InstallPath>$(PkgLibDir)</InstallPath>
-      <InstallFileName>sqlite3.dll</InstallFileName>
-    </InstallFile>
-    <InstallFile Include="..\..\..\..\winbin\Mono.Data.Sqlite.dll">
-      <Link>winbin\Mono.Data.Sqlite.dll</Link>
-      <InstallPath>$(PkgLibDir)</InstallPath>
-      <InstallFileName>Mono.Data.Sqlite.dll</InstallFileName>
-    </InstallFile>
-  </ItemGroup>
   <Import Project="..\..\..\..\build\X.CSharp.targets" />
+  <Target Name="BeforeInstall" Condition=" '$(Configuration)' == 'GtkWinDebug' Or '$(Configuration)' == 'GtkWinRelease' ">
+    <CreateItem Include="..\..\..\..\winbin\sqlite3.dll"
+        AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=sqlite3.dll">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Include="..\..\..\..\winbin\Mono.Data.Sqlite.dll"
+        AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Mono.Data.Sqlite.dll">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+  </Target>
 </Project>
