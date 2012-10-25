@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 18:29+0200\n"
+"POT-Creation-Date: 2012-09-26 16:18+0200\n"
 "PO-Revision-Date: 2009-10-09 14:11+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -81,31 +81,31 @@ msgstr[1] "Homseks on {0} ülesannet\n"
 msgid "Tasque Rocks"
 msgstr "Ülesandetasku on mõnusalt tühi"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:151
+#: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "translator-credits"
 msgstr "Ivar Smolin <okul linux ee>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:159
+#: ../src/Gtk.Tasque/GtkTray.cs:157
 msgid "Copyright © 2008 Novell, Inc."
 msgstr "Autoriõigus © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:158
 msgid "A Useful Task List"
 msgstr "Ülesannete nimekiri"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:162
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "Tasque Project Homepage"
 msgstr "Ülesandetasku projekti koduleht"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:175
+#: ../src/Gtk.Tasque/GtkTray.cs:173
 msgid "New Task ..."
 msgstr "Uus ülesanne..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:185
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Refresh Tasks ..."
 msgstr "Värskenda ülesandeid..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:191
+#: ../src/Gtk.Tasque/GtkTray.cs:189
 msgid "Toggle Task Window"
 msgstr ""
 
