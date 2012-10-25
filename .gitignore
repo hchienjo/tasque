@@ -132,3 +132,7 @@ Makefile.in
 /tests/*.mdb
 /tests/*.pdb
 /tests/obj/
+
+# /WindowsSetup/
+/WindowsSetup/obj/
+/WindowsSetup/bin/
