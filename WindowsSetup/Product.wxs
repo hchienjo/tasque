@@ -2,104 +2,343 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Product Id="*" Name="Tasque" Language="1033" Version="0.1.12" Manufacturer="Tasque Project" UpgradeCode="d4720f75-fd29-4014-9fbe-bd5a6473c48f">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-    
-    <Upgrade Id="d4720f75-fd29-4014-9fbe-bd5a6473c48f">
-      <UpgradeVersion Minimum="0.1.9" IncludeMinimum="yes" Maximum="0.1.12" Property="OLDERVERSIONBEINGUPGRADED" />
-      <UpgradeVersion Maximum="0.1.12" OnlyDetect="yes" Property="NEWVERSIONDETECTED" />
-    </Upgrade>
-    
-    <Condition Message="A later version of [ProductName] is already installed.&#xD;&#xA;If you intend to downgrade, please remove the other version first.">
-			NOT NEWERVERSIONDETECTED OR Installed
-		</Condition>
-    
-    <InstallExecuteSequence>
-			<RemoveExistingProducts After="InstallExecute"/>
-		</InstallExecuteSequence>
-    
-    <!--
-			Source media for the installation. 
- 			Specifies a single cab file to be embedded in the installer's .msi. 
-		-->
-		<Media Id="1" Cabinet="contents.cab" EmbedCab="yes" CompressionLevel="high"/>
-    
-    <!-- Installation directory and files are defined in Files.wxs -->
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramMenuFolder" Name="Programs" />
-			<Directory Id="DesktopFolder" Name="Desktop" />
-		</Directory>
 
-		<!--
-			The install directory will be stored in the registry 
-			this way, future "upgrades" can auto-detect where to go
-			TODO: HKLM access requires elevation on Vista, but so do
-				"Program Files" installs. If we want non-elevated users
-				to be able to install this as smoothly (outside of the
-				"Program Files" folder), we need to fall back to HKCU?
-		-->
-		<Property Id="INSTALLDIR">
-			<RegistrySearch Id='SearchTasqueInstallDir' Type='directory' Root='HKLM' Key='Software\Tasque' Name='InstallDir' />
-		</Property>
-		
-		
-		<Property Id="GTKSHARPNOVELLINSTALLVERSION">
-			<RegistrySearch Id='GtksharpnovellRegistry' Type='raw' Root='HKLM' Key='Software\Novell\GtkSharp\Version' />
-		</Property>
-		<Condition Message="This setup requires Gtk# for .NET (version 2.12.8 or higher). Please download the latest installer from http://www.mono-project.com/GtkSharp ">
-			<![CDATA[GTKSHARPNOVELLINSTALLVERSION >= "2.12.8" OR (GTKSHARPNOVELLINSTALLVERSION << "2.12.1" AND GTKSHARPNOVELLINSTALLVERSION <> "2.12.1") OR REMOVE ~= "ALL"]]>
-		</Condition>
-		<Condition Message='This setup requires the .NET Framework 2.0 or higher.'>
-			<![CDATA[MsiNetAssemblySupport >= "2.0.50727"]]>
-		</Condition>
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
 
-		
-		<PropertyRef Id="NETFRAMEWORK35"/>
-		<Condition Message="This application requires .NET Framework 3.5. Please install the .NET Framework then run this installer again.">
-			<![CDATA[Installed OR NETFRAMEWORK35]]>
-		</Condition>
+    <Feature Id="TasqueFeature" Title="Tasque" Level="1">
+      <ComponentGroupRef Id="TasqueComponents" />
+      <ComponentGroupRef Id="TasqueResources" />
+    </Feature>
+  </Product>
 
-
-		<Feature ConfigurableDirectory="INSTALLDIR" TypicalDefault="install" 
-					Id="Tasque"
-		         Title="Tasque"
-		         Description="Manage tasks and stay organized."
-		         Level="1">
-		         <ComponentRef Id="TomboyCore"/>
-		         <ComponentRef Id="INSTALLDIR"/>
-		         <ComponentRef Id="Note_newPng"/>
-		         <ComponentRef Id="TomboyPng"/>
-		         <ComponentRef Id="Pin_activePng"/>
-		         <ComponentRef Id="Pin_downPng"/>
-		         <ComponentRef Id="Pin_upPng"/>
-		         <ComponentRef Id="Filter_note_allPng"/>
-		         <ComponentRef Id="Filter_note_unfiledPng"/>
-		         <ComponentRef Id="AppsTomboyPng"/>
-		         <ComponentRef Id="NotePng"/>
-		         <ComponentRef Id="NotebookPng"/>
-		         <ComponentRef Id="AppsTomboyPng1"/>
-		         <ComponentRef Id="AppsTomboyPng2"/>
-		         <ComponentRef Id="Notebook_newPng"/>
-		         <ComponentRef Id="AppsTomboyPng3"/>
-		         <ComponentRef Id="TomboySvg"/>
-		</Feature>
-		
-		<WixVariable Id="WixUIDialogBmp" Value="DlgBmp.bmp" />
-		<WixVariable Id="WixUIBannerBmp" Value="BannrBmp.bmp" />
-		
-		<!-- 
-			Using the Wix UI library
- 
-			WixUI_InstallDir does not allow the user to choose 
-			features but adds a dialog to let the user choose a 
-			directory where the product will be installed
-		-->
-		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
-		<UIRef Id="WixUI_InstallDir"/>
-
-		<Icon Id="Tomboy.exe" SourceFile="..\bin\Debug\Tomboy.exe" />
-		
-		<!-- Icon for "Add/Remove programs" entry and help link -->
-		<Icon Id="icon.ico" SourceFile="..\data\icons\tomboy.ico" />
-		<Property Id="ARPPRODUCTICON" Value="icon.ico" />
-		<Property Id="ARPHELPLINK" Value="http://projects.gnome.org/tomboy/" />
-	</Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="Tasque">
+          <Directory Id="tasque" Name="tasque">
+            <Directory Id="icons" Name="icons">
+              <Directory Id="hicolor" Name="hicolor">
+                <Directory Id="_6x16" Name="16x16">
+                  <Directory Id="actions16" Name="actions" />
+                  <Directory Id="apps16" Name="apps" />
+                  <Directory Id="places16" Name="places" />
+                  <Directory Id="status16" Name="status" />
+                </Directory>
+                <Directory Id="_2x22" Name="22x22">
+                  <Directory Id="actions22" Name="actions" />
+                  <Directory Id="apps22" Name="apps" />
+                  <Directory Id="places22" Name="places" />
+                  <Directory Id="status22" Name="status" />
+                </Directory>
+                <Directory Id="_4x24" Name="24x24">
+                  <Directory Id="actions24" Name="actions" />
+                  <Directory Id="apps24" Name="apps" />
+                  <Directory Id="places24" Name="places" />
+                  <Directory Id="status24" Name="status" />
+                </Directory>
+                <Directory Id="_2x32" Name="32x32">
+                  <Directory Id="actions32" Name="actions" />
+                  <Directory Id="apps32" Name="apps" />
+                  <Directory Id="places32" Name="places" />
+                  <Directory Id="status32" Name="status" />
+                </Directory>
+                <Directory Id="_8x48" Name="48x48">
+                  <Directory Id="actions48" Name="actions" />
+                  <Directory Id="apps48" Name="apps" />
+                  <Directory Id="places48" Name="places" />
+                  <Directory Id="status48" Name="status" />
+                </Directory>
+                <Directory Id="_28x128" Name="128x128">
+                  <Directory Id="actions128" Name="actions" />
+                  <Directory Id="apps128" Name="apps" />
+                  <Directory Id="places128" Name="places" />
+                  <Directory Id="status128" Name="status" />
+                </Directory>
+                <Directory Id="scalable" Name="scalable">
+                  <Directory Id="actions" Name="actions" />
+                  <Directory Id="apps" Name="apps" />
+                  <Directory Id="places" Name="places" />
+                  <Directory Id="status" Name="status" />
+                </Directory>
+              </Directory>
+            </Directory>
+            <Directory Id="sounds" Name="sounds" />
+            <Directory Id="locale" Name="locale">
+              <Directory Id="ca" Name="ca">
+                <Directory Id="ca_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="ca_valencia" Name="ca@valencia">
+                <Directory Id="ca_valencia_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="cs" Name="cs">
+                <Directory Id="cs_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="da" Name="da">
+                <Directory Id="da_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="de" Name="de">
+                <Directory Id="de_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="el" Name="el">
+                <Directory Id="el_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="en_gb" Name="en_GB">
+                <Directory Id="en_gb_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="eo" Name="eo">
+                <Directory Id="eo_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="es" Name="es">
+                <Directory Id="es_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="et" Name="et">
+                <Directory Id="et_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="fi" Name="fi">
+                <Directory Id="fi_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="fr" Name="fr">
+                <Directory Id="fr_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="gl" Name="gl">
+                <Directory Id="gl_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="hu" Name="hu">
+                <Directory Id="hu_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="id" Name="id">
+                <Directory Id="id_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="it" Name="it">
+                <Directory Id="it_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="ja" Name="ja">
+                <Directory Id="ja_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="lv" Name="lv">
+                <Directory Id="lv_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="nb" Name="nb">
+                <Directory Id="nb_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="nds" Name="nds">
+                <Directory Id="nds_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="nl" Name="nl">
+                <Directory Id="nl_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="pl" Name="pl">
+                <Directory Id="pl_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="pt" Name="pt">
+                <Directory Id="pt_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="pt_br" Name="pt_BR">
+                <Directory Id="pt_br_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="ro" Name="ro">
+                <Directory Id="ro_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="ru" Name="ru">
+                <Directory Id="ru_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="sl" Name="sl">
+                <Directory Id="sl_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="sr" Name="sr">
+                <Directory Id="sr_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="sr_latin" Name="sr@latin">
+                <Directory Id="sr_latin_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="sv" Name="sv">
+                <Directory Id="sv_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="th" Name="th">
+                <Directory Id="th_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="tr" Name="tr">
+                <Directory Id="tr_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="zh_cn" Name="zh_CN">
+                <Directory Id="zh_cn_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+              <Directory Id="zh_tw" Name="zh_TW">
+                <Directory Id="zh_TW_lc_msg" Name="LC_MESSAGES" />
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+  
+  <Fragment>
+    <ComponentGroup Id="TasqueComponents" Directory="INSTALLFOLDER">
+      <Component Id="TasqueCore">
+        <File Source="..\build\bin\lib\tasque\Tasque.exe" />
+        <File Source="..\build\bin\lib\tasque\libtasque.dll" />
+        <File Source="..\build\bin\lib\tasque\Gtk.Tasque.dll" />
+      </Component>
+      <Component Id="RtmBackend">
+        <File Source="..\build\bin\lib\tasque\RtmBackend.dll" />
+        <File Source="..\build\bin\lib\tasque\RtmNet.dll" />
+      </Component>
+      <Component Id="SqliteBackend">
+        <File Source="..\build\bin\lib\tasque\SqliteBackend.dll" />
+        <File Source="..\build\bin\lib\tasque\Mono.Data.Sqlite.dll" />
+        <File Source="..\build\bin\lib\tasque\sqlite3.dll" />
+      </Component>
+    </ComponentGroup>
+    <ComponentGroup Id="TasqueResources">
+      <Component Id="_16_apps" Directory="apps16">
+        <File Id="tasque16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque.png" />
+        <File Id="tasque_panel16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque-panel.png" />
+      </Component>
+      <Component Id="_16_status" Directory="status16">
+        <File Name="tasque-completing-0.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-0.png" />
+        <File Name="tasque-completing-1.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-1.png" />
+        <File Name="tasque-completing-2.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-2.png" />
+        <File Name="tasque-completing-3.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-3.png" />
+        <File Name="tasque-completing-4.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-4.png" />
+        <File Name="tasque-completing-5.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-5.png" />
+        <File Name="tasque-completing-6.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-6.png" />
+        <File Name="tasque-completing-7.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-7.png" />
+        <File Name="tasque-completing-8.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-8.png" />
+        <File Name="tasque-completing-9.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-9.png" />
+        <File Name="tasque-completing-10.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-10.png" />
+        <File Name="tasque-completing-11.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-11.png" />
+        <File Name="tasque-note.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-note.png" />
+      </Component>
+      <!-- Icons -->
+      <Component Id="_22_apps" Directory="apps22">
+        <File Id="tasque22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque.png" />
+        <File Id="tasque_panel22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque-panel.png" />
+      </Component>
+      <Component Id="_24_apps" Directory="apps24">
+        <File Id="tasque24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque.png" />
+        <File Id="tasque_panel24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque-panel.png" />
+      </Component>
+      <Component Id="_32_apps" Directory="apps32">
+        <File Id="tasque32" Source="..\build\bin\share\icons\hicolor\32x32\apps\tasque.png" />
+      </Component>
+      <Component Id="_48_apps" Directory="apps48">
+        <File Id="tasque48" Source="..\build\bin\share\icons\hicolor\48x48\apps\tasque.png" />
+      </Component>
+      <Component Id="_128_places" Directory="places128">
+        <File Source="..\build\bin\share\tasque\icons\hicolor\128x128\places\tasque-rtm-logo.png" />
+      </Component>
+      <Component Id="_scalable" Directory="scalable">
+        <File Source="..\build\bin\share\icons\hicolor\scalable\apps\tasque.svg" />
+      </Component>
+      <!-- Sounds -->
+      <Component Id="_sounds" Directory="sounds">
+        <File Source="..\build\bin\share\tasque\sounds\notify.wav" />
+      </Component>
+      <!-- Locales -->
+      <Component Id="_ca" Directory="ca">
+        <File Id="ca.mo" Source="..\build\bin\share\locale\ca\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ca_valencia" Directory="ca_valencia_lc_msg">
+        <File Id="ca_valencia.mo" Source="..\build\bin\share\locale\ca@valencia\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_cs" Directory="cs_lc_msg">
+        <File Id="cs.mo" Source="..\build\bin\share\locale\cs\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_da" Directory="da_lc_msg">
+        <File Id="da.mo" Source="..\build\bin\share\locale\da\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_de" Directory="de_lc_msg">
+        <File Id="de.mo" Source="..\build\bin\share\locale\de\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_el" Directory="el_lc_msg">
+        <File Id="el.mo" Source="..\build\bin\share\locale\el\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_en_gb" Directory="en_gb_lc_msg">
+        <File Id="en_gb.mo" Source="..\build\bin\share\locale\en_GB\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_eo" Directory="eo_lc_msg">
+        <File Id="eo.mo" Source="..\build\bin\share\locale\eo\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_es" Directory="es_lc_msg">
+        <File Id="es.mo" Source="..\build\bin\share\locale\es\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_et" Directory="et_lc_msg">
+        <File Id="et.mo" Source="..\build\bin\share\locale\et\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_fi" Directory="fi_lc_msg">
+        <File Id="fi.mo" Source="..\build\bin\share\locale\fi\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_fr" Directory="fr_lc_msg">
+        <File Id="fr.mo" Source="..\build\bin\share\locale\fr\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_gl" Directory="gl_lc_msg">
+        <File Id="gl.mo" Source="..\build\bin\share\locale\gl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_hu" Directory="hu_lc_msg">
+        <File Id="hu.mo" Source="..\build\bin\share\locale\hu\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_id" Directory="id_lc_msg">
+        <File Id="id.mo" Source="..\build\bin\share\locale\id\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_it" Directory="it_lc_msg">
+        <File Id="it.mo" Source="..\build\bin\share\locale\it\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ja" Directory="ja_lc_msg">
+        <File Id="ja.mo" Source="..\build\bin\share\locale\ja\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_lv" Directory="lv_lc_msg">
+        <File Id="lv.mo" Source="..\build\bin\share\locale\lv\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_nb" Directory="nb_lc_msg">
+        <File Id="nb.mo" Source="..\build\bin\share\locale\nb\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_nds" Directory="nds_lc_msg">
+        <File Id="nds.mo" Source="..\build\bin\share\locale\nds\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_nl" Directory="nl_lc_msg">
+        <File Id="nl.mo" Source="..\build\bin\share\locale\nl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_pl" Directory="pl_lc_msg">
+        <File Id="pl.mo" Source="..\build\bin\share\locale\pl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_pt" Directory="pt_lc_msg">
+        <File Id="pt.mo" Source="..\build\bin\share\locale\pt\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_pt_br" Directory="pt_br_lc_msg">
+        <File Id="pt_br.mo" Source="..\build\bin\share\locale\pt_BR\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ro" Directory="ro_lc_msg">
+        <File Id="ro.mo" Source="..\build\bin\share\locale\ro\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ru" Directory="ru_lc_msg">
+        <File Id="ru.mo" Source="..\build\bin\share\locale\ru\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sl" Directory="sl_lc_msg">
+        <File Id="sl.mo" Source="..\build\bin\share\locale\sl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sr" Directory="sr_lc_msg">
+        <File Id="sr.mo" Source="..\build\bin\share\locale\sr\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sr_latin" Directory="sr_latin_lc_msg">
+        <File Id="sr_latin.mo" Source="..\build\bin\share\locale\sr@latin\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sv" Directory="sv_lc_msg">
+        <File Id="sv.mo" Source="..\build\bin\share\locale\sv\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_th" Directory="th_lc_msg">
+        <File Id="th.mo" Source="..\build\bin\share\locale\th\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_tr" Directory="tr_lc_msg">
+        <File Id="tr.mo" Source="..\build\bin\share\locale\tr\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_zh_cn" Directory="zh_cn_lc_msg">
+        <File Id="zh_cn.mo" Source="..\build\bin\share\locale\zh_CN\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_zh_tw" Directory="zh_TW_lc_msg">
+        <File Id="zh_tw.mo" Source="..\build\bin\share\locale\zh_TW\LC_MESSAGES\tasque.mo" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
 </Wix>
