@@ -53,6 +53,9 @@ namespace Tasque
 
 			// add package icon path to default icon theme search paths
 			Gtk.IconTheme.Default.PrependSearchPath (Defines.IconsDir);
+#if WIN && DEBUG
+			Gtk.IconTheme.Default.PrependSearchPath (Defines.DataDir + "\\icons");
+#endif
 		}
 
 		public virtual void InitializeIdle ()
