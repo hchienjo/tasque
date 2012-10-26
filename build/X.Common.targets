@@ -184,7 +184,6 @@
         <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe%22</IntlToolMerge>
         <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe%22</IntlToolUpdate>
         <MsgFmt Condition=" '$(MsgFmt)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe%22</MsgFmt>
-        <UpdateIconCache Condition=" '$(UpdateIconCache)' == '' ">%22$(MSBuildProgramFiles32)\GTK2-Runtime\bin\gtk-update-icon-cache.exe%22</UpdateIconCache>
       </PropertyGroup>
     </When>
     <Otherwise>
@@ -192,7 +191,6 @@
         <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
         <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">intltool-update</IntlToolUpdate>
         <MsgFmt Condition=" '$(MsgFmt)' == '' ">msgfmt</MsgFmt>
-        <UpdateIconCache Condition=" '$(UpdateIconCache)' == '' ">gtk-update-icon-cache</UpdateIconCache>
       </PropertyGroup>
     </Otherwise>
   </Choose>
@@ -306,7 +304,6 @@
       CoreInstall;
       _FixPermissions;
       AfterInstall;
-      _UpdateIconCache;
     </InstallDependsOn>
   </PropertyGroup>
   <Target Name="Install" DependsOnTargets="$(InstallDependsOn)" />
@@ -329,7 +326,6 @@
       SetupInstallFile;
       CoreUninstall;
       AfterUninstall;
-      _UpdateIconCache;
     </UninstallDependsOn>
   </PropertyGroup>
   <Target Name="Uninstall" DependsOnTargets="$(UninstallDependsOn)" />
@@ -409,11 +405,6 @@
         AdditionalMetadata="InstallPath=$(LocaleDir)\%(GettextCompile.FileName)\LC_MESSAGES;InstallFileName=$(PackageName).mo;Executable=false" >
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
-  </Target>
-  
-  <Target Name="_UpdateIconCache" Condition=" '@(Icon)' != '' Or '@(PkgIcon)' != '' ">
-    <Exec Command="$(UpdateIconCache) -f -t $(HiColorDir)" IgnoreExitCode="true" />
-    <Exec Command="$(UpdateIconCache) -f -t $(PkgHiColorDir)" IgnoreExitCode="true" />
   </Target>
   
   <Target Name="_FixPermissions" Condition=" '$(OS)' != 'Windows_NT' ">
