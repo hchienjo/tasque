@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <ComponentGroup Id="TasqueResources">
+      <!-- Icons -->
+      <Component Id="_16_apps" Directory="apps16" Guid="FF7D5308-5446-4278-91D3-177FA8704560">
+        <File Id="tasque16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque.png" />
+        <File Id="tasque_panel16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque-panel.png" />
+      </Component>
+      <Component Id="_16_status" Directory="status16" Guid="5267A4F8-2564-4679-BC1E-9942BDAEA075">
+        <File Name="tasque-completing-0.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-0.png" />
+        <File Name="tasque-completing-1.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-1.png" />
+        <File Name="tasque-completing-2.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-2.png" />
+        <File Name="tasque-completing-3.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-3.png" />
+        <File Name="tasque-completing-4.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-4.png" />
+        <File Name="tasque-completing-5.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-5.png" />
+        <File Name="tasque-completing-6.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-6.png" />
+        <File Name="tasque-completing-7.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-7.png" />
+        <File Name="tasque-completing-8.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-8.png" />
+        <File Name="tasque-completing-9.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-9.png" />
+        <File Name="tasque-completing-10.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-10.png" />
+        <File Name="tasque-completing-11.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-11.png" />
+        <File Name="tasque-note.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-note.png" />
+      </Component>
+      <Component Id="_22_apps" Directory="apps22" Guid="6A050B6E-D10F-427D-BC14-7DA5F67B6462">
+        <File Id="tasque22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque.png" />
+        <File Id="tasque_panel22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque-panel.png" />
+      </Component>
+      <Component Id="_24_apps" Directory="apps24" Guid="955BDF73-3663-4D94-B522-7828E176D701">
+        <File Id="tasque24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque.png" />
+        <File Id="tasque_panel24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque-panel.png" />
+      </Component>
+      <Component Id="_32_apps" Directory="apps32">
+        <File Id="tasque32" Source="..\build\bin\share\icons\hicolor\32x32\apps\tasque.png" />
+      </Component>
+      <Component Id="_48_apps" Directory="apps48">
+        <File Id="tasque48" Source="..\build\bin\share\icons\hicolor\48x48\apps\tasque.png" />
+      </Component>
+      <Component Id="_128_places" Directory="places128">
+        <File Source="..\build\bin\share\tasque\icons\hicolor\128x128\places\tasque-rtm-logo.png" />
+      </Component>
+      <Component Id="_scalable" Directory="scalable">
+        <File Source="..\build\bin\share\icons\hicolor\scalable\apps\tasque.svg" />
+      </Component>
+      <!-- Sounds -->
+      <Component Id="_sounds" Directory="sounds">
+        <File Source="..\build\bin\share\tasque\sounds\notify.wav" />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

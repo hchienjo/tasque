@@ -21,7 +21,9 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Locales.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="Resources.wxs" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

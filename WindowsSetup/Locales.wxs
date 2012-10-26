@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <ComponentGroup Id="TasqueLocales">
+      <Component Id="_ca" Directory="ca">
+        <File Id="ca.mo" Source="..\build\bin\share\locale\ca\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ca_valencia" Directory="ca_valencia_lc_msg">
+        <File Id="ca_valencia.mo" Source="..\build\bin\share\locale\ca@valencia\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_cs" Directory="cs_lc_msg">
+        <File Id="cs.mo" Source="..\build\bin\share\locale\cs\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_da" Directory="da_lc_msg">
+        <File Id="da.mo" Source="..\build\bin\share\locale\da\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_de" Directory="de_lc_msg">
+        <File Id="de.mo" Source="..\build\bin\share\locale\de\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_el" Directory="el_lc_msg">
+        <File Id="el.mo" Source="..\build\bin\share\locale\el\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_en_gb" Directory="en_gb_lc_msg">
+        <File Id="en_gb.mo" Source="..\build\bin\share\locale\en_GB\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_eo" Directory="eo_lc_msg">
+        <File Id="eo.mo" Source="..\build\bin\share\locale\eo\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_es" Directory="es_lc_msg">
+        <File Id="es.mo" Source="..\build\bin\share\locale\es\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_et" Directory="et_lc_msg">
+        <File Id="et.mo" Source="..\build\bin\share\locale\et\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_fi" Directory="fi_lc_msg">
+        <File Id="fi.mo" Source="..\build\bin\share\locale\fi\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_fr" Directory="fr_lc_msg">
+        <File Id="fr.mo" Source="..\build\bin\share\locale\fr\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_gl" Directory="gl_lc_msg">
+        <File Id="gl.mo" Source="..\build\bin\share\locale\gl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_hu" Directory="hu_lc_msg">
+        <File Id="hu.mo" Source="..\build\bin\share\locale\hu\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_id" Directory="id_lc_msg">
+        <File Id="id.mo" Source="..\build\bin\share\locale\id\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_it" Directory="it_lc_msg">
+        <File Id="it.mo" Source="..\build\bin\share\locale\it\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ja" Directory="ja_lc_msg">
+        <File Id="ja.mo" Source="..\build\bin\share\locale\ja\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_lv" Directory="lv_lc_msg">
+        <File Id="lv.mo" Source="..\build\bin\share\locale\lv\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_nb" Directory="nb_lc_msg">
+        <File Id="nb.mo" Source="..\build\bin\share\locale\nb\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_nds" Directory="nds_lc_msg">
+        <File Id="nds.mo" Source="..\build\bin\share\locale\nds\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_nl" Directory="nl_lc_msg">
+        <File Id="nl.mo" Source="..\build\bin\share\locale\nl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_pl" Directory="pl_lc_msg">
+        <File Id="pl.mo" Source="..\build\bin\share\locale\pl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_pt" Directory="pt_lc_msg">
+        <File Id="pt.mo" Source="..\build\bin\share\locale\pt\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_pt_br" Directory="pt_br_lc_msg">
+        <File Id="pt_br.mo" Source="..\build\bin\share\locale\pt_BR\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ro" Directory="ro_lc_msg">
+        <File Id="ro.mo" Source="..\build\bin\share\locale\ro\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_ru" Directory="ru_lc_msg">
+        <File Id="ru.mo" Source="..\build\bin\share\locale\ru\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sl" Directory="sl_lc_msg">
+        <File Id="sl.mo" Source="..\build\bin\share\locale\sl\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sr" Directory="sr_lc_msg">
+        <File Id="sr.mo" Source="..\build\bin\share\locale\sr\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sr_latin" Directory="sr_latin_lc_msg">
+        <File Id="sr_latin.mo" Source="..\build\bin\share\locale\sr@latin\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_sv" Directory="sv_lc_msg">
+        <File Id="sv.mo" Source="..\build\bin\share\locale\sv\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_th" Directory="th_lc_msg">
+        <File Id="th.mo" Source="..\build\bin\share\locale\th\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_tr" Directory="tr_lc_msg">
+        <File Id="tr.mo" Source="..\build\bin\share\locale\tr\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_zh_cn" Directory="zh_cn_lc_msg">
+        <File Id="zh_cn.mo" Source="..\build\bin\share\locale\zh_CN\LC_MESSAGES\tasque.mo" />
+      </Component>
+      <Component Id="_zh_tw" Directory="zh_TW_lc_msg">
+        <File Id="zh_tw.mo" Source="..\build\bin\share\locale\zh_TW\LC_MESSAGES\tasque.mo" />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>
