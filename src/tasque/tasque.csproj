@@ -94,6 +94,7 @@
   <ItemGroup>
     <Substitute Include="tasque.in" />
     <Substitute Include="tasque.pc.in" />
+    <Substitute Include="Tasque.exe.Defines.config.in" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -104,6 +105,9 @@
   </Target>
   <Target Name="SetupInstallFile">
     <CreateItem Condition="'$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' " Include="$(SrcDir)\Tasque.exe.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.config;Executable=false">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Include="Tasque.exe.Defines.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.Defines.config;Executable=false">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
     <CreateItem Include="tasque.pc" AdditionalMetadata="InstallPath=$(PkgConfigDir);InstallFileName=tasque.pc;Executable=false">

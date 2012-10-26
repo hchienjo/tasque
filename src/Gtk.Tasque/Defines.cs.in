@@ -2,7 +2,11 @@
  *  Defines.cs.in
  *
  *  Copyright (C) 2008 Novell, Inc.
- *  Written by Calvin Gaisford <calvinrg@gmail.com>
+ *  Copyright (C) 2012 Antonius Riha
+ *  
+ *  Written by
+ *  	Calvin Gaisford <calvinrg@gmail.com>
+ *  	Antonius Riha <antoniusriha@gmail.com>
  ****************************************************************************/
 
 /*  THIS FILE IS LICENSED UNDER THE MIT LICENSE AS OUTLINED IMMEDIATELY BELOW: 
@@ -26,20 +30,28 @@
  *  DEALINGS IN THE SOFTWARE.
  */
 
-using System;
+using System.Configuration;
 using System.IO;
 
 namespace Tasque
 {
-	public class Defines
+	public static class Defines
 	{
-		public const string Version		= @"@version@";
-		public const string DataDir		= @"@datadir@";
-		public static string LocaleDir	= Path.Combine (@"@datadir@", "locale");
-		public static string IconsDir	= Path.Combine (@"@datadir@", "tasque", "icons");
-		public static string SoundDir	= Path.Combine (@"@datadir@", "tasque", "sounds");
-#if WIN
-		public static string GlobalIconsDir = Path.Combine (@"@datadir@", "icons");
-#endif
+		static Defines ()
+		{
+			var definesCfgFileMap = new ExeConfigurationFileMap ();
+			definesCfgFileMap.ExeConfigFilename = "Tasque.exe.Defines.config";
+			var cfg = ConfigurationManager.OpenMappedExeConfiguration (definesCfgFileMap, ConfigurationUserLevel.None);
+
+			var appSettings = cfg.AppSettings;
+			DataDir = appSettings.Settings ["DataDir"].Value;
+		}
+
+		public const string Version = @"@version@";
+		public static readonly string DataDir;
+
+		public static string LocaleDir { get { return Path.Combine (DataDir, "locale"); } }
+		public static string IconsDir { get { return Path.Combine (DataDir, "tasque", "icons"); } }
+		public static string SoundDir { get { return Path.Combine (DataDir, "tasque", "sounds"); } }
 	}
 }

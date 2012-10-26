@@ -103,6 +103,7 @@ Makefile.in
 /src/tasque/obj/
 !/src/tasque/Makefile.in
 /src/tasque/locale/
+/src/tasque/Tasque.exe.Defines.config
 
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll
