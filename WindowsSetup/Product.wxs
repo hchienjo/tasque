@@ -176,27 +176,27 @@
   
   <Fragment>
     <ComponentGroup Id="TasqueComponents" Directory="INSTALLFOLDER">
-      <Component Id="TasqueCore">
+      <Component Id="TasqueCore" Guid="9243C6FE-AE86-4F7B-B446-CB4D01993D6A">
         <File Source="..\build\bin\lib\tasque\Tasque.exe" />
         <File Source="..\build\bin\lib\tasque\libtasque.dll" />
         <File Source="..\build\bin\lib\tasque\Gtk.Tasque.dll" />
       </Component>
-      <Component Id="RtmBackend">
+      <Component Id="RtmBackend" Guid="A7B0E0A4-0819-46AF-AD95-BC4D987B7AD2">
         <File Source="..\build\bin\lib\tasque\RtmBackend.dll" />
         <File Source="..\build\bin\lib\tasque\RtmNet.dll" />
       </Component>
-      <Component Id="SqliteBackend">
+      <Component Id="SqliteBackend" Guid="78130250-7C68-4A44-B4AA-9209C2C6BD2C">
         <File Source="..\build\bin\lib\tasque\SqliteBackend.dll" />
         <File Source="..\build\bin\lib\tasque\Mono.Data.Sqlite.dll" />
         <File Source="..\build\bin\lib\tasque\sqlite3.dll" />
       </Component>
     </ComponentGroup>
     <ComponentGroup Id="TasqueResources">
-      <Component Id="_16_apps" Directory="apps16">
+      <Component Id="_16_apps" Directory="apps16" Guid="FF7D5308-5446-4278-91D3-177FA8704560">
         <File Id="tasque16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque.png" />
         <File Id="tasque_panel16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque-panel.png" />
       </Component>
-      <Component Id="_16_status" Directory="status16">
+      <Component Id="_16_status" Directory="status16" Guid="5267A4F8-2564-4679-BC1E-9942BDAEA075">
         <File Name="tasque-completing-0.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-0.png" />
         <File Name="tasque-completing-1.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-1.png" />
         <File Name="tasque-completing-2.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-2.png" />
@@ -212,11 +212,11 @@
         <File Name="tasque-note.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-note.png" />
       </Component>
       <!-- Icons -->
-      <Component Id="_22_apps" Directory="apps22">
+      <Component Id="_22_apps" Directory="apps22" Guid="6A050B6E-D10F-427D-BC14-7DA5F67B6462">
         <File Id="tasque22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque.png" />
         <File Id="tasque_panel22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque-panel.png" />
       </Component>
-      <Component Id="_24_apps" Directory="apps24">
+      <Component Id="_24_apps" Directory="apps24" Guid="955BDF73-3663-4D94-B522-7828E176D701">
         <File Id="tasque24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque.png" />
         <File Id="tasque_panel24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque-panel.png" />
       </Component>
