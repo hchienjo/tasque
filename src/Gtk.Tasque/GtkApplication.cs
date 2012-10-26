@@ -49,6 +49,8 @@ namespace Tasque
 		
 		public virtual void Initialize (string locale_dir, string display_name, string process_name, string[] args)
 		{
+			Mono.Unix.Catalog.Init ("tasque", Defines.LocaleDir);
+
 			Gtk.Application.Init ();
 
 			// add package icon path to default icon theme search paths
