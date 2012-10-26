@@ -181,10 +181,10 @@
   <Choose>
     <When Condition=" '$(OS)' == 'Windows_NT' ">
       <PropertyGroup>
-        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe</IntlToolMerge>
-        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe</IntlToolUpdate>
-        <MsgFmt Condition=" '$(MsgFmt)' == '' ">$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe</MsgFmt>
-        <UpdateIconCache Condition=" '$(UpdateIconCache)' == '' ">$(MSBuildProgramFiles32)\GTK2-Runtime\bin\gtk-update-icon-cache.exe</UpdateIconCache>
+        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe%22</IntlToolMerge>
+        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe%22</IntlToolUpdate>
+        <MsgFmt Condition=" '$(MsgFmt)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe%22</MsgFmt>
+        <UpdateIconCache Condition=" '$(UpdateIconCache)' == '' ">%22$(MSBuildProgramFiles32)\GTK2-Runtime\bin\gtk-update-icon-cache.exe%22</UpdateIconCache>
       </PropertyGroup>
     </When>
     <Otherwise>
