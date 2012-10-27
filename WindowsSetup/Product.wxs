@@ -18,7 +18,7 @@
       <RegistrySearch Id='SearchTasqueInstallFolder' Type='directory' Root='HKLM' Key='Software\Tasque' Name='InstallFolder' />
     </Property>
 
-    <Feature Id="TasqueFeature" Title="Tasque" Level="1">
+    <Feature Id="Complete" Title="Complete" Level="1">
       <ComponentGroupRef Id="TasqueComponents" />
       <ComponentGroupRef Id="TasqueResources" />
       <ComponentGroupRef Id="TasqueLocales" />
