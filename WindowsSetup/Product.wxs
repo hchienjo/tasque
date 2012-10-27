@@ -6,6 +6,18 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate />
 
+    <!--
+			The install directory will be stored in the registry 
+			this way, future "upgrades" can auto-detect where to go
+			TODO: HKLM access requires elevation on Vista, but so do
+				"Program Files" installs. If we want non-elevated users
+				to be able to install this as smoothly (outside of the
+				"Program Files" folder), we need to fall back to HKCU?
+		-->
+    <Property Id="INSTALLFOLDER">
+      <RegistrySearch Id='SearchTasqueInstallFolder' Type='directory' Root='HKLM' Key='Software\Tasque' Name='InstallFolder' />
+    </Property>
+
     <Feature Id="TasqueFeature" Title="Tasque" Level="1">
       <ComponentGroupRef Id="TasqueComponents" />
       <ComponentGroupRef Id="TasqueResources" />
