@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 	<Product Id="*" Name="Tasque" Language="1033" Version="0.1.12" Manufacturer="Tasque Project" UpgradeCode="d4720f75-fd29-4014-9fbe-bd5a6473c48f">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -29,6 +29,9 @@
     <ComponentGroup Id="TasqueComponents" Directory="INSTALLFOLDER">
       <Component Id="TasqueCore" Guid="9243C6FE-AE86-4F7B-B446-CB4D01993D6A">
         <File Source="..\build\bin\lib\tasque\Tasque.exe" />
+        <File Id="Tasque.exe.Defines.config" Source="..\build\bin\lib\tasque\Tasque.exe.Defines.config" />
+        <util:XmlFile Id="DataDirSetting" Action="setValue" Permanent="yes" File="[#Tasque.exe.Defines.config]"
+                      ElementPath="/configuration/appSettings/add[\[]@key='DataDir'[\]]" Name="value" Value="[DATADIR]" />
         <File Source="..\build\bin\lib\tasque\libtasque.dll" />
         <File Source="..\build\bin\lib\tasque\Gtk.Tasque.dll" />
       </Component>
