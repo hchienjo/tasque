@@ -36,7 +36,6 @@
         <File Source="..\build\bin\lib\tasque\Gtk.Tasque.dll" />
       </Component>
       <Component Id="UninstallInstallFolder" Guid="5360373A-0468-4B0C-A165-83F7EFACB8DA">
-        <RemoveFolder Id="UninstallInstallFolder" On="uninstall" />
         <RegistryKey Root="HKLM" Key="Software\Tasque">
           <RegistryValue Id="WriteTasqueInstallFolder" Name="InstallFolder" Action="write" Type="string" Value="[INSTALLFOLDER]" KeyPath="yes" />
         </RegistryKey>
