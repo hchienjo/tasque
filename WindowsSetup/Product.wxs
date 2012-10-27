@@ -33,11 +33,25 @@
       <![CDATA[Installed OR NETFRAMEWORK40CLIENT]]>
     </Condition>
 
-    <Feature Id="Complete" Title="Complete" Level="1">
+    <Feature Id="Complete" Title="Tasque" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLFOLDER">
       <ComponentGroupRef Id="TasqueComponents" />
       <ComponentGroupRef Id="TasqueResources" />
       <ComponentGroupRef Id="TasqueLocales" />
     </Feature>
+
+    <WixVariable Id="WixUIDialogBmp" Value="DlgBmp.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="BannrBmp.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+
+    <!-- 
+			Using the Wix UI library
+ 
+			WixUI_InstallDir does not allow the user to choose 
+			features but adds a dialog to let the user choose a 
+			directory where the product will be installed
+		-->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir"/>
 
     <Icon Id="Tasque.exe" SourceFile="..\data\images\tasque.ico" />
 
@@ -49,7 +63,8 @@
   
   <Fragment>
     <ComponentGroup Id="TasqueComponents" Directory="INSTALLFOLDER">
-      <Component Id="TasqueCore" Guid="4A92C71A-7FE4-463D-B307-EE79C63614AF">
+      <Component Id="TasqueCore" Guid="FD3B5D67-A2C7-4A69-B243-AAF405748FF5">
+        <File Id="LicenseFile" Source="license.rtf" Name="license.rtf" />
         <File Source="..\build\bin\lib\tasque\Tasque.exe" KeyPath="yes">
           <Shortcut Id="startmenuTasque" Directory="ProgramMenuFolder" Name="Tasque"
                     WorkingDirectory="INSTALLFOLDER" Icon="Tasque.exe" IconIndex="0" Advertise="yes" />
