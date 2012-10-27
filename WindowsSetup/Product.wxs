@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 	<Product Id="*" Name="Tasque" Language="1033" Version="0.1.12" Manufacturer="Tasque Project" UpgradeCode="d4720f75-fd29-4014-9fbe-bd5a6473c48f">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -17,6 +17,21 @@
     <Property Id="INSTALLFOLDER">
       <RegistrySearch Id='SearchTasqueInstallFolder' Type='directory' Root='HKLM' Key='Software\Tasque' Name='InstallFolder' />
     </Property>
+    
+    <Property Id="GTKSHARPNOVELLINSTALLVERSION">
+      <RegistrySearch Id='GtksharpnovellRegistry' Type='raw' Root='HKLM' Key='Software\Novell\GtkSharp\Version' />
+    </Property>
+    <Condition Message="This setup requires Gtk# for .NET (version 2.12.10 or higher). Please download the latest installer from http://www.mono-project.com/GtkSharp ">
+      <![CDATA[GTKSHARPNOVELLINSTALLVERSION >= "2.12.10" OR (GTKSHARPNOVELLINSTALLVERSION << "2.12.1" AND GTKSHARPNOVELLINSTALLVERSION <> "2.12.1") OR REMOVE ~= "ALL"]]>
+    </Condition>
+    <Condition Message='This setup requires the .NET Framework 2.0 or higher.'>
+      <![CDATA[MsiNetAssemblySupport >= "2.0.50727"]]>
+    </Condition>
+
+    <PropertyRef Id="NETFRAMEWORK40CLIENT"/>
+    <Condition Message="This application requires .NET Framework 4.0 Client Profile. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK40CLIENT]]>
+    </Condition>
 
     <Feature Id="Complete" Title="Complete" Level="1">
       <ComponentGroupRef Id="TasqueComponents" />
