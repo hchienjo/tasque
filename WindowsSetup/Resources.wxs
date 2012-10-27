@@ -3,11 +3,11 @@
 	<Fragment>
     <ComponentGroup Id="TasqueResources">
       <!-- Icons -->
-      <Component Id="_16_apps" Directory="apps16" Guid="FF7D5308-5446-4278-91D3-177FA8704560">
-        <File Id="tasque16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque.png" />
+      <Component Id="_16_apps" Directory="apps16" Guid="172A1722-C8C3-427A-AA04-37F954384B9F">
+        <File Id="tasque16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque.png" KeyPath="yes" />
         <File Id="tasque_panel16" Source="..\build\bin\share\icons\hicolor\16x16\apps\tasque-panel.png" />
       </Component>
-      <Component Id="_16_status" Directory="status16" Guid="5267A4F8-2564-4679-BC1E-9942BDAEA075">
+      <Component Id="_16_status" Directory="status16" Guid="30C27891-CCBC-4F8B-B715-D31A9C94D2B0">
         <File Name="tasque-completing-0.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-0.png" />
         <File Name="tasque-completing-1.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-1.png" />
         <File Name="tasque-completing-2.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-2.png" />
@@ -20,31 +20,31 @@
         <File Name="tasque-completing-9.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-9.png" />
         <File Name="tasque-completing-10.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-10.png" />
         <File Name="tasque-completing-11.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-completing-11.png" />
-        <File Name="tasque-note.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-note.png" />
+        <File Name="tasque-note.png" Source="..\build\bin\share\tasque\icons\hicolor\16x16\status\tasque-note.png" KeyPath="yes" />
       </Component>
-      <Component Id="_22_apps" Directory="apps22" Guid="6A050B6E-D10F-427D-BC14-7DA5F67B6462">
-        <File Id="tasque22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque.png" />
+      <Component Id="_22_apps" Directory="apps22" Guid="DCE93957-8117-4C95-9498-7C0D9ED0966B">
+        <File Id="tasque22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque.png" KeyPath="yes" />
         <File Id="tasque_panel22" Source="..\build\bin\share\icons\hicolor\22x22\apps\tasque-panel.png" />
       </Component>
-      <Component Id="_24_apps" Directory="apps24" Guid="955BDF73-3663-4D94-B522-7828E176D701">
-        <File Id="tasque24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque.png" />
+      <Component Id="_24_apps" Directory="apps24" Guid="4E6A3749-1EAA-496B-A652-A37474E1263E">
+        <File Id="tasque24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque.png" KeyPath="yes" />
         <File Id="tasque_panel24" Source="..\build\bin\share\icons\hicolor\24x24\apps\tasque-panel.png" />
       </Component>
-      <Component Id="_32_apps" Directory="apps32">
-        <File Id="tasque32" Source="..\build\bin\share\icons\hicolor\32x32\apps\tasque.png" />
+      <Component Id="_32_apps" Directory="apps32" Guid="E7EA9506-2BA6-41F2-AC1A-7D555E320B7E">
+        <File Id="tasque32" Source="..\build\bin\share\icons\hicolor\32x32\apps\tasque.png" KeyPath="yes" />
       </Component>
-      <Component Id="_48_apps" Directory="apps48">
-        <File Id="tasque48" Source="..\build\bin\share\icons\hicolor\48x48\apps\tasque.png" />
+      <Component Id="_48_apps" Directory="apps48" Guid="c8b67340-7c5a-4138-a580-e78df6187302">
+        <File Id="tasque48" Source="..\build\bin\share\icons\hicolor\48x48\apps\tasque.png" KeyPath="yes" />
       </Component>
-      <Component Id="_128_places" Directory="places128">
-        <File Source="..\build\bin\share\tasque\icons\hicolor\128x128\places\tasque-rtm-logo.png" />
+      <Component Id="_128_places" Directory="places128" Guid="9e830269-1e8b-4940-b444-cbfd1ec375bd">
+        <File Source="..\build\bin\share\tasque\icons\hicolor\128x128\places\tasque-rtm-logo.png" KeyPath="yes" />
       </Component>
-      <Component Id="_scalable" Directory="scalable">
-        <File Source="..\build\bin\share\icons\hicolor\scalable\apps\tasque.svg" />
+      <Component Id="_scalable" Directory="scalable" Guid="b5edb513-0389-4dc1-bc8c-87c56d817de3">
+        <File Source="..\build\bin\share\icons\hicolor\scalable\apps\tasque.svg" KeyPath="yes" />
       </Component>
       <!-- Sounds -->
-      <Component Id="_sounds" Directory="sounds">
-        <File Source="..\build\bin\share\tasque\sounds\notify.wav" />
+      <Component Id="_sounds" Directory="sounds" Guid="288a8a0a-ff6e-4800-9be9-57039fece811">
+        <File Source="..\build\bin\share\tasque\sounds\notify.wav" KeyPath="yes" />
       </Component>
     </ComponentGroup>
 	</Fragment>

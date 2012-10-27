@@ -2,107 +2,107 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Fragment>
     <ComponentGroup Id="TasqueLocales">
-      <Component Id="_ca" Directory="ca">
-        <File Id="ca.mo" Source="..\build\bin\share\locale\ca\LC_MESSAGES\tasque.mo" />
+      <Component Id="_ca" Directory="ca" Guid="5ce226bb-4688-402c-a0aa-5dd896c39a80">
+        <File Id="ca.mo" Source="..\build\bin\share\locale\ca\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_ca_valencia" Directory="ca_valencia_lc_msg">
-        <File Id="ca_valencia.mo" Source="..\build\bin\share\locale\ca@valencia\LC_MESSAGES\tasque.mo" />
+      <Component Id="_ca_valencia" Directory="ca_valencia_lc_msg" Guid="febf4500-e442-4efc-9231-da2f84897add">
+        <File Id="ca_valencia.mo" Source="..\build\bin\share\locale\ca@valencia\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_cs" Directory="cs_lc_msg">
-        <File Id="cs.mo" Source="..\build\bin\share\locale\cs\LC_MESSAGES\tasque.mo" />
+      <Component Id="_cs" Directory="cs_lc_msg" Guid="821e680e-fc10-4433-b0eb-4bd282eb8496">
+        <File Id="cs.mo" Source="..\build\bin\share\locale\cs\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_da" Directory="da_lc_msg">
-        <File Id="da.mo" Source="..\build\bin\share\locale\da\LC_MESSAGES\tasque.mo" />
+      <Component Id="_da" Directory="da_lc_msg" Guid="b5ffa33d-dad6-42b9-bba0-ceb0f8dfdee5">
+        <File Id="da.mo" Source="..\build\bin\share\locale\da\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_de" Directory="de_lc_msg">
-        <File Id="de.mo" Source="..\build\bin\share\locale\de\LC_MESSAGES\tasque.mo" />
+      <Component Id="_de" Directory="de_lc_msg" Guid="e34280ed-286c-4c8d-91b6-6cf81cdb69e2">
+        <File Id="de.mo" Source="..\build\bin\share\locale\de\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_el" Directory="el_lc_msg">
-        <File Id="el.mo" Source="..\build\bin\share\locale\el\LC_MESSAGES\tasque.mo" />
+      <Component Id="_el" Directory="el_lc_msg" Guid="afcba49e-6e77-4540-af28-c1ec9293492b">
+        <File Id="el.mo" Source="..\build\bin\share\locale\el\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_en_gb" Directory="en_gb_lc_msg">
-        <File Id="en_gb.mo" Source="..\build\bin\share\locale\en_GB\LC_MESSAGES\tasque.mo" />
+      <Component Id="_en_gb" Directory="en_gb_lc_msg" Guid="42354412-ca73-4ca5-975e-143291785a98">
+        <File Id="en_gb.mo" Source="..\build\bin\share\locale\en_GB\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_eo" Directory="eo_lc_msg">
-        <File Id="eo.mo" Source="..\build\bin\share\locale\eo\LC_MESSAGES\tasque.mo" />
+      <Component Id="_eo" Directory="eo_lc_msg" Guid="e2145b5d-258d-4ebc-8fbc-40c604d35bdf">
+        <File Id="eo.mo" Source="..\build\bin\share\locale\eo\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_es" Directory="es_lc_msg">
-        <File Id="es.mo" Source="..\build\bin\share\locale\es\LC_MESSAGES\tasque.mo" />
+      <Component Id="_es" Directory="es_lc_msg" Guid="e579da7e-bbb3-4072-9d7e-5fe0bc108d61">
+        <File Id="es.mo" Source="..\build\bin\share\locale\es\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_et" Directory="et_lc_msg">
-        <File Id="et.mo" Source="..\build\bin\share\locale\et\LC_MESSAGES\tasque.mo" />
+      <Component Id="_et" Directory="et_lc_msg" Guid="5eb4508b-5952-4a2f-a345-beac6cb7535f">
+        <File Id="et.mo" Source="..\build\bin\share\locale\et\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_fi" Directory="fi_lc_msg">
-        <File Id="fi.mo" Source="..\build\bin\share\locale\fi\LC_MESSAGES\tasque.mo" />
+      <Component Id="_fi" Directory="fi_lc_msg" Guid="e8c906fc-4695-4e01-bf00-cd7452e1cedc">
+        <File Id="fi.mo" Source="..\build\bin\share\locale\fi\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_fr" Directory="fr_lc_msg">
-        <File Id="fr.mo" Source="..\build\bin\share\locale\fr\LC_MESSAGES\tasque.mo" />
+      <Component Id="_fr" Directory="fr_lc_msg" Guid="6e889f59-37af-411c-910c-294a44b418ce">
+        <File Id="fr.mo" Source="..\build\bin\share\locale\fr\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_gl" Directory="gl_lc_msg">
-        <File Id="gl.mo" Source="..\build\bin\share\locale\gl\LC_MESSAGES\tasque.mo" />
+      <Component Id="_gl" Directory="gl_lc_msg" Guid="ede726a7-c4a9-4ee4-b493-005e896b5578">
+        <File Id="gl.mo" Source="..\build\bin\share\locale\gl\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_hu" Directory="hu_lc_msg">
-        <File Id="hu.mo" Source="..\build\bin\share\locale\hu\LC_MESSAGES\tasque.mo" />
+      <Component Id="_hu" Directory="hu_lc_msg" Guid="7b47249e-8541-4306-8335-3792bbcea825">
+        <File Id="hu.mo" Source="..\build\bin\share\locale\hu\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_id" Directory="id_lc_msg">
-        <File Id="id.mo" Source="..\build\bin\share\locale\id\LC_MESSAGES\tasque.mo" />
+      <Component Id="_id" Directory="id_lc_msg" Guid="9ba30f90-0420-49e4-87f0-131d7b214609">
+        <File Id="id.mo" Source="..\build\bin\share\locale\id\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_it" Directory="it_lc_msg">
-        <File Id="it.mo" Source="..\build\bin\share\locale\it\LC_MESSAGES\tasque.mo" />
+      <Component Id="_it" Directory="it_lc_msg" Guid="33f9fcec-79ed-4474-b7b8-de0d4dac52b9">
+        <File Id="it.mo" Source="..\build\bin\share\locale\it\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_ja" Directory="ja_lc_msg">
-        <File Id="ja.mo" Source="..\build\bin\share\locale\ja\LC_MESSAGES\tasque.mo" />
+      <Component Id="_ja" Directory="ja_lc_msg" Guid="669e7eab-13b2-42ce-aa56-253030df25eb">
+        <File Id="ja.mo" Source="..\build\bin\share\locale\ja\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_lv" Directory="lv_lc_msg">
-        <File Id="lv.mo" Source="..\build\bin\share\locale\lv\LC_MESSAGES\tasque.mo" />
+      <Component Id="_lv" Directory="lv_lc_msg" Guid="fa3801d2-c845-4efc-b362-c797e7501526">
+        <File Id="lv.mo" Source="..\build\bin\share\locale\lv\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_nb" Directory="nb_lc_msg">
-        <File Id="nb.mo" Source="..\build\bin\share\locale\nb\LC_MESSAGES\tasque.mo" />
+      <Component Id="_nb" Directory="nb_lc_msg" Guid="d5b6f9c7-7822-4a86-bfd6-e8590656b51d">
+        <File Id="nb.mo" Source="..\build\bin\share\locale\nb\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_nds" Directory="nds_lc_msg">
-        <File Id="nds.mo" Source="..\build\bin\share\locale\nds\LC_MESSAGES\tasque.mo" />
+      <Component Id="_nds" Directory="nds_lc_msg" Guid="1ecb8444-af10-4204-838c-9da0c93155c5">
+        <File Id="nds.mo" Source="..\build\bin\share\locale\nds\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_nl" Directory="nl_lc_msg">
-        <File Id="nl.mo" Source="..\build\bin\share\locale\nl\LC_MESSAGES\tasque.mo" />
+      <Component Id="_nl" Directory="nl_lc_msg" Guid="e41f3fb2-465a-45b1-9e53-1ceac2163ce4">
+        <File Id="nl.mo" Source="..\build\bin\share\locale\nl\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_pl" Directory="pl_lc_msg">
-        <File Id="pl.mo" Source="..\build\bin\share\locale\pl\LC_MESSAGES\tasque.mo" />
+      <Component Id="_pl" Directory="pl_lc_msg" Guid="c3186c16-7f2c-4968-9481-493c33d8e427">
+        <File Id="pl.mo" Source="..\build\bin\share\locale\pl\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_pt" Directory="pt_lc_msg">
-        <File Id="pt.mo" Source="..\build\bin\share\locale\pt\LC_MESSAGES\tasque.mo" />
+      <Component Id="_pt" Directory="pt_lc_msg" Guid="41c4dda7-3224-41a5-9aeb-005b88cc3321">
+        <File Id="pt.mo" Source="..\build\bin\share\locale\pt\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_pt_br" Directory="pt_br_lc_msg">
-        <File Id="pt_br.mo" Source="..\build\bin\share\locale\pt_BR\LC_MESSAGES\tasque.mo" />
+      <Component Id="_pt_br" Directory="pt_br_lc_msg" Guid="8c3a270d-83a9-43b6-b034-eaa39480f0e1">
+        <File Id="pt_br.mo" Source="..\build\bin\share\locale\pt_BR\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_ro" Directory="ro_lc_msg">
-        <File Id="ro.mo" Source="..\build\bin\share\locale\ro\LC_MESSAGES\tasque.mo" />
+      <Component Id="_ro" Directory="ro_lc_msg" Guid="a986fa44-67a1-46d3-9487-19edfac8b489">
+        <File Id="ro.mo" Source="..\build\bin\share\locale\ro\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_ru" Directory="ru_lc_msg">
-        <File Id="ru.mo" Source="..\build\bin\share\locale\ru\LC_MESSAGES\tasque.mo" />
+      <Component Id="_ru" Directory="ru_lc_msg" Guid="a07be553-6ebb-43de-b99c-b9587e570ddb">
+        <File Id="ru.mo" Source="..\build\bin\share\locale\ru\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_sl" Directory="sl_lc_msg">
-        <File Id="sl.mo" Source="..\build\bin\share\locale\sl\LC_MESSAGES\tasque.mo" />
+      <Component Id="_sl" Directory="sl_lc_msg" Guid="8cb001c1-3054-4289-ade0-380763934344">
+        <File Id="sl.mo" Source="..\build\bin\share\locale\sl\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_sr" Directory="sr_lc_msg">
-        <File Id="sr.mo" Source="..\build\bin\share\locale\sr\LC_MESSAGES\tasque.mo" />
+      <Component Id="_sr" Directory="sr_lc_msg" Guid="8dbec4f8-7c8f-474c-bbc0-4511bda1ced5">
+        <File Id="sr.mo" Source="..\build\bin\share\locale\sr\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_sr_latin" Directory="sr_latin_lc_msg">
-        <File Id="sr_latin.mo" Source="..\build\bin\share\locale\sr@latin\LC_MESSAGES\tasque.mo" />
+      <Component Id="_sr_latin" Directory="sr_latin_lc_msg" Guid="4a4db51b-70eb-4e63-a450-711cef1993ae">
+        <File Id="sr_latin.mo" Source="..\build\bin\share\locale\sr@latin\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_sv" Directory="sv_lc_msg">
-        <File Id="sv.mo" Source="..\build\bin\share\locale\sv\LC_MESSAGES\tasque.mo" />
+      <Component Id="_sv" Directory="sv_lc_msg" Guid="30ba135c-919e-4957-a04a-417dfe2d8eb0">
+        <File Id="sv.mo" Source="..\build\bin\share\locale\sv\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_th" Directory="th_lc_msg">
-        <File Id="th.mo" Source="..\build\bin\share\locale\th\LC_MESSAGES\tasque.mo" />
+      <Component Id="_th" Directory="th_lc_msg" Guid="9a07dcee-7bb7-41a8-8b34-d303cc3545c5">
+        <File Id="th.mo" Source="..\build\bin\share\locale\th\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_tr" Directory="tr_lc_msg">
-        <File Id="tr.mo" Source="..\build\bin\share\locale\tr\LC_MESSAGES\tasque.mo" />
+      <Component Id="_tr" Directory="tr_lc_msg" Guid="138e6f0f-4d6d-420a-857d-eec641a3cb1f">
+        <File Id="tr.mo" Source="..\build\bin\share\locale\tr\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_zh_cn" Directory="zh_cn_lc_msg">
-        <File Id="zh_cn.mo" Source="..\build\bin\share\locale\zh_CN\LC_MESSAGES\tasque.mo" />
+      <Component Id="_zh_cn" Directory="zh_cn_lc_msg" Guid="7bf1ffad-3019-4024-894b-553f1b1eac1e">
+        <File Id="zh_cn.mo" Source="..\build\bin\share\locale\zh_CN\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
-      <Component Id="_zh_tw" Directory="zh_TW_lc_msg">
-        <File Id="zh_tw.mo" Source="..\build\bin\share\locale\zh_TW\LC_MESSAGES\tasque.mo" />
+      <Component Id="_zh_tw" Directory="zh_TW_lc_msg" Guid="fccaac6c-ec23-4f8f-9d86-c6f604d9a188">
+        <File Id="zh_tw.mo" Source="..\build\bin\share\locale\zh_TW\LC_MESSAGES\tasque.mo" KeyPath="yes" />
       </Component>
     </ComponentGroup>
 	</Fragment>

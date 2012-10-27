@@ -27,23 +27,26 @@
   
   <Fragment>
     <ComponentGroup Id="TasqueComponents" Directory="INSTALLFOLDER">
-      <Component Id="TasqueCore" Guid="9243C6FE-AE86-4F7B-B446-CB4D01993D6A">
-        <File Source="..\build\bin\lib\tasque\Tasque.exe" />
+      <Component Id="TasqueCore" Guid="4A92C71A-7FE4-463D-B307-EE79C63614AF">
+        <File Source="..\build\bin\lib\tasque\Tasque.exe" KeyPath="yes" />
         <File Id="Tasque.exe.Defines.config" Source="..\build\bin\lib\tasque\Tasque.exe.Defines.config" />
         <util:XmlFile Id="DataDirSetting" Action="setValue" Permanent="yes" File="[#Tasque.exe.Defines.config]"
                       ElementPath="/configuration/appSettings/add[\[]@key='DataDir'[\]]" Name="value" Value="[DATADIR]" />
         <File Source="..\build\bin\lib\tasque\libtasque.dll" />
         <File Source="..\build\bin\lib\tasque\Gtk.Tasque.dll" />
-        <RegistryKey Id="TasqueRegKey" Root="HKLM" Key="Software\Tasque" Action="createAndRemoveOnUninstall">
-          <RegistryValue Id="WriteTasqueInstallFolder" Name="InstallFolder" Action="write" Type="string" Value="[INSTALLFOLDER]" />
+      </Component>
+      <Component Id="UninstallInstallFolder" Guid="5360373A-0468-4B0C-A165-83F7EFACB8DA">
+        <RemoveFolder Id="UninstallInstallFolder" On="uninstall" />
+        <RegistryKey Root="HKLM" Key="Software\Tasque">
+          <RegistryValue Id="WriteTasqueInstallFolder" Name="InstallFolder" Action="write" Type="string" Value="[INSTALLFOLDER]" KeyPath="yes" />
         </RegistryKey>
       </Component>
-      <Component Id="RtmBackend" Guid="A7B0E0A4-0819-46AF-AD95-BC4D987B7AD2">
-        <File Source="..\build\bin\lib\tasque\RtmBackend.dll" />
+      <Component Id="RtmBackend" Guid="4349FD13-ECB7-4FF9-AB7C-A2E43A41A701">
+        <File Source="..\build\bin\lib\tasque\RtmBackend.dll" KeyPath="yes" />
         <File Source="..\build\bin\lib\tasque\RtmNet.dll" />
       </Component>
-      <Component Id="SqliteBackend" Guid="78130250-7C68-4A44-B4AA-9209C2C6BD2C">
-        <File Source="..\build\bin\lib\tasque\SqliteBackend.dll" />
+      <Component Id="SqliteBackend" Guid="4105A846-B570-42FD-A268-63F9DC8E9230">
+        <File Source="..\build\bin\lib\tasque\SqliteBackend.dll" KeyPath="yes" />
         <File Source="..\build\bin\lib\tasque\Mono.Data.Sqlite.dll" />
         <File Source="..\build\bin\lib\tasque\sqlite3.dll" />
       </Component>
