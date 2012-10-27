@@ -159,6 +159,8 @@
           </Directory>
         </Directory>
       </Directory>
+      <Directory Id="ProgramMenuFolder" Name="Programs" />
+      <Directory Id="DesktopFolder" Name="Desktop" />
     </Directory>
   </Fragment>
 </Wix>

@@ -23,12 +23,24 @@
       <ComponentGroupRef Id="TasqueResources" />
       <ComponentGroupRef Id="TasqueLocales" />
     </Feature>
+
+    <Icon Id="Tasque.exe" SourceFile="..\data\images\tasque.ico" />
+
+    <!-- Icon for "Add/Remove programs" entry and help link -->
+    <Icon Id="icon.ico" SourceFile="..\data\images\tasque.ico" />
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+    <Property Id="ARPHELPLINK" Value="https://live.gnome.org/Tasque" />
   </Product>
   
   <Fragment>
     <ComponentGroup Id="TasqueComponents" Directory="INSTALLFOLDER">
       <Component Id="TasqueCore" Guid="4A92C71A-7FE4-463D-B307-EE79C63614AF">
-        <File Source="..\build\bin\lib\tasque\Tasque.exe" KeyPath="yes" />
+        <File Source="..\build\bin\lib\tasque\Tasque.exe" KeyPath="yes">
+          <Shortcut Id="startmenuTasque" Directory="ProgramMenuFolder" Name="Tasque"
+                    WorkingDirectory="INSTALLFOLDER" Icon="Tasque.exe" IconIndex="0" Advertise="yes" />
+          <Shortcut Id="desktopTasque" Directory="DesktopFolder" Name="Tasque"
+                    WorkingDirectory="INSTALLFOLDER" Icon="Tasque.exe" IconIndex="0" Advertise="yes" />
+        </File>
         <File Id="Tasque.exe.Defines.config" Source="..\build\bin\lib\tasque\Tasque.exe.Defines.config" />
         <util:XmlFile Id="DataDirSetting" Action="setValue" Permanent="yes" File="[#Tasque.exe.Defines.config]"
                       ElementPath="/configuration/appSettings/add[\[]@key='DataDir'[\]]" Name="value" Value="[DATADIR]" />
