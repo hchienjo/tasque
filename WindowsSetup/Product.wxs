@@ -34,6 +34,9 @@
                       ElementPath="/configuration/appSettings/add[\[]@key='DataDir'[\]]" Name="value" Value="[DATADIR]" />
         <File Source="..\build\bin\lib\tasque\libtasque.dll" />
         <File Source="..\build\bin\lib\tasque\Gtk.Tasque.dll" />
+        <RegistryKey Id="TasqueRegKey" Root="HKLM" Key="Software\Tasque" Action="createAndRemoveOnUninstall">
+          <RegistryValue Id="WriteTasqueInstallFolder" Name="InstallFolder" Action="write" Type="string" Value="[INSTALLFOLDER]" />
+        </RegistryKey>
       </Component>
       <Component Id="RtmBackend" Guid="A7B0E0A4-0819-46AF-AD95-BC4D987B7AD2">
         <File Source="..\build\bin\lib\tasque\RtmBackend.dll" />
