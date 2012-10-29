@@ -12,8 +12,8 @@
     <AssemblyName>HiveminderBackend</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ReleaseVersion>0.1.12</ReleaseVersion>
-    <EnableBackendHiveminder Condition=" '$(EnableBackendHiveminder)' == '' " >false</EnableBackendHiveminder>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
+    <EnableBackendHiveminder Condition=" '$(EnableBackendHiveminder)' == '' ">false</EnableBackendHiveminder>
     <BuildEnabled>$(EnableBackendHiveminder)</BuildEnabled>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..\..\..\..</TopBuildDir>

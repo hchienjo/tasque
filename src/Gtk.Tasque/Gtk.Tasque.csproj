@@ -13,7 +13,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GtkSharp12 Condition=" '$(EnableGtkSharp12)' == '' Or '$(EnableGtkSharp12)' ">GTK_2_12</GtkSharp12>
-    <ReleaseVersion>0.1.12</ReleaseVersion>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..\..</TopBuildDir>
   </PropertyGroup>

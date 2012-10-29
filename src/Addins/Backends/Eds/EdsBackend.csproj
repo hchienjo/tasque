@@ -12,8 +12,8 @@
     <AssemblyName>EdsBackend</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ReleaseVersion>0.1.12</ReleaseVersion>
-    <EnableBackendEds Condition=" '$(EnableBackendEds)' == '' " >false</EnableBackendEds>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
+    <EnableBackendEds Condition=" '$(EnableBackendEds)' == '' ">false</EnableBackendEds>
     <BuildEnabled>$(EnableBackendEds)</BuildEnabled>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..\..\..\..</TopBuildDir>

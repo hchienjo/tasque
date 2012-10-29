@@ -12,7 +12,7 @@
     <AssemblyName>DummyBackend</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ReleaseVersion>0.1.12</ReleaseVersion>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
     <BuildEnabled>$(EnableBackendDummy)</BuildEnabled>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..\..\..\..</TopBuildDir>
