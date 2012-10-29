@@ -143,7 +143,8 @@ namespace Tasque
 				"Boyd Timothy <btimothy@gmail.com>",
 				"Calvin Gaisford <calvinrg@gmail.com>",
 				"Sandy Armstrong <sanfordarmstrong@gmail.com>",
-				"Brian G. Merrell <bgmerrell@novell.com>"
+				"Brian G. Merrell <bgmerrell@novell.com>",
+				"Antonius Riha <antoniusriha@gmail.com>"
 			};
 			
 			var translators = Catalog.GetString ("translator-credits");
