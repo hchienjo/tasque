@@ -4,6 +4,28 @@ Website: http://live.gnome.org/Tasque
 Bugs/Issues: http://bugzilla.gnome.org/browse.cgi?product=Tasque
 Mailing list: http://groups.google.com/group/tasky
 
+Version 0.1.12
+* xbuild is now used for the build. An interface for autotools build is
+still in place. So you can do "./configure && make && make install".
+Other than xbuild being now a build requirement, no adjustments should
+be necessary to build Tasque. If you encounter any problems, please
+report them as bugs or address them on the mailing list.
+* Tasque for Windows now features a msi installer.
+* gtk-update-icon-cache is not run anymore after install.
+* configure checks now for Mono.Data.Sqlite
+* Fix for "recurring tasks": #656608
+* Fix for "Crashes on startup in Windows 7": #634158
+* Fix for "Remove gnome-sharp and gconf dependencies": #670391
+* Fix for "Tasque build-depends on gtk-dotnet-sharp": #568910
+* Adding task by clicking anywhere in the window now possible,
+fixes partly #566499. Other part reported as #683664.
+* Use dbus-sharp instead of NDesk.DBus: #671553
+* Fix "Normal characters are escaped in notewidget label": #538017.
+* Imitate tooltip in AppIndicator using a MenuItem: #649670
+* Other bug fixes: #668422, #656513, #653354, #649752,
+#578279, #566355.
+* Translation updates: gl, cs, lv, pl, id, it, sr, sr@latin, es, sl.
+
 Version 0.1.10 "Fresh Milk"
 * Lots of translation updates.
 * Fixed some automake issues.
