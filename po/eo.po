@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-26 16:18+0200\n"
+"POT-Creation-Date: 2012-10-30 16:45+0100\n"
 "PO-Revision-Date: 2010-07-20 15:33+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
@@ -53,6 +53,11 @@ msgstr "Pasinta monato"
 msgid "Last Year"
 msgstr "Pasinta jaro"
 
+#: ../src/Gtk.Tasque/Defines.cs.in:59
+#, fuzzy
+msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
+msgstr "Kopirajto © 2008 Novell, Inc."
+
 #: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
@@ -79,33 +84,29 @@ msgstr[1] "{0} taskoj por morgaŭ\n"
 msgid "Tasque Rocks"
 msgstr "Tasko mojosas"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:149
+#: ../src/Gtk.Tasque/GtkTray.cs:143
 msgid "translator-credits"
 msgstr ""
 "Colin DEAN <cad@cad.cx>\n"
 "Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:157
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Kopirajto © 2008 Novell, Inc."
-
-#: ../src/Gtk.Tasque/GtkTray.cs:158
+#: ../src/Gtk.Tasque/GtkTray.cs:152
 msgid "A Useful Task List"
 msgstr "Utila tasklisto "
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:154
 msgid "Tasque Project Homepage"
 msgstr "TTT-paĝo de Taskil-projekto"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:173
+#: ../src/Gtk.Tasque/GtkTray.cs:167
 msgid "New Task ..."
 msgstr "Nova tasko..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:177
 msgid "Refresh Tasks ..."
 msgstr "Aktualigi taskojn..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Toggle Task Window"
 msgstr ""
 

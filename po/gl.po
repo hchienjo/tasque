@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque-master-po-gl-103238\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-26 16:18+0200\n"
+"POT-Creation-Date: 2012-10-30 16:45+0100\n"
 "PO-Revision-Date: 2012-08-30 04:09+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
@@ -56,6 +56,11 @@ msgstr "Último mes"
 msgid "Last Year"
 msgstr "Último ano"
 
+#: ../src/Gtk.Tasque/Defines.cs.in:59
+#, fuzzy
+msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
+msgstr "Copyright © 2008 Novell, Inc."
+
 #: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
@@ -82,33 +87,29 @@ msgstr[1] "{0} tarefas para mañá\n"
 msgid "Tasque Rocks"
 msgstr "Tasque mola!"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:149
+#: ../src/Gtk.Tasque/GtkTray.cs:143
 msgid "translator-credits"
 msgstr ""
 "Francisco Diéguez <fran.dieguez@glug.es>, 2009; Mancomun <g11n@mancomun."
 "org>, 2009"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:157
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Copyright © 2008 Novell, Inc."
-
-#: ../src/Gtk.Tasque/GtkTray.cs:158
+#: ../src/Gtk.Tasque/GtkTray.cs:152
 msgid "A Useful Task List"
 msgstr "Unha lista de tarefas útil"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:154
 msgid "Tasque Project Homepage"
 msgstr "Páxina web do proxecto Tasque"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:173
+#: ../src/Gtk.Tasque/GtkTray.cs:167
 msgid "New Task ..."
 msgstr "Nova tarefa..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:177
 msgid "Refresh Tasks ..."
 msgstr "Actualizar tarefas..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Toggle Task Window"
 msgstr "Cambiar xanela de tarefa"
 

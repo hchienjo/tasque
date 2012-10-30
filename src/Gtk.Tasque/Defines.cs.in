@@ -29,9 +29,10 @@
  *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  *  DEALINGS IN THE SOFTWARE.
  */
-
+using System;
 using System.Configuration;
 using System.IO;
+using Mono.Unix;
 
 namespace Tasque
 {
@@ -46,10 +47,17 @@ namespace Tasque
 			var appSettings = cfg.AppSettings;
 			DataDir = appSettings.Settings ["DataDir"].Value;
 		}
-
+		
+		public const string License = @"@license@";
 		public const string Version = @"@version@";
+		public const string Website = "@website@";
+		
+		public static readonly string [] Authors = (@"@authors@").Split (
+			new string [] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 		public static readonly string DataDir;
-
+		public static readonly string CopyrightInfo =
+			Catalog.GetString("Copyright \xa9 2008 - 2011 Novell, Inc and contributors.");
+		
 		public static string LocaleDir { get { return Path.Combine (DataDir, "locale"); } }
 		public static string IconsDir { get { return Path.Combine (DataDir, "tasque", "icons"); } }
 		public static string SoundDir { get { return Path.Combine (DataDir, "tasque", "sounds"); } }

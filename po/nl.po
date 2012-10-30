@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque-svn-20080229 \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-26 16:18+0200\n"
+"POT-Creation-Date: 2012-10-30 16:45+0100\n"
 "PO-Revision-Date: 2008-02-29 22:52+0100\n"
 "Last-Translator: Daniel van Eeden <gnomenl@myname.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -50,6 +50,11 @@ msgstr ""
 msgid "Last Year"
 msgstr ""
 
+#: ../src/Gtk.Tasque/Defines.cs.in:59
+#, fuzzy
+msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
+msgstr "Copyright © 2008 Novell, Inc."
+
 #: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
@@ -76,32 +81,28 @@ msgstr[1] ""
 msgid "Tasque Rocks"
 msgstr ""
 
-#: ../src/Gtk.Tasque/GtkTray.cs:149
+#: ../src/Gtk.Tasque/GtkTray.cs:143
 msgid "translator-credits"
 msgstr ""
 
-#: ../src/Gtk.Tasque/GtkTray.cs:157
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Copyright © 2008 Novell, Inc."
-
-#: ../src/Gtk.Tasque/GtkTray.cs:158
+#: ../src/Gtk.Tasque/GtkTray.cs:152
 msgid "A Useful Task List"
 msgstr "Een bruikbare takenlijst"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:154
 msgid "Tasque Project Homepage"
 msgstr "Tasque Project Webstek"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:173
+#: ../src/Gtk.Tasque/GtkTray.cs:167
 msgid "New Task ..."
 msgstr "Nieuwe Taak ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:177
 #, fuzzy
 msgid "Refresh Tasks ..."
 msgstr "Taken vernieuwen"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Toggle Task Window"
 msgstr ""
 

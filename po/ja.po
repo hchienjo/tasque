@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-26 16:18+0200\n"
+"POT-Creation-Date: 2012-10-30 16:45+0100\n"
 "PO-Revision-Date: 2012-01-08 13:05+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <takeshi.aihana@gmail.com>\n"
@@ -50,6 +50,11 @@ msgstr "この１ヶ月"
 msgid "Last Year"
 msgstr "この１年"
 
+#: ../src/Gtk.Tasque/Defines.cs.in:59
+#, fuzzy
+msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
+msgstr "Copyright © 2008 Novell, Inc."
+
 #: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
@@ -77,31 +82,27 @@ msgstr[1] ""
 msgid "Tasque Rocks"
 msgstr "Tasque"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:149
+#: ../src/Gtk.Tasque/GtkTray.cs:143
 msgid "translator-credits"
 msgstr "相花 毅 <takeshi.aihana@gmail.com>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:157
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Copyright © 2008 Novell, Inc."
-
-#: ../src/Gtk.Tasque/GtkTray.cs:158
+#: ../src/Gtk.Tasque/GtkTray.cs:152
 msgid "A Useful Task List"
 msgstr "意外と便利なタスクの一覧です。"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:154
 msgid "Tasque Project Homepage"
 msgstr "Tasque のプロジェクト・ページ"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:173
+#: ../src/Gtk.Tasque/GtkTray.cs:167
 msgid "New Task ..."
 msgstr "新しいタスク..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:177
 msgid "Refresh Tasks ..."
 msgstr "タスクの更新..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Toggle Task Window"
 msgstr ""
 

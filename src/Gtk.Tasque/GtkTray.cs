@@ -139,14 +139,7 @@ namespace Tasque
 
 		void OnAbout (object sender, EventArgs args)
 		{
-			var authors = new string [] {
-				"Boyd Timothy <btimothy@gmail.com>",
-				"Calvin Gaisford <calvinrg@gmail.com>",
-				"Sandy Armstrong <sanfordarmstrong@gmail.com>",
-				"Brian G. Merrell <bgmerrell@novell.com>",
-				"Antonius Riha <antoniusriha@gmail.com>"
-			};
-			
+			var authors = Defines.Authors;
 			var translators = Catalog.GetString ("translator-credits");
 			if (translators == "translator-credits")
 				translators = null;
@@ -155,14 +148,14 @@ namespace Tasque
 			about.ProgramName = "Tasque";
 			about.Version = Defines.Version;
 			about.Logo = Utilities.GetIcon("tasque", 48);
-			about.Copyright = Catalog.GetString ("Copyright \xa9 2008 Novell, Inc.");
+			about.Copyright = Defines.CopyrightInfo;
 			about.Comments = Catalog.GetString ("A Useful Task List");
-			about.Website = "http://live.gnome.org/Tasque";
+			about.Website = Defines.Website;
 			about.WebsiteLabel = Catalog.GetString("Tasque Project Homepage");
 			about.Authors = authors;
 			about.TranslatorCredits = translators;
+			about.License = Defines.License;
 			about.IconName = "tasque";
-			about.SetSizeRequest(300, 300);
 			about.Run ();
 			about.Destroy ();
 		}

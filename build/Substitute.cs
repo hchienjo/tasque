@@ -53,7 +53,7 @@ namespace Tasque.Build
 					foreach (var subst in substitutions) {
 						string value = subst [1];
 						if (subst [2] == "path")
-							value = File.ReadAllText (subst [1]);
+							value = File.ReadAllText (subst [1]).Replace ('"', '\'');
 						source = source.Replace (subst [0], value);
 					}
 					var path = DestinationFiles [i].GetMetadata ("FullPath");

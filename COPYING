@@ -1,10 +1,11 @@
 Tasque is subject to the MIT license. For details see section
 "MIT LICENSE" below or get the license text from
-http://opensource.org/licenses/MIT.
+http://opensource.org/licenses/MIT
+
 Tasque uses the RtmNet library, which is licensed under the terms of
 the Eclipse Public License 1.0. For the full text of the license
 consult the file LICENSE_EPL. Alternatively, it is available on
-http://opensource.org/licenses/EPL-1.0.
+http://opensource.org/licenses/EPL-1.0
 
 MIT LICENSE
 -----------

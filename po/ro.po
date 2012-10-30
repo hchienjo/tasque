@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-26 16:18+0200\n"
+"POT-Creation-Date: 2012-10-30 16:45+0100\n"
 "PO-Revision-Date: 2010-12-03 21:54+0300\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
@@ -52,6 +52,11 @@ msgstr "Ultima lună"
 msgid "Last Year"
 msgstr "Ultimul an"
 
+#: ../src/Gtk.Tasque/Defines.cs.in:59
+#, fuzzy
+msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
+msgstr "Drepturi de autor © 2008 Novell, Inc."
+
 #: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
 msgid "{0} task is Overdue\n"
@@ -81,31 +86,27 @@ msgstr[2] "{0} de sarcini pentru mâine\n"
 msgid "Tasque Rocks"
 msgstr "Tasque e super"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:149
+#: ../src/Gtk.Tasque/GtkTray.cs:143
 msgid "translator-credits"
 msgstr "Tabita Dolean <dtabita21@gmail.com>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:157
-msgid "Copyright © 2008 Novell, Inc."
-msgstr "Drepturi de autor © 2008 Novell, Inc."
-
-#: ../src/Gtk.Tasque/GtkTray.cs:158
+#: ../src/Gtk.Tasque/GtkTray.cs:152
 msgid "A Useful Task List"
 msgstr "O listă de sarcini folositoare"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:154
 msgid "Tasque Project Homepage"
 msgstr "Pagina de internet a proiectului Tasque"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:173
+#: ../src/Gtk.Tasque/GtkTray.cs:167
 msgid "New Task ..."
 msgstr "Sarcină nouă ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:177
 msgid "Refresh Tasks ..."
 msgstr "Reîmprospătează sarcinile ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Toggle Task Window"
 msgstr ""
 

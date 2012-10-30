@@ -119,4 +119,15 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="..\..\build\X.CSharp.targets" />
+  <Target Name="BeforeSubstitute">
+    <CreateItem Include="@license@|$(SrcDir)\..\..\COPYING|path">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@website@|https://live.gnome.org/Tasque|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@authors@|$(SrcDir)\..\..\AUTHORS|path">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+  </Target>
 </Project>
