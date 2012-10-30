@@ -83,6 +83,8 @@ EXTRA_DIST = \
 	$(DLL_REFERENCES) \
 	MAINTAINERS \
 	TRANSLATORS \
+	COPYING \
+	LICENSE_EPL \
 	tasque.sln \
 	build/build.csproj \
 	build/Properties/AssemblyInfo.cs \
