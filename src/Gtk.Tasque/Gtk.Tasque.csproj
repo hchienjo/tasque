@@ -104,6 +104,9 @@
     <TasqueCompile Include="TaskWindow.cs" />
     <TasqueCompile Include="Utilities.cs" />
     <TasqueCompile Include="Properties\AssemblyInfo.cs" />
+    <TasqueCompile Include="..\..\build\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </TasqueCompile>
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <TasqueCompile Include="RemoteControl.cs" />

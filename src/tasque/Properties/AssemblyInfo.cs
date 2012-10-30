@@ -26,5 +26,4 @@
 using System.Reflection;
 
 [assembly: AssemblyTitle("Tasque")]
-[assembly: AssemblyDescription("Simple Tasque Management")]
-[assembly: AssemblyCopyright("MIT")]
+[assembly: AssemblyDescription("Tasque application. Simple Tasque Management.")]

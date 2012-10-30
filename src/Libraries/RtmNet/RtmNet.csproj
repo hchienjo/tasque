@@ -34,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <TasqueCompile Include="ApiKeyRequiredException.cs" />
-    <TasqueCompile Include="AssemblyInfo.cs" />
     <TasqueCompile Include="Auth.cs" />
     <TasqueCompile Include="AuthenticationRequiredException.cs" />
     <TasqueCompile Include="Categories.cs" />
@@ -58,12 +57,19 @@
     <TasqueCompile Include="Task.cs" />
     <TasqueCompile Include="User.cs" />
     <TasqueCompile Include="Utils.cs" />
+    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
+    <TasqueCompile Include="..\..\..\build\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </TasqueCompile>
   </ItemGroup>
   <ItemGroup>
     <DistFile Include="License.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="example_app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="..\..\..\build\X.CSharp.targets" />
 </Project>

@@ -31,12 +31,13 @@
     <Reference Include="Microsoft.Build.Framework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Substitute.cs" />
     <Compile Include="GetRelPath.cs" />
     <Compile Include="GetAbsSrcDir.cs" />
     <Compile Include="NormalizePath.cs" />
     <Compile Include="GetAbsPath.cs" />
+    <Compile Include="CommonAssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Proj Include="..\src\Gtk.Tasque\Gtk.Tasque.csproj">
@@ -93,6 +94,7 @@
   <ItemGroup>
     <Folder Include="Addins\" />
     <Folder Include="Addins\Backends\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Bootstrap">

@@ -49,11 +49,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="AssemblyInfo.cs" />
     <TasqueCompile Include="IceBackend.cs" />
     <TasqueCompile Include="IceCategory.cs" />
     <TasqueCompile Include="IceNote.cs" />
     <TasqueCompile Include="IceTask.cs" />
+    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
+    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </TasqueCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="..\..\..\..\build\X.CSharp.targets" />
 </Project>

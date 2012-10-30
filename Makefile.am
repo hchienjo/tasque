@@ -85,7 +85,8 @@ EXTRA_DIST = \
 	TRANSLATORS \
 	tasque.sln \
 	build/build.csproj \
-	build/AssemblyInfo.cs \
+	build/Properties/AssemblyInfo.cs \
+	build/CommonAssemblyInfo.cs \
 	build/Substitute.cs \
 	build/GetRelPath.cs \
 	build/GetAbsPath.cs \

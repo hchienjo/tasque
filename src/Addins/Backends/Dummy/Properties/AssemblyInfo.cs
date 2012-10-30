@@ -25,5 +25,5 @@
 // THE SOFTWARE.
 using System.Reflection;
 
-[assembly: AssemblyTitle("MonoMac.Tasque")]
-[assembly: AssemblyDescription("MonoMac frontend for Tasque")]
+[assembly: AssemblyTitle("DummyBackend")]
+[assembly: AssemblyDescription("Dummy backend for Tasque. Serves debug purposes.")]

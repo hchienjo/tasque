@@ -80,12 +80,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="AssemblyInfo.cs" />
     <TasqueCompile Include="SqliteTask.cs" />
     <TasqueCompile Include="SqliteNote.cs" />
     <TasqueCompile Include="SqliteCategory.cs" />
     <TasqueCompile Include="SqliteBackend.cs" />
     <TasqueCompile Include="Database.cs" />
+    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
+    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </TasqueCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="..\..\..\..\build\X.CSharp.targets" />
   <Target Name="BeforeInstall" Condition=" '$(Configuration)' == 'GtkWinDebug' Or '$(Configuration)' == 'GtkWinRelease' ">

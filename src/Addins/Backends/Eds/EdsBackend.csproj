@@ -47,11 +47,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="AssemblyInfo.cs" />
     <TasqueCompile Include="EdsBackends.cs" />
     <TasqueCompile Include="EdsCategory.cs" />
     <TasqueCompile Include="EdsNote.cs" />
     <TasqueCompile Include="EdsTask.cs" />
+    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
+    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </TasqueCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="..\..\..\..\build\X.Common.targets" />
 </Project>
