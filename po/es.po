@@ -10,9 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:45+0100\n"
-"PO-Revision-Date: 2012-09-03 13:47+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-10-30 15:59+0000\n"
+"PO-Revision-Date: 2012-10-31 12:22+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -56,9 +57,8 @@ msgid "Last Year"
 msgstr "Último año"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © 2008 - 2011 Novell, Inc. y colaboradores."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
