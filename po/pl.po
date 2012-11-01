@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:45+0100\n"
-"PO-Revision-Date: 2012-09-26 00:04+0200\n"
+"POT-Creation-Date: 2012-11-01 01:04+0100\n"
+"PO-Revision-Date: 2012-11-01 01:05+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -61,9 +61,8 @@ msgid "Last Year"
 msgstr "Ostatni rok"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © 2008 - 2011 Novell, Inc i współtwórcy."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:82
 #, csharp-format
