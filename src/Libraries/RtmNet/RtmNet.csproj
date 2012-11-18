@@ -33,34 +33,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="ApiKeyRequiredException.cs" />
-    <TasqueCompile Include="Auth.cs" />
-    <TasqueCompile Include="AuthenticationRequiredException.cs" />
-    <TasqueCompile Include="Categories.cs" />
-    <TasqueCompile Include="Contacts.cs" />
-    <TasqueCompile Include="DateGranularity.cs" />
-    <TasqueCompile Include="Enums.cs" />
-    <TasqueCompile Include="Groups.cs" />
-    <TasqueCompile Include="GroupSearchResults.cs" />
-    <TasqueCompile Include="HttpUtility.cs" />
-    <TasqueCompile Include="List.cs" />
-    <TasqueCompile Include="Methods.cs" />
-    <TasqueCompile Include="Note.cs" />
-    <TasqueCompile Include="Response.cs" />
-    <TasqueCompile Include="ResponseXmlException.cs" />
-    <TasqueCompile Include="Rtm.cs" />
-    <TasqueCompile Include="RtmApiException.cs" />
-    <TasqueCompile Include="RtmException.cs" />
-    <TasqueCompile Include="RtmWebException.cs" />
-    <TasqueCompile Include="SignatureRequiredException.cs" />
-    <TasqueCompile Include="Tags.cs" />
-    <TasqueCompile Include="Task.cs" />
-    <TasqueCompile Include="User.cs" />
-    <TasqueCompile Include="Utils.cs" />
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="..\..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="ApiKeyRequiredException.cs" />
+    <Compile Include="Auth.cs" />
+    <Compile Include="AuthenticationRequiredException.cs" />
+    <Compile Include="Categories.cs" />
+    <Compile Include="Contacts.cs" />
+    <Compile Include="DateGranularity.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Groups.cs" />
+    <Compile Include="GroupSearchResults.cs" />
+    <Compile Include="HttpUtility.cs" />
+    <Compile Include="List.cs" />
+    <Compile Include="Methods.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="Response.cs" />
+    <Compile Include="ResponseXmlException.cs" />
+    <Compile Include="Rtm.cs" />
+    <Compile Include="RtmApiException.cs" />
+    <Compile Include="RtmException.cs" />
+    <Compile Include="RtmWebException.cs" />
+    <Compile Include="SignatureRequiredException.cs" />
+    <Compile Include="Tags.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <DistFile Include="License.txt" />
@@ -71,5 +71,5 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\..\build\X.CSharp.targets" />
+  <Import Project="..\..\..\build\X.Common.targets" />
 </Project>

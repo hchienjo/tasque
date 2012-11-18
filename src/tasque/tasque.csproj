@@ -85,11 +85,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="Program.cs" />
-    <TasqueCompile Include="..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <DistFile Include="Tasque.exe.config" />
@@ -102,7 +102,7 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\build\X.CSharp.targets" />
+  <Import Project="..\..\build\X.Common.targets" />
   <Target Name="AfterSubstitute" Condition=" '$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' ">
     <Exec Command="chmod +x tasque" />
   </Target>

@@ -78,39 +78,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Defines.cs" />
-    <TasqueCompile Include="GtkTray.cs" />
-    <TasqueCompile Include="StatusIconTray.cs" />
-    <TasqueCompile Condition=" '$(AppIndicator)' != '' " Include="AppIndicatorTray.cs" />
-    <TasqueCompile Include="AbstractTask.cs" />
-    <TasqueCompile Include="AllCategory.cs" />
-    <TasqueCompile Include="Application.cs" />
-    <TasqueCompile Include="CellRendererDate.cs" />
-    <TasqueCompile Include="CompletedTaskGroup.cs" />
-    <TasqueCompile Include="CompletedTaskGroupModel.cs" />
-    <TasqueCompile Include="DateButton.cs" />
-    <TasqueCompile Include="GnomeApplication.cs" />
-    <TasqueCompile Include="GtkApplication.cs" />
-    <TasqueCompile Include="Logger.cs" />
-    <TasqueCompile Include="NoteDialog.cs" />
-    <TasqueCompile Include="NoteWidget.cs" />
+    <Compile Include="GtkTray.cs" />
+    <Compile Include="StatusIconTray.cs" />
+    <Compile Condition=" '$(AppIndicator)' != '' " Include="AppIndicatorTray.cs" />
+    <Compile Include="AbstractTask.cs" />
+    <Compile Include="AllCategory.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="CellRendererDate.cs" />
+    <Compile Include="CompletedTaskGroup.cs" />
+    <Compile Include="CompletedTaskGroupModel.cs" />
+    <Compile Include="DateButton.cs" />
+    <Compile Include="GnomeApplication.cs" />
+    <Compile Include="GtkApplication.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="NoteDialog.cs" />
+    <Compile Include="NoteWidget.cs" />
     <None Include="OSXApplication.cs" />
-    <TasqueCompile Include="Preferences.cs" />
-    <TasqueCompile Include="PreferencesDialog.cs" />
-    <TasqueCompile Include="TaskCalendar.cs" />
-    <TasqueCompile Include="TaskGroup.cs" />
-    <TasqueCompile Include="TaskGroupModel.cs" />
-    <TasqueCompile Include="TaskGroupModelFactory.cs" />
-    <TasqueCompile Include="TaskTreeView.cs" />
-    <TasqueCompile Include="TaskWindow.cs" />
-    <TasqueCompile Include="Utilities.cs" />
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="Preferences.cs" />
+    <Compile Include="PreferencesDialog.cs" />
+    <Compile Include="TaskCalendar.cs" />
+    <Compile Include="TaskGroup.cs" />
+    <Compile Include="TaskGroupModel.cs" />
+    <Compile Include="TaskGroupModelFactory.cs" />
+    <Compile Include="TaskTreeView.cs" />
+    <Compile Include="TaskWindow.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
-    <TasqueCompile Include="RemoteControl.cs" />
-    <TasqueCompile Include="RemoteControlProxy.cs" />
+    <Compile Include="RemoteControl.cs" />
+    <Compile Include="RemoteControlProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Substitute Include="Defines.cs.in" />
@@ -118,7 +118,7 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\build\X.CSharp.targets" />
+  <Import Project="..\..\build\X.Common.targets" />
   <Target Name="BeforeSubstitute">
     <CreateItem Include="@license@|$(SrcDir)\..\..\COPYING|path">
       <Output TaskParameter="Include" ItemName="Substitution" />

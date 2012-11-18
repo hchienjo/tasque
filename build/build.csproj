@@ -82,7 +82,6 @@
     <Proj Include="..\tasque.sln">
       <Link>tasque.sln</Link>
     </Proj>
-    <Proj Include="X.CSharp.targets" />
     <Proj Include="X.Common.targets" />
     <Proj Include="X.Substitute.targets" />
     <Proj Include="X.Translate.targets" />

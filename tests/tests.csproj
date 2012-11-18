@@ -32,7 +32,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="TaskParserFixture.cs" />
+    <Compile Include="TaskParserFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\libtasque\libtasque.csproj">
@@ -40,5 +40,5 @@
       <Name>libtasque</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\build\X.CSharp.targets" />
+  <Import Project="..\build\X.Common.targets" />
 </Project>

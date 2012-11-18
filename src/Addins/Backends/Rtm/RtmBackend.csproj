@@ -72,19 +72,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="RtmTask.cs" />
-    <TasqueCompile Include="RtmNote.cs" />
-    <TasqueCompile Include="RtmCategory.cs" />
-    <TasqueCompile Include="RtmBackend.cs" />
-    <TasqueCompile Include="Gtk\RtmPreferencesWidget.cs" />
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="RtmTask.cs" />
+    <Compile Include="RtmNote.cs" />
+    <Compile Include="RtmCategory.cs" />
+    <Compile Include="RtmBackend.cs" />
+    <Compile Include="Gtk\RtmPreferencesWidget.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Gtk\" />
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\..\..\build\X.CSharp.targets" />
+  <Import Project="..\..\..\..\build\X.Common.targets" />
 </Project>

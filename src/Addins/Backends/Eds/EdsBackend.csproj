@@ -47,14 +47,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="EdsBackends.cs" />
-    <TasqueCompile Include="EdsCategory.cs" />
-    <TasqueCompile Include="EdsNote.cs" />
-    <TasqueCompile Include="EdsTask.cs" />
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="EdsBackends.cs" />
+    <Compile Include="EdsCategory.cs" />
+    <Compile Include="EdsNote.cs" />
+    <Compile Include="EdsTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

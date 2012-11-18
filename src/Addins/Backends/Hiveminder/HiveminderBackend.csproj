@@ -51,15 +51,15 @@
     <Reference Include="Mono.Posix" />
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="HmBackend.cs" />
-    <TasqueCompile Include="HmCategory.cs" />
-    <TasqueCompile Include="HmNote.cs" />
-    <TasqueCompile Include="HmPreferencesWidget.cs" />
-    <TasqueCompile Include="HmTask.cs" />
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="HmBackend.cs" />
+    <Compile Include="HmCategory.cs" />
+    <Compile Include="HmNote.cs" />
+    <Compile Include="HmPreferencesWidget.cs" />
+    <Compile Include="HmTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\libtasque\libtasque.csproj">
@@ -70,5 +70,5 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\..\..\build\X.CSharp.targets" />
+  <Import Project="..\..\..\..\build\X.Common.targets" />
 </Project>

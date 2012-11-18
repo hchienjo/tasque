@@ -80,20 +80,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="SqliteTask.cs" />
-    <TasqueCompile Include="SqliteNote.cs" />
-    <TasqueCompile Include="SqliteCategory.cs" />
-    <TasqueCompile Include="SqliteBackend.cs" />
-    <TasqueCompile Include="Database.cs" />
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="SqliteTask.cs" />
+    <Compile Include="SqliteNote.cs" />
+    <Compile Include="SqliteCategory.cs" />
+    <Compile Include="SqliteBackend.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\..\..\build\X.CSharp.targets" />
+  <Import Project="..\..\..\..\build\X.Common.targets" />
   <Target Name="BeforeInstall" Condition=" '$(Configuration)' == 'GtkWinDebug' Or '$(Configuration)' == 'GtkWinRelease' ">
     <CreateItem Include="..\..\..\..\winbin\sqlite3.dll"
         AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=sqlite3.dll">

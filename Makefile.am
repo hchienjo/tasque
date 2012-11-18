@@ -79,14 +79,14 @@ pkgdata_DATA =  $(DLL_REFERENCES)
 
 DLL_REFERENCES =   
 
-EXTRA_DIST = \
-	$(DLL_REFERENCES) \
+CONFIG_CLEAN_FILES =
+
+_DISTFILES = \
 	MAINTAINERS \
 	AUTHORS \
 	TRANSLATORS \
 	COPYING \
 	LICENSE_EPL \
-	tasque.sln \
 	build/build.csproj \
 	build/Properties/AssemblyInfo.cs \
 	build/CommonAssemblyInfo.cs \
@@ -94,11 +94,13 @@ EXTRA_DIST = \
 	build/GetRelPath.cs \
 	build/GetAbsPath.cs \
 	build/GetAbsSrcDir.cs \
-	build/NormalizePath.cs \
+	build/NormalizePath.cs
+
+_BUILDFILES = \
+	tasque.sln \
 	build/X.Common.targets \
 	build/X.Substitute.targets \
 	build/X.Translate.targets \
-	build/X.CSharp.targets \
 	src/Libraries/RtmNet/RtmNet.csproj \
 	src/libtasque/libtasque.csproj \
 	src/Gtk.Tasque/Gtk.Tasque.csproj \
@@ -113,8 +115,12 @@ EXTRA_DIST = \
 	tests/tests.csproj \
 	po/po.mdproj
 
+EXTRA_DIST = \
+		$(DLL_REFERENCES) \
+		$(_DISTFILES) \
+		$(_BUILDFILES)
+
 DISTCLEANFILES = \
-        $(EXTRA_DIST) \
         po/.intltool-merge-cache \
         po/POTFILES
 
@@ -138,12 +144,19 @@ uninstall:
 dist-hook: change-log
 	$(XBUILD) $(PROPERTIES) /property:alttarget=dist tasque.sln
 
+distclean-local:
+	$(XBUILD) $(PROPERTIES) /property:alttarget=distclean tasque.sln
+	rm -rf $(_BUILDFILES)
+	rm -rf $(_DISTFILES)
+	rm -f build/build.dll build/build.dll.mdb
+	rm -rf build/obj
+
 distcheck-hook:
 	$(XBUILD) $(PROPERTIES) /property:alttarget=distcheck tasque.sln
 
-clean-generic: clean
-	rm -f build/build.dll build/build.dll.mdb
-	rm -rf build/obj
+clean-local:
+	rm -f $(shell find -name *.dll)
+	rm -f $(shell find -name *.mdb)
 
 change-log:
 	@if test -d "$(srcdir)/.git"; \

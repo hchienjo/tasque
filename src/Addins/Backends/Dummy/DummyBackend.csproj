@@ -44,14 +44,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <TasqueCompile Include="DummyTask.cs" />
-    <TasqueCompile Include="DummyNote.cs" />
-    <TasqueCompile Include="DummyCategory.cs" />
-    <TasqueCompile Include="DummyBackend.cs" />
-    <TasqueCompile Include="Properties\AssemblyInfo.cs" />
-    <TasqueCompile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
+    <Compile Include="DummyTask.cs" />
+    <Compile Include="DummyNote.cs" />
+    <Compile Include="DummyCategory.cs" />
+    <Compile Include="DummyBackend.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </TasqueCompile>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Gtk.Tasque\Gtk.Tasque.csproj">
@@ -66,5 +66,5 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-  <Import Project="..\..\..\..\build\X.CSharp.targets" />
+  <Import Project="..\..\..\..\build\X.Common.targets" />
 </Project>
