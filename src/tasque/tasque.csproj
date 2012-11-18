@@ -21,11 +21,6 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <DefineConstants>TRACE;DEBUG;LINUX</DefineConstants>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="Execute" command="${SolutionDir}/build/bin/lib/tasque/Tasque.exe" />
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkLinuxRelease|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -82,6 +77,22 @@
     <ProjectReference Include="..\libtasque\libtasque.csproj">
       <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
       <Name>libtasque</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Addins\Backends\Dummy\DummyBackend.csproj">
+      <Project>{0F63E512-FD5A-482C-8389-6A0DBE1301CB}</Project>
+      <Name>DummyBackend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Addins\Backends\Rtm\RtmBackend.csproj">
+      <Project>{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}</Project>
+      <Name>RtmBackend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries\RtmNet\RtmNet.csproj">
+      <Project>{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}</Project>
+      <Name>RtmNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Addins\Backends\Sqlite\SqliteBackend.csproj">
+      <Project>{CCCC10A5-662D-4788-82D3-25689F3D4D4F}</Project>
+      <Name>SqliteBackend</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
