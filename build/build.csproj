@@ -84,11 +84,16 @@
     </Proj>
     <Proj Include="X.CSharp.targets" />
     <Proj Include="X.Common.targets" />
+    <Proj Include="X.Substitute.targets" />
+    <Proj Include="X.Translate.targets" />
   </ItemGroup>
   <ItemGroup>
     <None Include="build.csproj" />
     <None Include="..\src\MonoMac.Tasque\MonoMac.Tasque.csproj">
       <Link>MonoMac.Tasque.csproj</Link>
+    </None>
+    <None Include="..\Makefile.am">
+      <Link>Makefile.am</Link>
     </None>
   </ItemGroup>
   <ItemGroup>

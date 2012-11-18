@@ -96,6 +96,8 @@ EXTRA_DIST = \
 	build/GetAbsSrcDir.cs \
 	build/NormalizePath.cs \
 	build/X.Common.targets \
+	build/X.Substitute.targets \
+	build/X.Translate.targets \
 	build/X.CSharp.targets \
 	src/Libraries/RtmNet/RtmNet.csproj \
 	src/libtasque/libtasque.csproj \

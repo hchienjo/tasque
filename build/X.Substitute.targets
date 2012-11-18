@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Substitute" DependsOnTargets="BeforeSubstitute;CoreSubstitute;AfterSubstitute" />
+  <Target Name="BeforeSubstitute" />
+  <Target Name="AfterSubstitute" />
+  
+  <Target Name="CoreSubstitute" Condition=" '@(Substitute)' != '' ">
+    <CreateItem Include="$(SrcDir)\%(Substitute.RelativeDir)%(FileName)%(Extension)">
+      <Output TaskParameter="Include" ItemName="_SubstSourceFiles" />
+    </CreateItem>
+    <CreateItem Include="%(Substitute.RelativeDir)%(FileName)">
+      <Output TaskParameter="Include" ItemName="_SubstDestFiles" />
+    </CreateItem>
+    <Substitute SourceFiles="@(_SubstSourceFiles)" DestinationFiles="@(_SubstDestFiles)" Substitutions="@(Substitution)" />
+  </Target>
+</Project>

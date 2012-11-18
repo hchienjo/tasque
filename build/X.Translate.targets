@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Translate" DependsOnTargets="BeforeTranslate;CoreTranslate;AfterTranslate" />
+  <Target Name="BeforeTranslate" />
+  <Target Name="AfterTranslate" />
+  
+  <Target Name="CoreTranslate" Condition=" '@(Translate)' != '' ">
+    <Exec Command="LC_ALL=C $(IntlToolMerge) -d -u -c $(PoBuildDir)\.intltool-merge-cache $(PoSrcDir) $(SrcDir)\%(Translate.RelativeDir)%(FileName)%(Extension) %(RelativeDir)%(FileName)" />
+  </Target>
+  
+  <Target Name="GettextCompile" Condition=" '@(GettextCompile)' != '' ">
+    <Exec Command="$(MsgFmt) -o %(FileName).gmo $(PoSrcDir)\@(GettextCompile)" />
+  </Target>
+</Project>

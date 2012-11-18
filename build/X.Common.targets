@@ -195,6 +195,7 @@
     </Otherwise>
   </Choose>
   
+  <!-- Main CSharp compile targets -->
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="Tasque.Build.Substitute" AssemblyFile="build.dll" />
   <UsingTask TaskName="Tasque.Build.GetRelPath" AssemblyFile="build.dll" />
@@ -203,31 +204,10 @@
   <UsingTask TaskName="Tasque.Build.NormalizePath" AssemblyFile="build.dll" />
   
   <!-- Substitute -->
-  <Target Name="Substitute" DependsOnTargets="BeforeSubstitute;CoreSubstitute;AfterSubstitute" />
-  <Target Name="BeforeSubstitute" />
-  <Target Name="AfterSubstitute" />
-  <Target Name="CoreSubstitute" Condition=" '@(Substitute)' != '' ">
-    <CreateItem Include="$(SrcDir)\%(Substitute.RelativeDir)%(FileName)%(Extension)">
-      <Output TaskParameter="Include" ItemName="_SubstSourceFiles" />
-    </CreateItem>
-    <CreateItem Include="%(Substitute.RelativeDir)%(FileName)">
-      <Output TaskParameter="Include" ItemName="_SubstDestFiles" />
-    </CreateItem>
-    <Substitute SourceFiles="@(_SubstSourceFiles)" DestinationFiles="@(_SubstDestFiles)" Substitutions="@(Substitution)" />
-  </Target>
+  <Import Project="$(MSBuildThisFileDirectory)\X.Substitute.targets" />
   
-  <!-- Translate -->
-  <Target Name="Translate" DependsOnTargets="BeforeTranslate;CoreTranslate;AfterTranslate" />
-  <Target Name="BeforeTranslate" />
-  <Target Name="AfterTranslate" />
-  <Target Name="CoreTranslate" Condition=" '@(Translate)' != '' ">
-    <Exec Command="LC_ALL=C $(IntlToolMerge) -d -u -c $(PoBuildDir)\.intltool-merge-cache $(PoSrcDir) $(SrcDir)\%(Translate.RelativeDir)%(FileName)%(Extension) %(RelativeDir)%(FileName)" />
-  </Target>
-  
-  <!-- Compile translations -->
-  <Target Name="GettextCompile" Condition=" '@(GettextCompile)' != '' ">
-    <Exec Command="$(MsgFmt) -o %(FileName).gmo $(PoSrcDir)\@(GettextCompile)" />
-  </Target>
+  <!-- Translate and Compile translations -->
+  <Import Project="$(MSBuildThisFileDirectory)\X.Translate.targets" />
   
   <!-- Build -->
   <!-- Switch between regular targets and alternative targets -->
