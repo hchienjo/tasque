@@ -226,7 +226,6 @@
   
   <PropertyGroup>
     <TasqueBuildDependsOn>
-      BeforeSubstitute;
       Substitute;
       GettextCompile;
       Translate;
@@ -234,8 +233,6 @@
     </TasqueBuildDependsOn>
     <TasqueBuildDependsOn Condition=" '$(AltTarget)' != '' ">$(AltTarget)</TasqueBuildDependsOn>
   </PropertyGroup>
-  
-  <Target Name="BeforeSubstitute" />
   
   <Target Name="BeforeBuild" DependsOnTargets="$(TasqueBuildDependsOn)" />
   <Target Name="BeforeTasqueBuild" />
