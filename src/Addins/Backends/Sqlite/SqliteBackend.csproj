@@ -22,11 +22,13 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <DefineConstants>DEBUG;TRACE;GTKLINUX</DefineConstants>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkLinuxRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
     <DefineConstants>TRACE;GTKLINUX</DefineConstants>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkWinDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -34,29 +36,34 @@
     <Optimize>False</Optimize>
     <DefineConstants>DEBUG;TRACE;GTKWIN</DefineConstants>
     <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkWinRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
     <DefineConstants>TRACE;GTKWIN</DefineConstants>
     <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <DefineConstants>DEBUG;TRACE;OSX</DefineConstants>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
     <DefineConstants>TRACE;OSX</DefineConstants>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="Mono.Data.Sqlite">
@@ -64,9 +71,11 @@
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -95,12 +104,10 @@
   </ItemGroup>
   <Import Project="..\..\..\..\build\X.Common.targets" />
   <Target Name="BeforeInstall" Condition=" '$(Configuration)' == 'GtkWinDebug' Or '$(Configuration)' == 'GtkWinRelease' ">
-    <CreateItem Include="..\..\..\..\winbin\sqlite3.dll"
-        AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=sqlite3.dll">
+    <CreateItem Include="..\..\..\..\winbin\sqlite3.dll" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=sqlite3.dll">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
-    <CreateItem Include="..\..\..\..\winbin\Mono.Data.Sqlite.dll"
-        AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Mono.Data.Sqlite.dll">
+    <CreateItem Include="..\..\..\..\winbin\Mono.Data.Sqlite.dll" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Mono.Data.Sqlite.dll">
       <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
   </Target>

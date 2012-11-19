@@ -24,6 +24,7 @@
     <NotifySharp Condition=" '$(EnableNotifySharp)' == '' Or '$(EnableNotifySharp)' ">ENABLE_NOTIFY_SHARP</NotifySharp>
     <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
     <DefineConstants>DEBUG;TRACE;LINUX;$(GtkSharp12);$(NotifySharp);$(AppIndicator)</DefineConstants>
+    <OutputPath>..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -31,6 +32,7 @@
     <NotifySharp Condition=" '$(EnableNotifySharp)' == '' Or '$(EnableNotifySharp)' ">ENABLE_NOTIFY_SHARP</NotifySharp>
     <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
     <DefineConstants>TRACE;LINUX;$(GtkSharp12);$(NotifySharp);$(AppIndicator)</DefineConstants>
+    <OutputPath>..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>

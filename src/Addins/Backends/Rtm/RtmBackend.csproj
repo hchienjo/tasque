@@ -23,12 +23,14 @@
     <Optimize>False</Optimize>
     <DefineConstants>DEBUG;TRACE;GTK</DefineConstants>
     <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'GtkRelease|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
     <DefineConstants>TRACE;GTK</DefineConstants>
     <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>..\..\..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MonoMacDebug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
