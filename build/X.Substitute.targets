@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project InitialTargets="_SetupSubstitutions" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="_SetupSubstitutions">
+    <CreateItem Include="@prefix@|$(Prefix)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@libdir@|$(LibDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@pkglibdir@|$(PkgLibDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@bindir@|$(BinDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@exec_prefix@|$(BinDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@datadir@|$(DataDir)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@wrapper@|$(Wrapper)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@version@|$(Version)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+    <CreateItem Include="@PACKAGE@|$(PackageName)|text">
+      <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+  </Target>
+
   <Target Name="Substitute" DependsOnTargets="BeforeSubstitute;CoreSubstitute;AfterSubstitute" />
   <Target Name="BeforeSubstitute" />
   <Target Name="AfterSubstitute" />

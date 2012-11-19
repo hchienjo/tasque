@@ -94,35 +94,6 @@
     <Message Text="SrcDir=$(SrcDir)" />
     <Message Text="PoBuildDir=$(PoBuildDir)" />
     <Message Text="PoSrcDir=$(PoSrcDir)" />
-    
-    <!-- Create subst items here -->
-    <CreateItem Include="@prefix@|$(Prefix)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@libdir@|$(LibDir)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@pkglibdir@|$(PkgLibDir)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@bindir@|$(BinDir)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@exec_prefix@|$(BinDir)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@datadir@|$(DataDir)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@wrapper@|$(Wrapper)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@version@|$(Version)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
-    <CreateItem Include="@PACKAGE@|$(PackageName)|text">
-      <Output TaskParameter="Include" ItemName="Substitution" />
-    </CreateItem>
   </Target>
   
   <Target Name="_SetupInSlnBuild">
@@ -173,23 +144,6 @@
     <Wrapper Condition=" '$(Wrapper)' == '' ">$(PackageName)</Wrapper>
     <Version Condition=" '$(Version)' == '' ">$(ReleaseVersion)</Version>
   </PropertyGroup>
-  
-  <Choose>
-    <When Condition=" '$(OS)' == 'Windows_NT' ">
-      <PropertyGroup>
-        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe%22</IntlToolMerge>
-        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe%22</IntlToolUpdate>
-        <MsgFmt Condition=" '$(MsgFmt)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe%22</MsgFmt>
-      </PropertyGroup>
-    </When>
-    <Otherwise>
-      <PropertyGroup>
-        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
-        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">intltool-update</IntlToolUpdate>
-        <MsgFmt Condition=" '$(MsgFmt)' == '' ">msgfmt</MsgFmt>
-      </PropertyGroup>
-    </Otherwise>
-  </Choose>
   
   <!-- Main CSharp compile targets -->
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -315,7 +269,7 @@
   <Target Name="DistClean" DependsOnTargets="BeforeDistClean;CoreDistClean;AfterDistClean" />
   <Target Name="BeforeDistClean" />
   <Target Name="AfterDistClean" />
-  <Target Name="CoreDistClean" DependsOnTargets="Clean;_CheckAbsDistDir">
+  <Target Name="CoreDistClean" DependsOnTargets="Clean">
     <CreateItem Include="@(Compile)">
       <Output TaskParameter="Include" ItemName="DistCleanFile" />
     </CreateItem>

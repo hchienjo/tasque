@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Choose>
+    <When Condition=" '$(OS)' == 'Windows_NT' ">
+      <PropertyGroup>
+        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-merge.exe%22</IntlToolMerge>
+        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\intltool-update.exe%22</IntlToolUpdate>
+        <MsgFmt Condition=" '$(MsgFmt)' == '' ">%22$(MSBuildProgramFiles32)\GnuWin32\bin\msgfmt.exe%22</MsgFmt>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <IntlToolMerge Condition=" '$(IntlToolMerge)' == '' ">intltool-merge</IntlToolMerge>
+        <IntlToolUpdate Condition=" '$(IntlToolUpdate)' == '' ">intltool-update</IntlToolUpdate>
+        <MsgFmt Condition=" '$(MsgFmt)' == '' ">msgfmt</MsgFmt>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
   <Target Name="Translate" DependsOnTargets="BeforeTranslate;CoreTranslate;AfterTranslate" />
   <Target Name="BeforeTranslate" />
   <Target Name="AfterTranslate" />
