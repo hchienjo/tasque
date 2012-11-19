@@ -13,6 +13,12 @@
     <TopBuildDir>..</TopBuildDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Linux|AnyCPU' ">
+    <CustomCommands>
+      <CustomCommands>
+		<Command type="Build" command="xbuild ${ProjectFile}" workingdir="${ProjectDir}" />
+        <Command type="AfterBuild" command="xbuild /property:alttarget=install ${ProjectFile}" workingdir="${ProjectDir}" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Windows|AnyCPU' ">
   </PropertyGroup>
