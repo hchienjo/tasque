@@ -25,6 +25,7 @@
     <AppIndicator Condition=" '$(EnableAppIndicator)' == '' Or '$(EnableAppIndicator)' ">APPINDICATOR</AppIndicator>
     <DefineConstants>DEBUG;TRACE;LINUX;$(GtkSharp12);$(NotifySharp);$(AppIndicator)</DefineConstants>
     <OutputPath>..\..\build\bin\lib\tasque</OutputPath>
+    <additionalargs>/define:APPINDICATOR</additionalargs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
     <DebugType>none</DebugType>
