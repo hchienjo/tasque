@@ -7,7 +7,7 @@ using Mono.Unix;
 
 namespace Tasque.Backends.RtmBackend
 {
-	public class RtmPreferencesWidget : Gtk.EventBox
+	public class RtmPreferencesWidget : Gtk.EventBox, IBackendPreferences
 	{
  		private LinkButton		authButton;
 		

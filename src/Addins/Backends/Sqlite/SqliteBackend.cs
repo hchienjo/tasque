@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Mono.Unix;
 using Tasque.Backends;
 using Mono.Data.Sqlite;
+using Gtk.Tasque.Backends.Sqlite;
 
 namespace Tasque.Backends.Sqlite
 {
@@ -90,6 +91,14 @@ namespace Tasque.Backends.Sqlite
 		{
 			get { return db; }
 		}
+		
+		public IBackendPreferences Preferences {
+			get {
+				// TODO: Replace this with returning null once things are going
+				// so that the Preferences Dialog doesn't waste space.
+				return new SqlitePreferences ();
+			}
+		}
 		#endregion // Public Properties
 		
 		#region Public Methods
@@ -157,13 +166,6 @@ namespace Tasque.Backends.Sqlite
 				db.Close();
 			db = null;
 			initialized = false;		
-		}
-
-		public Gtk.Widget GetPreferencesWidget ()
-		{
-			// TODO: Replace this with returning null once things are going
-			// so that the Preferences Dialog doesn't waste space.
-			return new Gtk.Label ("Local file requires no configuration.");
 		}
 
 		/// <summary>

@@ -130,7 +130,7 @@ namespace Tasque
 			backendPageId = -1;
 			
 			if (Application.Backend != null) {
-				backendPage = Application.Backend.GetPreferencesWidget ();
+				backendPage = (Widget)Application.Backend.Preferences;
 				if (backendPage != null) {
 					backendPage.Show ();
 					Label l =
@@ -461,7 +461,7 @@ namespace Tasque
 			selectedBackend = backendComboBox.Active;
 			
 			// Add a backend prefs page if one exists
-			backendPage = newBackend.GetPreferencesWidget ();
+			backendPage = (Widget)newBackend.Preferences;
 			if (backendPage != null) {
 				backendPage.Show ();
 				Label l = new Label (GLib.Markup.EscapeText (newBackend.Name));

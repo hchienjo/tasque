@@ -131,6 +131,8 @@ namespace Tasque.Backends.RtmBackend
 			get { return initialized; }
 		}
 		
+		public IBackendPreferences Preferences { get { return new RtmPreferencesWidget (); } }
+		
 #endregion // Public Properties
 
 #region Public Methods
@@ -209,7 +211,7 @@ namespace Tasque.Backends.RtmBackend
 			// AUTHENTICATION to Remember The Milk
 			// *************************************
 			string authToken =
-				Application.Preferences.Get (Preferences.AuthTokenKey);
+				Application.Preferences.Get (Tasque.Preferences.AuthTokenKey);
 			if (authToken != null ) {
 				Logger.Debug("Found AuthToken, checking credentials...");
 				try {
@@ -221,9 +223,9 @@ namespace Tasque.Backends.RtmBackend
 					configured = true;
 				} catch (RtmNet.RtmApiException e) {
 					
-					Application.Preferences.Set (Preferences.AuthTokenKey, null);
-					Application.Preferences.Set (Preferences.UserIdKey, null);
-					Application.Preferences.Set (Preferences.UserNameKey, null);
+					Application.Preferences.Set (Tasque.Preferences.AuthTokenKey, null);
+					Application.Preferences.Set (Tasque.Preferences.UserIdKey, null);
+					Application.Preferences.Set (Tasque.Preferences.UserNameKey, null);
 					rtm = null;
 					rtmAuth = null;
 					Logger.Error("Exception authenticating, reverting" + e.Message);
@@ -276,11 +278,6 @@ namespace Tasque.Backends.RtmBackend
 			refreshThread.Abort ();
 		}
 
-		public Gtk.Widget GetPreferencesWidget ()
-		{
-			return new RtmPreferencesWidget ();
-		}
-
 		public string GetAuthUrl()
 		{
 			frob = rtm.AuthGetFrob();
@@ -293,15 +290,15 @@ namespace Tasque.Backends.RtmBackend
 			rtmAuth = rtm.AuthGetToken(frob);
 			if (rtmAuth != null) {
 				Preferences prefs = Application.Preferences;
-				prefs.Set (Preferences.AuthTokenKey, rtmAuth.Token);
+				prefs.Set (Tasque.Preferences.AuthTokenKey, rtmAuth.Token);
 				if (rtmAuth.User != null) {
-					prefs.Set (Preferences.UserNameKey, rtmAuth.User.Username);
-					prefs.Set (Preferences.UserIdKey, rtmAuth.User.UserId);
+					prefs.Set (Tasque.Preferences.UserNameKey, rtmAuth.User.Username);
+					prefs.Set (Tasque.Preferences.UserIdKey, rtmAuth.User.UserId);
 				}
 			}
 			
 			string authToken =
-				Application.Preferences.Get (Preferences.AuthTokenKey);
+				Application.Preferences.Get (Tasque.Preferences.AuthTokenKey);
 			if (authToken != null ) {
 				Logger.Debug("Found AuthToken, checking credentials...");
 				try {

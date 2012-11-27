@@ -98,9 +98,11 @@
     <Compile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Gtk\SqlitePreferences.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Gtk\" />
   </ItemGroup>
   <Import Project="..\..\..\..\build\X.Common.targets" />
   <Target Name="BeforeInstall" Condition=" '$(Configuration)' == 'GtkWinDebug' Or '$(Configuration)' == 'GtkWinRelease' ">

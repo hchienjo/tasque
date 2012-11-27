@@ -63,6 +63,14 @@ namespace Tasque.Backends
 		{
 			get;
 		}
+		
+		/// <summary>
+		/// An object that provides a means of managing backend specific preferences.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="Tasque.Backends.IBackendPreferences"/>
+		/// </returns>
+		IBackendPreferences Preferences { get; }
 		#endregion // Properties
 		
 		#region Methods
@@ -92,17 +100,7 @@ namespace Tasque.Backends
 		/// <summary>
 		/// Cleanup the backend before quitting
 		/// </summary>
-		void Cleanup();
-		
-		/// <summary>
-		/// A widget that will be placed into the Preferences Dialog when the
-		/// backend is the one being used.
-		/// </summary>
-		/// <returns>
-		/// A <see cref="Gtk.Widget"/>
-		/// </returns>
-		Gtk.Widget GetPreferencesWidget ();
-
-#endregion // Methods
+		void Cleanup ();
+		#endregion // Methods
 	}
 }

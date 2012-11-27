@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Mono.Unix;
 using Tasque.Backends;
+using Gtk.Tasque.Backends.Dummy;
 
 namespace Tasque.Backends.Dummy
 {
@@ -256,11 +257,13 @@ namespace Tasque.Backends.Dummy
 		public void Cleanup()
 		{}
 		
-		public Gtk.Widget GetPreferencesWidget ()
+		public IBackendPreferences Preferences
 		{
-			// TODO: Replace this with returning null once things are going
-			// so that the Preferences Dialog doesn't waste space.
-			return new Gtk.Label ("Debugging System (this message is a test)");
+			get {
+				// TODO: Replace this with returning null once things are going
+				// so that the Preferences Dialog doesn't waste space.
+				return new DummyPreferences ();
+			}
 		}
 		#endregion // Public Methods
 		
