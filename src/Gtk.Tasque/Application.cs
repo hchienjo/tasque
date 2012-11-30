@@ -53,9 +53,7 @@ namespace Tasque
 		private static System.Object locker = new System.Object();
 		private bool initialized;
 		private INativeApplication nativeApp;
-#if !WIN && !OSX
-		private RemoteControl remoteControl;
-#endif
+
 		private Gdk.Pixbuf normalPixBuf;
 		private Gtk.Image trayImage;
 		private GtkTray trayIcon;
@@ -144,31 +142,6 @@ namespace Tasque
 			nativeApp.Initialize (args);
 			
 			preferences = new Preferences (nativeApp.ConfDir);
-			
-#if !WIN && !OSX
-			// Register Tasque RemoteControl
-			try {
-				remoteControl = RemoteControlProxy.Register ();
-				if (remoteControl != null) {
-					Logger.Debug ("Tasque remote control active.");
-				} else {
-					// If Tasque is already running, open the tasks window
-					// so the user gets some sort of feedback when they
-					// attempt to run Tasque again.
-					RemoteControl remote = null;
-					try {
-						remote = RemoteControlProxy.GetInstance ();
-						remote.ShowTasks ();
-					} catch {}
-
-					Logger.Debug ("Tasque is already running.  Exiting...");
-					System.Environment.Exit (0);
-				}
-			} catch (Exception e) {
-				Logger.Debug ("Tasque remote control disabled (DBus exception): {0}",
-				            e.Message);
-			}
-#endif
 			
 			string potentialBackendClassName = null;
 			

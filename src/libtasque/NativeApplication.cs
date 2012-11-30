@@ -43,7 +43,15 @@ namespace Tasque
 			Environment.Exit (exitcode);
 		}
 
-		public abstract void Initialize (string[] args);
+		public virtual void Initialize (string[] args)
+		{
+			if (IsRemoteInstanceRunning ()) {
+				Logger.Info ("Another instance of Tasque is already running.");
+				Exit (0);
+			}
+			
+			RemoteInstanceKnocked += delegate { ShowMainWindow (); };
+		}
 
 		public virtual void InitializeIdle () {}
 
@@ -59,6 +67,33 @@ namespace Tasque
 		public abstract void StartMainLoop ();
 
 		public event EventHandler Exiting;
+
+		/// <summary>
+		/// Determines whether this a remote instance is running.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c> if a remote instance is running; otherwise, <c>false</c>.
+		/// </returns>
+		protected abstract bool IsRemoteInstanceRunning ();
+
+		protected abstract void ShowMainWindow ();
+		
+		protected abstract event EventHandler RemoteInstanceKnocked;
+		
+		#region IDisposable implementation
+		public void Dispose ()
+		{
+			Dispose (true);
+			GC.SuppressFinalize (this);
+		}
+		
+		protected virtual void Dispose (bool disposing) {}
+		
+		~NativeApplication ()
+		{
+			Dispose (false);
+		}
+		#endregion
 	}
 }
 

@@ -21,15 +21,47 @@ namespace Tasque
 	[Interface ("org.gnome.Tasque.RemoteControl")]
 	public class RemoteControl : MarshalByRefObject
 	{
+		const string Namespace = "org.gnome.Tasque";
+		const string Path = "/org/gnome/Tasque/RemoteControl";
+		
 		static Gdk.Pixbuf tasqueIcon;
 		static RemoteControl ()
 		{
 			tasqueIcon = Utilities.GetIcon ("tasque", 48);
 		}
 		
-		public RemoteControl()
+		public static RemoteControl GetInstance ()
 		{
+			BusG.Init ();
+			
+			if (!Bus.Session.NameHasOwner (Namespace))
+				Bus.Session.StartServiceByName (Namespace);
+			
+			return Bus.Session.GetObject<RemoteControl> (Namespace, new ObjectPath (Path));
 		}
+		
+		public static RemoteControl Register ()
+		{
+			BusG.Init ();
+			
+			var remoteControl = new RemoteControl ();
+			Bus.Session.Register (new ObjectPath (Path), remoteControl);
+			
+			if (Bus.Session.RequestName (Namespace) != RequestNameReply.PrimaryOwner)
+				return null;
+			
+			return remoteControl;
+		}
+		
+		RemoteControl () {}
+		
+		public void KnockKnock ()
+		{
+			if (RemoteInstanceKnocked != null)
+				RemoteInstanceKnocked ();
+		}
+		
+		public Action RemoteInstanceKnocked { get; set; }
 				
 		/// <summary>
 		/// Create a new task in Tasque using the given categoryName and name.
@@ -470,7 +502,6 @@ namespace Tasque
 			task.Delete ();
 			return true;
 		}
-
 		
 		/// <summary>
 		/// Looks up a task by ID in the backend

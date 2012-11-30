@@ -31,8 +31,6 @@ namespace Tasque
 {
 	public class GtkApplication : NativeApplication
 	{
-		private string confDir;
-
 		public GtkApplication ()
 		{
 			confDir = Path.Combine (
@@ -48,6 +46,8 @@ namespace Tasque
 			Mono.Unix.Catalog.Init ("tasque", Defines.LocaleDir);
 
 			Gtk.Application.Init ();
+			
+			base.Initialize (args);
 
 			// add package icon path to default icon theme search paths
 			Gtk.IconTheme.Default.PrependSearchPath (Defines.IconsDir);
@@ -82,5 +82,58 @@ namespace Tasque
 				Logger.Error ("Error opening url [{0}]:\n{1}", url, e.ToString ());
 			}
 		}
+
+		protected override bool IsRemoteInstanceRunning ()
+		{
+#if LINUX
+			// Register Tasque RemoteControl
+			try {
+				remoteInstance = RemoteControl.Register ();
+				if (remoteInstance != null) {
+					remoteInstance.RemoteInstanceKnocked = HandleRemoteInstanceKnocked;
+					Logger.Debug ("Tasque remote control active.");
+				} else {
+					// If Tasque is already running, open the tasks window
+					// so the user gets some sort of feedback when they
+					// attempt to run Tasque again.
+					RemoteControl remote = null;
+					try {
+						remote = RemoteControl.GetInstance ();
+						remote.KnockKnock ();
+					} catch {}
+
+					Logger.Debug ("Tasque is already running.  Exiting...");
+					return true;
+				}
+			} catch (Exception e) {
+				Logger.Debug ("Tasque remote control disabled (DBus exception): {0}", e.Message);
+			}
+			return false;
+#endif
+		}
+
+		protected override void ShowMainWindow ()
+		{
+			TaskWindow.ShowWindow ();
+		}
+		
+		protected override event EventHandler RemoteInstanceKnocked;
+		
+		void HandleRemoteInstanceKnocked ()
+		{
+			if (RemoteInstanceKnocked != null)
+				RemoteInstanceKnocked (this, EventArgs.Empty);
+		}
+		
+		protected override void Dispose (bool disposing)
+		{
+			if (disposing)
+				remoteInstance.RemoteInstanceKnocked = null;
+		}
+
+		string confDir;
+#if LINUX
+		RemoteControl remoteInstance;
+#endif
 	}
 }
