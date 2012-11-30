@@ -1,5 +1,5 @@
 // 
-// Program.cs
+// NativeApplication.cs
 //  
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,42 +23,42 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
 using System;
+using System.Diagnostics;
 
 namespace Tasque
 {
-	class Program
+	public abstract class NativeApplication : INativeApplication
 	{
-		static INativeApplication CreateApplication ()
-		{
-			INativeApplication nativeApp;
-#if OSX
-			nativeApp = new OSXApplication ();
-#else
-			nativeApp = new GtkApplication ();
-#endif
-			return nativeApp;
-		}
-		
-		static void Main (string[] args)
-		{
-			try {
-				lock (lockObject) {
-					if (application != null)
-						return;
+		public abstract string ConfDir { get; }
 
-					var nativeApp = CreateApplication ();
-					application = new Application (nativeApp);
-					application.Init (args);
-					application.StartMainLoop ();
-				}
-			} catch (Exception e) {
-				Logger.Debug ("Exception is: {0}", e);
-				application.Exit (-1);
-			}
+		public void Exit (int exitcode)
+		{
+			OnExit (exitcode);
+
+			if (Exiting != null)
+				Exiting (this, EventArgs.Empty);
+
+			Environment.Exit (exitcode);
 		}
-		
-		static Application application;
-		static object lockObject = new object ();
+
+		public abstract void Initialize (string[] args);
+
+		public virtual void InitializeIdle () {}
+
+		protected virtual void OnExit (int exitCode) {}
+
+		public virtual void OpenUrl (string url)
+		{
+			Process.Start (url);
+		}
+
+		public abstract void QuitMainLoop ();
+
+		public abstract void StartMainLoop ();
+
+		public event EventHandler Exiting;
 	}
 }
+

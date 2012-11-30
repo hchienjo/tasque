@@ -91,7 +91,6 @@
     <Compile Include="CompletedTaskGroup.cs" />
     <Compile Include="CompletedTaskGroupModel.cs" />
     <Compile Include="DateButton.cs" />
-    <Compile Include="GnomeApplication.cs" />
     <Compile Include="GtkApplication.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="NoteDialog.cs" />

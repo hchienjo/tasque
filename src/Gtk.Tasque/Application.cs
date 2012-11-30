@@ -141,12 +141,8 @@ namespace Tasque
 				initialized = true;
 			}
 
-			nativeApp.Initialize (
-				Defines.LocaleDir,
-				"Tasque",
-				"Tasque",
-				args);
-
+			nativeApp.Initialize (args);
+			
 			preferences = new Preferences (nativeApp.ConfDir);
 			
 #if !WIN && !OSX
