@@ -25,35 +25,34 @@
 //      Antonius Riha <antoniusriha@gmail.com>
 // 
 using System;
+using System.Diagnostics;
 using System.IO;
+using Mono.Unix;
+using Gtk;
 
 namespace Tasque
 {
-	public class GtkApplication : NativeApplication
-	{
-		public GtkApplication ()
+	public abstract class GtkApplicationBase : NativeApplication
+	{		
+		public GtkApplicationBase ()
 		{
-			confDir = Path.Combine (
-				Environment.GetFolderPath (
-				Environment.SpecialFolder.ApplicationData),
-				"tasque");
+			confDir = Path.Combine (Environment.GetFolderPath (
+				Environment.SpecialFolder.ApplicationData), "tasque");
 			if (!Directory.Exists (confDir))
 				Directory.CreateDirectory (confDir);
 		}
+		
+		public override string ConfDir { get { return confDir; } }
 
 		public override void Initialize (string[] args)
 		{
-			Mono.Unix.Catalog.Init ("tasque", Defines.LocaleDir);
-
+			Catalog.Init ("tasque", Defines.LocaleDir);
 			Gtk.Application.Init ();
 			
-			base.Initialize (args);
-
 			// add package icon path to default icon theme search paths
-			Gtk.IconTheme.Default.PrependSearchPath (Defines.IconsDir);
-#if WIN && DEBUG
-			Gtk.IconTheme.Default.PrependSearchPath (Defines.DataDir + "\\icons");
-#endif
+			IconTheme.Default.PrependSearchPath (Defines.IconsDir);
+
+			base.Initialize (args);
 		}
 		
 		public override void StartMainLoop ()
@@ -65,53 +64,16 @@ namespace Tasque
 		{
 			Gtk.Application.Quit ();
 		}
-
-		public override string ConfDir
-		{
-			get
-			{
-				return confDir;
-			}
-		}
-
+		
 		public override void OpenUrl (string url)
 		{
 			try {
-				System.Diagnostics.Process.Start (url);
+				Process.Start (url);
 			} catch (Exception e) {
-				Logger.Error ("Error opening url [{0}]:\n{1}", url, e.ToString ());
+				Trace.TraceError ("Error opening url [{0}]:\n{1}", url, e.ToString ());
 			}
 		}
-
-		protected override bool IsRemoteInstanceRunning ()
-		{
-#if LINUX
-			// Register Tasque RemoteControl
-			try {
-				remoteInstance = RemoteControl.Register ();
-				if (remoteInstance != null) {
-					remoteInstance.RemoteInstanceKnocked = HandleRemoteInstanceKnocked;
-					Logger.Debug ("Tasque remote control active.");
-				} else {
-					// If Tasque is already running, open the tasks window
-					// so the user gets some sort of feedback when they
-					// attempt to run Tasque again.
-					RemoteControl remote = null;
-					try {
-						remote = RemoteControl.GetInstance ();
-						remote.KnockKnock ();
-					} catch {}
-
-					Logger.Debug ("Tasque is already running.  Exiting...");
-					return true;
-				}
-			} catch (Exception e) {
-				Logger.Debug ("Tasque remote control disabled (DBus exception): {0}", e.Message);
-			}
-			return false;
-#endif
-		}
-
+		
 		protected override void ShowMainWindow ()
 		{
 			TaskWindow.ShowWindow ();
@@ -119,21 +81,12 @@ namespace Tasque
 		
 		protected override event EventHandler RemoteInstanceKnocked;
 		
-		void HandleRemoteInstanceKnocked ()
+		protected void OnRemoteInstanceKnocked ()
 		{
 			if (RemoteInstanceKnocked != null)
 				RemoteInstanceKnocked (this, EventArgs.Empty);
 		}
 		
-		protected override void Dispose (bool disposing)
-		{
-			if (disposing)
-				remoteInstance.RemoteInstanceKnocked = null;
-		}
-
 		string confDir;
-#if LINUX
-		RemoteControl remoteInstance;
-#endif
 	}
 }

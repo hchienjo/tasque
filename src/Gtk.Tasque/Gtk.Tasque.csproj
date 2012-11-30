@@ -91,7 +91,6 @@
     <Compile Include="CompletedTaskGroup.cs" />
     <Compile Include="CompletedTaskGroupModel.cs" />
     <Compile Include="DateButton.cs" />
-    <Compile Include="GtkApplication.cs" />
     <Compile Include="NoteDialog.cs" />
     <Compile Include="NoteWidget.cs" />
     <None Include="OSXApplication.cs" />
@@ -108,6 +107,9 @@
     <Compile Include="..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="GtkApplicationBase.cs" />
+    <Compile Include="GtkLinuxApplication.cs" />
+    <Compile Include="GtkWinApplication.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <Compile Include="RemoteControl.cs" />

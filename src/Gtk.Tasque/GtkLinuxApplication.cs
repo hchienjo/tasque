@@ -1,5 +1,5 @@
 // 
-// Program.cs
+// GtkLinuxApplication.cs
 //  
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,44 +23,44 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+#if LINUX
 using System;
 
 namespace Tasque
 {
-	class Program
+	public class GtkLinuxApplication : GtkApplicationBase
 	{
-		static INativeApplication CreateApplication ()
+		protected override void Dispose (bool disposing)
 		{
-			INativeApplication nativeApp;
-#if OSX
-			nativeApp = new OSXApplication ();
-#elif WIN32
-			nativeApp = new GtkWinApplication ();
-#else
-			nativeApp = new GtkLinuxApplication ();
-#endif
-			return nativeApp;
+			if (disposing && remoteInstance != null)
+				remoteInstance = null;
+			
+			base.Dispose (disposing);
 		}
 		
-		static void Main (string[] args)
+		protected override bool IsRemoteInstanceRunning ()
 		{
+			// Register Tasque RemoteControl
 			try {
-				lock (lockObject) {
-					if (application != null)
-						return;
-
-					var nativeApp = CreateApplication ();
-					application = new Application (nativeApp);
-					application.Init (args);
-					application.StartMainLoop ();
+				remoteInstance = RemoteControl.Register ();
+				if (remoteInstance != null) {
+					remoteInstance.RemoteInstanceKnocked = OnRemoteInstanceKnocked;
+					Logger.Debug ("Tasque remote control created.");
+				} else {
+					RemoteControl remote = null;
+					try {
+						remote = RemoteControl.GetInstance ();
+						remote.KnockKnock ();
+					} catch {}
+					return true;
 				}
 			} catch (Exception e) {
-				Logger.Debug ("Exception is: {0}", e);
-				application.Exit (-1);
+				Logger.Debug ("Tasque remote control disabled (DBus exception): {0}", e.Message);
 			}
+			return false;
 		}
 		
-		static Application application;
-		static object lockObject = new object ();
+		RemoteControl remoteInstance;
 	}
 }
+#endif

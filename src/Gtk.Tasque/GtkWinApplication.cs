@@ -1,5 +1,5 @@
 // 
-// Program.cs
+// GtkWinApplication.cs
 //  
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,44 +23,62 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+#if WIN
 using System;
+using System.Threading;
 
 namespace Tasque
 {
-	class Program
+	public class GtkWinApplication : GtkApplicationBase
 	{
-		static INativeApplication CreateApplication ()
+		public override void Initialize (string[] args)
 		{
-			INativeApplication nativeApp;
-#if OSX
-			nativeApp = new OSXApplication ();
-#elif WIN32
-			nativeApp = new GtkWinApplication ();
-#else
-			nativeApp = new GtkLinuxApplication ();
+			base.Initialize (args);
+#if DEBUG
+			Gtk.IconTheme.Default.PrependSearchPath (Defines.DataDir + "\\icons");
 #endif
-			return nativeApp;
 		}
 		
-		static void Main (string[] args)
+		protected override void Dispose (bool disposing)
+		{
+			if (disposing && waitHandle != null) {
+				waitHandle.Dispose ();
+				waitHandle = null;
+			}
+			
+			base.Dispose (disposing);
+		}
+		
+		protected override bool IsRemoteInstanceRunning ()
 		{
 			try {
-				lock (lockObject) {
-					if (application != null)
-						return;
-
-					var nativeApp = CreateApplication ();
-					application = new Application (nativeApp);
-					application.Init (args);
-					application.StartMainLoop ();
+				waitHandle = EventWaitHandle.OpenExisting(waitHandleName);
+				waitHandle.Set();
+				return true;
+			} catch (WaitHandleCannotBeOpenedException) {
+				waitHandle = new EventWaitHandle(false, EventResetMode.AutoReset, waitHandleName);
+				Logger.Debug ("EventWaitHandle created.");
+				
+				var porter = new Thread(new ThreadStart(WaitForAnotherInstance));
+				porter.Start();
+			}
+			return false;
+		}
+		
+		void WaitForAnotherInstance ()
+		{
+			while (!exiting) {
+				waitHandle.WaitOne ();
+				if (!exiting) {
+					Logger.Info ("Another app instance has just knocked on the door.");
+					OnRemoteInstanceKnocked ();
 				}
-			} catch (Exception e) {
-				Logger.Debug ("Exception is: {0}", e);
-				application.Exit (-1);
 			}
 		}
 		
-		static Application application;
-		static object lockObject = new object ();
+		bool exiting;
+		EventWaitHandle waitHandle;
+		readonly string waitHandleName = "Tasque." + Environment.UserName;
 	}
 }
+#endif
