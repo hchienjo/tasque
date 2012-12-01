@@ -24,12 +24,6 @@ namespace Tasque
 		const string Namespace = "org.gnome.Tasque";
 		const string Path = "/org/gnome/Tasque/RemoteControl";
 		
-		static Gdk.Pixbuf tasqueIcon;
-		static RemoteControl ()
-		{
-			tasqueIcon = Utilities.GetIcon ("tasque", 48);
-		}
-		
 		public static RemoteControl GetInstance ()
 		{
 			BusG.Init ();
@@ -181,7 +175,7 @@ namespace Tasque
 				new Notification (
 					Catalog.GetString ("New task created."), // summary
 					Catalog.GetString (taskName), // body
-					tasqueIcon);
+					Utilities.GetIcon ("tasque", 48));
 			Application.ShowAppNotification (notify);
 			#endif
 			
