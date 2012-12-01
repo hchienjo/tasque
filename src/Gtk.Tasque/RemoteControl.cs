@@ -34,11 +34,11 @@ namespace Tasque
 			return Bus.Session.GetObject<RemoteControl> (Namespace, new ObjectPath (Path));
 		}
 		
-		public static RemoteControl Register ()
+		public static RemoteControl Register (INativeApplication application)
 		{
 			BusG.Init ();
 			
-			var remoteControl = new RemoteControl ();
+			var remoteControl = new RemoteControl (application);
 			Bus.Session.Register (new ObjectPath (Path), remoteControl);
 			
 			if (Bus.Session.RequestName (Namespace) != RequestNameReply.PrimaryOwner)
@@ -47,7 +47,12 @@ namespace Tasque
 			return remoteControl;
 		}
 		
-		RemoteControl () {}
+		RemoteControl (INativeApplication application)
+		{
+			if (application == null)
+				throw new ArgumentNullException ("application");
+			this.application = application;
+		}
 		
 		public void KnockKnock ()
 		{
@@ -111,7 +116,7 @@ namespace Tasque
 						bool enterEditMode, bool parseDate)
 		{
 			Gtk.TreeIter iter;
-			Gtk.TreeModel model = Application.Backend.Categories;
+			Gtk.TreeModel model = application.Backend.Categories;
 			
 			//
 			// Validate the input parameters.  Don't allow null or empty strings
@@ -145,14 +150,14 @@ namespace Tasque
 			// If enabled, attempt to parse due date information
 			// out of the taskName.
 			DateTime taskDueDate = DateTime.MinValue;
-			if (parseDate && Application.Preferences.GetBool (Preferences.ParseDateEnabledKey))
+			if (parseDate && application.Preferences.GetBool (Preferences.ParseDateEnabledKey))
 				TaskParser.Instance.TryParse (
 				                         taskName,
 				                         out taskName,
 				                         out taskDueDate);
 			ITask task = null;
 			try {
-				task = Application.Backend.CreateTask (taskName, category);
+				task = application.Backend.CreateTask (taskName, category);
 				if (taskDueDate != DateTime.MinValue)
 					task.DueDate = taskDueDate;
 			} catch (Exception e) {
@@ -165,7 +170,7 @@ namespace Tasque
 			}
 			
 			if (enterEditMode) {
-				TaskWindow.SelectAndEdit (task);
+				TaskWindow.SelectAndEdit (task, application);
 			}
 			
 			#if ENABLE_NOTIFY_SHARP
@@ -195,7 +200,7 @@ namespace Tasque
 			string[] emptyArray = categories.ToArray ();
 			
 			Gtk.TreeIter iter;
-			Gtk.TreeModel model = Application.Backend.Categories;
+			Gtk.TreeModel model = application.Backend.Categories;
 			
 			if (!model.GetIterFirst (out iter))
 				return emptyArray;
@@ -212,7 +217,7 @@ namespace Tasque
 		
 		public void ShowTasks ()
 		{
-			TaskWindow.ShowWindow ();
+			TaskWindow.ShowWindow (application);
 		}
 		
 		/// <summary>
@@ -231,7 +236,7 @@ namespace Tasque
 			List<string> ids;
 			
 			ids = new List<string> ();
-			model = Application.Backend.Tasks;
+			model = application.Backend.Tasks;
 			
 			if (!model.GetIterFirst (out iter))
 				return new string[0];
@@ -320,7 +325,7 @@ namespace Tasque
 				return false;
 			}
 			Gtk.TreeIter iter;
-			Gtk.TreeModel model = Application.Backend.Categories;
+			Gtk.TreeModel model = application.Backend.Categories;
 			
 			if (!model.GetIterFirst (out iter))
 				return false;
@@ -512,7 +517,7 @@ namespace Tasque
 			Gtk.TreeModel model;
 			
 			ITask task = null;
-			model = Application.Backend.Tasks;
+			model = application.Backend.Tasks;
 			
 			if (model.GetIterFirst (out iter)) {
 				do {
@@ -525,5 +530,7 @@ namespace Tasque
 			
 			return task;
 		}
+
+		INativeApplication application;
 	}
 }

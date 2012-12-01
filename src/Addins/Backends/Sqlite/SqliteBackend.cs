@@ -131,8 +131,11 @@ namespace Tasque.Backends.Sqlite
 		public void Refresh()
 		{}
 		
-		public void Initialize()
+		public void Initialize (Preferences preferences)
 		{
+			if (preferences == null)
+				throw new ArgumentNullException ("preferences");
+
 			if(db == null)
 				db = new Database();
 				
@@ -141,7 +144,7 @@ namespace Tasque.Backends.Sqlite
 			//
 			// Add in the "All" Category
 			//
-			AllCategory allCategory = new Tasque.AllCategory ();
+			AllCategory allCategory = new Tasque.AllCategory (preferences);
 			Gtk.TreeIter iter = categoryListStore.Append ();
 			categoryListStore.SetValue (iter, 0, allCategory);
 			

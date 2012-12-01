@@ -15,6 +15,8 @@ namespace Tasque.Backends.RtmBackend
 {
 	public class RtmBackend : IBackend
 	{
+		Preferences preferences;
+
 		private const string apiKey = "b29f7517b6584035d07df3170b80c430";
 		private const string sharedSecret = "93eb5f83628b2066";
 		private Gtk.TreeStore taskStore;
@@ -69,18 +71,6 @@ namespace Tasque.Backends.RtmBackend
 			sortedCategoriesModel = new Gtk.TreeModelSort (categoryListStore);
 			sortedCategoriesModel.SetSortFunc (0, new Gtk.TreeIterCompareFunc (CompareCategorySortFunc));
 			sortedCategoriesModel.SetSortColumnId (0, Gtk.SortType.Ascending);
-
-			// make sure we have the all Category in our list
-			Gtk.Application.Invoke ( delegate {
-				AllCategory allCategory = new Tasque.AllCategory ();
-				Gtk.TreeIter iter = categoryListStore.Append ();
-				categoryListStore.SetValue (iter, 0, allCategory);				
-			});
-
-			runRefreshEvent = new AutoResetEvent(false);
-			
-			runningRefreshThread = false;
-			refreshThread  = new Thread(RefreshThreadLoop);
 		}
 
 		#region Public Properties
@@ -131,7 +121,7 @@ namespace Tasque.Backends.RtmBackend
 			get { return initialized; }
 		}
 		
-		public IBackendPreferences Preferences { get { return new RtmPreferencesWidget (); } }
+		public IBackendPreferences Preferences { get { return new RtmPreferencesWidget (this, preferences); } }
 		
 #endregion // Public Properties
 
@@ -205,13 +195,28 @@ namespace Tasque.Backends.RtmBackend
 			Logger.Debug("Done refreshing data!");
 		}
 
-		public void Initialize()
+		public void Initialize (Preferences preferences)
 		{
+			if (preferences == null)
+				throw new ArgumentNullException ("preferences");
+			this.preferences = preferences;
+
+			// make sure we have the all Category in our list
+			Gtk.Application.Invoke ( delegate {
+				AllCategory allCategory = new Tasque.AllCategory (preferences);
+				Gtk.TreeIter iter = categoryListStore.Append ();
+				categoryListStore.SetValue (iter, 0, allCategory);
+			});
+			
+			runRefreshEvent = new AutoResetEvent(false);
+			
+			runningRefreshThread = false;
+			refreshThread  = new Thread(RefreshThreadLoop);
+
 			// *************************************
 			// AUTHENTICATION to Remember The Milk
 			// *************************************
-			string authToken =
-				Application.Preferences.Get (Tasque.Preferences.AuthTokenKey);
+			string authToken = preferences.Get (Tasque.Preferences.AuthTokenKey);
 			if (authToken != null ) {
 				Logger.Debug("Found AuthToken, checking credentials...");
 				try {
@@ -223,9 +228,9 @@ namespace Tasque.Backends.RtmBackend
 					configured = true;
 				} catch (RtmNet.RtmApiException e) {
 					
-					Application.Preferences.Set (Tasque.Preferences.AuthTokenKey, null);
-					Application.Preferences.Set (Tasque.Preferences.UserIdKey, null);
-					Application.Preferences.Set (Tasque.Preferences.UserNameKey, null);
+					preferences.Set (Tasque.Preferences.AuthTokenKey, null);
+					preferences.Set (Tasque.Preferences.UserIdKey, null);
+					preferences.Set (Tasque.Preferences.UserNameKey, null);
 					rtm = null;
 					rtmAuth = null;
 					Logger.Error("Exception authenticating, reverting" + e.Message);
@@ -289,16 +294,14 @@ namespace Tasque.Backends.RtmBackend
 		{
 			rtmAuth = rtm.AuthGetToken(frob);
 			if (rtmAuth != null) {
-				Preferences prefs = Application.Preferences;
-				prefs.Set (Tasque.Preferences.AuthTokenKey, rtmAuth.Token);
+				preferences.Set (Tasque.Preferences.AuthTokenKey, rtmAuth.Token);
 				if (rtmAuth.User != null) {
-					prefs.Set (Tasque.Preferences.UserNameKey, rtmAuth.User.Username);
-					prefs.Set (Tasque.Preferences.UserIdKey, rtmAuth.User.UserId);
+					preferences.Set (Tasque.Preferences.UserNameKey, rtmAuth.User.Username);
+					preferences.Set (Tasque.Preferences.UserIdKey, rtmAuth.User.UserId);
 				}
 			}
 			
-			string authToken =
-				Application.Preferences.Get (Tasque.Preferences.AuthTokenKey);
+			string authToken = preferences.Get (Tasque.Preferences.AuthTokenKey);
 			if (authToken != null ) {
 				Logger.Debug("Found AuthToken, checking credentials...");
 				try {

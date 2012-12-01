@@ -39,15 +39,13 @@ namespace Tasque
 		
 		public Preferences Preferences { get { return preferences; } }
 
-		public void Exit (int exitcode)
-		{
-			OnExit (exitcode);
+		public abstract void ShowPreferences ();
 
-			if (Exiting != null)
-				Exiting (this, EventArgs.Empty);
-
-			Environment.Exit (exitcode);
-		}
+		public TaskGroupModel OverdueTasks { get; protected set; }
+		
+		public TaskGroupModel TodayTasks { get; protected set; }
+		
+		public TaskGroupModel TomorrowTasks { get; protected set; }
 
 		public virtual void Initialize (string[] args)
 		{
@@ -91,7 +89,49 @@ namespace Tasque
 		
 		protected virtual void OnInitializeIdle () {}
 
+		#region Day switch
+		protected DateTime CurrentDay { get; private set; }
+		
+		protected void CheckForDaySwitch ()
+		{
+			if (DateTime.Today != CurrentDay) {
+				Logger.Debug ("Day has changed, reloading tasks");
+				CurrentDay = DateTime.Today;
+				OnDaySwitched ();
+			}
+		}
+		
+		protected virtual void OnDaySwitched () {}
+		#endregion
+
+		#region Exit and Quit
+		public void Exit (int exitcode)
+		{
+			OnExit (exitcode);
+			
+			if (Exiting != null)
+				Exiting (this, EventArgs.Empty);
+			
+			Environment.Exit (exitcode);
+		}
+		
+		public event EventHandler Exiting;
+		
 		protected virtual void OnExit (int exitCode) {}
+		
+		public void Quit ()
+		{
+			Logger.Info ("Quit called - terminating application");
+			OnQuitting ();
+			
+			if (backend != null)
+				backend.Cleanup ();
+			
+			QuitMainLoop ();
+		}
+		
+		protected virtual void OnQuitting () {}
+		#endregion
 
 		public virtual void OpenUrl (string url)
 		{
@@ -138,7 +178,7 @@ namespace Tasque
 				return;
 			
 			Logger.Info ("Using backend: {0} ({1})", backend.Name, backend.GetType ().ToString ());
-			backend.Initialize ();
+			backend.Initialize (preferences);
 			
 			OnBackendChanged ();
 		}
@@ -147,8 +187,6 @@ namespace Tasque
 		public abstract void QuitMainLoop ();
 
 		public abstract void StartMainLoop ();
-
-		public event EventHandler Exiting;
 
 		/// <summary>
 		/// Determines whether this a remote instance is running.
@@ -183,7 +221,7 @@ namespace Tasque
 			try {
 				if (backend != null && !backend.Configured) {
 					backend.Cleanup ();
-					backend.Initialize();
+					backend.Initialize (preferences);
 				}
 			} catch (Exception e) {
 				Logger.Error ("{0}", e.Message);

@@ -40,6 +40,8 @@ namespace Tasque
 {
 	public class TaskWindow : Gtk.Window 
 	{
+		INativeApplication application;
+
 		private static TaskWindow taskWindow = null;
 		private static int lastXPos;
 		private static int lastYPos;
@@ -83,8 +85,12 @@ namespace Tasque
 			noteIcon = Utilities.GetIcon ("tasque-note", 16);
 		}
 		
-		public TaskWindow (IBackend aBackend) : base (Gtk.WindowType.Toplevel)
+		public TaskWindow (IBackend aBackend, INativeApplication application) : base (Gtk.WindowType.Toplevel)
 		{
+			if (application == null)
+				throw new ArgumentNullException ("application");
+			this.application = application;
+
 			this.backend = aBackend;
 			taskGroups = new List<TaskGroup> ();
 			noteDialogs = new Dictionary<ITask, NoteDialog> ();
@@ -102,8 +108,8 @@ namespace Tasque
 			// Update the window title
 			Title = string.Format ("Tasque");	
 
-			width = Application.Preferences.GetInt("MainWindowWidth");
-			height = Application.Preferences.GetInt("MainWindowHeight");
+			width = application.Preferences.GetInt("MainWindowWidth");
+			height = application.Preferences.GetInt("MainWindowHeight");
 			
 			if(width == -1)
 				width = 600;
@@ -183,7 +189,7 @@ namespace Tasque
 						Gtk.AccelFlags.Visible);
 			
 			globalKeys.AddAccelerator (delegate (object sender, EventArgs e) {
-				Application.Instance.Quit (); },
+				application.Quit (); },
 						(uint) Gdk.Key.q,
 						Gdk.ModifierType.ControlMask,
 						Gtk.AccelFlags.Visible);
@@ -237,7 +243,7 @@ namespace Tasque
 				OnBackendInitialized();
 			}
 			
-			Application.Preferences.SettingChanged += OnSettingChanged;
+			application.Preferences.SettingChanged += OnSettingChanged;
 		}
 
 		void PopulateWindow()
@@ -257,7 +263,7 @@ namespace Tasque
 			
 			overdueGroup = new TaskGroup (Catalog.GetString ("Overdue"),
 										  rangeStart, rangeEnd,
-										  backend.Tasks);
+										  backend.Tasks, application);
 			overdueGroup.RowActivated += OnRowActivated;
 			overdueGroup.ButtonPressed += OnButtonPressed;
 			overdueGroup.Show ();
@@ -275,7 +281,7 @@ namespace Tasque
 									 rangeEnd.Day, 23, 59, 59);
 			todayGroup = new TaskGroup (Catalog.GetString ("Today"),
 										rangeStart, rangeEnd,
-										backend.Tasks);
+										backend.Tasks, application);
 			todayGroup.RowActivated += OnRowActivated;
 			todayGroup.ButtonPressed += OnButtonPressed;
 			todayGroup.Show ();
@@ -293,7 +299,7 @@ namespace Tasque
 									 rangeEnd.Day, 23, 59, 59);
 			tomorrowGroup = new TaskGroup (Catalog.GetString ("Tomorrow"),
 										   rangeStart, rangeEnd,
-										   backend.Tasks);
+										   backend.Tasks, application);
 			tomorrowGroup.RowActivated += OnRowActivated;
 			tomorrowGroup.ButtonPressed += OnButtonPressed;			
 			tomorrowGroup.Show ();
@@ -311,7 +317,7 @@ namespace Tasque
 									 rangeEnd.Day, 23, 59, 59);
 			nextSevenDaysGroup = new TaskGroup (Catalog.GetString ("Next 7 Days"),
 										   rangeStart, rangeEnd,
-										   backend.Tasks);
+										   backend.Tasks, application);
 			nextSevenDaysGroup.RowActivated += OnRowActivated;
 			nextSevenDaysGroup.ButtonPressed += OnButtonPressed;				
 			nextSevenDaysGroup.Show ();
@@ -327,7 +333,7 @@ namespace Tasque
 			rangeEnd = DateTime.MaxValue;
 			futureGroup = new TaskGroup (Catalog.GetString ("Future"),
 										 rangeStart, rangeEnd,
-										 backend.Tasks);
+										 backend.Tasks, application);
 			futureGroup.RowActivated += OnRowActivated;
 			futureGroup.ButtonPressed += OnButtonPressed;			
 			futureGroup.Show ();
@@ -342,7 +348,7 @@ namespace Tasque
 			completedTaskGroup = new CompletedTaskGroup (
 					Catalog.GetString ("Completed"),
 					rangeStart, rangeEnd,
-					backend.Tasks);
+					backend.Tasks, application);
 			completedTaskGroup.RowActivated += OnRowActivated;
 			completedTaskGroup.ButtonPressed += OnButtonPressed;
 			completedTaskGroup.Show ();
@@ -357,11 +363,11 @@ namespace Tasque
 			
 			// Set up the combo box (after the above to set the current filter)
 
-			categoryComboBox.Model = Application.Backend.Categories;		
+			categoryComboBox.Model = application.Backend.Categories;		
 
 			// Read preferences for the last-selected category and select it
 			string selectedCategoryName =
-				Application.Preferences.Get (Preferences.SelectedCategoryKey);
+				application.Preferences.Get (Preferences.SelectedCategoryKey);
 			
 			categoryComboBox.Changed += OnCategoryChanged;
 			
@@ -373,15 +379,15 @@ namespace Tasque
 		/// <summary>
 		/// Method to allow other classes to "click" on the "Add Task" button.
 		/// </summary>
-		public static void AddTask ()
+		public static void AddTask (INativeApplication application)
 		{
 			if (taskWindow == null)
-				TaskWindow.ShowWindow ();
+				TaskWindow.ShowWindow (application);
 			
 			taskWindow.OnAddTask (null, EventArgs.Empty);
 		}
 
-		public static void SavePosition()
+		public static void SavePosition (Preferences preferences)
 		{
 			if(taskWindow != null) {
 				int x;
@@ -395,25 +401,25 @@ namespace Tasque
 				lastXPos = x;
 				lastYPos = y;
 				
-				Application.Preferences.SetInt("MainWindowLastXPos", lastXPos);
-				Application.Preferences.SetInt("MainWindowLastYPos", lastYPos);
-				Application.Preferences.SetInt("MainWindowWidth", width);
-				Application.Preferences.SetInt("MainWindowHeight", height);	
+				preferences.SetInt("MainWindowLastXPos", lastXPos);
+				preferences.SetInt("MainWindowLastYPos", lastYPos);
+				preferences.SetInt("MainWindowWidth", width);
+				preferences.SetInt("MainWindowHeight", height);	
 			}
 
 		}
 		
-		public static void ShowWindow ()
+		public static void ShowWindow (INativeApplication application)
 		{
-			ShowWindow (false);
+			ShowWindow (false, application);
 		}
 		
-		public static void ToggleWindowVisible ()
+		public static void ToggleWindowVisible (INativeApplication application)
 		{
-			ShowWindow (true);
+			ShowWindow (true, application);
 		}
 		
-		private static void ShowWindow(bool supportToggle)
+		private static void ShowWindow (bool supportToggle, INativeApplication application)
 		{
 			if(taskWindow != null) {
 				if(taskWindow.IsActive && supportToggle) {
@@ -436,12 +442,12 @@ namespace Tasque
 					}
 					taskWindow.Present();
 				}
-			} else if (Application.Backend != null) {
-				TaskWindow.taskWindow = new TaskWindow(Application.Backend);
+			} else if (application.Backend != null) {
+				TaskWindow.taskWindow = new TaskWindow (application.Backend, application);
 				if(lastXPos == 0 || lastYPos == 0)
 				{
-					lastXPos = Application.Preferences.GetInt("MainWindowLastXPos");
-					lastYPos = Application.Preferences.GetInt("MainWindowLastYPos");				
+					lastXPos = application.Preferences.GetInt("MainWindowLastXPos");
+					lastYPos = application.Preferences.GetInt("MainWindowLastYPos");				
 				}
 
 				int x = lastXPos;
@@ -454,17 +460,17 @@ namespace Tasque
 			}
 		}
 		
-		public static void GrabNewTaskEntryFocus ()
+		public static void GrabNewTaskEntryFocus (INativeApplication application)
 		{
 			if (taskWindow == null)
-				TaskWindow.ShowWindow ();
+				TaskWindow.ShowWindow (application);
 			
 			taskWindow.addTaskEntry.GrabFocus ();
 		}
 		
-		public static void SelectAndEdit (ITask task)
+		public static void SelectAndEdit (ITask task, INativeApplication application)
 		{
-			ShowWindow ();
+			ShowWindow (application);
 			taskWindow.EnterEditMode (task, true);
 			taskWindow.Present ();
 		}
@@ -520,7 +526,7 @@ namespace Tasque
 		/// <summary>
 		/// This should be called after a new IBackend has been set
 		/// </summary>
-		public static void Reinitialize (bool show)
+		public static void Reinitialize (bool show, INativeApplication application)
 		{
 			if (TaskWindow.taskWindow != null) {
 				TaskWindow.taskWindow.Hide ();
@@ -529,7 +535,7 @@ namespace Tasque
 			}
 
 			if (show)
-				TaskWindow.ShowWindow ();
+				TaskWindow.ShowWindow (application);
 		}
 		
 		public void HighlightTask (ITask task)
@@ -658,7 +664,7 @@ namespace Tasque
 			int count = 0;
 			
 			Gtk.TreeIter iter;
-			Gtk.TreeModel model = Application.Backend.Tasks;
+			Gtk.TreeModel model = application.Backend.Tasks;
 			
 			if (!model.GetIterFirst (out iter))
 				return 0;
@@ -861,10 +867,10 @@ namespace Tasque
 			lastXPos = x;
 			lastYPos = y;
 			
-			Application.Preferences.SetInt("MainWindowLastXPos", lastXPos);
-			Application.Preferences.SetInt("MainWindowLastYPos", lastYPos);
-			Application.Preferences.SetInt("MainWindowWidth", width);
-			Application.Preferences.SetInt("MainWindowHeight", height);
+			application.Preferences.SetInt("MainWindowLastXPos", lastXPos);
+			application.Preferences.SetInt("MainWindowLastYPos", lastYPos);
+			application.Preferences.SetInt("MainWindowWidth", width);
+			application.Preferences.SetInt("MainWindowHeight", height);
 
 			Logger.Debug("WindowDeleted was called");
 			taskWindow = null;
@@ -952,7 +958,7 @@ namespace Tasque
 			// out of the entered task text.
 			DateTime taskDueDate = DateTime.MinValue;
 			string taskName;
-			if (Application.Preferences.GetBool (Preferences.ParseDateEnabledKey))
+			if (application.Preferences.GetBool (Preferences.ParseDateEnabledKey))
 				TaskParser.Instance.TryParse (
 				                         enteredTaskText,
 				                         out taskName,
@@ -996,7 +1002,7 @@ namespace Tasque
 					// the "All" category and if not, select the category
 					// specifically.
 					List<string> categoriesToHide =
-						Application.Preferences.GetStringList (
+						application.Preferences.GetStringList (
 							Preferences.HideInAllCategory);
 					if (categoriesToHide != null && categoriesToHide.Contains (item.Category.Name)) {
 						SelectCategory (item.Category.Name);
@@ -1029,7 +1035,7 @@ namespace Tasque
 			completedTaskGroup.Refilter (category);
 			
 			// Save the selected category in preferences
-			Application.Preferences.Set (Preferences.SelectedCategoryKey,
+			application.Preferences.Set (Preferences.SelectedCategoryKey,
 										 category.Name);
 		}
 		
@@ -1109,7 +1115,7 @@ namespace Tasque
 					 * here in order to enable changing categories. The list of available categories
 					 * is pre-filtered as to not contain the current category and the AllCategory.
 					 */
-					TreeModelFilter filteredCategories = new TreeModelFilter(Application.Backend.Categories, null);
+					TreeModelFilter filteredCategories = new TreeModelFilter(application.Backend.Categories, null);
 					filteredCategories.VisibleFunc = delegate(TreeModel t, TreeIter i) {
 						ICategory category = t.GetValue (i, 0) as ICategory;
 						if (category == null || category is AllCategory || category.Equals(clickedTask.Category))
@@ -1185,7 +1191,7 @@ namespace Tasque
 			if (clickedTask == null)
 				return;
 		
-			Application.Backend.DeleteTask(clickedTask);
+			application.Backend.DeleteTask(clickedTask);
 			
 			status = Catalog.GetString ("Task deleted");
 			TaskWindow.ShowStatus (status);
@@ -1235,13 +1241,13 @@ namespace Tasque
 		private void OnBackendSyncFinished ()
 		{
 			Logger.Debug("Backend sync finished");
-			if (Application.Backend.Configured) {
+			if (application.Backend.Configured) {
 				string now = DateTime.Now.ToString ();
 				// Translators: This status shows the date and time when the task list was last refreshed
 				status = string.Format (Catalog.GetString ("Tasks loaded: {0}"), now);
 				TaskWindow.lastLoadedTime = now;
 				TaskWindow.ShowStatus (status);
-				RebuildAddTaskMenu (Application.Backend.Categories);
+				RebuildAddTaskMenu (application.Backend.Categories);
 				addTaskEntry.Sensitive = true;
 				categoryComboBox.Sensitive = true;
 				// Keep insensitive text color

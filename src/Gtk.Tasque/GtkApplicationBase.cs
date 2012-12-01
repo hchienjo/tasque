@@ -33,8 +33,8 @@ using Gtk;
 namespace Tasque
 {
 	public abstract class GtkApplicationBase : NativeApplication
-	{		
-		public GtkApplicationBase ()
+	{
+		protected GtkApplicationBase ()
 		{
 			confDir = Path.Combine (Environment.GetFolderPath (
 				Environment.SpecialFolder.ApplicationData), "tasque");
@@ -57,20 +57,25 @@ namespace Tasque
 				InitializeIdle ();
 				return false;
 			});
+
+			GLib.Timeout.Add (60000, delegate {
+				CheckForDaySwitch ();
+				return true;
+			});
 			
 			base.OnInitialize ();
 		}
 		
 		protected override void OnInitializeIdle ()
 		{
-			trayIcon = GtkTray.CreateTray ();
+			trayIcon = GtkTray.CreateTray (this);
 			
 			if (Backend == null) {
 				// Pop open the preferences dialog so the user can choose a
 				// backend service to use.
 				ShowPreferences ();
 			} else if (!QuietStart)
-				TaskWindow.ShowWindow ();
+				TaskWindow.ShowWindow (this);
 			
 			if (Backend == null || !Backend.Configured) {
 				GLib.Timeout.Add (1000, new GLib.TimeoutHandler (delegate {
@@ -91,12 +96,22 @@ namespace Tasque
 		{
 			Gtk.Application.Quit ();
 		}
+
+#if ENABLE_NOTIFY_SHARP
+		public static void ShowAppNotification(Notification notification)
+		{
+			// TODO: Use this API for newer versions of notify-sharp
+			//notification.AttachToStatusIcon(
+			//		Tasque.Application.Instance.trayIcon);
+			notification.Show();
+		}
+#endif
 		
-		public void ShowPreferences ()
+		public override void ShowPreferences ()
 		{
 			Logger.Info ("OnPreferences called");
 			if (preferencesDialog == null) {
-				preferencesDialog = new PreferencesDialog ();
+				preferencesDialog = new PreferencesDialog (this);
 				preferencesDialog.Hidden += OnPreferencesDialogHidden;
 			}
 			
@@ -113,13 +128,13 @@ namespace Tasque
 		protected override void OnBackendChanged ()
 		{
 			if (backendWasNullBeforeChange)
-				TaskWindow.Reinitialize (!QuietStart);
+				TaskWindow.Reinitialize (!QuietStart, this);
 			else
-				TaskWindow.Reinitialize (true);
+				TaskWindow.Reinitialize (true, this);
 			
 			Debug.WriteLine ("Configuration status: {0}", Backend.Configured.ToString ());
 			
-			Application.Instance.RebuildTooltipTaskGroupModels ();
+			RebuildTooltipTaskGroupModels ();
 			if (trayIcon != null)
 				trayIcon.RefreshTrayIconTooltip ();
 			
@@ -129,13 +144,35 @@ namespace Tasque
 		protected override void OnBackendChanging ()
 		{
 			if (Backend != null)
-				Application.Instance.UnhookFromTooltipTaskGroupModels ();
+				UnhookFromTooltipTaskGroupModels ();
 			
 			backendWasNullBeforeChange = Backend == null;
 			
 			base.OnBackendChanging ();
 		}
-		
+
+		protected override void OnDaySwitched ()
+		{
+			// Reinitialize window according to new date
+			if (TaskWindow.IsOpen)
+				TaskWindow.Reinitialize (true, this);
+			
+			UnhookFromTooltipTaskGroupModels ();
+			RebuildTooltipTaskGroupModels ();
+			if (trayIcon != null)
+				trayIcon.RefreshTrayIconTooltip ();
+		}
+
+		protected override void OnQuitting ()
+		{
+			if (Backend != null)
+				UnhookFromTooltipTaskGroupModels ();
+			
+			TaskWindow.SavePosition (Preferences);
+			
+			base.OnQuitting ();
+		}
+
 		public override void OpenUrl (string url)
 		{
 			try {
@@ -147,7 +184,7 @@ namespace Tasque
 		
 		protected override void ShowMainWindow ()
 		{
-			TaskWindow.ShowWindow ();
+			TaskWindow.ShowWindow (this);
 		}
 		
 		protected override event EventHandler RemoteInstanceKnocked;
@@ -156,6 +193,52 @@ namespace Tasque
 		{
 			if (RemoteInstanceKnocked != null)
 				RemoteInstanceKnocked (this, EventArgs.Empty);
+		}
+
+		void OnTooltipModelChanged (object o, EventArgs args)
+		{
+			if (trayIcon != null)
+				trayIcon.RefreshTrayIconTooltip ();
+		}
+
+		void RebuildTooltipTaskGroupModels ()
+		{
+			if (Backend == null || Backend.Tasks == null) {
+				OverdueTasks = null;
+				TodayTasks = null;
+				TomorrowTasks = null;
+				
+				return;
+			}
+			
+			OverdueTasks = TaskGroupModelFactory.CreateOverdueModel (Backend.Tasks);
+			TodayTasks = TaskGroupModelFactory.CreateTodayModel (Backend.Tasks);
+			TomorrowTasks = TaskGroupModelFactory.CreateTomorrowModel (Backend.Tasks);
+			
+			foreach (TaskGroupModel model in new TaskGroupModel[] { OverdueTasks, TodayTasks, TomorrowTasks })
+			{
+				if (model == null) {
+					continue;
+				}
+				
+				model.RowInserted += OnTooltipModelChanged;
+				model.RowChanged += OnTooltipModelChanged;
+				model.RowDeleted += OnTooltipModelChanged;
+			}
+		}
+
+		void UnhookFromTooltipTaskGroupModels ()
+		{
+			foreach (TaskGroupModel model in new TaskGroupModel[] { OverdueTasks, TodayTasks, TomorrowTasks })
+			{
+				if (model == null) {
+					continue;
+				}
+				
+				model.RowInserted -= OnTooltipModelChanged;
+				model.RowChanged -= OnTooltipModelChanged;
+				model.RowDeleted -= OnTooltipModelChanged;
+			}
 		}
 		
 		internal GtkTray TrayIcon { get { return trayIcon; } }

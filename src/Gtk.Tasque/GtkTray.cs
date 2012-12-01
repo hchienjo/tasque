@@ -33,7 +33,7 @@ namespace Tasque
 {
 	public abstract class GtkTray : IDisposable
 	{
-		public static GtkTray CreateTray ()
+		public static GtkTray CreateTray (INativeApplication application)
 		{
 			var desktopSession = Environment.GetEnvironmentVariable ("DESKTOP_SESSION");
 			GtkTray tray;
@@ -43,29 +43,34 @@ namespace Tasque
 			case "gnome-classic":
 			case "gnome-fallback":
 #if APPINDICATOR
-				tray = new AppIndicatorTray ();
+				tray = new AppIndicatorTray (application);
 				break;
 #endif
 			default:
-				tray = new StatusIconTray ();
+				tray = new StatusIconTray (application);
 				break;
 			}
 			return tray;
 		}
 
-		protected GtkTray ()
+		protected GtkTray (INativeApplication application)
 		{
+			if (application == null)
+				throw new ArgumentNullException ("application");
+			this.application = application;
+
 			UpdateBackend ();
-			Application.Instance.BackendChanged += HandleBackendChanged;
+			application.BackendChanged += HandleBackendChanged;
 			RefreshTrayIconTooltip ();
 		}
 
 		#region IDisposable implementation
 		public void Dispose ()
 		{
-			var app = Application.Instance;
-			if (app != null)
-				app.BackendChanged -= HandleBackendChanged;
+			if (disposed)
+				return;
+			application.BackendChanged -= HandleBackendChanged;
+			disposed = true;
 		}
 		#endregion
 		
@@ -74,7 +79,7 @@ namespace Tasque
 			var oldTooltip = Tooltip;
 			var sb = new StringBuilder ();
 			
-			var overdueTasks = Application.Instance.OverdueTasks;
+			var overdueTasks = application.OverdueTasks;
 			if (overdueTasks != null) {
 				int count = overdueTasks.IterNChildren ();
 
@@ -83,7 +88,7 @@ namespace Tasque
 				}
 			}
 			
-			var todayTasks = Application.Instance.TodayTasks;
+			var todayTasks = application.TodayTasks;
 			if (todayTasks != null) {
 				int count = todayTasks.IterNChildren ();
 
@@ -92,7 +97,7 @@ namespace Tasque
 				}
 			}
 			
-			var tomorrowTasks = Application.Instance.TomorrowTasks;
+			var tomorrowTasks = application.TomorrowTasks;
 			if (tomorrowTasks != null) {
 				int count = tomorrowTasks.IterNChildren ();
 
@@ -166,23 +171,23 @@ namespace Tasque
 			trayActionGroup.Add (new ActionEntry [] {
 				new ActionEntry ("NewTaskAction", Stock.New, Catalog.GetString ("New Task ..."), null, null, delegate {
 					// Show the TaskWindow and then cause a new task to be created
-					TaskWindow.ShowWindow ();
-					TaskWindow.GrabNewTaskEntryFocus ();
+					TaskWindow.ShowWindow (application);
+					TaskWindow.GrabNewTaskEntryFocus (application);
 				}),
 
 				new ActionEntry ("AboutAction", Stock.About, OnAbout),
 
-				new ActionEntry ("PreferencesAction", Stock.Preferences, delegate { Application.ShowPreferences (); }),
+				new ActionEntry ("PreferencesAction", Stock.Preferences, delegate { application.ShowPreferences (); }),
 
 				new ActionEntry ("RefreshAction", Stock.Execute, Catalog.GetString ("Refresh Tasks ..."),
-				                 null, null, delegate { Application.Backend.Refresh(); }),
+				                 null, null, delegate { application.Backend.Refresh(); }),
 
-				new ActionEntry ("QuitAction", Stock.Quit, delegate { Application.Instance.Quit (); })
+				new ActionEntry ("QuitAction", Stock.Quit, delegate { application.Quit (); })
 			});
 			
 			ToggleTaskWindowAction = new Gtk.Action ("ToggleTaskWindowAction", Catalog.GetString ("Toggle Task Window"));
 			ToggleTaskWindowAction.ActionGroup = trayActionGroup;
-			ToggleTaskWindowAction.Activated += delegate { TaskWindow.ToggleWindowVisible (); };
+			ToggleTaskWindowAction.Activated += delegate { TaskWindow.ToggleWindowVisible (application); };
 			
 			uiManager = new UIManager ();
 			uiManager.AddUiFromString (MenuXml);
@@ -191,7 +196,7 @@ namespace Tasque
 
 		void UpdateActionSensitivity ()
 		{
-			var backend = Application.Backend;
+			var backend = application.Backend;
 			var backendItemsSensitive = (backend != null && backend.Initialized);
 			
 			if (uiManager == null)
@@ -205,7 +210,7 @@ namespace Tasque
 		{
 			if (backend != null)
 				backend.BackendInitialized -= HandleBackendInitialized;
-			backend = Application.Backend;
+			backend = application.Backend;
 
 			if (backend != null)
 				backend.BackendInitialized += HandleBackendInitialized;
@@ -213,7 +218,9 @@ namespace Tasque
 			UpdateActionSensitivity ();
 		}
 
+		INativeApplication application;
 		IBackend backend;
+		bool disposed;
 		UIManager uiManager;
 		const string MenuXml = @"
 <ui>

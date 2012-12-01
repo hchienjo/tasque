@@ -8,13 +8,19 @@ namespace Tasque
 	{
 		IList<IBackend> AvailableBackends { get; }
 		IBackend Backend { get; set; }
+		TaskGroupModel OverdueTasks { get; }
+		TaskGroupModel TodayTasks { get; }
+		TaskGroupModel TomorrowTasks { get; }
 		string ConfDir { get; }
 		Preferences Preferences { get; }
 		void Exit (int exitcode);
+		void Quit ();
 		void Initialize (string [] args);
 		void OpenUrl (string url);
 		void QuitMainLoop ();
+		void ShowPreferences ();
 		void StartMainLoop ();
 		event EventHandler Exiting;
+		event EventHandler BackendChanged;
 	}
 }

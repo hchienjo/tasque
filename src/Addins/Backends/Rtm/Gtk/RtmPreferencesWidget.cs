@@ -2,6 +2,7 @@
 // User: boyd at 11:29 PM 2/18/2008
 
 using System;
+using System.Diagnostics;
 using Gtk;
 using Mono.Unix;
 
@@ -9,6 +10,9 @@ namespace Tasque.Backends.RtmBackend
 {
 	public class RtmPreferencesWidget : Gtk.EventBox, IBackendPreferences
 	{
+		Preferences preferences;
+		RtmBackend backend;
+
  		private LinkButton		authButton;
 		
 		private Label			statusLabel;
@@ -23,8 +27,15 @@ namespace Tasque.Backends.RtmBackend
 			normalPixbuf = Utilities.GetIcon ("tasque-rtm-logo", 128);
 		}
 		
-		public RtmPreferencesWidget () : base ()
+		public RtmPreferencesWidget (RtmBackend backend, Preferences preferences) : base ()
 		{
+			if (backend == null)
+				throw new ArgumentNullException ("backend");
+			if (preferences == null)
+				throw new ArgumentNullException ("preferences");
+			this.backend = backend;
+			this.preferences = preferences;
+
 			LoadPreferences ();
 			
 			BorderWidth = 0;
@@ -69,7 +80,7 @@ namespace Tasque.Backends.RtmBackend
 			if ( isAuthorized ) {
 				statusLabel.Text = "\n\n" +
 					Catalog.GetString ("You are currently connected");
-				string userName = Application.Preferences.Get (Preferences.UserNameKey);
+				string userName = preferences.Get (Preferences.UserNameKey);
 				if (userName != null && userName.Trim () != string.Empty)
 					statusLabel.Text = "\n\n" +
 						Catalog.GetString ("You are currently connected as") +
@@ -89,7 +100,7 @@ namespace Tasque.Backends.RtmBackend
 		
 		private void LoadPreferences ()
 		{
-			string authToken = Tasque.Application.Preferences.Get(Preferences.AuthTokenKey);
+			string authToken = preferences.Get(Preferences.AuthTokenKey);
 			if (authToken == null || authToken.Trim() == "") {
 				Logger.Debug("Rtm: Not authorized");
 				isAuthorized = false;
@@ -101,52 +112,48 @@ namespace Tasque.Backends.RtmBackend
 		
 		private void OnAuthButtonClicked (object sender, EventArgs args)
 		{
-			RtmBackend rtmBackend = Application.Backend as RtmBackend;
-			if (rtmBackend != null) {
-				if (!isAuthorized && !authRequested) {
-					string url = string.Empty;
-					try {
-						url = rtmBackend.GetAuthUrl();
-					} catch (Exception) {
-						Logger.Debug ("Failed to get auth URL from Remember the Milk. Try again later.");
-						authButton.Label = Catalog.GetString ("Remember the Milk not responding. Try again later.");
-						return;
-					}
-					Logger.Debug("Launching browser to authorize with Remember the Milk");
-					try {
-						Application.Instance.NativeApplication.OpenUrl (url);
-						authRequested = true;
-						authButton.Label = Catalog.GetString ("Click Here After Authorizing");
-					} catch (Exception ex) {
-						Logger.Error ("Exception opening URL: {0}",ex.Message);
-						authButton.Label = Catalog.GetString ("Set the default browser and try again");						
-					}			
-				} else if (!isAuthorized && authRequested) {
-					authButton.Label = Catalog.GetString ("Processing...");
-					try {
-						rtmBackend.FinishedAuth();
-						Logger.Debug("Successfully authorized with Remember the Milk");
-						isAuthorized = true;
-						authRequested = false;
-					} catch (RtmNet.RtmApiException) {
-						Logger.Debug("Failed to authorize with Remember the Milk");
-						isAuthorized = false;
-						authRequested = true;
-						authButton.Label = Catalog.GetString ("Failed, Try Again");
-					}
+			if (!isAuthorized && !authRequested) {
+				string url = string.Empty;
+				try {
+					url = backend.GetAuthUrl ();
+				} catch (Exception) {
+					Logger.Debug ("Failed to get auth URL from Remember the Milk. Try again later.");
+					authButton.Label = Catalog.GetString ("Remember the Milk not responding. Try again later.");
+					return;
 				}
-				if (isAuthorized) {
-					authButton.Label = Catalog.GetString ("Thank You");
-					authButton.Sensitive = false;
+				Logger.Debug ("Launching browser to authorize with Remember the Milk");
+				try {
+					Process.Start (url);
+					authRequested = true;
+					authButton.Label = Catalog.GetString ("Click Here After Authorizing");
+				} catch (Exception ex) {
+					Logger.Error ("Exception opening URL: {0}", ex.Message);
+					authButton.Label = Catalog.GetString ("Set the default browser and try again");
+				}
+			} else if (!isAuthorized && authRequested) {
+				authButton.Label = Catalog.GetString ("Processing...");
+				try {
+					backend.FinishedAuth ();
+					Logger.Debug ("Successfully authorized with Remember the Milk");
+					isAuthorized = true;
+					authRequested = false;
+				} catch (RtmNet.RtmApiException) {
+					Logger.Debug ("Failed to authorize with Remember the Milk");
+					isAuthorized = false;
+					authRequested = true;
+					authButton.Label = Catalog.GetString ("Failed, Try Again");
+				}
+			}
+			if (isAuthorized) {
+				authButton.Label = Catalog.GetString ("Thank You");
+				authButton.Sensitive = false;
+				statusLabel.Text = "\n\n" +
+					Catalog.GetString ("You are currently connected");
+				string userName = preferences.Get (Preferences.UserNameKey);
+				if (userName != null && userName.Trim () != string.Empty)
 					statusLabel.Text = "\n\n" +
-						Catalog.GetString ("You are currently connected");
-					string userName =
-						Application.Preferences.Get(Preferences.UserNameKey);
-					if (userName != null && userName.Trim() != string.Empty)
-						statusLabel.Text = "\n\n" +
-							Catalog.GetString ("You are currently connected as") +
-							"\n" + userName.Trim();
-				}
+						Catalog.GetString ("You are currently connected as") +
+						"\n" + userName.Trim ();
 			}
 		}
 	}

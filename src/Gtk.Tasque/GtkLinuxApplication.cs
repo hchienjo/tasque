@@ -42,7 +42,7 @@ namespace Tasque
 		{
 			// Register Tasque RemoteControl
 			try {
-				remoteInstance = RemoteControl.Register ();
+				remoteInstance = RemoteControl.Register (this);
 				if (remoteInstance != null) {
 					remoteInstance.RemoteInstanceKnocked = OnRemoteInstanceKnocked;
 					Logger.Debug ("Tasque remote control created.");

@@ -76,23 +76,26 @@ namespace Tasque
 				lock (lockObject) {
 					if (application != null)
 						return;
-
-					var nativeApp = CreateApplication ();
-					
-					// Fix process name not set on Unix
-					SetProcessName ("Tasque");
-					
-					application = new Application (nativeApp);
-					application.Init (args);
-					application.StartMainLoop ();
+					application = CreateApplication ();
 				}
+					
+				// Fix process name not set on Unix
+				SetProcessName ("Tasque");
+
+				application.Initialize (args);
+				application.StartMainLoop ();
 			} catch (Exception e) {
 				Logger.Debug ("Exception is: {0}", e);
 				application.Exit (-1);
+			} finally {
+				lock (lockObject) {
+					if (application != null)
+						application.Dispose ();
+				}
 			}
 		}
 		
-		static Application application;
+		static INativeApplication application;
 		static object lockObject = new object ();
 	}
 }

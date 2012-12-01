@@ -26,9 +26,9 @@ namespace Tasque
 		ShowCompletedRange currentRange;
 		
 		public CompletedTaskGroup (string groupName, DateTime rangeStart,
-								   DateTime rangeEnd, Gtk.TreeModel tasks)
+								   DateTime rangeEnd, Gtk.TreeModel tasks, INativeApplication application)
 			: base (groupName, rangeStart, rangeEnd,
-					new CompletedTasksSortModel(tasks))
+					new CompletedTasksSortModel(tasks), application)
 		{
 			// Don't hide this group when it's empty because then the range
 			// slider won't appear and the user won't be able to customize the
@@ -36,7 +36,7 @@ namespace Tasque
 			this.HideWhenEmpty = false;
 			
 			selectedCategory = GetSelectedCategory ();
-			Application.Preferences.SettingChanged += OnSelectedCategorySettingChanged;
+			application.Preferences.SettingChanged += OnSelectedCategorySettingChanged;
 			
 			CreateRangeSlider ();
 			UpdateDateRanges ();

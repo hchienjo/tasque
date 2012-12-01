@@ -30,7 +30,7 @@ namespace Tasque
 {
 	public class AppIndicatorTray : GtkTray
 	{
-		public AppIndicatorTray ()
+		public AppIndicatorTray (INativeApplication application) : base  (application)
 		{
 			appIndicator = new ApplicationIndicator ("TasqueTray", IconName, Category.ApplicationStatus);
 			appIndicator.Status = Status.Active;

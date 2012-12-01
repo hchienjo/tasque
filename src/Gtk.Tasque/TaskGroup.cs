@@ -24,8 +24,12 @@ namespace Tasque
 		
 		#region Constructor
 		public TaskGroup (string groupName, DateTime rangeStart,
-						  DateTime rangeEnd, Gtk.TreeModel tasks)
+						  DateTime rangeEnd, Gtk.TreeModel tasks, INativeApplication application)
 		{
+			if (application == null)
+				throw new ArgumentNullException ("application");
+			Application = application;
+
 			hideWhenEmpty = true;
 						
 			// TODO: Add a date time event watcher so that when we rollover to
@@ -84,7 +88,7 @@ namespace Tasque
 			//
 			// Group TreeView
 			//
-			treeView = new TaskTreeView (filteredTasks);
+			treeView = new TaskTreeView (filteredTasks, application.Preferences);
 			treeView.Show ();
 			PackStart (treeView, true, true, 0);
 			
@@ -319,6 +323,8 @@ namespace Tasque
 		#endregion // Methods
 		
 		#region Private Methods
+		protected INativeApplication Application { get; private set; }
+
 		protected override void OnRealized ()
 		{
 			base.OnRealized ();

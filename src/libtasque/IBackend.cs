@@ -95,7 +95,7 @@ namespace Tasque.Backends
 		/// <summary>
 		/// Initializes the backend
 		/// </summary>
-		void Initialize();
+		void Initialize (Preferences preferences);
 
 		/// <summary>
 		/// Cleanup the backend before quitting

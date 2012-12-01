@@ -78,6 +78,9 @@
       <Link>Options.cs</Link>
     </Compile>
     <Compile Include="Preferences.cs" />
+    <Compile Include="TaskGroupModel.cs" />
+    <Compile Include="TaskGroupModelFactory.cs" />
+    <Compile Include="CompletedTaskGroupModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />
