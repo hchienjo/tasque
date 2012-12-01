@@ -23,9 +23,9 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
 using System;
 using System.Diagnostics;
+using Mono.Options;
 
 namespace Tasque
 {
@@ -51,6 +51,8 @@ namespace Tasque
 			}
 			
 			RemoteInstanceKnocked += delegate { ShowMainWindow (); };
+			
+			ParseArgs (args);
 		}
 
 		public virtual void InitializeIdle () {}
@@ -94,6 +96,36 @@ namespace Tasque
 			Dispose (false);
 		}
 		#endregion
+		
+		protected bool QuietStart { get; private set; }
+		
+		void ParseArgs (string[] args)
+		{
+			bool showHelp = false;
+			var p = new OptionSet () {
+				{ "q|quiet", "hide the Tasque window upon start.", v => QuietStart = true },
+				{ "b|backend=", "the name of the {BACKEND} to use.", v => potentialBackendClassName = v },
+				{ "h|help",  "show this message and exit.", v => showHelp = v != null },
+			};
+			
+			try {
+				p.Parse (args);
+			} catch (OptionException e) {
+				Console.Write ("tasque: ");
+				Console.WriteLine (e.Message);
+				Console.WriteLine ("Try `tasque --help' for more information.");
+				Exit (-1);
+			}
+			
+			if (showHelp) {
+				Console.WriteLine ("Usage: tasque [[-q|--quiet] [[-b|--backend] BACKEND]]");
+				Console.WriteLine ();
+				Console.WriteLine ("Options:");
+				p.WriteOptionDescriptions (Console.Out);
+				Exit (-1);
+			}
+		}
+		
+		string potentialBackendClassName;
 	}
 }
-

@@ -73,6 +73,9 @@
     <Compile Include="IBackendPreferences.cs" />
     <Compile Include="NativeApplication.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="..\Options.cs">
+      <Link>Options.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />

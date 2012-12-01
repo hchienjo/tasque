@@ -145,30 +145,6 @@ namespace Tasque
 			
 			string potentialBackendClassName = null;
 			
-			for (int i = 0; i < args.Length; i++) {
-				switch (args [i]) {
-					
-				case "--quiet":
-					quietStart = true;
-					Logger.Debug ("Starting quietly");
-					break;
-					
-				case "--backend":
-					if ( (i + 1 < args.Length) &&
-					    !string.IsNullOrEmpty (args [i + 1]) &&
-					    args [i + 1] [0] != '-') {
-						potentialBackendClassName = args [++i];
-					} // TODO: Else, print usage
-					break;
-					
-				default:
-					// Support old argument behavior
-					if (!string.IsNullOrEmpty (args [i]))
-						potentialBackendClassName = args [i];
-					break;
-				}
-			}
-			
 			// See if a specific backend is specified
 			if (potentialBackendClassName != null) {
 				Logger.Debug ("Backend specified: " +
