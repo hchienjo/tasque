@@ -44,7 +44,7 @@ namespace Tasque
 		
 		public override string ConfDir { get { return confDir; } }
 
-		public override void Initialize (string[] args)
+		protected override void OnInitialize ()
 		{
 			Catalog.Init ("tasque", Defines.LocaleDir);
 			Gtk.Application.Init ();
@@ -52,7 +52,34 @@ namespace Tasque
 			// add package icon path to default icon theme search paths
 			IconTheme.Default.PrependSearchPath (Defines.IconsDir);
 
-			base.Initialize (args);
+			Gtk.Application.Init ();
+			GLib.Idle.Add (delegate {
+				InitializeIdle ();
+				return false;
+			});
+			
+			base.OnInitialize ();
+		}
+		
+		protected override void OnInitializeIdle ()
+		{
+			trayIcon = GtkTray.CreateTray ();
+			
+			if (Backend == null) {
+				// Pop open the preferences dialog so the user can choose a
+				// backend service to use.
+				ShowPreferences ();
+			} else if (!QuietStart)
+				TaskWindow.ShowWindow ();
+			
+			if (Backend == null || !Backend.Configured) {
+				GLib.Timeout.Add (1000, new GLib.TimeoutHandler (delegate {
+					RetryBackend ();
+					return Backend == null || !Backend.Configured;
+				}));
+			}
+			
+			base.OnInitializeIdle ();
 		}
 		
 		public override void StartMainLoop ()
@@ -63,6 +90,50 @@ namespace Tasque
 		public override void QuitMainLoop ()
 		{
 			Gtk.Application.Quit ();
+		}
+		
+		public void ShowPreferences ()
+		{
+			Logger.Info ("OnPreferences called");
+			if (preferencesDialog == null) {
+				preferencesDialog = new PreferencesDialog ();
+				preferencesDialog.Hidden += OnPreferencesDialogHidden;
+			}
+			
+			preferencesDialog.Present ();
+		}
+		
+		void OnPreferencesDialogHidden (object sender, EventArgs args)
+		{
+			preferencesDialog.Destroy ();
+			preferencesDialog.Hidden -= OnPreferencesDialogHidden;
+			preferencesDialog = null;
+		}
+		
+		protected override void OnBackendChanged ()
+		{
+			if (backendWasNullBeforeChange)
+				TaskWindow.Reinitialize (!QuietStart);
+			else
+				TaskWindow.Reinitialize (true);
+			
+			Debug.WriteLine ("Configuration status: {0}", Backend.Configured.ToString ());
+			
+			Application.Instance.RebuildTooltipTaskGroupModels ();
+			if (trayIcon != null)
+				trayIcon.RefreshTrayIconTooltip ();
+			
+			base.OnBackendChanged ();
+		}
+		
+		protected override void OnBackendChanging ()
+		{
+			if (Backend != null)
+				Application.Instance.UnhookFromTooltipTaskGroupModels ();
+			
+			backendWasNullBeforeChange = Backend == null;
+			
+			base.OnBackendChanging ();
 		}
 		
 		public override void OpenUrl (string url)
@@ -87,6 +158,11 @@ namespace Tasque
 				RemoteInstanceKnocked (this, EventArgs.Empty);
 		}
 		
+		internal GtkTray TrayIcon { get { return trayIcon; } }
+		
+		bool backendWasNullBeforeChange;
 		string confDir;
+		PreferencesDialog preferencesDialog;
+		GtkTray trayIcon;
 	}
 }

@@ -94,7 +94,6 @@
     <Compile Include="NoteDialog.cs" />
     <Compile Include="NoteWidget.cs" />
     <None Include="OSXApplication.cs" />
-    <Compile Include="Preferences.cs" />
     <Compile Include="PreferencesDialog.cs" />
     <Compile Include="TaskCalendar.cs" />
     <Compile Include="TaskGroup.cs" />

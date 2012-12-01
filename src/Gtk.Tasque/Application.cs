@@ -56,33 +56,22 @@ namespace Tasque
 
 		private Gdk.Pixbuf normalPixBuf;
 		private Gtk.Image trayImage;
-		private GtkTray trayIcon;
-		private Preferences preferences;
 		private EventBox eb;
-		private IBackend backend;
 		private PreferencesDialog preferencesDialog;
 		private bool quietStart = false;
 		
 		private DateTime currentDay = DateTime.Today;
-		
-		/// <value>
-		/// Keep track of the available backends.  The key is the Type name of
-		/// the backend.
-		/// </value>
-		private Dictionary<string, IBackend> availableBackends;
-		
-		private IBackend customBackend;
 
 		public static IBackend Backend
 		{ 
-			get { return Application.Instance.backend; }
-			set { Application.Instance.SetBackend (value); }
+			get { return Application.Instance.nativeApp.Backend; }
+			set { Application.Instance.nativeApp.Backend = value; }
 		}
 		
-		public static List<IBackend> AvailableBackends
+		public static IList<IBackend> AvailableBackends
 		{
 			get {
-				return new List<IBackend> (Application.Instance.availableBackends.Values);
+				return Application.Instance.nativeApp.AvailableBackends;
 			}
 //			get { return Application.Instance.availableBackends; }
 		}
@@ -120,7 +109,7 @@ namespace Tasque
 		
 		public static Preferences Preferences
 		{
-			get { return Application.Instance.preferences; }
+			get { return Application.Instance.nativeApp.Preferences; }
 		}
 
 		public Application (INativeApplication nativeApp)
@@ -140,220 +129,8 @@ namespace Tasque
 			}
 
 			nativeApp.Initialize (args);
-			
-			preferences = new Preferences (nativeApp.ConfDir);
-			
-			string potentialBackendClassName = null;
-			
-			// See if a specific backend is specified
-			if (potentialBackendClassName != null) {
-				Logger.Debug ("Backend specified: " +
-				              potentialBackendClassName);
-				
-				customBackend = null;
-				Assembly asm = Assembly.GetCallingAssembly ();
-				try {
-					customBackend = (IBackend)
-						asm.CreateInstance (potentialBackendClassName);
-				} catch (Exception e) {
-					Logger.Warn ("Backend specified on args not found: {0}\n\t{1}",
-						potentialBackendClassName, e.Message);
-				}
-			}
-			
-			// Discover all available backends
-			LoadAvailableBackends ();
 
-			GLib.Idle.Add(InitializeIdle);
 			GLib.Timeout.Add (60000, CheckForDaySwitch);
-		}
-		
-		/// <summary>
-		/// Load all the available backends that Tasque can find.  First look in
-		/// Tasque.exe and then for other DLLs in the same directory Tasque.ex
-		/// resides.
-		/// </summary>
-		private void LoadAvailableBackends ()
-		{
-			availableBackends = new Dictionary<string,IBackend> ();
-			
-			List<IBackend> backends = new List<IBackend> ();
-			
-			Assembly tasqueAssembly = Assembly.GetCallingAssembly ();
-			
-			// Look for other backends in Tasque.exe
-			backends.AddRange (GetBackendsFromAssembly (tasqueAssembly));
-			
-			// Look through the assemblies located in the same directory as
-			// Tasque.exe.
-			Logger.Debug ("Tasque.exe location:  {0}", tasqueAssembly.Location);
-			
-			DirectoryInfo loadPathInfo =
-				Directory.GetParent (tasqueAssembly.Location);
-			Logger.Info ("Searching for Backend DLLs in: {0}", loadPathInfo.FullName);
-			
-			foreach (FileInfo fileInfo in loadPathInfo.GetFiles ("*.dll")) {
-				Logger.Info ("\tReading {0}", fileInfo.FullName);
-				Assembly asm = null;
-				try {
-					asm = Assembly.LoadFile (fileInfo.FullName);
-				} catch (Exception e) {
-					Logger.Debug ("Exception loading {0}: {1}",
-								  fileInfo.FullName,
-								  e.Message);
-					continue;
-				}
-				
-				backends.AddRange (GetBackendsFromAssembly (asm));
-			}
-			
-			foreach (IBackend backend in backends) {
-				string typeId = backend.GetType ().ToString ();
-				if (availableBackends.ContainsKey (typeId))
-					continue;
-				
-				Logger.Debug ("Storing '{0}' = '{1}'", typeId, backend.Name);
-				availableBackends [typeId] = backend;
-			}
-		}
-		
-		private List<IBackend> GetBackendsFromAssembly (Assembly asm)
-		{
-			List<IBackend> backends = new List<IBackend> ();
-			
-			Type[] types = null;
-			
-			try {
-				types = asm.GetTypes ();
-			} catch (Exception e) {
-				Logger.Warn ("Exception reading types from assembly '{0}': {1}",
-					asm.ToString (), e.Message);
-				return backends;
-			}
-			foreach (Type type in types) {
-				if (!type.IsClass) {
-					continue; // Skip non-class types
-				}
-				if (type.GetInterface ("Tasque.Backends.IBackend") == null) {
-					continue;
-				}
-				Logger.Debug ("Found Available Backend: {0}", type.ToString ());
-				
-				IBackend availableBackend = null;
-				try {
-					availableBackend = (IBackend)
-						asm.CreateInstance (type.ToString ());
-				} catch (Exception e) {
-					Logger.Warn ("Could not instantiate {0}: {1}",
-								 type.ToString (),
-								 e.Message);
-					continue;
-				}
-				
-				if (availableBackend != null) {
-					backends.Add (availableBackend);
-				}
-			}
-			
-			return backends;
-		}
-
-		private void SetBackend (IBackend value)
-		{
-			bool changingBackend = false;
-			if (this.backend != null) {
-				UnhookFromTooltipTaskGroupModels ();
-				changingBackend = true;
-				// Cleanup the old backend
-				try {
-					Logger.Debug ("Cleaning up backend: {0}",
-					              this.backend.Name);
-					this.backend.Cleanup ();
-				} catch (Exception e) {
-					Logger.Warn ("Exception cleaning up '{0}': {1}",
-					             this.backend.Name,
-					             e);
-				}
-			}
-				
-			// Initialize the new backend
-			var oldBackend = backend;
-			this.backend = value;
-			if (this.backend == null) {
-				if (trayIcon != null)
-					trayIcon.RefreshTrayIconTooltip ();
-				return;
-			}
-				
-			Logger.Info ("Using backend: {0} ({1})",
-			             this.backend.Name,
-			             this.backend.GetType ().ToString ());
-			this.backend.Initialize();
-			
-			if (!changingBackend) {
-				TaskWindow.Reinitialize (!this.quietStart);
-			} else {
-				TaskWindow.Reinitialize (true);
-			}
-
-			RebuildTooltipTaskGroupModels ();
-			if (trayIcon != null)
-				trayIcon.RefreshTrayIconTooltip ();
-			
-			Logger.Debug("Configuration status: {0}",
-			             this.backend.Configured.ToString());
-
-			if (backend != oldBackend)
-				OnBackendChanged ();
-		}
-
-		private bool InitializeIdle()
-		{
-			if (customBackend != null) {
-				Application.Backend = customBackend;
-			} else {
-				// Check to see if the user has a preference of which backend
-				// to use.  If so, use it, otherwise, pop open the preferences
-				// dialog so they can choose one.
-				string backendTypeString = Preferences.Get (Preferences.CurrentBackend);
-				Logger.Debug ("CurrentBackend specified in Preferences: {0}", backendTypeString);
-				if (backendTypeString != null
-						&& availableBackends.ContainsKey (backendTypeString)) {
-					Application.Backend = availableBackends [backendTypeString];
-				}
-			}
-			
-			trayIcon = GtkTray.CreateTray ();
-			
-			if (backend == null) {
-				// Pop open the preferences dialog so the user can choose a
-				// backend service to use.
-				Application.ShowPreferences ();
-			} else if (!quietStart) {
-				TaskWindow.ShowWindow ();
-			}
-			if (backend == null || !backend.Configured){
-				GLib.Timeout.Add(1000, new GLib.TimeoutHandler(RetryBackend));
-			}
-
-			nativeApp.InitializeIdle ();
-			
-			return false;
-		}
-		private bool RetryBackend(){
-			try {
-				if (backend != null && !backend.Configured) {
-					backend.Cleanup();
-					backend.Initialize();
-				}
-			} catch (Exception e) {
-				Logger.Error("{0}", e.Message);
-			}
-			if (backend == null || !backend.Configured) {
-				return true;
-			} else {
-				return false;
-			}
 		}
 		
 		private bool CheckForDaySwitch ()
@@ -367,14 +144,15 @@ namespace Tasque
 				
 				UnhookFromTooltipTaskGroupModels ();
 				RebuildTooltipTaskGroupModels ();
-				if (trayIcon != null)
-					trayIcon.RefreshTrayIconTooltip ();
+				var gtkApp = (GtkApplicationBase)nativeApp;
+				if (gtkApp.TrayIcon != null)
+					gtkApp.TrayIcon.RefreshTrayIconTooltip ();
 			}
 			
 			return true;
 		}
 
-		private void UnhookFromTooltipTaskGroupModels ()
+		public void UnhookFromTooltipTaskGroupModels ()
 		{
 			foreach (TaskGroupModel model in new TaskGroupModel[] { OverdueTasks, TodayTasks, TomorrowTasks })
 			{
@@ -390,13 +168,14 @@ namespace Tasque
 
 		private void OnTooltipModelChanged (object o, EventArgs args)
 		{
-			if (trayIcon != null)
-				trayIcon.RefreshTrayIconTooltip ();
+			var gtkApp = (GtkApplicationBase)nativeApp;
+			if (gtkApp.TrayIcon != null)
+				gtkApp.TrayIcon.RefreshTrayIconTooltip ();
 		}
 
-		private void RebuildTooltipTaskGroupModels ()
+		public void RebuildTooltipTaskGroupModels ()
 		{
-			if (backend == null || backend.Tasks == null) {
+			if (nativeApp.Backend == null || nativeApp.Backend.Tasks == null) {
 				OverdueTasks = null;
 				TodayTasks = null;
 				TomorrowTasks = null;
@@ -404,9 +183,9 @@ namespace Tasque
 				return;
 			}
 
-			OverdueTasks = TaskGroupModelFactory.CreateOverdueModel (backend.Tasks);
-			TodayTasks = TaskGroupModelFactory.CreateTodayModel (backend.Tasks);
-			TomorrowTasks = TaskGroupModelFactory.CreateTomorrowModel (backend.Tasks);
+			OverdueTasks = TaskGroupModelFactory.CreateOverdueModel (nativeApp.Backend.Tasks);
+			TodayTasks = TaskGroupModelFactory.CreateTodayModel (nativeApp.Backend.Tasks);
+			TomorrowTasks = TaskGroupModelFactory.CreateTomorrowModel (nativeApp.Backend.Tasks);
 
 			foreach (TaskGroupModel model in new TaskGroupModel[] { OverdueTasks, TodayTasks, TomorrowTasks })
 			{
@@ -456,9 +235,9 @@ namespace Tasque
 		public void Quit ()
 		{
 			Logger.Info ("Quit called - terminating application");
-			if (backend != null) {
+			if (nativeApp.Backend != null) {
 				UnhookFromTooltipTaskGroupModels ();
-				backend.Cleanup ();
+				nativeApp.Backend.Cleanup ();
 			}
 			TaskWindow.SavePosition ();
 
