@@ -29,6 +29,9 @@ using System.Diagnostics;
 using System.IO;
 using Mono.Unix;
 using Gtk;
+#if ENABLE_NOTIFY_SHARP
+using Notifications;
+#endif
 
 namespace Tasque
 {
@@ -98,12 +101,14 @@ namespace Tasque
 		}
 
 #if ENABLE_NOTIFY_SHARP
-		public static void ShowAppNotification(Notification notification)
+		public override void ShowAppNotification (string summary, string body)
 		{
+			var notification = new Notification (
+				summary, body, Utilities.GetIcon ("tasque", 48));
 			// TODO: Use this API for newer versions of notify-sharp
-			//notification.AttachToStatusIcon(
+			//notification.AttachToStatusIcon (
 			//		Tasque.Application.Instance.trayIcon);
-			notification.Show();
+			notification.Show ();
 		}
 #endif
 		

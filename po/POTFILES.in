@@ -2,10 +2,9 @@
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
 data/tasque.desktop.in
-src/Gtk.Tasque/Application.cs
-src/Gtk.Tasque/AllCategory.cs
 src/Gtk.Tasque/CompletedTaskGroup.cs
 src/Gtk.Tasque/Defines.cs.in
+src/Gtk.Tasque/GtkApplicationBase.cs
 src/Gtk.Tasque/GtkTray.cs
 src/Gtk.Tasque/NoteDialog.cs
 src/Gtk.Tasque/PreferencesDialog.cs
@@ -14,4 +13,5 @@ src/Gtk.Tasque/TaskTreeView.cs
 src/Gtk.Tasque/TaskWindow.cs
 src/Gtk.Tasque/Utilities.cs
 src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs
+src/libtasque/AllCategory.cs
 src/libtasque/TaskParser.cs

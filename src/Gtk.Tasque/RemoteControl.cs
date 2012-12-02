@@ -169,14 +169,10 @@ namespace Tasque
 			#if ENABLE_NOTIFY_SHARP
 			// Use notify-sharp to alert the user that a new task has been
 			// created successfully.
-			Notification notify =
-				new Notification (
-					Catalog.GetString ("New task created."), // summary
-					Catalog.GetString (taskName), // body
-					Utilities.GetIcon ("tasque", 48));
-			application.ShowAppNotification (notify);
+			application.ShowAppNotification (
+				Catalog.GetString ("New task created."), // summary
+				Catalog.GetString (taskName)); // body
 			#endif
-			
 			
 			return task.Id;
 		}

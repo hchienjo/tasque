@@ -18,6 +18,7 @@ namespace Tasque
 		void Initialize (string [] args);
 		void QuitMainLoop ();
 		void ShowPreferences ();
+		void ShowAppNotification (string summary, string body);
 		void StartMainLoop ();
 		event EventHandler Exiting;
 		event EventHandler BackendChanged;

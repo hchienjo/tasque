@@ -194,6 +194,8 @@ namespace Tasque
 		protected abstract void ShowMainWindow ();
 		
 		protected abstract event EventHandler RemoteInstanceKnocked;
+
+		public abstract void ShowAppNotification (string summary, string body);
 		
 		#region IDisposable implementation
 		public void Dispose ()
