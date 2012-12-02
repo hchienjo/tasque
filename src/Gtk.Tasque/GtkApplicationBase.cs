@@ -172,15 +172,6 @@ namespace Tasque
 			
 			base.OnQuitting ();
 		}
-
-		public override void OpenUrl (string url)
-		{
-			try {
-				Process.Start (url);
-			} catch (Exception e) {
-				Trace.TraceError ("Error opening url [{0}]:\n{1}", url, e.ToString ());
-			}
-		}
 		
 		protected override void ShowMainWindow ()
 		{

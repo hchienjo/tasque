@@ -132,11 +132,6 @@ namespace Tasque
 		
 		protected virtual void OnQuitting () {}
 		#endregion
-
-		public virtual void OpenUrl (string url)
-		{
-			Process.Start (url);
-		}
 		
 		#region Backend
 		public IList<IBackend> AvailableBackends {

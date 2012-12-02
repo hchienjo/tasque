@@ -16,7 +16,6 @@ namespace Tasque
 		void Exit (int exitcode);
 		void Quit ();
 		void Initialize (string [] args);
-		void OpenUrl (string url);
 		void QuitMainLoop ();
 		void ShowPreferences ();
 		void StartMainLoop ();
