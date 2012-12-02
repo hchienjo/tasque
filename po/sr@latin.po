@@ -5,9 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=tasque"
-"&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-30 15:59+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-03 00:12+0100\n"
 "PO-Revision-Date: 2012-11-09 10:45+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
@@ -15,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/tasque.desktop.in.h:1
@@ -31,33 +30,33 @@ msgstr "Lako i brzo upravljanje zadacima"
 msgid "Task Manager"
 msgstr "Upravnik zadataka"
 
-#: ../src/Gtk.Tasque/AllCategory.cs:28
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:174
-msgid "All"
-msgstr "Sve"
-
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:165
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:160
 #: ../src/Gtk.Tasque/Utilities.cs:282
 msgid "Yesterday"
 msgstr "Juče"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:162
 msgid "Last 7 Days"
 msgstr "U poslednjih 7 dana"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:164
 msgid "Last Month"
 msgstr "Prošlog meseca"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:166
 msgid "Last Year"
 msgstr "Prošle godine"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/libtasque/AllCategory.cs:33
+msgid "All"
+msgstr "Sve"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Autorska prava © 2008 Novel, Doo i saradnici."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:82
+#: ../src/Gtk.Tasque/GtkTray.cs:88
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
@@ -66,7 +65,7 @@ msgstr[1] "{0} zadatka su istekla\n"
 msgstr[2] "{0} zadataka je isteklo\n"
 msgstr[3] "Jedan zadatak je istekao\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:91
+#: ../src/Gtk.Tasque/GtkTray.cs:97
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
@@ -75,7 +74,7 @@ msgstr[1] "{0} zadatka za danas\n"
 msgstr[2] "{0} zadataka za danas\n"
 msgstr[3] "Jedan zadatak za danas\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:100
+#: ../src/Gtk.Tasque/GtkTray.cs:106
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -85,34 +84,34 @@ msgstr[2] "{0} zadataka za sutra\n"
 msgstr[3] "Jedan zadatak za sutra\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:106
+#: ../src/Gtk.Tasque/GtkTray.cs:112
 msgid "Tasque Rocks"
 msgstr "Zadačići vladaju"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:143
+#: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "translator-credits"
 msgstr ""
 "  Miroslav Nikolić  \n"
 "\n"
 "http://prevod.org — prevod na srpski jezik"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:152
+#: ../src/Gtk.Tasque/GtkTray.cs:158
 msgid "A Useful Task List"
 msgstr "Koristan spisak zadataka"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:154
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "Tasque Project Homepage"
 msgstr "Stranica projekta Zadačića"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:167
+#: ../src/Gtk.Tasque/GtkTray.cs:173
 msgid "New Task ..."
 msgstr "Novi zadatak ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:177
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Refresh Tasks ..."
 msgstr "Osveži zadatke ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:189
 msgid "Toggle Task Window"
 msgstr "Okini prozor zadatka"
 
@@ -122,230 +121,230 @@ msgid "Notes for: {0:s}"
 msgstr "Napomene za: {0:s}"
 
 #. Update the window title
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:97
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:102
 msgid "Tasque Preferences"
 msgstr "Postavke zadačića"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:116
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:121
 msgid "General"
 msgstr "Opšte"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:124
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:129
 msgid "Appearance"
 msgstr "Izgled"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:160
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:165
 msgid "Color Management"
 msgstr "Upravljanje bojom"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:171
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:176
 msgid "Today:"
 msgstr "Danas:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:199
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:204
 msgid "Overdue:"
 msgstr "Prekoračeno:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:243
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:248
 msgid "Task Management System"
 msgstr "Sistem upravljanja zadatkom"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:285
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:290
 msgid "Task Filtering"
 msgstr "Filtriranje zadataka"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:304
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:309
 msgid "Sh_ow completed tasks"
 msgstr "_Prikaži završene zadatke"
 
 #. Categories TreeView
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:313
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:318
 msgid "Only _show these categories when \"All\" is selected:"
 msgstr "Prikaži _samo ove kategorije kada je izabrano „Sve“:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:331
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:336
 msgid "Category"
 msgstr "Kategorija"
 
-#: ../src/Gtk.Tasque/RemoteControl.cs:150
+#: ../src/Gtk.Tasque/RemoteControl.cs:173
 msgid "New task created."
 msgstr "Napravljen je novi zadatak."
 
 #. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:343
+#: ../src/Gtk.Tasque/TaskTreeView.cs:95 ../src/Gtk.Tasque/TaskWindow.cs:351
 msgid "Completed"
 msgstr "Obavljen"
 
 #. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:107
+#: ../src/Gtk.Tasque/TaskTreeView.cs:112
 msgid "Priority"
 msgstr "Važnost"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:424
-#: ../src/Gtk.Tasque/TaskTreeView.cs:673
+#: ../src/Gtk.Tasque/TaskTreeView.cs:125 ../src/Gtk.Tasque/TaskTreeView.cs:429
+#: ../src/Gtk.Tasque/TaskTreeView.cs:675
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:421
-#: ../src/Gtk.Tasque/TaskTreeView.cs:671
+#: ../src/Gtk.Tasque/TaskTreeView.cs:126 ../src/Gtk.Tasque/TaskTreeView.cs:426
+#: ../src/Gtk.Tasque/TaskTreeView.cs:673
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:418
-#: ../src/Gtk.Tasque/TaskTreeView.cs:669
+#: ../src/Gtk.Tasque/TaskTreeView.cs:127 ../src/Gtk.Tasque/TaskTreeView.cs:423
+#: ../src/Gtk.Tasque/TaskTreeView.cs:671
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:427
+#: ../src/Gtk.Tasque/TaskTreeView.cs:128 ../src/Gtk.Tasque/TaskTreeView.cs:432
 msgid "-"
 msgstr "—"
 
 #. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:137
+#: ../src/Gtk.Tasque/TaskTreeView.cs:142
 msgid "Task Name"
 msgstr "Naziv zadatka"
 
 #. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:179
+#: ../src/Gtk.Tasque/TaskTreeView.cs:184
 msgid "Due Date"
 msgstr "Krajnji rok"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:755
-#: ../src/Gtk.Tasque/TaskTreeView.cs:758 ../src/Gtk.Tasque/TaskTreeView.cs:763
+#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:200
+#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskTreeView.cs:760 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "M/d - "
 msgstr "M/d — "
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:755
-#: ../src/Gtk.Tasque/TaskWindow.cs:276 ../src/Gtk.Tasque/Utilities.cs:276
+#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "Danas"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:758
-#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:295
+#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Sutra"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
-#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
-#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:495
-#: ../src/Gtk.Tasque/TaskTreeView.cs:772
+#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:204
+#: ../src/Gtk.Tasque/TaskTreeView.cs:206 ../src/Gtk.Tasque/TaskTreeView.cs:208
+#: ../src/Gtk.Tasque/TaskTreeView.cs:210 ../src/Gtk.Tasque/TaskTreeView.cs:499
+#: ../src/Gtk.Tasque/TaskTreeView.cs:774
 msgid "M/d - ddd"
 msgstr "M/d — ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:763
+#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "In 1 Week"
 msgstr "Za 1 nedelju"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskTreeView.cs:213 ../src/Gtk.Tasque/TaskTreeView.cs:762
 #: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "Bez datuma"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:214 ../src/Gtk.Tasque/TaskTreeView.cs:767
 msgid "Choose Date..."
 msgstr "Izaberi datum..."
 
 #. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:225
+#: ../src/Gtk.Tasque/TaskTreeView.cs:230
 msgid "Notes"
 msgstr "Napomene"
 
 #. Title for Timer Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:242
+#: ../src/Gtk.Tasque/TaskTreeView.cs:247
 msgid "Timer"
 msgstr "Odbrojavač"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:336
+#: ../src/Gtk.Tasque/TaskTreeView.cs:341
 msgid "Task Completed"
 msgstr "Zadatak je završen"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:497
+#: ../src/Gtk.Tasque/TaskTreeView.cs:501
 msgid "M/d/yy - ddd"
 msgstr "M/d/gg — ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:655
+#: ../src/Gtk.Tasque/TaskTreeView.cs:657
 msgid "Action Canceled"
 msgstr "Radnja je otkazana"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:947
+#: ../src/Gtk.Tasque/TaskTreeView.cs:949
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Obavljen zadatak za: {0}"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:838
-#: ../src/Gtk.Tasque/TaskWindow.cs:894 ../src/Gtk.Tasque/TaskWindow.cs:904
-#: ../src/Gtk.Tasque/TaskWindow.cs:915
+#: ../src/Gtk.Tasque/TaskWindow.cs:157 ../src/Gtk.Tasque/TaskWindow.cs:828
+#: ../src/Gtk.Tasque/TaskWindow.cs:884 ../src/Gtk.Tasque/TaskWindow.cs:894
+#: ../src/Gtk.Tasque/TaskWindow.cs:905
 msgid "New task..."
 msgstr "Novi zadatak..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:165
+#: ../src/Gtk.Tasque/TaskWindow.cs:173
 msgid "_Add"
 msgstr "_Dodaj"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:170
+#: ../src/Gtk.Tasque/TaskWindow.cs:178
 msgid "_Add Task"
 msgstr "Dodaj _zadatak"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:258
+#: ../src/Gtk.Tasque/TaskWindow.cs:266
 msgid "Overdue"
 msgstr "Prekoračen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:312
+#: ../src/Gtk.Tasque/TaskWindow.cs:320
 msgid "Next 7 Days"
 msgstr "U sledećih 7 dana"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:328
+#: ../src/Gtk.Tasque/TaskWindow.cs:336
 msgid "Future"
 msgstr "Budućnost"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:475 ../src/Gtk.Tasque/TaskWindow.cs:1241
+#: ../src/Gtk.Tasque/TaskWindow.cs:487 ../src/Gtk.Tasque/TaskWindow.cs:1230
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr "Zadatak je učitan: {0}"
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:802
+#: ../src/Gtk.Tasque/TaskWindow.cs:792
 msgid "Error creating a new task"
 msgstr "Greška stvaranja novog zadatka"
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:806
+#: ../src/Gtk.Tasque/TaskWindow.cs:796
 msgid "Task created successfully"
 msgstr "Zadatak je uspešno napravljen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1090
+#: ../src/Gtk.Tasque/TaskWindow.cs:1080
 msgid "_Notes..."
 msgstr "_Beleške..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1097
+#: ../src/Gtk.Tasque/TaskWindow.cs:1087
 msgid "_Delete task"
 msgstr "_Obriši zadatak"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1102
+#: ../src/Gtk.Tasque/TaskWindow.cs:1092
 msgid "_Edit task"
 msgstr "_Uredi zadatak"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1134
+#: ../src/Gtk.Tasque/TaskWindow.cs:1123
 msgid "_Change category"
 msgstr "_Promeni kategoriju"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1190
+#: ../src/Gtk.Tasque/TaskWindow.cs:1179
 msgid "Task deleted"
 msgstr "Zadatak je obrisan"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1232
+#: ../src/Gtk.Tasque/TaskWindow.cs:1221
 msgid "Loading tasks..."
 msgstr "Učitavam zadatke..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1253
+#: ../src/Gtk.Tasque/TaskWindow.cs:1242
 msgid "Not connected."
 msgstr "Nisam povezan."
 
@@ -400,45 +399,45 @@ msgstr "d. MMMM yyyy, h:mm tt"
 msgid "MMMM d yyyy"
 msgstr "d. MMMM yyyy"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:78
 msgid "Click Here to Connect"
 msgstr "Kliknite ovde da se povežete"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:84
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:153
 msgid "You are currently connected"
 msgstr "Trenutno ste povezani"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:88
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:157
 msgid "You are currently connected as"
 msgstr "Trenutno ste povezani kao"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:92
 msgid "You are not connected"
 msgstr "Niste povezani"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:123
 msgid "Remember the Milk not responding. Try again later."
 msgstr "Seti se mleka ne odgovora. Pokušajte kasnije."
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:130
 msgid "Click Here After Authorizing"
 msgstr "Klikni ovde nakon prijavljivanja"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:133
 msgid "Set the default browser and try again"
 msgstr "Postavite osnovni internet preglednik i pokušajte ponovo"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
 msgid "Processing..."
 msgstr "Obrađujem..."
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:146
 msgid "Failed, Try Again"
 msgstr "Neuspeh, pokušajte ponovo"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:150
 msgid "Thank You"
 msgstr "Hvala vam"
 

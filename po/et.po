@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:45+0100\n"
+"POT-Creation-Date: 2012-12-03 00:12+0100\n"
 "PO-Revision-Date: 2009-10-09 14:11+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -33,48 +33,48 @@ msgstr "Lihtne ja kiire ülesandehaldus"
 msgid "Task Manager"
 msgstr "Ülesandehaldur"
 
-#: ../src/Gtk.Tasque/AllCategory.cs:28
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:174
-msgid "All"
-msgstr "Kõik"
-
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:165
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:160
 #: ../src/Gtk.Tasque/Utilities.cs:282
 msgid "Yesterday"
 msgstr "Eile"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:162
 msgid "Last 7 Days"
 msgstr "Viimased 7 päeva"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:164
 msgid "Last Month"
 msgstr "Viimane kuu"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:166
 msgid "Last Year"
 msgstr "Viimane aasta"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/libtasque/AllCategory.cs:33
+msgid "All"
+msgstr "Kõik"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
 #, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Autoriõigus © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:82
+#: ../src/Gtk.Tasque/GtkTray.cs:88
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] "{0} ülesanne on hilinenud\n"
 msgstr[1] "{0} ülesannet on hilinenud\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:91
+#: ../src/Gtk.Tasque/GtkTray.cs:97
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] "Tänaseks on {0} ülesanne\n"
 msgstr[1] "Tänaseks on {0} ülesannet\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:100
+#: ../src/Gtk.Tasque/GtkTray.cs:106
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -82,31 +82,31 @@ msgstr[0] "Homseks on {0} ülesanne\n"
 msgstr[1] "Homseks on {0} ülesannet\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:106
+#: ../src/Gtk.Tasque/GtkTray.cs:112
 msgid "Tasque Rocks"
 msgstr "Ülesandetasku on mõnusalt tühi"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:143
+#: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "translator-credits"
 msgstr "Ivar Smolin <okul linux ee>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:152
+#: ../src/Gtk.Tasque/GtkTray.cs:158
 msgid "A Useful Task List"
 msgstr "Ülesannete nimekiri"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:154
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "Tasque Project Homepage"
 msgstr "Ülesandetasku projekti koduleht"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:167
+#: ../src/Gtk.Tasque/GtkTray.cs:173
 msgid "New Task ..."
 msgstr "Uus ülesanne..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:177
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Refresh Tasks ..."
 msgstr "Värskenda ülesandeid..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:189
 msgid "Toggle Task Window"
 msgstr ""
 
@@ -116,230 +116,230 @@ msgid "Notes for: {0:s}"
 msgstr "Ülesande märkmed: {0:s}"
 
 #. Update the window title
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:97
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:102
 msgid "Tasque Preferences"
 msgstr "Ülesandetasku eelistused"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:116
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:121
 msgid "General"
 msgstr "Üldine"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:124
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:129
 msgid "Appearance"
 msgstr "Välimus"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:160
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:165
 msgid "Color Management"
 msgstr "Värvihaldus"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:171
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:176
 msgid "Today:"
 msgstr "Täna:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:199
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:204
 msgid "Overdue:"
 msgstr "Hilinenud:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:243
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:248
 msgid "Task Management System"
 msgstr "Ülesannete haldamise süsteem"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:285
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:290
 msgid "Task Filtering"
 msgstr "Ülesannete filter"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:304
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:309
 msgid "Sh_ow completed tasks"
 msgstr "_Lõpetatud ülesandeid näidatakse"
 
 #. Categories TreeView
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:313
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:318
 msgid "Only _show these categories when \"All\" is selected:"
 msgstr "Neid kategooriaid _kuvatakse ainult siis, kui valitud on \"Kõik\":"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:331
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:336
 msgid "Category"
 msgstr "Kategooria"
 
-#: ../src/Gtk.Tasque/RemoteControl.cs:150
+#: ../src/Gtk.Tasque/RemoteControl.cs:173
 msgid "New task created."
 msgstr "Loodi uus ülesanne."
 
 #. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:343
+#: ../src/Gtk.Tasque/TaskTreeView.cs:95 ../src/Gtk.Tasque/TaskWindow.cs:351
 msgid "Completed"
 msgstr "Lõpetatud"
 
 #. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:107
+#: ../src/Gtk.Tasque/TaskTreeView.cs:112
 msgid "Priority"
 msgstr "Tähtsus"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:424
-#: ../src/Gtk.Tasque/TaskTreeView.cs:673
+#: ../src/Gtk.Tasque/TaskTreeView.cs:125 ../src/Gtk.Tasque/TaskTreeView.cs:429
+#: ../src/Gtk.Tasque/TaskTreeView.cs:675
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:421
-#: ../src/Gtk.Tasque/TaskTreeView.cs:671
+#: ../src/Gtk.Tasque/TaskTreeView.cs:126 ../src/Gtk.Tasque/TaskTreeView.cs:426
+#: ../src/Gtk.Tasque/TaskTreeView.cs:673
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:418
-#: ../src/Gtk.Tasque/TaskTreeView.cs:669
+#: ../src/Gtk.Tasque/TaskTreeView.cs:127 ../src/Gtk.Tasque/TaskTreeView.cs:423
+#: ../src/Gtk.Tasque/TaskTreeView.cs:671
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:427
+#: ../src/Gtk.Tasque/TaskTreeView.cs:128 ../src/Gtk.Tasque/TaskTreeView.cs:432
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:137
+#: ../src/Gtk.Tasque/TaskTreeView.cs:142
 msgid "Task Name"
 msgstr "Ülesande nimi"
 
 #. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:179
+#: ../src/Gtk.Tasque/TaskTreeView.cs:184
 msgid "Due Date"
 msgstr "Tähtaeg"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:755
-#: ../src/Gtk.Tasque/TaskTreeView.cs:758 ../src/Gtk.Tasque/TaskTreeView.cs:763
+#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:200
+#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskTreeView.cs:760 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "M/d - "
 msgstr "d-M - "
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:755
-#: ../src/Gtk.Tasque/TaskWindow.cs:276 ../src/Gtk.Tasque/Utilities.cs:276
+#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "Täna"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:758
-#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:295
+#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Homme"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
-#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
-#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:495
-#: ../src/Gtk.Tasque/TaskTreeView.cs:772
+#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:204
+#: ../src/Gtk.Tasque/TaskTreeView.cs:206 ../src/Gtk.Tasque/TaskTreeView.cs:208
+#: ../src/Gtk.Tasque/TaskTreeView.cs:210 ../src/Gtk.Tasque/TaskTreeView.cs:499
+#: ../src/Gtk.Tasque/TaskTreeView.cs:774
 msgid "M/d - ddd"
 msgstr "d-M - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:763
+#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "In 1 Week"
 msgstr "Nädala jooksul"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskTreeView.cs:213 ../src/Gtk.Tasque/TaskTreeView.cs:762
 #: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "Kuupäev puudub"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:214 ../src/Gtk.Tasque/TaskTreeView.cs:767
 msgid "Choose Date..."
 msgstr "Vali kuupäev..."
 
 #. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:225
+#: ../src/Gtk.Tasque/TaskTreeView.cs:230
 msgid "Notes"
 msgstr "Märkmed"
 
 #. Title for Timer Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:242
+#: ../src/Gtk.Tasque/TaskTreeView.cs:247
 msgid "Timer"
 msgstr "Taimer"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:336
+#: ../src/Gtk.Tasque/TaskTreeView.cs:341
 msgid "Task Completed"
 msgstr "Ülesanne täidetud"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:497
+#: ../src/Gtk.Tasque/TaskTreeView.cs:501
 msgid "M/d/yy - ddd"
 msgstr "d-M-yy - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:655
+#: ../src/Gtk.Tasque/TaskTreeView.cs:657
 msgid "Action Canceled"
 msgstr "Tegevus katkestatud"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:947
+#: ../src/Gtk.Tasque/TaskTreeView.cs:949
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Ülesanne täidetakse: {0}"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:838
-#: ../src/Gtk.Tasque/TaskWindow.cs:894 ../src/Gtk.Tasque/TaskWindow.cs:904
-#: ../src/Gtk.Tasque/TaskWindow.cs:915
+#: ../src/Gtk.Tasque/TaskWindow.cs:157 ../src/Gtk.Tasque/TaskWindow.cs:828
+#: ../src/Gtk.Tasque/TaskWindow.cs:884 ../src/Gtk.Tasque/TaskWindow.cs:894
+#: ../src/Gtk.Tasque/TaskWindow.cs:905
 msgid "New task..."
 msgstr "Uus ülesanne..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:165
+#: ../src/Gtk.Tasque/TaskWindow.cs:173
 msgid "_Add"
 msgstr "_Lisa"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:170
+#: ../src/Gtk.Tasque/TaskWindow.cs:178
 msgid "_Add Task"
 msgstr "_Lisa ülesanne"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:258
+#: ../src/Gtk.Tasque/TaskWindow.cs:266
 msgid "Overdue"
 msgstr "Hilinemine"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:312
+#: ../src/Gtk.Tasque/TaskWindow.cs:320
 msgid "Next 7 Days"
 msgstr "Järgmised 7 päeva"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:328
+#: ../src/Gtk.Tasque/TaskWindow.cs:336
 msgid "Future"
 msgstr "Tulevikus"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:475 ../src/Gtk.Tasque/TaskWindow.cs:1241
+#: ../src/Gtk.Tasque/TaskWindow.cs:487 ../src/Gtk.Tasque/TaskWindow.cs:1230
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr "Laaditud ülesandeid: {0}"
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:802
+#: ../src/Gtk.Tasque/TaskWindow.cs:792
 msgid "Error creating a new task"
 msgstr "Viga uue ülesande loomisel"
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:806
+#: ../src/Gtk.Tasque/TaskWindow.cs:796
 msgid "Task created successfully"
 msgstr "Ülesanne edukalt loodud"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1090
+#: ../src/Gtk.Tasque/TaskWindow.cs:1080
 msgid "_Notes..."
 msgstr "_Märkmed..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1097
+#: ../src/Gtk.Tasque/TaskWindow.cs:1087
 msgid "_Delete task"
 msgstr "_Kustuta ülesanne"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1102
+#: ../src/Gtk.Tasque/TaskWindow.cs:1092
 msgid "_Edit task"
 msgstr "_Redigeeri ülesannet"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1134
+#: ../src/Gtk.Tasque/TaskWindow.cs:1123
 msgid "_Change category"
 msgstr "_Muuda kataloogi"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1190
+#: ../src/Gtk.Tasque/TaskWindow.cs:1179
 msgid "Task deleted"
 msgstr "Ülesanne kustutatud"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1232
+#: ../src/Gtk.Tasque/TaskWindow.cs:1221
 msgid "Loading tasks..."
 msgstr "Ülesannete laadimine..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1253
+#: ../src/Gtk.Tasque/TaskWindow.cs:1242
 msgid "Not connected."
 msgstr "Pole ühendatud."
 
@@ -394,45 +394,45 @@ msgstr "d. MMMM yyyy, h:mm tt"
 msgid "MMMM d yyyy"
 msgstr "d. MMMM yyyy"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:78
 msgid "Click Here to Connect"
 msgstr "Ühendumiseks klõpsa siia"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:84
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:153
 msgid "You are currently connected"
 msgstr "Sa oled praegu ühendatud"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:88
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:157
 msgid "You are currently connected as"
 msgstr "Oled praegu ühendatud kasutajana"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:92
 msgid "You are not connected"
 msgstr "Sa pole ühendatud"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:123
 msgid "Remember the Milk not responding. Try again later."
 msgstr "\"Remember the Milk\" server ei vasta. Proovi hiljem uuesti."
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:130
 msgid "Click Here After Authorizing"
 msgstr "Pärast autoriseerimist klõpsa siia"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:133
 msgid "Set the default browser and try again"
 msgstr "Määra vaikimisi veebilehitseja ja proovi uuesti"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
 msgid "Processing..."
 msgstr "Töötlemine..."
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:146
 msgid "Failed, Try Again"
 msgstr "Nurjus, proovi uuesti"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:150
 msgid "Thank You"
 msgstr "Suur tänu"
 

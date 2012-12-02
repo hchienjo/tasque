@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 16:45+0100\n"
+"POT-Creation-Date: 2012-12-03 00:12+0100\n"
 "PO-Revision-Date: 2010-10-26 18:20+0100\n"
 "Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -33,48 +33,48 @@ msgstr "Leichte, schnelle Aufgabenverwaltung"
 msgid "Task Manager"
 msgstr "Aufgabenverwaltung"
 
-#: ../src/Gtk.Tasque/AllCategory.cs:28
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:174
-msgid "All"
-msgstr "Alle"
-
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:165
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:160
 #: ../src/Gtk.Tasque/Utilities.cs:282
 msgid "Yesterday"
 msgstr "Gestern"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:162
 msgid "Last 7 Days"
 msgstr "Letzte 7 Tage"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:164
 msgid "Last Month"
 msgstr "Letzter Monat"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:166
 msgid "Last Year"
 msgstr "Letztes Jahr"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/libtasque/AllCategory.cs:33
+msgid "All"
+msgstr "Alle"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
 #, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Copyright © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:82
+#: ../src/Gtk.Tasque/GtkTray.cs:88
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] "{0} Aufgabe ist überfällig\n"
 msgstr[1] "{0} Aufgaben sind überfällig\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:91
+#: ../src/Gtk.Tasque/GtkTray.cs:97
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] "{0} Aufgabe für heute\n"
 msgstr[1] "{0} Aufgaben für heute\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:100
+#: ../src/Gtk.Tasque/GtkTray.cs:106
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -82,34 +82,34 @@ msgstr[0] "{0} Aufgabe für morgen\n"
 msgstr[1] "{0} Aufgaben für morgen\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:106
+#: ../src/Gtk.Tasque/GtkTray.cs:112
 msgid "Tasque Rocks"
 msgstr "Tasque fetzt"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:143
+#: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "translator-credits"
 msgstr ""
 "Fabian Buch <fabian.buch@fabian-buch.com>\n"
 "Mario Blättermann <mariobl@gnome.org>\n"
 "Christian Kirbach <Christian.Kirbach@googlemail.com>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:152
+#: ../src/Gtk.Tasque/GtkTray.cs:158
 msgid "A Useful Task List"
 msgstr "Eine praktische Aufgabenliste"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:154
+#: ../src/Gtk.Tasque/GtkTray.cs:160
 msgid "Tasque Project Homepage"
 msgstr "Tasque-Projekt-Homepage"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:167
+#: ../src/Gtk.Tasque/GtkTray.cs:173
 msgid "New Task ..."
 msgstr "Neue Aufgabe …"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:177
+#: ../src/Gtk.Tasque/GtkTray.cs:183
 msgid "Refresh Tasks ..."
 msgstr "Aufgaben aktualisieren …"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:189
 msgid "Toggle Task Window"
 msgstr "Zeige/Verstecke Fenster"
 
@@ -119,230 +119,230 @@ msgid "Notes for: {0:s}"
 msgstr "Notizen für: {0:s}"
 
 #. Update the window title
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:97
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:102
 msgid "Tasque Preferences"
 msgstr "Tasque – Einstellungen"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:116
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:121
 msgid "General"
 msgstr "Allgemein"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:124
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:129
 msgid "Appearance"
 msgstr "Erscheinungsbild"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:160
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:165
 msgid "Color Management"
 msgstr "Farbverwaltung"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:171
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:176
 msgid "Today:"
 msgstr "Heute:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:199
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:204
 msgid "Overdue:"
 msgstr "Überfällig:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:243
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:248
 msgid "Task Management System"
 msgstr "Aufgabenverwaltung"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:285
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:290
 msgid "Task Filtering"
 msgstr "Aufgaben filtern"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:304
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:309
 msgid "Sh_ow completed tasks"
 msgstr "_Beendete Aufgaben anzeigen"
 
 #. Categories TreeView
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:313
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:318
 msgid "Only _show these categories when \"All\" is selected:"
 msgstr "Nur die_se Kategorien anzeigen, wenn »Alle« ausgewählt ist:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:331
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:336
 msgid "Category"
 msgstr "Kategorie"
 
-#: ../src/Gtk.Tasque/RemoteControl.cs:150
+#: ../src/Gtk.Tasque/RemoteControl.cs:173
 msgid "New task created."
 msgstr "Neue Aufgabe wurde angelegt."
 
 #. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:343
+#: ../src/Gtk.Tasque/TaskTreeView.cs:95 ../src/Gtk.Tasque/TaskWindow.cs:351
 msgid "Completed"
 msgstr "Erledigt"
 
 #. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:107
+#: ../src/Gtk.Tasque/TaskTreeView.cs:112
 msgid "Priority"
 msgstr "Priorität"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:424
-#: ../src/Gtk.Tasque/TaskTreeView.cs:673
+#: ../src/Gtk.Tasque/TaskTreeView.cs:125 ../src/Gtk.Tasque/TaskTreeView.cs:429
+#: ../src/Gtk.Tasque/TaskTreeView.cs:675
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:421
-#: ../src/Gtk.Tasque/TaskTreeView.cs:671
+#: ../src/Gtk.Tasque/TaskTreeView.cs:126 ../src/Gtk.Tasque/TaskTreeView.cs:426
+#: ../src/Gtk.Tasque/TaskTreeView.cs:673
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:418
-#: ../src/Gtk.Tasque/TaskTreeView.cs:669
+#: ../src/Gtk.Tasque/TaskTreeView.cs:127 ../src/Gtk.Tasque/TaskTreeView.cs:423
+#: ../src/Gtk.Tasque/TaskTreeView.cs:671
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:427
+#: ../src/Gtk.Tasque/TaskTreeView.cs:128 ../src/Gtk.Tasque/TaskTreeView.cs:432
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:137
+#: ../src/Gtk.Tasque/TaskTreeView.cs:142
 msgid "Task Name"
 msgstr "Aufgabenname"
 
 #. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:179
+#: ../src/Gtk.Tasque/TaskTreeView.cs:184
 msgid "Due Date"
 msgstr "Fälligkeitsdatum"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:755
-#: ../src/Gtk.Tasque/TaskTreeView.cs:758 ../src/Gtk.Tasque/TaskTreeView.cs:763
+#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:200
+#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskTreeView.cs:760 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "M/d - "
 msgstr "d.M. - "
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:755
-#: ../src/Gtk.Tasque/TaskWindow.cs:276 ../src/Gtk.Tasque/Utilities.cs:276
+#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "Heute"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:758
-#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:295
+#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Morgen"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
-#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
-#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:495
-#: ../src/Gtk.Tasque/TaskTreeView.cs:772
+#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:204
+#: ../src/Gtk.Tasque/TaskTreeView.cs:206 ../src/Gtk.Tasque/TaskTreeView.cs:208
+#: ../src/Gtk.Tasque/TaskTreeView.cs:210 ../src/Gtk.Tasque/TaskTreeView.cs:499
+#: ../src/Gtk.Tasque/TaskTreeView.cs:774
 msgid "M/d - ddd"
 msgstr "d.M. - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:763
+#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:765
 msgid "In 1 Week"
 msgstr "In 1 Woche"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskTreeView.cs:213 ../src/Gtk.Tasque/TaskTreeView.cs:762
 #: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "Kein Datum"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:214 ../src/Gtk.Tasque/TaskTreeView.cs:767
 msgid "Choose Date..."
 msgstr "Datum wählen …"
 
 #. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:225
+#: ../src/Gtk.Tasque/TaskTreeView.cs:230
 msgid "Notes"
 msgstr "Notizen"
 
 #. Title for Timer Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:242
+#: ../src/Gtk.Tasque/TaskTreeView.cs:247
 msgid "Timer"
 msgstr "Countdown"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:336
+#: ../src/Gtk.Tasque/TaskTreeView.cs:341
 msgid "Task Completed"
 msgstr "Aufgabe erledigt"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:497
+#: ../src/Gtk.Tasque/TaskTreeView.cs:501
 msgid "M/d/yy - ddd"
 msgstr "d.M.yy - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:655
+#: ../src/Gtk.Tasque/TaskTreeView.cs:657
 msgid "Action Canceled"
 msgstr "Aktion abgebrochen"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:947
+#: ../src/Gtk.Tasque/TaskTreeView.cs:949
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Vervollständigen der Aufgabe in: {0}"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:149 ../src/Gtk.Tasque/TaskWindow.cs:838
-#: ../src/Gtk.Tasque/TaskWindow.cs:894 ../src/Gtk.Tasque/TaskWindow.cs:904
-#: ../src/Gtk.Tasque/TaskWindow.cs:915
+#: ../src/Gtk.Tasque/TaskWindow.cs:157 ../src/Gtk.Tasque/TaskWindow.cs:828
+#: ../src/Gtk.Tasque/TaskWindow.cs:884 ../src/Gtk.Tasque/TaskWindow.cs:894
+#: ../src/Gtk.Tasque/TaskWindow.cs:905
 msgid "New task..."
 msgstr "Neue Aufgabe …"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:165
+#: ../src/Gtk.Tasque/TaskWindow.cs:173
 msgid "_Add"
 msgstr "_Hinzufügen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:170
+#: ../src/Gtk.Tasque/TaskWindow.cs:178
 msgid "_Add Task"
 msgstr "_Aufgabe hinzufügen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:258
+#: ../src/Gtk.Tasque/TaskWindow.cs:266
 msgid "Overdue"
 msgstr "Überfällig"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:312
+#: ../src/Gtk.Tasque/TaskWindow.cs:320
 msgid "Next 7 Days"
 msgstr "Nächste 7 Tage"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:328
+#: ../src/Gtk.Tasque/TaskWindow.cs:336
 msgid "Future"
 msgstr "Zukunft"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:475 ../src/Gtk.Tasque/TaskWindow.cs:1241
+#: ../src/Gtk.Tasque/TaskWindow.cs:487 ../src/Gtk.Tasque/TaskWindow.cs:1230
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr "Geladene Aufgaben: {0}"
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:802
+#: ../src/Gtk.Tasque/TaskWindow.cs:792
 msgid "Error creating a new task"
 msgstr "Fehler beim Erstellen einer neuen Aufgabe"
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:806
+#: ../src/Gtk.Tasque/TaskWindow.cs:796
 msgid "Task created successfully"
 msgstr "Aufgabe wurde erfolgreich erstellt"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1090
+#: ../src/Gtk.Tasque/TaskWindow.cs:1080
 msgid "_Notes..."
 msgstr "_Notizen …"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1097
+#: ../src/Gtk.Tasque/TaskWindow.cs:1087
 msgid "_Delete task"
 msgstr "Aufgabe _löschen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1102
+#: ../src/Gtk.Tasque/TaskWindow.cs:1092
 msgid "_Edit task"
 msgstr "Aufgab_e bearbeiten"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1134
+#: ../src/Gtk.Tasque/TaskWindow.cs:1123
 msgid "_Change category"
 msgstr "Kategorie än_dern"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1190
+#: ../src/Gtk.Tasque/TaskWindow.cs:1179
 msgid "Task deleted"
 msgstr "Aufgabe gelöscht"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1232
+#: ../src/Gtk.Tasque/TaskWindow.cs:1221
 msgid "Loading tasks..."
 msgstr "Aufgaben laden …"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1253
+#: ../src/Gtk.Tasque/TaskWindow.cs:1242
 msgid "Not connected."
 msgstr "Sie sind nicht verbunden."
 
@@ -397,45 +397,45 @@ msgstr "d. MMMM yyyy, h:mm tt"
 msgid "MMMM d yyyy"
 msgstr "d. MMMM yyyy"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:65
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:78
 msgid "Click Here to Connect"
 msgstr "Hier klicken, um zu verbinden"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:71
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:142
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:84
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:153
 msgid "You are currently connected"
 msgstr "Sie sind gegenwärtig verbunden"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:75
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:147
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:88
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:157
 msgid "You are currently connected as"
 msgstr "Sie sind gegenwärtig verbunden als"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:79
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:92
 msgid "You are not connected"
 msgstr "Sie sind nicht verbunden"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:112
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:123
 msgid "Remember the Milk not responding. Try again later."
 msgstr "»Remember the Milk« reagiert nicht. Bitte später versuchen."
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:119
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:130
 msgid "Click Here After Authorizing"
 msgstr "Nach Legitimierung hier klicken"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:122
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:133
 msgid "Set the default browser and try again"
 msgstr "Standardbrowser festlegen und erneut versuchen"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:125
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
 msgid "Processing..."
 msgstr "Verarbeitung läuft …"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:135
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:146
 msgid "Failed, Try Again"
 msgstr "Gescheitert, bitte erneut versuchen"
 
-#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:139
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:150
 msgid "Thank You"
 msgstr "Danke"
 
