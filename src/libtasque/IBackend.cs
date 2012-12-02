@@ -2,6 +2,7 @@
 // User: boyd at 7:02 AM 2/11/2008
 
 using System;
+using System.Collections.Generic;
 
 namespace Tasque.Backends
 {
@@ -33,7 +34,7 @@ namespace Tasque.Backends
 		/// <value>
 		/// All the tasks provided by the backend.
 		/// </value>
-		Gtk.TreeModel Tasks
+		ICollection<ITask> Tasks
 		{
 			get;
 		}
@@ -41,7 +42,7 @@ namespace Tasque.Backends
 		/// <value>
 		/// This returns all the ICategory items from the backend.
 		/// </value>
-		Gtk.TreeModel Categories
+		ICollection<ICategory> Categories
 		{
 			get;
 		}

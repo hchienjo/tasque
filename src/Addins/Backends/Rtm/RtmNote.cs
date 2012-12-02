@@ -8,7 +8,7 @@ using System;
 using Tasque;
 using RtmNet;
 
-namespace Tasque.Backends.RtmBackend
+namespace Tasque.Backends.Rtm
 {
 	public class RtmNote : INote
 	{

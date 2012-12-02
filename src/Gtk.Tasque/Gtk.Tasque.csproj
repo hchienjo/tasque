@@ -72,6 +72,7 @@
     <Reference Include="dbus-sharp-glib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libtasque\libtasque.csproj">
@@ -84,8 +85,6 @@
     <Compile Include="GtkTray.cs" />
     <Compile Include="StatusIconTray.cs" />
     <Compile Condition=" '$(AppIndicator)' != '' " Include="AppIndicatorTray.cs" />
-    <Compile Include="AbstractTask.cs" />
-    <Compile Include="AllCategory.cs" />
     <Compile Include="CellRendererDate.cs" />
     <Compile Include="CompletedTaskGroup.cs" />
     <Compile Include="DateButton.cs" />
@@ -105,6 +104,7 @@
     <Compile Include="GtkApplicationBase.cs" />
     <Compile Include="GtkLinuxApplication.cs" />
     <Compile Include="GtkWinApplication.cs" />
+    <Compile Include="TreeModelListAdapter.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <Compile Include="RemoteControl.cs" />

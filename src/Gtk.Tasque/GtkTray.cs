@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Linq;
 using System.Text;
 using Mono.Unix;
 using Gtk;
@@ -81,7 +82,7 @@ namespace Tasque
 			
 			var overdueTasks = application.OverdueTasks;
 			if (overdueTasks != null) {
-				int count = overdueTasks.IterNChildren ();
+				int count = overdueTasks.Count ();
 
 				if (count > 0) {
 					sb.Append (String.Format (Catalog.GetPluralString ("{0} task is Overdue\n", "{0} tasks are Overdue\n", count), count));
@@ -90,7 +91,7 @@ namespace Tasque
 			
 			var todayTasks = application.TodayTasks;
 			if (todayTasks != null) {
-				int count = todayTasks.IterNChildren ();
+				int count = todayTasks.Count ();
 
 				if (count > 0) {
 					sb.Append (String.Format (Catalog.GetPluralString ("{0} task for Today\n", "{0} tasks for Today\n", count), count));
@@ -99,7 +100,7 @@ namespace Tasque
 			
 			var tomorrowTasks = application.TomorrowTasks;
 			if (tomorrowTasks != null) {
-				int count = tomorrowTasks.IterNChildren ();
+				int count = tomorrowTasks.Count ();
 
 				if (count > 0) {
 					sb.Append (String.Format (Catalog.GetPluralString ("{0} task for Tomorrow\n", "{0} tasks for Tomorrow\n", count), count));

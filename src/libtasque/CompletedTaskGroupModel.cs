@@ -1,13 +1,14 @@
 
 using System;
-using Gtk;
+using System.Collections.Generic;
 
 namespace Tasque
 {
 	public class CompletedTaskGroupModel : TaskGroupModel
 	{
-		public CompletedTaskGroupModel (DateTime rangeStart, DateTime rangeEnd, TreeModel tasks)
-			: base (rangeStart, rangeEnd, tasks)
+		public CompletedTaskGroupModel (DateTime rangeStart, DateTime rangeEnd,
+		                                ICollection<ITask> tasks, Preferences preferences)
+			: base (rangeStart, rangeEnd, tasks, preferences)
 		{
 		}
 
@@ -24,13 +25,12 @@ namespace Tasque
 		/// <returns>
 		/// A <see cref="System.Boolean"/>
 		/// </returns>
-		protected override bool FilterTasks (TreeModel model, TreeIter iter)
+		protected override bool FilterTasks (ITask task)
 		{
 			// Don't show any task here if showCompletedTasks is false
 			if (!showCompletedTasks)
 				return false;
 			
-			ITask task = model.GetValue (iter, 0) as ITask;
 			if (task == null || task.State != TaskState.Completed)
 				return false;
 			

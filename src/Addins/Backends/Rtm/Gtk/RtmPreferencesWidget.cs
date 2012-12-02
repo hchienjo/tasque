@@ -1,12 +1,14 @@
 // RtmPreferencesWidget.cs created with MonoDevelop
 // User: boyd at 11:29 PM 2/18/2008
-
 using System;
 using System.Diagnostics;
-using Gtk;
 using Mono.Unix;
+using Gdk;
+using Gtk;
+using Tasque;
+using Tasque.Backends;
 
-namespace Tasque.Backends.RtmBackend
+namespace Tasque.Backends.Rtm
 {
 	public class RtmPreferencesWidget : Gtk.EventBox, IBackendPreferences
 	{
@@ -24,7 +26,7 @@ namespace Tasque.Backends.RtmBackend
 		
 		static RtmPreferencesWidget ()
 		{
-			normalPixbuf = Utilities.GetIcon ("tasque-rtm-logo", 128);
+			normalPixbuf = GetIcon ("tasque-rtm-logo", 128);
 		}
 		
 		public RtmPreferencesWidget (RtmBackend backend, Preferences preferences) : base ()
@@ -155,6 +157,29 @@ namespace Tasque.Backends.RtmBackend
 						Catalog.GetString ("You are currently connected as") +
 						"\n" + userName.Trim ();
 			}
+		}
+
+		static Pixbuf GetIcon (string iconName, int size)
+		{
+			try {
+				return IconTheme.Default.LoadIcon (iconName, size, 0);
+			} catch (GLib.GException) {}
+			
+			try {
+				var ret = new Pixbuf (null, iconName + ".png");
+				return ret.ScaleSimple (size, size, InterpType.Bilinear);
+			} catch (ArgumentException) {}
+			
+			// TODO: This is a temporary fix to allow installing all icons as assembly
+			//       resources. The proper thing to do is to ship the actual icons,
+			//       and append to the default gtk+ icon theme path. See Tomboy.
+			try {
+				var ret = new Pixbuf (null, string.Format ("{0}-{1}.png", iconName, size));
+				return ret.ScaleSimple (size, size, InterpType.Bilinear);
+			} catch (ArgumentException) {}
+			
+			Logger.Debug ("Unable to load icon '{0}'.", iconName);
+			return null;
 		}
 	}
 }

@@ -1,27 +1,30 @@
 // SqliteBackend.cs created with MonoDevelop
 // User: boyd at 7:10 AM 2/11/2008
-
 using System;
 using System.Collections.Generic;
-using Mono.Unix;
-using Tasque.Backends;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using Mono.Data.Sqlite;
+using Tasque.Backends;
 using Gtk.Tasque.Backends.Sqlite;
 
 namespace Tasque.Backends.Sqlite
 {
 	public class SqliteBackend : IBackend
 	{
-		private Dictionary<int, Gtk.TreeIter> taskIters;
-		private Gtk.TreeStore taskStore;
-		private Gtk.TreeModelSort sortedTasksModel;
 		private bool initialized;
 		private bool configured = true;
+
+		ObservableCollection<ITask> taskStore;
+		ObservableCollection<ICategory> categoryListStore;
+		ReadOnlyObservableCollection<ITask> readOnlyTaskStore;
+		ReadOnlyObservableCollection<ICategory> readOnlyCategoryStore;
+		
+		TaskComparer taskComparer;
+		CategoryComparer categoryComparer;
 		
 		private Database db;
-		
-		private Gtk.ListStore categoryListStore;
-		private Gtk.TreeModelSort sortedCategoriesModel;
 
 		public event BackendInitializedHandler BackendInitialized;
 		public event BackendSyncStartedHandler BackendSyncStarted;
@@ -34,18 +37,13 @@ namespace Tasque.Backends.Sqlite
 		public SqliteBackend ()
 		{
 			initialized = false;
-			taskIters = new Dictionary<int, Gtk.TreeIter> (); 
-			taskStore = new Gtk.TreeStore (typeof (ITask));
-			
-			sortedTasksModel = new Gtk.TreeModelSort (taskStore);
-			sortedTasksModel.SetSortFunc (0, new Gtk.TreeIterCompareFunc (CompareTasksSortFunc));
-			sortedTasksModel.SetSortColumnId (0, Gtk.SortType.Ascending);
-			
-			categoryListStore = new Gtk.ListStore (typeof (ICategory));
-			
-			sortedCategoriesModel = new Gtk.TreeModelSort (categoryListStore);
-			sortedCategoriesModel.SetSortFunc (0, new Gtk.TreeIterCompareFunc (CompareCategorySortFunc));
-			sortedCategoriesModel.SetSortColumnId (0, Gtk.SortType.Ascending);
+			taskStore = new ObservableCollection<ITask> ();
+			categoryListStore = new ObservableCollection<ICategory> ();
+			readOnlyTaskStore = new ReadOnlyObservableCollection<ITask> (taskStore);
+			readOnlyCategoryStore
+				= new ReadOnlyObservableCollection<ICategory> (categoryListStore);
+			taskComparer = new TaskComparer ();
+			categoryComparer = new CategoryComparer ();
 		}
 		
 		#region Public Properties
@@ -57,17 +55,17 @@ namespace Tasque.Backends.Sqlite
 		/// <value>
 		/// All the tasks including ITaskDivider items.
 		/// </value>
-		public Gtk.TreeModel Tasks
+		public ICollection<ITask> Tasks
 		{
-			get { return sortedTasksModel; }
+			get { return readOnlyTaskStore; }
 		}
 		
 		/// <value>
 		/// This returns all the task lists (categories) that exist.
 		/// </value>
-		public Gtk.TreeModel Categories
+		public ICollection<ICategory> Categories
 		{
-			get { return sortedCategoriesModel; }
+			get { return readOnlyCategoryStore; }
 		}
 		
 		/// <value>
@@ -113,9 +111,8 @@ namespace Tasque.Backends.Sqlite
 			else
 				task.Category = category;
 			
-			Gtk.TreeIter iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [task.SqliteId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			
 			return task;
 		}
@@ -145,14 +142,11 @@ namespace Tasque.Backends.Sqlite
 			// Add in the "All" Category
 			//
 			AllCategory allCategory = new Tasque.AllCategory (preferences);
-			Gtk.TreeIter iter = categoryListStore.Append ();
-			categoryListStore.SetValue (iter, 0, allCategory);
-			
-			
+			AddCategory (allCategory);
+
 			RefreshCategories();
 			RefreshTasks();		
 
-		
 			initialized = true;
 			if(BackendInitialized != null) {
 				BackendInitialized();
@@ -163,7 +157,6 @@ namespace Tasque.Backends.Sqlite
 		{
 			this.categoryListStore.Clear();
 			this.taskStore.Clear();
-			this.taskIters.Clear();
 
 			if (db != null)
 				db.Close();
@@ -182,68 +175,8 @@ namespace Tasque.Backends.Sqlite
 		}
 		
 		#endregion // Public Methods
-		
-		#region Private Methods
-		static int CompareTasksSortFunc (Gtk.TreeModel model,
-										 Gtk.TreeIter a,
-										 Gtk.TreeIter b)
-		{
-			ITask taskA = model.GetValue (a, 0) as ITask;
-			ITask taskB = model.GetValue (b, 0) as ITask;
-			
-			if (taskA == null || taskB == null)
-				return 0;
-			
-			return (taskA.CompareTo (taskB));
-		}
-		
-		static int CompareCategorySortFunc (Gtk.TreeModel model,
-											Gtk.TreeIter a,
-											Gtk.TreeIter b)
-		{
-			ICategory categoryA = model.GetValue (a, 0) as ICategory;
-			ICategory categoryB = model.GetValue (b, 0) as ICategory;
-			
-			if (categoryA == null || categoryB == null)
-				return 0;
-			
-			if (categoryA is Tasque.AllCategory)
-				return -1;
-			else if (categoryB is Tasque.AllCategory)
-				return 1;
-			
-			return (categoryA.Name.CompareTo (categoryB.Name));
-		}
-		
-		public void UpdateTask (SqliteTask task)
-		{
-			// Set the task in the store so the model will update the UI.
-			Gtk.TreeIter iter;
-			
-			if (!taskIters.ContainsKey (task.SqliteId))
-				return;
-				
-			iter = taskIters [task.SqliteId];
-			
-			if (task.State == TaskState.Deleted) {
-				taskIters.Remove (task.SqliteId);
-				if (!taskStore.Remove (ref iter)) {
-					Logger.Debug ("Successfully deleted from taskStore: {0}",
-						task.Name);
-				} else {
-					Logger.Debug ("Problem removing from taskStore: {0}",
-						task.Name);
-				}
-			} else {
-				taskStore.SetValue (iter, 0, task);
-			}
-		}
-		
-		
-		
 		public void RefreshCategories()
 		{
-			Gtk.TreeIter iter;
 			SqliteCategory newCategory;
 			bool hasValues = false;
 			
@@ -258,8 +191,7 @@ namespace Tasque.Backends.Sqlite
 				newCategory = new SqliteCategory (this, id);
 				if( (defaultCategory == null) || (newCategory.Name.CompareTo("Work") == 0) )
 					defaultCategory = newCategory;
-				iter = categoryListStore.Append ();
-				categoryListStore.SetValue (iter, 0, newCategory);				
+				AddCategory (newCategory);
 			}
 			
 			dataReader.Close();
@@ -268,30 +200,24 @@ namespace Tasque.Backends.Sqlite
 			if(!hasValues)
 			{
 				defaultCategory = newCategory = new SqliteCategory (this, "Work");
-				iter = categoryListStore.Append ();
-				categoryListStore.SetValue (iter, 0, newCategory);
+				AddCategory (defaultCategory);
 
 				newCategory = new SqliteCategory (this, "Personal");
-				iter = categoryListStore.Append ();
-				categoryListStore.SetValue (iter, 0, newCategory);
+				AddCategory (newCategory);
 				
 				newCategory = new SqliteCategory (this, "Family");
-				iter = categoryListStore.Append ();
-				categoryListStore.SetValue (iter, 0, newCategory);		
+				AddCategory (newCategory);
 
 				newCategory = new SqliteCategory (this, "Project");
-				iter = categoryListStore.Append ();
-				categoryListStore.SetValue (iter, 0, newCategory);		
+				AddCategory (newCategory);
 			}
 		}
-		
 
 		public void RefreshTasks()
 		{
-			Gtk.TreeIter iter;
 			SqliteTask newTask;
 			bool hasValues = false;
-
+			
 			string command = "SELECT id,Category,Name,DueDate,CompletionDate,Priority, State FROM Tasks";
 			SqliteCommand cmd = db.Connection.CreateCommand();
 			cmd.CommandText = command;
@@ -304,32 +230,65 @@ namespace Tasque.Backends.Sqlite
 				long completionDate = dataReader.GetInt64(4);
 				int priority = dataReader.GetInt32(5);
 				int state = dataReader.GetInt32(6);
-
+				
 				hasValues = true;
-
+				
 				newTask = new SqliteTask(this, id, category,
 				                         name, dueDate, completionDate,
 				                         priority, state);
-				iter = taskStore.AppendNode();
-				taskStore.SetValue (iter, 0, newTask);
-				taskIters [newTask.SqliteId] = iter;
+				AddTask (newTask);
+				newTask.PropertyChanged += HandlePropertyChanged;
 			}
-
+			
 			dataReader.Close();
 			cmd.Dispose();
-
+			
 			if(!hasValues)
 			{
 				newTask = new SqliteTask (this, "Create some tasks");
 				newTask.Category = defaultCategory;
 				newTask.DueDate = DateTime.Now;
 				newTask.Priority = TaskPriority.Medium;
-				iter = taskStore.AppendNode ();
-				taskStore.SetValue (iter, 0, newTask);	
-				taskIters [newTask.SqliteId] = iter;
+				AddTask (newTask);
+				newTask.PropertyChanged += HandlePropertyChanged;
 			}
 		}
 
+		#region Private Methods
+		internal void DeleteTask (SqliteTask task)
+		{
+			if (taskStore.Remove (task))
+				task.PropertyChanged -= HandlePropertyChanged;
+		}
+
+		void AddCategory (ICategory category)
+		{
+			var index = categoryListStore.Count;
+			var valIdx = categoryListStore.Select ((val, idx) => new { val, idx })
+				.FirstOrDefault (x => categoryComparer.Compare (x.val, category) > 0);
+			if (valIdx != null)
+				index = valIdx.idx;
+			categoryListStore.Insert (index, category);
+		}
+		
+		void AddTask (SqliteTask task)
+		{
+			var index = taskStore.Count;
+			var valIdx = taskStore.Select ((val, idx) => new { val, idx })
+				.FirstOrDefault (t => taskComparer.Compare (t.val, task) > 0);
+			if (valIdx != null)
+				index = valIdx.idx;
+			
+			taskStore.Insert (index, task);
+		}
+
+		void HandlePropertyChanged (object sender, PropertyChangedEventArgs e)
+		{
+			// when a property changes (any property atm), "reorder" tasks
+			var task = (SqliteTask)sender;
+			if (taskStore.Remove (task))
+				AddTask (task);
+		}
 		#endregion // Private Methods
 		
 		#region Event Handlers

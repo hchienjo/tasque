@@ -202,19 +202,17 @@ namespace Tasque
 				return;
 			}
 			
-			OverdueTasks = TaskGroupModelFactory.CreateOverdueModel (Backend.Tasks);
-			TodayTasks = TaskGroupModelFactory.CreateTodayModel (Backend.Tasks);
-			TomorrowTasks = TaskGroupModelFactory.CreateTomorrowModel (Backend.Tasks);
+			OverdueTasks = TaskGroupModelFactory.CreateOverdueModel (Backend.Tasks, Preferences);
+			TodayTasks = TaskGroupModelFactory.CreateTodayModel (Backend.Tasks, Preferences);
+			TomorrowTasks = TaskGroupModelFactory.CreateTomorrowModel (Backend.Tasks, Preferences);
 			
 			foreach (TaskGroupModel model in new TaskGroupModel[] { OverdueTasks, TodayTasks, TomorrowTasks })
 			{
 				if (model == null) {
 					continue;
 				}
-				
-				model.RowInserted += OnTooltipModelChanged;
-				model.RowChanged += OnTooltipModelChanged;
-				model.RowDeleted += OnTooltipModelChanged;
+
+				model.CollectionChanged += OnTooltipModelChanged;
 			}
 		}
 
@@ -226,9 +224,7 @@ namespace Tasque
 					continue;
 				}
 				
-				model.RowInserted -= OnTooltipModelChanged;
-				model.RowChanged -= OnTooltipModelChanged;
-				model.RowDeleted -= OnTooltipModelChanged;
+				model.CollectionChanged -= OnTooltipModelChanged;
 			}
 		}
 		

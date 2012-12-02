@@ -3,31 +3,29 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Mono.Unix;
 using Tasque.Backends;
 using Gtk.Tasque.Backends.Dummy;
+using System.ComponentModel;
 
 namespace Tasque.Backends.Dummy
 {
 	public class DummyBackend : IBackend
 	{
-		/// <summary>
-		/// Keep track of the Gtk.TreeIters for the tasks so that they can
-		/// be referenced later.
-		///
-		/// Key   = Task ID
-		/// Value = Gtk.TreeIter in taskStore
-		/// </summary>
-		private Dictionary<int, Gtk.TreeIter> taskIters;
 		private int newTaskId;
-		private Gtk.TreeStore taskStore;
-		private Gtk.TreeModelSort sortedTasksModel;
 		private bool initialized;
 		private bool configured = true;
 		
-		private Gtk.ListStore categoryListStore;
-		private Gtk.TreeModelSort sortedCategoriesModel;
-
+		ObservableCollection<ITask> taskStore;
+		ObservableCollection<ICategory> categoryListStore;
+		ReadOnlyObservableCollection<ITask> readOnlyTaskStore;
+		ReadOnlyObservableCollection<ICategory> readOnlyCategoryStore;
+		
+		TaskComparer taskComparer;
+		CategoryComparer categoryComparer;
+		
 		public event BackendInitializedHandler BackendInitialized;
 		public event BackendSyncStartedHandler BackendSyncStarted;
 		public event BackendSyncFinishedHandler BackendSyncFinished;
@@ -40,18 +38,13 @@ namespace Tasque.Backends.Dummy
 		{
 			initialized = false;
 			newTaskId = 0;
-			taskIters = new Dictionary<int, Gtk.TreeIter> (); 
-			taskStore = new Gtk.TreeStore (typeof (ITask));
-			
-			sortedTasksModel = new Gtk.TreeModelSort (taskStore);
-			sortedTasksModel.SetSortFunc (0, new Gtk.TreeIterCompareFunc (CompareTasksSortFunc));
-			sortedTasksModel.SetSortColumnId (0, Gtk.SortType.Ascending);
-			
-			categoryListStore = new Gtk.ListStore (typeof (ICategory));
-			
-			sortedCategoriesModel = new Gtk.TreeModelSort (categoryListStore);
-			sortedCategoriesModel.SetSortFunc (0, new Gtk.TreeIterCompareFunc (CompareCategorySortFunc));
-			sortedCategoriesModel.SetSortColumnId (0, Gtk.SortType.Ascending);
+			taskStore = new ObservableCollection<ITask> ();
+			categoryListStore = new ObservableCollection<ICategory> ();
+			readOnlyTaskStore = new ReadOnlyObservableCollection<ITask> (taskStore);
+			readOnlyCategoryStore
+				= new ReadOnlyObservableCollection<ICategory> (categoryListStore);
+			taskComparer = new TaskComparer ();
+			categoryComparer = new CategoryComparer ();
 		}
 		
 		#region Public Properties
@@ -63,17 +56,17 @@ namespace Tasque.Backends.Dummy
 		/// <value>
 		/// All the tasks including ITaskDivider items.
 		/// </value>
-		public Gtk.TreeModel Tasks
+		public ICollection<ITask> Tasks
 		{
-			get { return sortedTasksModel; }
+			get { return readOnlyTaskStore; }
 		}
 		
 		/// <value>
 		/// This returns all the task lists (categories) that exist.
 		/// </value>
-		public Gtk.TreeModel Categories
+		public ICollection<ICategory> Categories
 		{
-			get { return sortedCategoriesModel; }
+			get { return readOnlyCategoryStore; }
 		}
 		
 		/// <value>
@@ -93,7 +86,7 @@ namespace Tasque.Backends.Dummy
 		}		
 		#endregion // Public Properties
 		
-		#region Public Methods
+		#region Public Methodsopen source contributors badges
 		public ITask CreateTask (string taskName, ICategory category)		
 		{
 			// not sure what to do here with the category
@@ -105,10 +98,10 @@ namespace Tasque.Backends.Dummy
 			else
 				task.Category = category;
 			
-			Gtk.TreeIter iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
 			newTaskId++;
+			
+			task.PropertyChanged += HandlePropertyChanged;
 			
 			return task;
 		}
@@ -118,35 +111,28 @@ namespace Tasque.Backends.Dummy
 		
 		public void Refresh()
 		{}
-		
+
 		public void Initialize (Preferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
 
-			Gtk.TreeIter iter;
-			
 			//
 			// Add in the "All" Category
 			//
-			AllCategory allCategory = new Tasque.AllCategory (preferences);
-			iter = categoryListStore.Append ();
-			categoryListStore.SetValue (iter, 0, allCategory);
+			AddCategory (new AllCategory (preferences));
 			
 			//
 			// Add in some fake categories
 			//
 			homeCategory = new DummyCategory ("Home");
-			iter = categoryListStore.Append ();
-			categoryListStore.SetValue (iter, 0, homeCategory);
+			AddCategory (homeCategory);
 			
 			workCategory = new DummyCategory ("Work");
-			iter = categoryListStore.Append ();
-			categoryListStore.SetValue (iter, 0, workCategory);
+			AddCategory (workCategory);
 			
 			projectsCategory = new DummyCategory ("Projects");
-			iter = categoryListStore.Append ();
-			categoryListStore.SetValue (iter, 0, projectsCategory);
+			AddCategory (projectsCategory);
 			
 			//
 			// Add in some fake tasks
@@ -156,9 +142,8 @@ namespace Tasque.Backends.Dummy
 			task.Category = projectsCategory;
 			task.DueDate = DateTime.Now.AddDays (1);
 			task.Priority = TaskPriority.Medium;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Call Roger");
@@ -166,79 +151,70 @@ namespace Tasque.Backends.Dummy
 			task.DueDate = DateTime.Now.AddDays (-1);
 			task.Complete ();
 			task.CompletionDate = task.DueDate;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Replace burnt out lightbulb");
 			task.Category = homeCategory;
 			task.DueDate = DateTime.Now;
 			task.Priority = TaskPriority.Low;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "File taxes");
 			task.Category = homeCategory;
 			task.DueDate = new DateTime (2008, 4, 1);
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Purchase lumber");
 			task.Category = projectsCategory;
 			task.DueDate = DateTime.Now.AddDays (1);
 			task.Priority = TaskPriority.High;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 						
 			task = new DummyTask (this, newTaskId, "Estimate drywall requirements");
 			task.Category = projectsCategory;
 			task.DueDate = DateTime.Now.AddDays (1);
 			task.Priority = TaskPriority.Low;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Borrow framing nailer from Ben");
 			task.Category = projectsCategory;
 			task.DueDate = DateTime.Now.AddDays (1);
 			task.Priority = TaskPriority.High;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Call for an insulation estimate");
 			task.Category = projectsCategory;
 			task.DueDate = DateTime.Now.AddDays (1);
 			task.Priority = TaskPriority.Medium;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Pay storage rental fee");
 			task.Category = homeCategory;
 			task.DueDate = DateTime.Now.AddDays (1);
 			task.Priority = TaskPriority.None;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Place carpet order");
 			task.Category = projectsCategory;
 			task.Priority = TaskPriority.None;
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			task = new DummyTask (this, newTaskId, "Test task overdue");
@@ -246,9 +222,8 @@ namespace Tasque.Backends.Dummy
 			task.DueDate = DateTime.Now.AddDays (-89);
 			task.Priority = TaskPriority.None;
 			task.Complete ();
-			iter = taskStore.AppendNode ();
-			taskStore.SetValue (iter, 0, task);
-			taskIters [newTaskId] = iter;
+			AddTask (task);
+			task.PropertyChanged += HandlePropertyChanged;
 			newTaskId++;
 			
 			initialized = true;
@@ -271,59 +246,39 @@ namespace Tasque.Backends.Dummy
 		#endregion // Public Methods
 		
 		#region Private Methods
-		static int CompareTasksSortFunc (Gtk.TreeModel model,
-										 Gtk.TreeIter a,
-										 Gtk.TreeIter b)
+		internal void DeleteTask (DummyTask task)
 		{
-			ITask taskA = model.GetValue (a, 0) as ITask;
-			ITask taskB = model.GetValue (b, 0) as ITask;
-			
-			if (taskA == null || taskB == null)
-				return 0;
-			
-			return (taskA.CompareTo (taskB));
+			if (taskStore.Remove (task))
+				task.PropertyChanged -= HandlePropertyChanged;
 		}
 		
-		static int CompareCategorySortFunc (Gtk.TreeModel model,
-											Gtk.TreeIter a,
-											Gtk.TreeIter b)
+		void AddCategory (ICategory category)
 		{
-			ICategory categoryA = model.GetValue (a, 0) as ICategory;
-			ICategory categoryB = model.GetValue (b, 0) as ICategory;
-			
-			if (categoryA == null || categoryB == null)
-				return 0;
-			
-			if (categoryA is Tasque.AllCategory)
-				return -1;
-			else if (categoryB is Tasque.AllCategory)
-				return 1;
-			
-			return (categoryA.Name.CompareTo (categoryB.Name));
+			var index = categoryListStore.Count;
+			var valIdx = categoryListStore.Select ((val, idx) => new { val, idx })
+				.FirstOrDefault (x => categoryComparer.Compare (x.val, category) > 0);
+			if (valIdx != null)
+				index = valIdx.idx;
+			categoryListStore.Insert (index, category);
 		}
 		
-		public void UpdateTask (DummyTask task)
+		void AddTask (DummyTask task)
 		{
-			// Set the task in the store so the model will update the UI.
-			Gtk.TreeIter iter;
+			var index = taskStore.Count;
+			var valIdx = taskStore.Select ((val, idx) => new { val, idx })
+				.FirstOrDefault (t => taskComparer.Compare (t.val, task) > 0);
+			if (valIdx != null)
+				index = valIdx.idx;
 			
-			if (!taskIters.ContainsKey (task.DummyId))
-				return;
-				
-			iter = taskIters [task.DummyId];
-			
-			if (task.State == TaskState.Deleted) {
-				taskIters.Remove (task.DummyId);
-				if (!taskStore.Remove (ref iter)) {
-					Logger.Debug ("Successfully deleted from taskStore: {0}",
-						task.Name);
-				} else {
-					Logger.Debug ("Problem removing from taskStore: {0}",
-						task.Name);
-				}
-			} else {
-				taskStore.SetValue (iter, 0, task);
-			}
+			taskStore.Insert (index, task);
+		}
+		
+		void HandlePropertyChanged (object sender, PropertyChangedEventArgs e)
+		{
+			// when a property changes (any property atm), "reorder" tasks
+			var task = (DummyTask)sender;
+			if (taskStore.Remove (task))
+				AddTask (task);
 		}
 		#endregion // Private Methods
 		

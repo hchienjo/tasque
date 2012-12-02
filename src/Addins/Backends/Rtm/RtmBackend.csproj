@@ -58,6 +58,7 @@
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\libtasque\libtasque.csproj">
@@ -67,10 +68,6 @@
     <ProjectReference Include="..\..\..\Libraries\RtmNet\RtmNet.csproj">
       <Project>{0AA1B96E-03DE-4D26-B4FD-507E988FD9B7}</Project>
       <Name>RtmNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Gtk.Tasque\Gtk.Tasque.csproj">
-      <Project>{B19B9840-669D-4984-9772-E1F55193A67F}</Project>
-      <Name>Gtk.Tasque</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

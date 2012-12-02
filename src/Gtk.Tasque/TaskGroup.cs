@@ -2,8 +2,11 @@
 // User: boyd at 7:50 PM 2/11/2008
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Gdk;
 using Gtk;
+using Gtk.Tasque;
 
 namespace Tasque
 {
@@ -16,7 +19,7 @@ namespace Tasque
 	{
 		Gtk.Label header;
 		TaskTreeView treeView;
-		TaskGroupModel filteredTasks;
+		TreeModel treeModel;
 		Gtk.HBox extraWidgetHBox;
 		Gtk.Widget extraWidget;
 		
@@ -24,7 +27,7 @@ namespace Tasque
 		
 		#region Constructor
 		public TaskGroup (string groupName, DateTime rangeStart,
-						  DateTime rangeEnd, Gtk.TreeModel tasks, INativeApplication application)
+		                  DateTime rangeEnd, ICollection<ITask> tasks, INativeApplication application)
 		{
 			if (application == null)
 				throw new ArgumentNullException ("application");
@@ -38,11 +41,8 @@ namespace Tasque
 			// groups in the main TaskWindow.  Reference Tomboy's NoteOfTheDay
 			// add-in for code that reacts on day changes.
 
-			filteredTasks = CreateModel (rangeStart, rangeEnd, tasks);
-
-			filteredTasks.ShowCompletedTasks = 
-				Application.Preferences.GetBool (
-					Preferences.ShowCompletedTasksKey);
+			treeModel = CreateModel (rangeStart, rangeEnd, tasks);
+			
 			Application.Preferences.SettingChanged += OnSettingChanged;
 			
 			// TODO: Add something to watch events so that the group will
@@ -88,7 +88,7 @@ namespace Tasque
 			//
 			// Group TreeView
 			//
-			treeView = new TaskTreeView (filteredTasks, application.Preferences);
+			treeView = new TaskTreeView (treeModel, application.Preferences);
 			treeView.Show ();
 			PackStart (treeView, true, true, 0);
 			
@@ -162,12 +162,12 @@ namespace Tasque
 		/// </value>
 		public DateTime TimeRangeStart
 		{
-			get { return filteredTasks.TimeRangeStart; }
+			get { return Model.TimeRangeStart; }
 			set {
-				if (value == filteredTasks.TimeRangeStart)
+				if (value == Model.TimeRangeStart)
 					return;
 				
-				filteredTasks.SetRange (value, filteredTasks.TimeRangeEnd);
+				Model.SetRange (value, Model.TimeRangeEnd);
 				Refilter ();
 			}
 		}
@@ -177,12 +177,12 @@ namespace Tasque
 		/// </value>
 		public DateTime TimeRangeEnd
 		{
-			get { return filteredTasks.TimeRangeEnd; }
+			get { return Model.TimeRangeEnd; }
 			set {
-				if (value == filteredTasks.TimeRangeEnd)
+				if (value == Model.TimeRangeEnd)
 					return;
 				
-				filteredTasks.SetRange (filteredTasks.TimeRangeStart, value);
+				Model.SetRange (Model.TimeRangeStart, value);
 				Refilter ();
 			}
 		}
@@ -196,7 +196,6 @@ namespace Tasque
 		#region Public Methods
 		public void Refilter (ICategory selectedCategory)
 		{
-			filteredTasks.Refilter ();
 			treeView.Refilter (selectedCategory);
 		}
 		
@@ -325,12 +324,14 @@ namespace Tasque
 		#region Private Methods
 		protected INativeApplication Application { get; private set; }
 
+		protected TaskGroupModel Model { get; set; }
+
 		protected override void OnRealized ()
 		{
 			base.OnRealized ();
 			
 			if (treeView.GetNumberOfTasks () == 0
-					&& (!filteredTasks.ShowCompletedTasks || hideWhenEmpty))
+					&& (!Model.ShowCompletedTasks || hideWhenEmpty))
 				Hide ();
 			else
 				Show ();
@@ -342,11 +343,13 @@ namespace Tasque
 			header.Markup = GetHeaderMarkup (DisplayName);
 		}
 
-		protected virtual  TaskGroupModel CreateModel (DateTime rangeStart,
-		                                               DateTime rangeEnd,
-		                                               TreeModel tasks)
+		protected virtual TreeModel CreateModel (DateTime rangeStart,
+		                                         DateTime rangeEnd,
+		                                         ICollection<ITask> tasks)
 		{
-			return new TaskGroupModel (rangeStart, rangeEnd, tasks);
+			Model = new TaskGroupModel (rangeStart, rangeEnd,
+			                            tasks, Application.Preferences);
+			return new TreeModelListAdapter<ITask> (Model);
 		}
 		
 		/// <summary>
@@ -374,25 +377,13 @@ namespace Tasque
 			string selectedCategoryName =
 				Application.Preferences.Get (Preferences.SelectedCategoryKey);
 			
+			ICategory category = null;
 			if (selectedCategoryName != null) {
-				Gtk.TreeIter iter;
-				Gtk.TreeModel model = Application.Backend.Categories;
-
-				// Iterate through (yeah, I know this is gross!) and find the
-				// matching category
-				if (model.GetIterFirst (out iter)) {
-					do {
-						ICategory cat = model.GetValue (iter, 0) as ICategory;
-						if (cat == null)
-							continue; // Needed for some reason to prevent crashes from some backends
-						if (cat.Name.CompareTo (selectedCategoryName) == 0) {
-							return cat;
-						}
-					} while (model.IterNext (ref iter));
-				}
+				var model = Application.Backend.Categories;
+				category = model.FirstOrDefault (c => c != null && c.Name == selectedCategoryName);
 			}
 			
-			return null;
+			return category;
 		}
 		
 		/// <summary>
@@ -426,7 +417,7 @@ namespace Tasque
 			//Logger.Debug ("TaskGroup (\"{0}\").OnNumberOfTasksChanged ()", DisplayName);
 			// Check to see whether this group should be hidden or shown.
 			if (treeView.GetNumberOfTasks () == 0
-					&& (!filteredTasks.ShowCompletedTasks || hideWhenEmpty))
+					&& (!Model.ShowCompletedTasks || hideWhenEmpty))
 				Hide ();
 			else
 				Show ();
@@ -455,10 +446,10 @@ namespace Tasque
 			
 			bool newValue =
 				preferences.GetBool (Preferences.ShowCompletedTasksKey);
-			if (filteredTasks.ShowCompletedTasks == newValue)
+			if (Model.ShowCompletedTasks == newValue)
 				return; // don't do anything if nothing has changed
 			
-			filteredTasks.ShowCompletedTasks = newValue;
+			Model.ShowCompletedTasks = newValue;
 			
 			ICategory cat = GetSelectedCategory ();
 			if (cat != null)

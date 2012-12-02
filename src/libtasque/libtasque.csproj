@@ -30,16 +30,9 @@
     <OutputPath>..\..\build\bin\lib\tasque</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +74,10 @@
     <Compile Include="TaskGroupModel.cs" />
     <Compile Include="TaskGroupModelFactory.cs" />
     <Compile Include="CompletedTaskGroupModel.cs" />
+    <Compile Include="AbstractTask.cs" />
+    <Compile Include="CategoryComparer.cs" />
+    <Compile Include="TaskComparer.cs" />
+    <Compile Include="AllCategory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />

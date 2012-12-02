@@ -48,12 +48,12 @@ namespace Tasque.Backends.Dummy
 			get { return name; }
 			set {
 Logger.Debug ("Setting new task name");
+				OnPropertyChanging ("Name");
 				if (value == null)
 					name = string.Empty;
 				
 				name = value.Trim ();
-				
-				backend.UpdateTask (this);
+				OnPropertyChanged ("Name");
 			}
 		}
 		
@@ -62,9 +62,9 @@ Logger.Debug ("Setting new task name");
 			get { return dueDate; }
 			set {
 Logger.Debug ("Setting new task due date");
+				OnPropertyChanging ("DueDate");
 				dueDate = value;
-				
-				backend.UpdateTask (this);
+				OnPropertyChanged ("DueDate");
 			}
 		}
 		
@@ -73,9 +73,9 @@ Logger.Debug ("Setting new task due date");
 			get { return completionDate; }
 			set {
 Logger.Debug ("Setting new task completion date");
+				OnPropertyChanging ("CompletionDate");
 				completionDate = value;
-				
-				backend.UpdateTask (this);
+				OnPropertyChanged ("CompletionDate");
 			}
 		}
 		
@@ -89,9 +89,9 @@ Logger.Debug ("Setting new task completion date");
 			get { return priority; }
 			set {
 Logger.Debug ("Setting new task priority");
+				OnPropertyChanging ("Priority");
 				priority = value;
-				
-				backend.UpdateTask (this);
+				OnPropertyChanged ("Priority");
 			}
 		}
 
@@ -129,32 +129,29 @@ Logger.Debug ("Setting new task priority");
 		public override void Activate ()
 		{
 Logger.Debug ("DummyTask.Activate ()");
-			completionDate = DateTime.MinValue;
 			state = TaskState.Active;
-			backend.UpdateTask (this);
+			CompletionDate = DateTime.MinValue;
 		}
 		
 		public override void Inactivate ()
 		{
 Logger.Debug ("DummyTask.Inactivate ()");
-			completionDate = DateTime.Now;
 			state = TaskState.Inactive;
-			backend.UpdateTask (this);
+			CompletionDate = DateTime.Now;
 		}
 		
 		public override void Complete ()
 		{
 			Logger.Debug ("DummyTask.Complete ()");
-			CompletionDate = DateTime.Now;
 			state = TaskState.Completed;
-			backend.UpdateTask (this);
+			CompletionDate = DateTime.Now;
 		}
 		
 		public override void Delete ()
 		{
 Logger.Debug ("DummyTask.Delete ()");
 			state = TaskState.Deleted;
-			backend.UpdateTask (this);
+			backend.DeleteTask (this);
 		}
 		
 		public override INote CreateNote(string text)

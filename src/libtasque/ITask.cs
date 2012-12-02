@@ -3,10 +3,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tasque
 {
-	public interface ITask
+	public interface ITask : INotifyPropertyChanged, INotifyPropertyChanging
 	{
 		#region Properties
 		/// <value>

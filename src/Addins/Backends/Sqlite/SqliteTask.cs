@@ -65,11 +65,12 @@ namespace Tasque.Backends.Sqlite
 		{
 			get { return this.name; }
 			set {
+				OnPropertyChanging ("Name");
 				string name = backend.SanitizeText (value);
 				this.name = name;
 				string command = String.Format("UPDATE Tasks set Name='{0}' where ID='{1}'", name, id);
 				backend.Database.ExecuteScalar(command);
-				backend.UpdateTask(this);
+				OnPropertyChanged ("Name");
 			}
 		}
 		
@@ -77,10 +78,11 @@ namespace Tasque.Backends.Sqlite
 		{
 			get { return Database.ToDateTime(this.dueDate); }
 			set {
+				OnPropertyChanging ("DueDate");
 			        this.dueDate = Database.FromDateTime(value);
 				string command = String.Format("UPDATE Tasks set DueDate='{0}' where ID='{1}'", this.dueDate, id);
 				backend.Database.ExecuteScalar(command);
-				backend.UpdateTask(this);				
+				OnPropertyChanged ("DueDate");
 			}
 		}
 		
@@ -89,12 +91,13 @@ namespace Tasque.Backends.Sqlite
 		{
 			get { return Database.ToDateTime(this.completionDate); }
 			set {
+				OnPropertyChanging ("CompletionDate");
 				this.completionDate = Database.FromDateTime(value);
 				string command = String.Format("UPDATE Tasks set CompletionDate='{0}' where ID='{1}'", this.completionDate, id);
 				backend.Database.ExecuteScalar(command);
-				backend.UpdateTask(this);
+				OnPropertyChanged ("CompletionDate");
 			}
-		}		
+		}
 		
 		
 		public override bool IsComplete
@@ -111,10 +114,11 @@ namespace Tasque.Backends.Sqlite
 		{
 			get { return (TaskPriority) this.priority; }
 			set {
+				OnPropertyChanging ("Priority");
 				this.priority = (int) value;
 				string command = String.Format("UPDATE Tasks set Priority='{0}' where ID='{1}'", this.priority, id);
 				backend.Database.ExecuteScalar(command);
-				backend.UpdateTask(this);
+				OnPropertyChanged ("Priority");
 			}
 		}
 
@@ -143,7 +147,6 @@ namespace Tasque.Backends.Sqlite
 				this.state = (int) value;
 				string command = String.Format("UPDATE Tasks set State='{0}' where ID='{1}'", this.state, id);
 				backend.Database.ExecuteScalar(command);
-				backend.UpdateTask(this);
 			}
 		}
 
@@ -151,10 +154,11 @@ namespace Tasque.Backends.Sqlite
 		{
 			get { return new SqliteCategory(backend, this.category); }
 			set {
+				OnPropertyChanging ("Category");
 				this.category = (int)(value as SqliteCategory).ID;
  				string command = String.Format("UPDATE Tasks set Category='{0}' where ID='{1}'", category, id);
 				backend.Database.ExecuteScalar(command);
-				backend.UpdateTask(this);
+				OnPropertyChanged ("Category");
 			}
 		}
 		
@@ -183,32 +187,29 @@ namespace Tasque.Backends.Sqlite
 		public override void Activate ()
 		{
 			// Logger.Debug ("SqliteTask.Activate ()");
-			CompletionDate = DateTime.MinValue;
 			LocalState = TaskState.Active;
-			backend.UpdateTask (this);
+			CompletionDate = DateTime.MinValue;
 		}
 		
 		public override void Inactivate ()
 		{
 			// Logger.Debug ("SqliteTask.Inactivate ()");
-			CompletionDate = DateTime.Now;
 			LocalState = TaskState.Inactive;
-			backend.UpdateTask (this);
+			CompletionDate = DateTime.Now;
 		}
 		
 		public override void Complete ()
 		{
 			//Logger.Debug ("SqliteTask.Complete ()");
-			CompletionDate = DateTime.Now;
 			LocalState = TaskState.Completed;
-			backend.UpdateTask (this);
+			CompletionDate = DateTime.Now;
 		}
 		
 		public override void Delete ()
 		{
 			//Logger.Debug ("SqliteTask.Delete ()");
 			LocalState = TaskState.Deleted;
-			backend.UpdateTask (this);
+			backend.DeleteTask (this);
 		}
 		
 		public override INote CreateNote(string text)

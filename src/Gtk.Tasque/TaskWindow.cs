@@ -30,6 +30,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
 using Gdk;
 using Gtk;
 using Mono.Unix;
@@ -363,7 +365,12 @@ namespace Tasque
 			
 			// Set up the combo box (after the above to set the current filter)
 
-			categoryComboBox.Model = application.Backend.Categories;		
+			var categoryComboStore = new ListStore (typeof(ICategory));
+			foreach (var item in application.Backend.Categories) {
+				categoryComboStore.AppendValues (item);
+			}
+			
+			categoryComboBox.Model = categoryComboStore;
 
 			// Read preferences for the last-selected category and select it
 			string selectedCategoryName =
@@ -373,7 +380,6 @@ namespace Tasque
 			
 			SelectCategory (selectedCategoryName);
 		}
-
 		
 		#region Public Methods
 		/// <summary>
@@ -662,25 +668,10 @@ namespace Tasque
 		{
 			// This is disgustingly inefficient, but, oh well
 			int count = 0;
-			
-			Gtk.TreeIter iter;
-			Gtk.TreeModel model = application.Backend.Tasks;
-			
-			if (!model.GetIterFirst (out iter))
-				return 0;
-			
-			do {
-				ITask task = model.GetValue (iter, 0) as ITask;
-				if (task == null)
-					continue;
-				if (task.State != TaskState.Active
-						&& task.State != TaskState.Inactive)
-					continue;
-				
-				if (category.ContainsTask (task))
-					count++;
-			} while (model.IterNext (ref iter));
-			
+			var model = application.Backend.Tasks;
+			count = model.Count (t => t != null &&
+			                     (t.State == TaskState.Active || t.State == TaskState.Inactive) &&
+			                     category.ContainsTask (t));
 			return count;
 		}
 		
@@ -723,24 +714,17 @@ namespace Tasque
 			}
 		}
 		
-		private void RebuildAddTaskMenu (Gtk.TreeModel categoriesModel)
+		private void RebuildAddTaskMenu (ICollection<ICategory> categoriesModel)
 		{
 			Gtk.Menu menu = new Menu ();
 			
-			Gtk.TreeIter iter;
-			if (categoriesModel.GetIterFirst (out iter)) {
-				do {
-					ICategory category =
-						categoriesModel.GetValue (iter, 0) as ICategory;
-					
-					if (category is AllCategory)
-						continue; // Skip this one
-					
-					CategoryMenuItem item = new CategoryMenuItem (category);
-					item.Activated += OnNewTaskByCategory;
-					item.ShowAll ();
-					menu.Add (item);
-				} while (categoriesModel.IterNext (ref iter));
+			foreach (var cat in categoriesModel) {
+				if (cat is AllCategory)
+					continue;
+				var item = new CategoryMenuItem (cat);
+				item.Activated += OnNewTaskByCategory;
+				item.ShowAll ();
+				menu.Add (item);
 			}
 			
 			addTaskButton.Menu = menu;
@@ -1115,13 +1099,12 @@ namespace Tasque
 					 * here in order to enable changing categories. The list of available categories
 					 * is pre-filtered as to not contain the current category and the AllCategory.
 					 */
-					TreeModelFilter filteredCategories = new TreeModelFilter(application.Backend.Categories, null);
-					filteredCategories.VisibleFunc = delegate(TreeModel t, TreeIter i) {
-						ICategory category = t.GetValue (i, 0) as ICategory;
-						if (category == null || category is AllCategory || category.Equals(clickedTask.Category))
-							return false;
-						return true;
-					};
+
+				    var filteredCategories = new ListStore (typeof (ICategory));
+				    foreach (var cat in application.Backend.Categories) {
+					    if (cat != null && !(cat is AllCategory) && !cat.Equals (clickedTask.Category))
+						    filteredCategories.AppendValues (cat);
+		        	}
 
 					// The categories submenu is only created in case we actually provide at least one category.
 					if (filteredCategories.GetIterFirst(out iter))

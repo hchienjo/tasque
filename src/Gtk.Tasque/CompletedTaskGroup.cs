@@ -5,8 +5,13 @@
 //
 
 using System;
-using Gtk;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
 using Mono.Unix;
+using Gtk;
+using Gtk.Tasque;
 
 namespace Tasque
 {
@@ -26,9 +31,8 @@ namespace Tasque
 		ShowCompletedRange currentRange;
 		
 		public CompletedTaskGroup (string groupName, DateTime rangeStart,
-								   DateTime rangeEnd, Gtk.TreeModel tasks, INativeApplication application)
-			: base (groupName, rangeStart, rangeEnd,
-					new CompletedTasksSortModel(tasks), application)
+		                           DateTime rangeEnd, ICollection<ITask> tasks, INativeApplication application)
+			: base (groupName, rangeStart, rangeEnd, new CompletedTasksSortModel(tasks), application)
 		{
 			// Don't hide this group when it's empty because then the range
 			// slider won't appear and the user won't be able to customize the
@@ -75,11 +79,12 @@ namespace Tasque
 			this.ExtraWidget = rangeSlider;
 		}
 
-		protected override TaskGroupModel CreateModel (DateTime rangeStart,
-		                                               DateTime rangeEnd,
-		                                               TreeModel tasks)
+		protected override TreeModel CreateModel (DateTime rangeStart, DateTime rangeEnd,
+		                                          ICollection<ITask> tasks)
 		{
-			return new CompletedTaskGroupModel (rangeStart, rangeEnd, tasks);
+			Model = new CompletedTaskGroupModel (rangeStart, rangeEnd,
+			                                     tasks, Application.Preferences);
+			return new TreeModelListAdapter<ITask> (Model);
 		}
 		
 		protected void OnSelectedCategorySettingChanged (
@@ -100,18 +105,8 @@ namespace Tasque
 			string cat = Application.Preferences.Get (
 							Preferences.SelectedCategoryKey);
 			if (cat != null) {
-				TreeIter iter;
-				TreeModel model = Application.Backend.Categories;
-				
-				if (model.GetIterFirst (out iter)) {
-					do {
-						ICategory category = model.GetValue (iter, 0) as ICategory;
-						if (category.Name.CompareTo (cat) == 0) {
-							foundCategory = category;
-							break;
-						}
-					} while (model.IterNext (ref iter));
-				}
+				var model = Application.Backend.Categories;
+				foundCategory = model.FirstOrDefault (c => c.Name == cat);
 			}
 			
 			return foundCategory;
@@ -211,29 +206,52 @@ namespace Tasque
 	/// completed tasks in reverse order (i.e., most recently completed tasks
 	/// at the top of the list).
 	/// </summary>
-	class CompletedTasksSortModel : Gtk.TreeModelSort
+	class CompletedTasksSortModel : ObservableCollection<ITask>
 	{
-		public CompletedTasksSortModel (Gtk.TreeModel childModel)
-			: base (childModel)
+		public CompletedTasksSortModel (ICollection<ITask> childModel)
 		{
-			SetSortFunc (0, new Gtk.TreeIterCompareFunc (CompareTasksSortFunc));
-			SetSortColumnId (0, Gtk.SortType.Descending);
+			originalTasks = childModel;
+			((INotifyCollectionChanged)childModel).CollectionChanged += HandleCollectionChanged;
+			foreach (var item in originalTasks)
+				AddTask (item);
 		}
 		
 		#region Private Methods
-		static int CompareTasksSortFunc (Gtk.TreeModel model,
-										 Gtk.TreeIter a,
-										 Gtk.TreeIter b)
+		void AddTask (ITask task)
 		{
-			ITask taskA = model.GetValue (a, 0) as ITask;
-			ITask taskB = model.GetValue (b, 0) as ITask;
+			var index = Count;
+			var valIdx = this.Select ((val, idx) => new { val, idx })
+				.FirstOrDefault (t => CompareTasksSortFunc (t.val, task) > 0);
+			if (valIdx != null)
+				index = valIdx.idx;
 			
-			if (taskA == null || taskB == null)
+			Insert (index, task);
+		}
+		
+		void HandleCollectionChanged (object sender, NotifyCollectionChangedEventArgs e)
+		{
+			//FIXME: Only add and remove actions are expected
+			switch (e.Action) {
+			case NotifyCollectionChangedAction.Add:
+				AddTask ((ITask)e.NewItems [0]);
+				break;
+			case NotifyCollectionChangedAction.Remove:
+				var task = ((ITask)e.OldItems [0]);
+				Remove (task);
+				break;
+			}
+		}
+		
+		int CompareTasksSortFunc (ITask x, ITask y)
+		{
+			if (x == null || y == null)
 				return 0;
 			
-			// Reverse the logic with the '!' so it's in re
-			return (taskA.CompareToByCompletionDate (taskB));
+			// Reverse the logic with the '-' so it's in reverse
+			return -(x.CompareToByCompletionDate (y));
 		}
 		#endregion // Private Methods
+		
+		ICollection<ITask> originalTasks;
 	}
 }

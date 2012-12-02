@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Mono.Unix; // for Catalog.GetString ()
 
@@ -115,8 +116,7 @@ namespace Tasque
 		public string CreateTask (string categoryName, string taskName,
 						bool enterEditMode, bool parseDate)
 		{
-			Gtk.TreeIter iter;
-			Gtk.TreeModel model = application.Backend.Categories;
+			var model = application.Backend.Categories;
 			
 			//
 			// Validate the input parameters.  Don't allow null or empty strings
@@ -130,18 +130,11 @@ namespace Tasque
 			//
 			// Look for the specified category
 			//
-			if (!model.GetIterFirst (out iter)) {
+			if (model.Count == 0) {
 				return string.Empty;
 			}
 			
-			ICategory category = null;
-			do {
-				ICategory tempCategory = model.GetValue (iter, 0) as ICategory;
-				if (tempCategory.Name.ToLower ().CompareTo (categoryName.ToLower ()) == 0) {
-					// Found a match
-					category = tempCategory;
-				}
-			} while (model.IterNext (ref iter));
+			ICategory category = model.FirstOrDefault (c => c.Name.ToLower () == categoryName.ToLower ());
 			
 			if (category == null) {
 				return string.Empty;
@@ -181,7 +174,7 @@ namespace Tasque
 					Catalog.GetString ("New task created."), // summary
 					Catalog.GetString (taskName), // body
 					Utilities.GetIcon ("tasque", 48));
-			Application.ShowAppNotification (notify);
+			application.ShowAppNotification (notify);
 			#endif
 			
 			
@@ -198,19 +191,16 @@ namespace Tasque
 		{
 			List<string> categories = new List<string> ();
 			string[] emptyArray = categories.ToArray ();
+
+			var model = application.Backend.Categories;
 			
-			Gtk.TreeIter iter;
-			Gtk.TreeModel model = application.Backend.Categories;
-			
-			if (!model.GetIterFirst (out iter))
+			if (model.Count == 0)
 				return emptyArray;
 			
-			do {
-				ICategory category = model.GetValue (iter, 0) as ICategory;
-				if (category is AllCategory)
-					continue; // Prevent the AllCategory from being returned
-				categories.Add (category.Name);
-			} while (model.IterNext (ref iter));
+			foreach (var item in model) {
+				if (!(item is AllCategory))
+					categories.Add (item.Name);
+			}
 			
 			return categories.ToArray ();
 		}
@@ -229,22 +219,14 @@ namespace Tasque
 		/// </returns>
 		public string[] GetTaskIds ()
 		{
-			Gtk.TreeIter iter;
-			Gtk.TreeModel model;
-			
-			ITask task;
-			List<string> ids;
-			
-			ids = new List<string> ();
-			model = application.Backend.Tasks;
-			
-			if (!model.GetIterFirst (out iter))
+			var ids = new List<string> ();
+			var model = application.Backend.Tasks;
+
+			if (model.Count == 0)
 				return new string[0];
-				
-			do {
-				task = model.GetValue (iter, 0) as ITask;
-				ids.Add (task.Id);
-			} while (model.IterNext (ref iter));
+			
+			foreach (var item in model)
+				ids.Add (item.Id);
 			
 			return ids.ToArray ();
 		}
@@ -324,20 +306,18 @@ namespace Tasque
 			{
 				return false;
 			}
-			Gtk.TreeIter iter;
-			Gtk.TreeModel model = application.Backend.Categories;
+
+			var model = application.Backend.Categories;
 			
-			if (!model.GetIterFirst (out iter))
+			if (model.Count == 0)
 				return false;
 			
-			do {
-				ICategory category = model.GetValue (iter, 0) as ICategory;
-				if (string.Compare(category.Name,categoryName)==0)
-				{
-					task.Category = category;
+			foreach (var item in model) {
+				if (item.Name == categoryName) {
+					task.Category = item;
 					return true;
 				}
-			} while (model.IterNext (ref iter));
+			}
 			return false;
 		}
 		
@@ -513,22 +493,8 @@ namespace Tasque
 		/// </returns>
 		private ITask GetTaskById (string id)
 		{
-			Gtk.TreeIter  iter;
-			Gtk.TreeModel model;
-			
-			ITask task = null;
-			model = application.Backend.Tasks;
-			
-			if (model.GetIterFirst (out iter)) {
-				do {
-					task = model.GetValue (iter, 0) as ITask;
-					if (task.Id.Equals (id)) {
-						return task;
-					}
-				} while (model.IterNext (ref iter));
-			}			
-			
-			return task;
+			var model = application.Backend.Tasks;
+			return model.FirstOrDefault (t => t.Id == id);
 		}
 
 		INativeApplication application;

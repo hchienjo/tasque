@@ -51,7 +51,7 @@ namespace Tasque
 		Dictionary<int, IBackend> backendComboMap; // track backends
 		int 					selectedBackend;
 		Gtk.CheckButton			showCompletedTasksCheckButton;
-		Gtk.TreeModelFilter		filteredCategories;
+		Gtk.ListStore   		filteredCategories;
 		List<string>			categoriesToHide;
 		Gtk.TreeView			categoriesTree;
 
@@ -598,36 +598,17 @@ namespace Tasque
 			}
 			
 			IBackend backend = backendComboMap [selectedBackend];
-			filteredCategories = new TreeModelFilter (backend.Categories, null);
-			filteredCategories.VisibleFunc = FilterFunc;
+			filteredCategories = new ListStore (typeof (ICategory));
+			foreach (var item in backend.Categories) {
+				if (!(item == null || item is AllCategory))
+					filteredCategories.AppendValues (item);
+			}
 			categoriesTree.Model = filteredCategories;
 		}
 		
 		void OnShown (object sender, EventArgs args)
 		{
 			RebuildCategoryTree ();
-		}
-		
-		/// <summary>
-		/// Filter out the AllCategory
-		/// </summary>
-		/// <param name="model">
-		/// A <see cref="Gtk.TreeModel"/>
-		/// </param>
-		/// <param name="iter">
-		/// A <see cref="Gtk.TreeIter"/>
-		/// </param>
-		/// <returns>
-		/// A <see cref="System.Boolean"/>
-		/// </returns>
-		protected bool FilterFunc (Gtk.TreeModel model,
-										   Gtk.TreeIter iter)
-		{
-			ICategory category = model.GetValue (iter, 0) as ICategory;
-			if (category == null || category is AllCategory)
-				return false;
-			
-			return true;
 		}
 	}
 }

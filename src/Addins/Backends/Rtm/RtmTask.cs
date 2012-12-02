@@ -5,7 +5,7 @@ using System;
 using RtmNet;
 using System.Collections.Generic;
 
-namespace Tasque.Backends.RtmBackend
+namespace Tasque.Backends.Rtm
 {
 	public class RtmTask : AbstractTask
 	{
@@ -61,8 +61,10 @@ namespace Tasque.Backends.RtmBackend
 			get { return taskSeries.Name; }
 			set {
 				if (value != null) {
+					OnPropertyChanging ("Name");
 					taskSeries.Name = value.Trim ();
 					rtmBackend.UpdateTaskName(this);
+					OnPropertyChanged ("CompletionDate");
 				}
 			}
 		}
@@ -73,9 +75,11 @@ namespace Tasque.Backends.RtmBackend
 		public override DateTime DueDate
 		{
 			get { return task.Due; }
-			set { 
+			set {
+				OnPropertyChanging ("DueDate");
 				task.Due = value;
-				rtmBackend.UpdateTaskDueDate(this);			
+				rtmBackend.UpdateTaskDueDate(this);
+				OnPropertyChanged ("CompletionDate");
 			}
 		}
 		
@@ -100,9 +104,10 @@ namespace Tasque.Backends.RtmBackend
 		public override DateTime CompletionDate
 		{
 			get { return task.Completed; }
-			set { 
+			set {
+				OnPropertyChanging ("CompletionDate");
 				task.Completed = value;
-				rtmBackend.UpdateTaskCompleteDate(this);
+				OnPropertyChanged ("CompletionDate");
 			}
 		}
 		
@@ -133,6 +138,7 @@ namespace Tasque.Backends.RtmBackend
 				}
 			}
 			set {
+				OnPropertyChanging ("Priority");
 				switch (value) {
 					default:
 					case TaskPriority.None:
@@ -148,7 +154,8 @@ namespace Tasque.Backends.RtmBackend
 						task.Priority = "3";
 						break;
 				}
-				rtmBackend.UpdateTaskPriority(this);				
+				rtmBackend.UpdateTaskPriority(this);
+				OnPropertyChanged ("CompletionDate");
 			}
 		}
 		
@@ -189,8 +196,10 @@ namespace Tasque.Backends.RtmBackend
 		{
 			get { return category; } 
 			set {
+				OnPropertyChanging ("Category");
 				RtmCategory rtmCategory = value as RtmCategory;
-				rtmBackend.MoveTaskCategory(this, rtmCategory.ID);				
+				rtmBackend.MoveTaskCategory(this, rtmCategory.ID);
+				OnPropertyChanged ("CompletionDate");
 			}
 		}
 		
@@ -239,8 +248,7 @@ namespace Tasque.Backends.RtmBackend
 		{
 			Logger.Debug("Activating Task: " + Name);
 			state = TaskState.Active;
-			task.Completed = DateTime.MinValue;
-			rtmBackend.UpdateTaskActive(this);
+			CompletionDate = DateTime.MinValue;
 		}
 		
 		/// <summary>
@@ -250,8 +258,7 @@ namespace Tasque.Backends.RtmBackend
 		{
 			Logger.Debug("Inactivating Task: " + Name);		
 			state = TaskState.Inactive;
-			task.Completed = DateTime.Now;
-			rtmBackend.UpdateTaskInactive(this);
+			CompletionDate = DateTime.Now;
 		}
 		
 		/// <summary>
@@ -261,9 +268,8 @@ namespace Tasque.Backends.RtmBackend
 		{
 			Logger.Debug("Completing Task: " + Name);			
 			state = TaskState.Completed;
-			if(task.Completed == DateTime.MinValue)
-				task.Completed = DateTime.Now;
-			rtmBackend.UpdateTaskCompleted(this);
+			if(CompletionDate == DateTime.MinValue)
+				CompletionDate = DateTime.Now;
 		}
 		
 		/// <summary>
@@ -272,7 +278,7 @@ namespace Tasque.Backends.RtmBackend
 		public override void Delete ()
 		{
 			state = TaskState.Deleted;
-			rtmBackend.UpdateTaskDeleted(this);
+			rtmBackend.DeleteTask (this);
 		}
 		
 		/// <summary>

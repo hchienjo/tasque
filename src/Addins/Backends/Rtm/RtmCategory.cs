@@ -3,17 +3,14 @@
 //
 // To change standard headers go to Edit->Preferences->Coding->Standard Headers
 //
-
-using System;
 using Tasque;
 using RtmNet;
 
-namespace Tasque.Backends.RtmBackend
+namespace Tasque.Backends.Rtm
 {
 	public class RtmCategory : ICategory
 	{
 		private List list;
-		private Gtk.TreeIter iter;
 
 		public RtmCategory(List list)
 		{
@@ -53,12 +50,6 @@ namespace Tasque.Backends.RtmBackend
 		public int Smart
 		{
 			get { return list.Smart; }
-		}
-		
-		public Gtk.TreeIter Iter
-		{
-			get { return iter; }
-			set { iter = value; }
 		}
 
 		public bool ContainsTask(ITask task)

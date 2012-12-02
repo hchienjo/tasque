@@ -24,6 +24,7 @@ namespace Tasque
 			this.preferences = preferences;
 			categoriesToHide =
 				preferences.GetStringList (Preferences.HideInAllCategory);
+			categoriesToHide = preferences.GetStringList (Preferences.HideInAllCategory);
 			preferences.SettingChanged += OnSettingChanged;
 		}
 		

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tasque
 {
@@ -181,5 +182,21 @@ namespace Tasque
 			return Name.CompareTo (task.Name);
 		}
 		#endregion // Private Methods
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		protected virtual void OnPropertyChanged (string propertyName)
+		{
+			if (PropertyChanged != null)
+				PropertyChanged (this, new PropertyChangedEventArgs (propertyName));
+		}
+		
+		protected virtual void OnPropertyChanging (string propertyName)
+		{
+			if (PropertyChanging != null)
+				PropertyChanging (this, new PropertyChangingEventArgs (propertyName));
+		}
 	}
 }
