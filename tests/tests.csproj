@@ -30,14 +30,37 @@
     <Reference Include="nunit.framework">
       <HintPath>$(MSBuildProgramFiles32)\MonoDevelop\AddIns\NUnit\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>moq\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TaskParserFixture.cs" />
+    <Compile Include="BackendsFixture.cs" />
+    <Compile Include="TasqueTestsSetup.cs" />
+    <Compile Include="TaskGroupModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\libtasque\libtasque.csproj">
       <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
       <Name>libtasque</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\Addins\Backends\Dummy\DummyBackend.csproj">
+      <Project>{0F63E512-FD5A-482C-8389-6A0DBE1301CB}</Project>
+      <Name>DummyBackend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\Addins\Backends\Sqlite\SqliteBackend.csproj">
+      <Project>{CCCC10A5-662D-4788-82D3-25689F3D4D4F}</Project>
+      <Name>SqliteBackend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\Addins\Backends\Rtm\RtmBackend.csproj">
+      <Project>{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}</Project>
+      <Name>RtmBackend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\Gtk.Tasque\Gtk.Tasque.csproj">
+      <Project>{B19B9840-669D-4984-9772-E1F55193A67F}</Project>
+      <Name>Gtk.Tasque</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\build\X.Common.targets" />
