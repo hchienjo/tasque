@@ -33,6 +33,10 @@ namespace Tasque.DateFormatters {
 			DateTime dateTime = DateTime.MinValue;
 			try {
 				dateTime = Convert.ToDateTime (match.Groups ["A"].Value);
+				if (!match.Groups ["A1"].Success) {
+					if (dateTime.Month < DateTime.Today.Month)
+						dateTime = dateTime.AddYears (1);
+				}
 			} catch (FormatException) {
 				dateTime = DateTime.MinValue;
 			}

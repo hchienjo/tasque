@@ -183,7 +183,7 @@ namespace Tasque {
 				tokens.Add ('A', new TranslatableToken () {
 					Formatter = typeof (DateSeparatedFormatter),
 					Expression = string.Format ("{0}",
-					                            @"[0-9]{1,2}(/|-)[0-9]{1,2}(((/|-)[0-9]{2,4}|/s))?")
+					                            @"[0-9]{1,2}(/|-)[0-9]{1,2}(?<A1>((/|-)[0-9]{2,4}|/s))?")
 				});
 				// Today and Tomorrow
 				tokens.Add ('T', new TranslatableToken () {
