@@ -14,14 +14,11 @@ namespace Tasque
 		// from all categories will be shown.  Otherwise, only tasks from the
 		// specified lists will be shown.
 		List<string> categoriesToHide;
-
-		Preferences preferences;
 		
 		public AllCategory (Preferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
-			this.preferences = preferences;
 			categoriesToHide =
 				preferences.GetStringList (Preferences.HideInAllCategory);
 			categoriesToHide = preferences.GetStringList (Preferences.HideInAllCategory);
