@@ -38,7 +38,7 @@ namespace Tasque
 	// <summary>
 	// Class used to store Tasque preferences
 	// </summary>
-	public class Preferences
+	public class Preferences : IPreferences
 	{
 		private System.Xml.XmlDocument document;
 		private string location;
@@ -72,9 +72,7 @@ namespace Tasque
 		/// A <see cref="System.String"/>
 		/// </returns>
 		public const string CompletedTasksRange = "CompletedTasksRange";
-		
-		public delegate void SettingChangedHandler (Preferences preferences,
-													string settingKey);
+
 		public event SettingChangedHandler SettingChanged;
 		
 		public string Get (string settingKey)
