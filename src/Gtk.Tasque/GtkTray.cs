@@ -183,7 +183,7 @@ namespace Tasque
 				new ActionEntry ("RefreshAction", Stock.Execute, Catalog.GetString ("Refresh Tasks ..."),
 				                 null, null, delegate { application.Backend.Refresh(); }),
 
-				new ActionEntry ("QuitAction", Stock.Quit, delegate { application.Quit (); })
+				new ActionEntry ("QuitAction", Stock.Quit, delegate { application.Exit (); })
 			});
 			
 			ToggleTaskWindowAction = new Gtk.Action ("ToggleTaskWindowAction", Catalog.GetString ("Toggle Task Window"));

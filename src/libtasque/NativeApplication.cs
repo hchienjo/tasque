@@ -107,30 +107,21 @@ namespace Tasque
 		#region Exit and Quit
 		public void Exit (int exitcode)
 		{
+			Logger.Info ("Exit called - terminating application");
+
+			if (backend != null)
+				backend.Cleanup ();
+
 			OnExit (exitcode);
-			
 			if (Exiting != null)
 				Exiting (this, EventArgs.Empty);
-			
+
 			Environment.Exit (exitcode);
 		}
 		
 		public event EventHandler Exiting;
 		
 		protected virtual void OnExit (int exitCode) {}
-		
-		public void Quit ()
-		{
-			Logger.Info ("Quit called - terminating application");
-			OnQuitting ();
-			
-			if (backend != null)
-				backend.Cleanup ();
-			
-			QuitMainLoop ();
-		}
-		
-		protected virtual void OnQuitting () {}
 		#endregion
 		
 		#region Backend
@@ -178,10 +169,6 @@ namespace Tasque
 			OnBackendChanged ();
 		}
 		#endregion
-
-		public abstract void QuitMainLoop ();
-
-		public abstract void StartMainLoop ();
 
 		/// <summary>
 		/// Determines whether this a remote instance is running.

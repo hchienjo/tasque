@@ -83,7 +83,6 @@ namespace Tasque
 				SetProcessName ("Tasque");
 
 				application.Initialize (args);
-				application.StartMainLoop ();
 			} catch (Exception e) {
 				Logger.Debug ("Exception is: {0}", e);
 				application.Exit (-1);

@@ -191,7 +191,7 @@ namespace Tasque
 						Gtk.AccelFlags.Visible);
 			
 			globalKeys.AddAccelerator (delegate (object sender, EventArgs e) {
-				application.Quit (); },
+				application.Exit (); },
 						(uint) Gdk.Key.q,
 						Gdk.ModifierType.ControlMask,
 						Gtk.AccelFlags.Visible);

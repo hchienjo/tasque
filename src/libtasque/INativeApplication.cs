@@ -13,13 +13,10 @@ namespace Tasque
 		TaskGroupModel TomorrowTasks { get; }
 		string ConfDir { get; }
 		Preferences Preferences { get; }
-		void Exit (int exitcode);
-		void Quit ();
+		void Exit (int exitcode = 0);
 		void Initialize (string [] args);
-		void QuitMainLoop ();
 		void ShowPreferences ();
 		void ShowAppNotification (string summary, string body);
-		void StartMainLoop ();
 		event EventHandler Exiting;
 		event EventHandler BackendChanged;
 	}

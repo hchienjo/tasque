@@ -65,6 +65,8 @@ namespace Tasque
 				CheckForDaySwitch ();
 				return true;
 			});
+
+			Gtk.Application.Run ();
 			
 			base.OnInitialize ();
 		}
@@ -88,16 +90,6 @@ namespace Tasque
 			}
 			
 			base.OnInitializeIdle ();
-		}
-		
-		public override void StartMainLoop ()
-		{
-			Gtk.Application.Run ();
-		}
-		
-		public override void QuitMainLoop ()
-		{
-			Gtk.Application.Quit ();
 		}
 
 #if ENABLE_NOTIFY_SHARP
@@ -168,14 +160,13 @@ namespace Tasque
 				trayIcon.RefreshTrayIconTooltip ();
 		}
 
-		protected override void OnQuitting ()
+		protected override void OnExit (int exitCode)
 		{
 			if (Backend != null)
 				UnhookFromTooltipTaskGroupModels ();
-			
 			TaskWindow.SavePosition (Preferences);
-			
-			base.OnQuitting ();
+			Application.Quit ();
+			base.OnExit (exitCode);
 		}
 		
 		protected override void ShowMainWindow ()
