@@ -37,7 +37,7 @@ namespace Tasque
 	{
 		public abstract string ConfDir { get; }
 		
-		public Preferences Preferences { get { return preferences; } }
+		public IPreferences Preferences { get { return preferences; } }
 
 		public abstract void ShowPreferences ();
 
@@ -78,7 +78,7 @@ namespace Tasque
 				// Check to see if the user has a preference of which backend
 				// to use.  If so, use it, otherwise, pop open the preferences
 				// dialog so they can choose one.
-				var backendTypeString = preferences.Get (Preferences.CurrentBackend);
+				var backendTypeString = preferences.Get (PreferencesKeys.CurrentBackend);
 				Logger.Debug ("CurrentBackend specified in Preferences: {0}", backendTypeString);
 				if (backendTypeString != null && availableBackends.ContainsKey (backendTypeString))
 					Backend = availableBackends [backendTypeString];
@@ -345,6 +345,6 @@ namespace Tasque
 		IBackend backend;
 		IBackend customBackend;
 		string potentialBackendClassName;
-		Preferences preferences;
+		IPreferences preferences;
 	}
 }

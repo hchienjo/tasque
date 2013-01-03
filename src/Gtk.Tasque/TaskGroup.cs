@@ -375,7 +375,7 @@ namespace Tasque
 			// TODO: Move this code into some function in the backend/somewhere
 			// with the signature of GetCategoryForName (string catName):ICategory
 			string selectedCategoryName =
-				Application.Preferences.Get (Preferences.SelectedCategoryKey);
+				Application.Preferences.Get (PreferencesKeys.SelectedCategoryKey);
 			
 			ICategory category = null;
 			if (selectedCategoryName != null) {
@@ -438,14 +438,14 @@ namespace Tasque
 				ButtonPressed (sender, args);
 		}
 		
-		protected void OnSettingChanged (Preferences preferences,
+		protected void OnSettingChanged (IPreferences preferences,
 										 string settingKey)
 		{
-			if (settingKey.CompareTo (Preferences.ShowCompletedTasksKey) != 0)
+			if (settingKey.CompareTo (PreferencesKeys.ShowCompletedTasksKey) != 0)
 				return;
 			
 			bool newValue =
-				preferences.GetBool (Preferences.ShowCompletedTasksKey);
+				preferences.GetBool (PreferencesKeys.ShowCompletedTasksKey);
 			if (Model.ShowCompletedTasks == newValue)
 				return; // don't do anything if nothing has changed
 			

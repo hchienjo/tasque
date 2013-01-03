@@ -143,7 +143,7 @@ namespace Tasque
 			// If enabled, attempt to parse due date information
 			// out of the taskName.
 			DateTime taskDueDate = DateTime.MinValue;
-			if (parseDate && application.Preferences.GetBool (Preferences.ParseDateEnabledKey))
+			if (parseDate && application.Preferences.GetBool (PreferencesKeys.ParseDateEnabledKey))
 				TaskParser.Instance.TryParse (
 				                         taskName,
 				                         out taskName,

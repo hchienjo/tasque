@@ -42,36 +42,6 @@ namespace Tasque
 	{
 		private System.Xml.XmlDocument document;
 		private string location;
-		
-		public const string AuthTokenKey = "AuthToken";
-		public const string CurrentBackend = "CurrentBackend";
-		public const string InactivateTimeoutKey = "InactivateTimeout";
-		public const string SelectedCategoryKey = "SelectedCategory";
-		public const string ParseDateEnabledKey = "ParseDateEnabled";
-		public const string TodayTaskTextColor = "TodayTaskTextColor";
-		public const string OverdueTaskTextColor = "OverdueTaskTextColor";
-
-		/// <summary>
-		/// A list of category names to show in the TaskWindow when the "All"
-		/// category is selected.
-		/// </summary>
-		public const string HideInAllCategory = "HideInAllCategory";
-		public const string ShowCompletedTasksKey = "ShowCompletedTasks";
-		public const string UserNameKey = "UserName";
-		public const string UserIdKey = "UserID";
-		
-		/// <summary>
-		/// This setting allows a user to specify how many completed tasks to
-		/// show in the Completed Tasks Category.  The setting should be one of:
-		/// "Yesterday", "Last7Days", "LastMonth", "LastYear", or "All".
-		/// </summary>
-		/// <param name="settingKey">
-		/// A <see cref="System.String"/>
-		/// </param>
-		/// <returns>
-		/// A <see cref="System.String"/>
-		/// </returns>
-		public const string CompletedTasksRange = "CompletedTasksRange";
 
 		public event SettingChangedHandler SettingChanged;
 		
@@ -103,11 +73,11 @@ namespace Tasque
 		private string GetDefault (string settingKey)
 		{
 			switch (settingKey) {
-			case ParseDateEnabledKey:
+			case PreferencesKeys.ParseDateEnabledKey:
 				return true.ToString ();
-			case TodayTaskTextColor:
+			case PreferencesKeys.TodayTaskTextColor:
 				return "#181AB7";
-			case OverdueTaskTextColor:
+			case PreferencesKeys.OverdueTaskTextColor:
 				return "#EB3320";
 			default:
 				return null;
@@ -251,8 +221,8 @@ namespace Tasque
 		/// </summary>
 		private void ValidatePrefs ()
 		{
-			if (GetInt (Preferences.InactivateTimeoutKey) <= 0)
-				SetInt (Preferences.InactivateTimeoutKey, 5);
+			if (GetInt (PreferencesKeys.InactivateTimeoutKey) <= 0)
+				SetInt (PreferencesKeys.InactivateTimeoutKey, 5);
 		}
 
 

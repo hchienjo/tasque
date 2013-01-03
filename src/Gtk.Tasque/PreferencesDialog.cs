@@ -178,14 +178,14 @@ namespace Tasque
 			lblTodaysTaskColor.WidthRequest = 75;
 			lblTodaysTaskColor.Show ();
 
-			Preferences prefs = application.Preferences;
+			IPreferences prefs = application.Preferences;
 			txtTodaysTaskColor = new Entry();
-			txtTodaysTaskColor.Text = prefs.Get (Preferences.TodayTaskTextColor);
+			txtTodaysTaskColor.Text = prefs.Get (PreferencesKeys.TodayTaskTextColor);
 			txtTodaysTaskColor.Changed += OnTxtTodaysTaskColorChanged;
 			txtTodaysTaskColor.Show ();
 
 			btnChangeTodaysTaskColor = new ColorButton();
-			string todayTasksColor = prefs.Get (Preferences.TodayTaskTextColor);
+			string todayTasksColor = prefs.Get (PreferencesKeys.TodayTaskTextColor);
 			Gdk.Color currentColor = new Gdk.Color();
 			Gdk.Color.Parse (todayTasksColor, ref currentColor);
 			btnChangeTodaysTaskColor.Color = currentColor;
@@ -207,12 +207,12 @@ namespace Tasque
 			lblOverdueTaskColor.Show ();
 
 			txtOverdueTaskColor = new Entry();
-			txtOverdueTaskColor.Text = prefs.Get (Preferences.OverdueTaskTextColor);
+			txtOverdueTaskColor.Text = prefs.Get (PreferencesKeys.OverdueTaskTextColor);
 			txtOverdueTaskColor.Changed += OnTxtOverdueTaskColorChanged;
 			txtOverdueTaskColor.Show ();
 
 			btnChangeOverdueTaskColor = new ColorButton();
-			string overdueTasksColor = prefs.Get (Preferences.OverdueTaskTextColor);
+			string overdueTasksColor = prefs.Get (PreferencesKeys.OverdueTaskTextColor);
 			Gdk.Color overdueColor = new Gdk.Color();
 			Gdk.Color.Parse (overdueTasksColor, ref overdueColor);
 			btnChangeOverdueTaskColor.Color = overdueColor;
@@ -304,7 +304,7 @@ namespace Tasque
 			hbox = new HBox (false, 6);
 			
 			bool showCompletedTasks = application.Preferences.GetBool (
-											Preferences.ShowCompletedTasksKey);
+				PreferencesKeys.ShowCompletedTasksKey);
 			showCompletedTasksCheckButton =
 				new CheckButton (Catalog.GetString ("Sh_ow completed tasks"));
 			showCompletedTasksCheckButton.UseUnderline = true;
@@ -380,7 +380,7 @@ namespace Tasque
 		{
 			Logger.Debug("Loading preferences");
 			categoriesToHide =
-				application.Preferences.GetStringList (Preferences.HideInAllCategory);
+				application.Preferences.GetStringList (PreferencesKeys.HideInAllCategory);
 			//if (categoriesToHide == null || categoriesToHide.Count == 0)
 			//	categoriesToHide = BuildNewCategoryList ();
 		}
@@ -390,7 +390,7 @@ namespace Tasque
 			// showCompletedTasksCheckbox delegate
 			showCompletedTasksCheckButton.Toggled += delegate {
 				application.Preferences.SetBool (
-					Preferences.ShowCompletedTasksKey,
+					PreferencesKeys.ShowCompletedTasksKey,
 					showCompletedTasksCheckButton.Active);
 			};
 		}
@@ -404,7 +404,7 @@ namespace Tasque
 		private void OnTxtTodaysTaskColorChanged (object sender, EventArgs args)
 		{
 			// Save the user preference
-			application.Preferences.Set (Preferences.TodayTaskTextColor,
+			application.Preferences.Set (PreferencesKeys.TodayTaskTextColor,
 			                             ((Entry) sender).Text);
 		}
 
@@ -417,7 +417,7 @@ namespace Tasque
 		private void OnTxtOverdueTaskColorChanged (object sender, EventArgs args)
 		{
 			// Save the user preference
-			application.Preferences.Set (Preferences.OverdueTaskTextColor,
+			application.Preferences.Set (PreferencesKeys.OverdueTaskTextColor,
 			                             ((Entry) sender).Text);
 		}
 
@@ -483,11 +483,11 @@ namespace Tasque
 			}
 			
 			// Save the user preference
-			application.Preferences.Set (Preferences.CurrentBackend,
+			application.Preferences.Set (PreferencesKeys.CurrentBackend,
 										 newBackend.GetType ().ToString ());
 			
 			//categoriesToHide = BuildNewCategoryList ();
-			//Application.Preferences.SetStringList (Preferences.HideInAllCategory,
+			//Application.Preferences.SetStringList (IPreferences.HideInAllCategory,
 			//									   categoriesToHide);
 			RebuildCategoryTree ();
 		}
@@ -554,7 +554,7 @@ namespace Tasque
 			else
 				categoriesToHide.Add (category.Name);
 			
-			application.Preferences.SetStringList (Preferences.HideInAllCategory,
+			application.Preferences.SetStringList (PreferencesKeys.HideInAllCategory,
 												   categoriesToHide);
 		}
 		

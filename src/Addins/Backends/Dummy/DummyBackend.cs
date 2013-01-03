@@ -112,7 +112,7 @@ namespace Tasque.Backends.Dummy
 		public void Refresh()
 		{}
 
-		public void Initialize (Preferences preferences)
+		public void Initialize (IPreferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");

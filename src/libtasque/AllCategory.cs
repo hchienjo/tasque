@@ -15,13 +15,13 @@ namespace Tasque
 		// specified lists will be shown.
 		List<string> categoriesToHide;
 		
-		public AllCategory (Preferences preferences)
+		public AllCategory (IPreferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
 			categoriesToHide =
-				preferences.GetStringList (Preferences.HideInAllCategory);
-			categoriesToHide = preferences.GetStringList (Preferences.HideInAllCategory);
+				preferences.GetStringList (PreferencesKeys.HideInAllCategory);
+			categoriesToHide = preferences.GetStringList (PreferencesKeys.HideInAllCategory);
 			preferences.SettingChanged += OnSettingChanged;
 		}
 		
@@ -44,13 +44,13 @@ namespace Tasque
 			return (!categoriesToHide.Contains (category.Name));
 		}
 		
-		private void OnSettingChanged (Preferences preferences, string settingKey)
+		private void OnSettingChanged (IPreferences preferences, string settingKey)
 		{
-			if (settingKey.CompareTo (Preferences.HideInAllCategory) != 0)
+			if (settingKey.CompareTo (PreferencesKeys.HideInAllCategory) != 0)
 				return;
 			
 			categoriesToHide =
-				preferences.GetStringList (Preferences.HideInAllCategory);
+				preferences.GetStringList (PreferencesKeys.HideInAllCategory);
 		}
 	}
 }

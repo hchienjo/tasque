@@ -27,7 +27,7 @@ using System.Collections.Generic;
 
 namespace Tasque
 {
-	public delegate void SettingChangedHandler (Preferences preferences, string settingKey);
+	public delegate void SettingChangedHandler (IPreferences preferences, string settingKey);
 
 	public interface IPreferences
 	{

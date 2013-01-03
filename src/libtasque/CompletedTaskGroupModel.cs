@@ -7,7 +7,7 @@ namespace Tasque
 	public class CompletedTaskGroupModel : TaskGroupModel
 	{
 		public CompletedTaskGroupModel (DateTime rangeStart, DateTime rangeEnd,
-		                                ICollection<ITask> tasks, Preferences preferences)
+		                                ICollection<ITask> tasks, IPreferences preferences)
 			: base (rangeStart, rangeEnd, tasks, preferences)
 		{
 		}

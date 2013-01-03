@@ -34,7 +34,7 @@ namespace Tasque
 		}
 		
 		public TaskGroupModel (DateTime rangeStart, DateTime rangeEnd,
-		                       ICollection<ITask> tasks, Preferences preferences)
+		                       ICollection<ITask> tasks, IPreferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
@@ -47,7 +47,7 @@ namespace Tasque
 			taskChangeLog = new List<MementoTask> ();
 			
 			showCompletedTasks = preferences.GetBool (
-				Preferences.ShowCompletedTasksKey);
+				PreferencesKeys.ShowCompletedTasksKey);
 			
 			originalTasks = tasks;
 			((INotifyCollectionChanged)tasks).CollectionChanged += HandleCollectionChanged;

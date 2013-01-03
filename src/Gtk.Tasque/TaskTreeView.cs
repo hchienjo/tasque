@@ -14,7 +14,7 @@ namespace Tasque
 	/// </summary>
 	public class TaskTreeView : Gtk.TreeView
 	{
-		Preferences preferences;
+		IPreferences preferences;
 
 		private static Gdk.Pixbuf notePixbuf;
 		
@@ -44,7 +44,7 @@ namespace Tasque
 			get { return taskBeingEdited; }
 		}
 
-		public TaskTreeView (Gtk.TreeModel model, Preferences preferences)
+		public TaskTreeView (Gtk.TreeModel model, IPreferences preferences)
 			: base ()
 		{
 			if (preferences == null)
@@ -448,8 +448,8 @@ namespace Tasque
 			
 			string formatString = "{0}";
 
-			string todayTasksColor = preferences.Get (Preferences.TodayTaskTextColor);
-			string overdueTaskColor = preferences.Get (Preferences.OverdueTaskTextColor);
+			string todayTasksColor = preferences.Get (PreferencesKeys.TodayTaskTextColor);
+			string overdueTaskColor = preferences.Get (PreferencesKeys.OverdueTaskTextColor);
 
 			if (task.IsComplete)
 				; // Completed tasks colored below
@@ -531,7 +531,7 @@ namespace Tasque
 				return;
 			}
 
-			int timerSeconds = preferences.GetInt (Preferences.InactivateTimeoutKey);
+			int timerSeconds = preferences.GetInt (PreferencesKeys.InactivateTimeoutKey);
 			// convert to milliseconds for more granularity
 			long timeout = timerSeconds * 1000;
 			
@@ -634,7 +634,7 @@ namespace Tasque
 			
 			if (task.State == TaskState.Active) {
 				bool showCompletedTasks =
-					preferences.GetBool (Preferences.ShowCompletedTasksKey);
+					preferences.GetBool (PreferencesKeys.ShowCompletedTasksKey);
 				
 				// When showCompletedTasks is true, complete the tasks right
 				// away.  Otherwise, set a timer and show the timer animation
@@ -647,7 +647,7 @@ namespace Tasque
 					
 					// Read the inactivate timeout from a preference
 					int timeout =
-						preferences.GetInt (Preferences.InactivateTimeoutKey);
+						preferences.GetInt (PreferencesKeys.InactivateTimeoutKey);
 					Logger.Debug ("Read timeout from prefs: {0}", timeout);
 					InactivateTimer timer =
 						new InactivateTimer (this, iter, task, (uint) timeout);
@@ -697,7 +697,7 @@ namespace Tasque
 			string newText = args.NewText;
 			
 			// Attempt to derive due date information from text.
-			if (preferences.GetBool (Preferences.ParseDateEnabledKey) &&
+			if (preferences.GetBool (PreferencesKeys.ParseDateEnabledKey) &&
 			    task.State == TaskState.Active &&
 			    task.DueDate == DateTime.MinValue) {
 				

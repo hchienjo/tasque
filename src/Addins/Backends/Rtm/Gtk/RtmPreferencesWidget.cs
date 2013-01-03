@@ -12,7 +12,7 @@ namespace Tasque.Backends.Rtm
 {
 	public class RtmPreferencesWidget : Gtk.EventBox, IBackendPreferences
 	{
-		Preferences preferences;
+		IPreferences preferences;
 		RtmBackend backend;
 
  		private LinkButton		authButton;
@@ -29,7 +29,7 @@ namespace Tasque.Backends.Rtm
 			normalPixbuf = GetIcon ("tasque-rtm-logo", 128);
 		}
 		
-		public RtmPreferencesWidget (RtmBackend backend, Preferences preferences) : base ()
+		public RtmPreferencesWidget (RtmBackend backend, IPreferences preferences) : base ()
 		{
 			if (backend == null)
 				throw new ArgumentNullException ("backend");
@@ -82,7 +82,7 @@ namespace Tasque.Backends.Rtm
 			if ( isAuthorized ) {
 				statusLabel.Text = "\n\n" +
 					Catalog.GetString ("You are currently connected");
-				string userName = preferences.Get (Preferences.UserNameKey);
+				string userName = preferences.Get (PreferencesKeys.UserNameKey);
 				if (userName != null && userName.Trim () != string.Empty)
 					statusLabel.Text = "\n\n" +
 						Catalog.GetString ("You are currently connected as") +
@@ -102,7 +102,7 @@ namespace Tasque.Backends.Rtm
 		
 		private void LoadPreferences ()
 		{
-			string authToken = preferences.Get(Preferences.AuthTokenKey);
+			string authToken = preferences.Get(PreferencesKeys.AuthTokenKey);
 			if (authToken == null || authToken.Trim() == "") {
 				Logger.Debug("Rtm: Not authorized");
 				isAuthorized = false;
@@ -151,7 +151,7 @@ namespace Tasque.Backends.Rtm
 				authButton.Sensitive = false;
 				statusLabel.Text = "\n\n" +
 					Catalog.GetString ("You are currently connected");
-				string userName = preferences.Get (Preferences.UserNameKey);
+				string userName = preferences.Get (PreferencesKeys.UserNameKey);
 				if (userName != null && userName.Trim () != string.Empty)
 					statusLabel.Text = "\n\n" +
 						Catalog.GetString ("You are currently connected as") +

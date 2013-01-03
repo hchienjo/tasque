@@ -79,6 +79,7 @@
     <Compile Include="TaskComparer.cs" />
     <Compile Include="AllCategory.cs" />
     <Compile Include="IPreferences.cs" />
+    <Compile Include="PreferencesKeys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />

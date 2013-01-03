@@ -121,7 +121,7 @@ namespace Tasque.Backends.Rtm
 			Logger.Debug("Done refreshing data!");
 		}
 
-		public void Initialize (Preferences preferences)
+		public void Initialize (IPreferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
@@ -134,7 +134,7 @@ namespace Tasque.Backends.Rtm
 			// *************************************
 			// AUTHENTICATION to Remember The Milk
 			// *************************************
-			string authToken = preferences.Get (Tasque.Preferences.AuthTokenKey);
+			string authToken = preferences.Get (PreferencesKeys.AuthTokenKey);
 			if (authToken != null) {
 				Logger.Debug ("Found AuthToken, checking credentials...");
 				try {
@@ -145,9 +145,9 @@ namespace Tasque.Backends.Rtm
 					Logger.Debug ("Setting configured status to true");
 					Configured = true;
 				} catch (RtmNet.RtmApiException e) {
-					preferences.Set (Tasque.Preferences.AuthTokenKey, null);
-					preferences.Set (Tasque.Preferences.UserIdKey, null);
-					preferences.Set (Tasque.Preferences.UserNameKey, null);
+					preferences.Set (PreferencesKeys.AuthTokenKey, null);
+					preferences.Set (PreferencesKeys.UserIdKey, null);
+					preferences.Set (PreferencesKeys.UserNameKey, null);
 					rtm = null;
 					rtmAuth = null;
 					Logger.Error ("Exception authenticating, reverting" + e.Message);
@@ -201,14 +201,14 @@ namespace Tasque.Backends.Rtm
 		{
 			rtmAuth = rtm.AuthGetToken (frob);
 			if (rtmAuth != null) {
-				preferences.Set (Tasque.Preferences.AuthTokenKey, rtmAuth.Token);
+				preferences.Set (PreferencesKeys.AuthTokenKey, rtmAuth.Token);
 				if (rtmAuth.User != null) {
-					preferences.Set (Tasque.Preferences.UserNameKey, rtmAuth.User.Username);
-					preferences.Set (Tasque.Preferences.UserIdKey, rtmAuth.User.UserId);
+					preferences.Set (PreferencesKeys.UserNameKey, rtmAuth.User.Username);
+					preferences.Set (PreferencesKeys.UserIdKey, rtmAuth.User.UserId);
 				}
 			}
 			
-			var authToken = preferences.Get (Tasque.Preferences.AuthTokenKey);
+			var authToken = preferences.Get (PreferencesKeys.AuthTokenKey);
 			if (authToken != null) {
 				Logger.Debug ("Found AuthToken, checking credentials...");
 				try {
@@ -493,7 +493,7 @@ namespace Tasque.Backends.Rtm
 		TaskComparer taskComparer;
 		CategoryComparer categoryComparer;
 
-		Preferences preferences;
+		IPreferences preferences;
 
 		const string apiKey = "b29f7517b6584035d07df3170b80c430";
 		const string sharedSecret = "93eb5f83628b2066";

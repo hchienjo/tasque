@@ -374,7 +374,7 @@ namespace Tasque
 
 			// Read preferences for the last-selected category and select it
 			string selectedCategoryName =
-				application.Preferences.Get (Preferences.SelectedCategoryKey);
+				application.Preferences.Get (PreferencesKeys.SelectedCategoryKey);
 			
 			categoryComboBox.Changed += OnCategoryChanged;
 			
@@ -393,7 +393,7 @@ namespace Tasque
 			taskWindow.OnAddTask (null, EventArgs.Empty);
 		}
 
-		public static void SavePosition (Preferences preferences)
+		public static void SavePosition (IPreferences preferences)
 		{
 			if(taskWindow != null) {
 				int x;
@@ -865,9 +865,9 @@ namespace Tasque
 
 		}
 		
-		void OnSettingChanged (Preferences preferences, string settingKey)
+		void OnSettingChanged (IPreferences preferences, string settingKey)
 		{
-			if (settingKey.CompareTo (Preferences.HideInAllCategory) != 0)
+			if (settingKey.CompareTo (PreferencesKeys.HideInAllCategory) != 0)
 				return;
 			
 			OnCategoryChanged (this, EventArgs.Empty);
@@ -942,7 +942,7 @@ namespace Tasque
 			// out of the entered task text.
 			DateTime taskDueDate = DateTime.MinValue;
 			string taskName;
-			if (application.Preferences.GetBool (Preferences.ParseDateEnabledKey))
+			if (application.Preferences.GetBool (PreferencesKeys.ParseDateEnabledKey))
 				TaskParser.Instance.TryParse (
 				                         enteredTaskText,
 				                         out taskName,
@@ -987,7 +987,7 @@ namespace Tasque
 					// specifically.
 					List<string> categoriesToHide =
 						application.Preferences.GetStringList (
-							Preferences.HideInAllCategory);
+							PreferencesKeys.HideInAllCategory);
 					if (categoriesToHide != null && categoriesToHide.Contains (item.Category.Name)) {
 						SelectCategory (item.Category.Name);
 					}
@@ -1019,7 +1019,7 @@ namespace Tasque
 			completedTaskGroup.Refilter (category);
 			
 			// Save the selected category in preferences
-			application.Preferences.Set (Preferences.SelectedCategoryKey,
+			application.Preferences.Set (PreferencesKeys.SelectedCategoryKey,
 										 category.Name);
 		}
 		

@@ -12,7 +12,7 @@ namespace Tasque
 		TaskGroupModel TodayTasks { get; }
 		TaskGroupModel TomorrowTasks { get; }
 		string ConfDir { get; }
-		Preferences Preferences { get; }
+		IPreferences Preferences { get; }
 		void Exit (int exitcode = 0);
 		void Initialize (string [] args);
 		void ShowPreferences ();

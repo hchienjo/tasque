@@ -62,11 +62,11 @@ namespace Tasque
 			
 			// TODO: Set the initial value and range
 			string rangeStr =
-				Application.Preferences.Get (Preferences.CompletedTasksRange);
+				Application.Preferences.Get (PreferencesKeys.CompletedTasksRange);
 			if (rangeStr == null) {
 				// Set a default value of All
 				rangeStr = ShowCompletedRange.All.ToString ();
-				Application.Preferences.Set (Preferences.CompletedTasksRange,
+				Application.Preferences.Set (PreferencesKeys.CompletedTasksRange,
 											 rangeStr);
 			}
 			
@@ -88,10 +88,10 @@ namespace Tasque
 		}
 		
 		protected void OnSelectedCategorySettingChanged (
-								Preferences preferences,
+								IPreferences preferences,
 								string settingKey)
 		{
-			if (settingKey.CompareTo (Preferences.SelectedCategoryKey) != 0)
+			if (settingKey.CompareTo (PreferencesKeys.SelectedCategoryKey) != 0)
 				return;
 			
 			selectedCategory = GetSelectedCategory ();
@@ -103,7 +103,7 @@ namespace Tasque
 			ICategory foundCategory = null;
 			
 			string cat = Application.Preferences.Get (
-							Preferences.SelectedCategoryKey);
+				PreferencesKeys.SelectedCategoryKey);
 			if (cat != null) {
 				var model = Application.Backend.Categories;
 				foundCategory = model.FirstOrDefault (c => c.Name == cat);
@@ -122,7 +122,7 @@ namespace Tasque
 				return;
 			
 			this.currentRange = range;
-			Application.Preferences.Set (Preferences.CompletedTasksRange,
+			Application.Preferences.Set (PreferencesKeys.CompletedTasksRange,
 										 range.ToString ());
 			
 			UpdateDateRanges ();
