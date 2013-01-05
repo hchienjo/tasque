@@ -232,8 +232,7 @@ namespace Tasque.Backends.Dummy
 			}		
 		}
 
-		public void Cleanup()
-		{}
+		public void Dispose () {}
 		
 		public IBackendPreferences Preferences
 		{

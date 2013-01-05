@@ -153,15 +153,19 @@ namespace Tasque.Backends.Sqlite
 			}		
 		}
 
-		public void Cleanup()
+		public void Dispose()
 		{
+			if (disposed)
+				return;
+
 			this.categoryListStore.Clear();
 			this.taskStore.Clear();
 
 			if (db != null)
 				db.Close();
 			db = null;
-			initialized = false;		
+			initialized = false;
+			disposed = true;
 		}
 
 		/// <summary>
@@ -293,5 +297,7 @@ namespace Tasque.Backends.Sqlite
 		
 		#region Event Handlers
 		#endregion // Event Handlers
+
+		bool disposed;
 	}
 }

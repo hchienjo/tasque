@@ -110,7 +110,7 @@ namespace Tasque
 			Logger.Info ("Exit called - terminating application");
 
 			if (backend != null)
-				backend.Cleanup ();
+				backend.Dispose ();
 
 			OnExit (exitcode);
 			if (Exiting != null)
@@ -152,7 +152,7 @@ namespace Tasque
 				// Cleanup the old backend
 				try {
 					Logger.Debug ("Cleaning up backend: {0}", backend.Name);
-					backend.Cleanup ();
+					backend.Dispose ();
 				} catch (Exception e) {
 					Logger.Warn ("Exception cleaning up '{0}': {1}", backend.Name, e);
 				}
@@ -204,7 +204,7 @@ namespace Tasque
 		{
 			try {
 				if (backend != null && !backend.Configured) {
-					backend.Cleanup ();
+					backend.Dispose ();
 					backend.Initialize (preferences);
 				}
 			} catch (Exception e) {

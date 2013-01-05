@@ -440,7 +440,7 @@ namespace Tasque
 					IBackend oldBackend = backendComboMap [selectedBackend];
 					Logger.Info ("Cleaning up '{0}'...", oldBackend.Name);
 					try {
-						oldBackend.Cleanup ();
+						oldBackend.Dispose ();
 					} catch (Exception e) {
 						Logger.Warn ("Exception cleaning up '{0}': {2}",
 									 oldBackend.Name,

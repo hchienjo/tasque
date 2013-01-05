@@ -14,7 +14,7 @@ namespace Tasque.Backends
 	/// This is the main integration interface for different backends that
 	/// Tasque can use.
 	/// </summary>
-	public interface IBackend
+	public interface IBackend : IDisposable
 	{
 		event BackendInitializedHandler BackendInitialized;
 		event BackendSyncStartedHandler BackendSyncStarted;
@@ -97,11 +97,6 @@ namespace Tasque.Backends
 		/// Initializes the backend
 		/// </summary>
 		void Initialize (IPreferences preferences);
-
-		/// <summary>
-		/// Cleanup the backend before quitting
-		/// </summary>
-		void Cleanup ();
 		#endregion // Methods
 	}
 }

@@ -177,13 +177,17 @@ namespace Tasque.Backends.Rtm
 				BackendInitialized ();
 		}
 
-		public void Cleanup ()
+		public void Dispose ()
 		{
+			if (disposed)
+				return;
+
 			tasks.Clear ();
 			categories.Clear ();
 
 			rtm = null;
 			Initialized = false;
+			disposed = true;
 		}
 
 		public event BackendInitializedHandler BackendInitialized;
@@ -502,6 +506,8 @@ namespace Tasque.Backends.Rtm
 		string frob;
 		RtmNet.Auth rtmAuth;
 		string timeline;
+
+		bool disposed;
 		#endregion
 	}
 }
