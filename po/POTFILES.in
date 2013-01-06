@@ -11,6 +11,7 @@ src/Gtk.Tasque/PreferencesDialog.cs
 src/Gtk.Tasque/RemoteControl.cs
 src/Gtk.Tasque/TaskTreeView.cs
 src/Gtk.Tasque/TaskWindow.cs
+src/Gtk.Tasque/TimerColumn.cs
 src/Gtk.Tasque/Utilities.cs
 src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs
 src/libtasque/AllCategory.cs

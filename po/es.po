@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-03 00:12+0100\n"
+"POT-Creation-Date: 2013-01-06 22:47+0100\n"
 "PO-Revision-Date: 2012-10-31 12:22+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
@@ -51,7 +51,7 @@ msgid "Last Year"
 msgstr "Último año"
 
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
-#: ../src/libtasque/AllCategory.cs:33
+#: ../src/libtasque/AllCategory.cs:30
 msgid "All"
 msgstr "Todas"
 
@@ -59,21 +59,21 @@ msgstr "Todas"
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Copyright © 2008 - 2011 Novell, Inc. y colaboradores."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:88
+#: ../src/Gtk.Tasque/GtkTray.cs:89
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] "{0} tarea está atrasada\n"
 msgstr[1] "{0} tareas están atrasadas\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:97
+#: ../src/Gtk.Tasque/GtkTray.cs:98
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] "{0} tarea para hoy\n"
 msgstr[1] "{0} tareas para hoy\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:106
+#: ../src/Gtk.Tasque/GtkTray.cs:107
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -81,31 +81,31 @@ msgstr[0] "{0} tarea para mañana\n"
 msgstr[1] "{0} tareas para mañana\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:112
+#: ../src/Gtk.Tasque/GtkTray.cs:113
 msgid "Tasque Rocks"
 msgstr "Tasque mola"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:149
+#: ../src/Gtk.Tasque/GtkTray.cs:150
 msgid "translator-credits"
 msgstr "Nacho Hermoso de Mendoza <gnacho@gmail.com>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:158
+#: ../src/Gtk.Tasque/GtkTray.cs:159
 msgid "A Useful Task List"
 msgstr "Una lista de tareas útil"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:161
 msgid "Tasque Project Homepage"
 msgstr "Página web del proyecto Tasque"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:173
+#: ../src/Gtk.Tasque/GtkTray.cs:174
 msgid "New Task ..."
 msgstr "Tarea nueva..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Refresh Tasks ..."
 msgstr "Actualizar tareas..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:190
 msgid "Toggle Task Window"
 msgstr "Alternar la ventana de tareas"
 
@@ -160,114 +160,109 @@ msgstr "Mostrar sólo estas categorias cuando \"Todas\" está seleccionada:"
 msgid "Category"
 msgstr "Categoría"
 
-#: ../src/Gtk.Tasque/RemoteControl.cs:173
+#: ../src/Gtk.Tasque/RemoteControl.cs:174
 msgid "New task created."
 msgstr "Nueva tarea creada."
 
 #. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:95 ../src/Gtk.Tasque/TaskWindow.cs:351
+#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:351
 msgid "Completed"
 msgstr "Completada"
 
 #. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:112
+#: ../src/Gtk.Tasque/TaskTreeView.cs:107
 msgid "Priority"
 msgstr "Prioridad"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:125 ../src/Gtk.Tasque/TaskTreeView.cs:429
-#: ../src/Gtk.Tasque/TaskTreeView.cs:675
+#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:415
+#: ../src/Gtk.Tasque/TaskTreeView.cs:578
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:126 ../src/Gtk.Tasque/TaskTreeView.cs:426
-#: ../src/Gtk.Tasque/TaskTreeView.cs:673
+#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:412
+#: ../src/Gtk.Tasque/TaskTreeView.cs:576
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:127 ../src/Gtk.Tasque/TaskTreeView.cs:423
-#: ../src/Gtk.Tasque/TaskTreeView.cs:671
+#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:409
+#: ../src/Gtk.Tasque/TaskTreeView.cs:574
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:128 ../src/Gtk.Tasque/TaskTreeView.cs:432
+#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:418
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:142
+#: ../src/Gtk.Tasque/TaskTreeView.cs:137
 msgid "Task Name"
 msgstr "Nombre de la tarea"
 
 #. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:184
+#: ../src/Gtk.Tasque/TaskTreeView.cs:179
 msgid "Due Date"
 msgstr "Fecha de vencimiento"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:200
-#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:757
-#: ../src/Gtk.Tasque/TaskTreeView.cs:760 ../src/Gtk.Tasque/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:660
+#: ../src/Gtk.Tasque/TaskTreeView.cs:663 ../src/Gtk.Tasque/TaskTreeView.cs:668
 msgid "M/d - "
 msgstr "d/M - "
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:660
 #: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "Hoy"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:663
 #: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Mañana"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:204
-#: ../src/Gtk.Tasque/TaskTreeView.cs:206 ../src/Gtk.Tasque/TaskTreeView.cs:208
-#: ../src/Gtk.Tasque/TaskTreeView.cs:210 ../src/Gtk.Tasque/TaskTreeView.cs:499
-#: ../src/Gtk.Tasque/TaskTreeView.cs:774
+#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
+#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
+#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:488
+#: ../src/Gtk.Tasque/TaskTreeView.cs:677
 msgid "M/d - ddd"
 msgstr "d/M - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:668
 msgid "In 1 Week"
 msgstr "En 1 semana"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:213 ../src/Gtk.Tasque/TaskTreeView.cs:762
+#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:665
 #: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "Sin fecha"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:214 ../src/Gtk.Tasque/TaskTreeView.cs:767
+#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:670
 msgid "Choose Date..."
 msgstr "Elegir una fecha..."
 
 #. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:230
+#: ../src/Gtk.Tasque/TaskTreeView.cs:225
 msgid "Notes"
 msgstr "Notas"
 
-#. Title for Timer Column
 #: ../src/Gtk.Tasque/TaskTreeView.cs:247
-msgid "Timer"
-msgstr "Temporizador"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:341
-msgid "Task Completed"
-msgstr "Tarea completada"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:501
-msgid "M/d/yy - ddd"
-msgstr "d/M/yy - ddd"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:657
-msgid "Action Canceled"
-msgstr "Acción cancelada"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:949
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Completando tarea en: {0}"
+
+#: ../src/Gtk.Tasque/TaskTreeView.cs:327
+msgid "Task Completed"
+msgstr "Tarea completada"
+
+#: ../src/Gtk.Tasque/TaskTreeView.cs:490
+msgid "M/d/yy - ddd"
+msgstr "d/M/yy - ddd"
+
+#: ../src/Gtk.Tasque/TaskTreeView.cs:560
+msgid "Action Canceled"
+msgstr "Acción cancelada"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
@@ -341,6 +336,10 @@ msgstr "Cargando tareas..."
 #: ../src/Gtk.Tasque/TaskWindow.cs:1242
 msgid "Not connected."
 msgstr "Sin conexión."
+
+#: ../src/Gtk.Tasque/TimerColumn.cs:48
+msgid "Timer"
+msgstr "Temporizador"
 
 #: ../src/Gtk.Tasque/Utilities.cs:274
 #, csharp-format

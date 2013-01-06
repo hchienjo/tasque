@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-03 00:12+0100\n"
+"POT-Creation-Date: 2013-01-06 22:47+0100\n"
 "PO-Revision-Date: 2010-06-26 13:32+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -47,7 +47,7 @@ msgid "Last Year"
 msgstr "L'últim any"
 
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
-#: ../src/libtasque/AllCategory.cs:33
+#: ../src/libtasque/AllCategory.cs:30
 msgid "All"
 msgstr "Totes"
 
@@ -56,21 +56,21 @@ msgstr "Totes"
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Copyright © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:88
+#: ../src/Gtk.Tasque/GtkTray.cs:89
 #, csharp-format
 msgid "{0} task is Overdue\n"
 msgid_plural "{0} tasks are Overdue\n"
 msgstr[0] "Ha vençut {0} tasca\n"
 msgstr[1] "Han vençut {0} tasques\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:97
+#: ../src/Gtk.Tasque/GtkTray.cs:98
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
 msgstr[0] "Hi ha {0} tasca per hui\n"
 msgstr[1] "Hi ha {0} tasques per hui\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:106
+#: ../src/Gtk.Tasque/GtkTray.cs:107
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
@@ -78,33 +78,33 @@ msgstr[0] "Hi ha {0} tasca per demà\n"
 msgstr[1] "Hi ha {0} tasques per demà\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:112
+#: ../src/Gtk.Tasque/GtkTray.cs:113
 msgid "Tasque Rocks"
 msgstr "El Tasque és molt útil"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:149
+#: ../src/Gtk.Tasque/GtkTray.cs:150
 msgid "translator-credits"
 msgstr ""
 "Gil Forcada <gilforcada@guifi.net>\n"
 "Sílvia Miranda <silvia@softcatala.cat>"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:158
+#: ../src/Gtk.Tasque/GtkTray.cs:159
 msgid "A Useful Task List"
 msgstr "Una llista de tasques útil"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:160
+#: ../src/Gtk.Tasque/GtkTray.cs:161
 msgid "Tasque Project Homepage"
 msgstr "Lloc web del projecte Tasque"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:173
+#: ../src/Gtk.Tasque/GtkTray.cs:174
 msgid "New Task ..."
 msgstr "Tasca nova..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:183
+#: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Refresh Tasks ..."
 msgstr "Actualitza les tasques..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:189
+#: ../src/Gtk.Tasque/GtkTray.cs:190
 msgid "Toggle Task Window"
 msgstr ""
 
@@ -159,114 +159,109 @@ msgstr "Mostra _només estes categories quan se seleccioni «Totes»:"
 msgid "Category"
 msgstr "Categoria"
 
-#: ../src/Gtk.Tasque/RemoteControl.cs:173
+#: ../src/Gtk.Tasque/RemoteControl.cs:174
 msgid "New task created."
 msgstr "S'ha creat una tasca nova."
 
 #. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:95 ../src/Gtk.Tasque/TaskWindow.cs:351
+#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:351
 msgid "Completed"
 msgstr "Completada"
 
 #. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:112
+#: ../src/Gtk.Tasque/TaskTreeView.cs:107
 msgid "Priority"
 msgstr "Prioritat"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:125 ../src/Gtk.Tasque/TaskTreeView.cs:429
-#: ../src/Gtk.Tasque/TaskTreeView.cs:675
+#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:415
+#: ../src/Gtk.Tasque/TaskTreeView.cs:578
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:126 ../src/Gtk.Tasque/TaskTreeView.cs:426
-#: ../src/Gtk.Tasque/TaskTreeView.cs:673
+#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:412
+#: ../src/Gtk.Tasque/TaskTreeView.cs:576
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:127 ../src/Gtk.Tasque/TaskTreeView.cs:423
-#: ../src/Gtk.Tasque/TaskTreeView.cs:671
+#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:409
+#: ../src/Gtk.Tasque/TaskTreeView.cs:574
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:128 ../src/Gtk.Tasque/TaskTreeView.cs:432
+#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:418
 msgid "-"
 msgstr "-"
 
 #. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:142
+#: ../src/Gtk.Tasque/TaskTreeView.cs:137
 msgid "Task Name"
 msgstr "Nom de la tasca"
 
 #. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:184
+#: ../src/Gtk.Tasque/TaskTreeView.cs:179
 msgid "Due Date"
 msgstr "Data de venciment"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:200
-#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:757
-#: ../src/Gtk.Tasque/TaskTreeView.cs:760 ../src/Gtk.Tasque/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:660
+#: ../src/Gtk.Tasque/TaskTreeView.cs:663 ../src/Gtk.Tasque/TaskTreeView.cs:668
 msgid "M/d - "
 msgstr "d/M - "
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:198 ../src/Gtk.Tasque/TaskTreeView.cs:757
+#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:660
 #: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
 msgid "Today"
 msgstr "Hui"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:200 ../src/Gtk.Tasque/TaskTreeView.cs:760
+#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:663
 #: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
 msgid "Tomorrow"
 msgstr "Demà"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:202 ../src/Gtk.Tasque/TaskTreeView.cs:204
-#: ../src/Gtk.Tasque/TaskTreeView.cs:206 ../src/Gtk.Tasque/TaskTreeView.cs:208
-#: ../src/Gtk.Tasque/TaskTreeView.cs:210 ../src/Gtk.Tasque/TaskTreeView.cs:499
-#: ../src/Gtk.Tasque/TaskTreeView.cs:774
+#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
+#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
+#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:488
+#: ../src/Gtk.Tasque/TaskTreeView.cs:677
 msgid "M/d - ddd"
 msgstr "d/M - ddd"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:212 ../src/Gtk.Tasque/TaskTreeView.cs:765
+#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:668
 msgid "In 1 Week"
 msgstr "D'ací a una setmana"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:213 ../src/Gtk.Tasque/TaskTreeView.cs:762
+#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:665
 #: ../src/Gtk.Tasque/Utilities.cs:308
 msgid "No Date"
 msgstr "Sense data"
 
-#: ../src/Gtk.Tasque/TaskTreeView.cs:214 ../src/Gtk.Tasque/TaskTreeView.cs:767
+#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:670
 msgid "Choose Date..."
 msgstr "Seleccioneu una data..."
 
 #. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:230
+#: ../src/Gtk.Tasque/TaskTreeView.cs:225
 msgid "Notes"
 msgstr "Notes"
 
-#. Title for Timer Column
 #: ../src/Gtk.Tasque/TaskTreeView.cs:247
-msgid "Timer"
-msgstr "Temporitzador"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:341
-msgid "Task Completed"
-msgstr "Tasca completada"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:501
-msgid "M/d/yy - ddd"
-msgstr "d/M/yy - ddd"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:657
-msgid "Action Canceled"
-msgstr "S'ha cancel·lat l'acció"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:949
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Es completarà la tasca d'ací a: {0}"
+
+#: ../src/Gtk.Tasque/TaskTreeView.cs:327
+msgid "Task Completed"
+msgstr "Tasca completada"
+
+#: ../src/Gtk.Tasque/TaskTreeView.cs:490
+msgid "M/d/yy - ddd"
+msgstr "d/M/yy - ddd"
+
+#: ../src/Gtk.Tasque/TaskTreeView.cs:560
+msgid "Action Canceled"
+msgstr "S'ha cancel·lat l'acció"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
@@ -340,6 +335,10 @@ msgstr "S'estan carregant les tasques..."
 #: ../src/Gtk.Tasque/TaskWindow.cs:1242
 msgid "Not connected."
 msgstr "No esteu connectat."
+
+#: ../src/Gtk.Tasque/TimerColumn.cs:48
+msgid "Timer"
+msgstr "Temporitzador"
 
 #: ../src/Gtk.Tasque/Utilities.cs:274
 #, csharp-format
