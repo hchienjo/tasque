@@ -27,6 +27,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Mono.Unix.Native;
+using Gtk.Tasque;
 
 namespace Tasque
 {

@@ -25,8 +25,9 @@
 // THE SOFTWARE.
 #if LINUX
 using System;
+using Tasque;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	public class GtkLinuxApplication : GtkApplicationBase
 	{

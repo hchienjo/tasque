@@ -122,14 +122,9 @@ namespace Tasque
 		#region Methods
 		
 		/// <summary>
-		/// Activate (Reopen) a task that's Inactivated or Completed.
+		/// Activate (Reopen) a task that's Completed.
 		/// </summary>
 		void Activate ();
-		
-		/// <summary>
-		/// Inactivate a task (this is the "limbo" mode).
-		/// </summary>
-		void Inactivate ();
 		
 		/// <summary>
 		/// Mark a task as completed.

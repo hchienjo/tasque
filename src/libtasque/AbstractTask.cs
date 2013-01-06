@@ -86,7 +86,6 @@ namespace Tasque
 		#region Methods
 		
 		public abstract void Activate ();
-		public abstract void Inactivate ();
 		public abstract void Complete ();
 		public abstract void Delete ();
 		public abstract INote CreateNote(string text);

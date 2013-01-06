@@ -35,10 +35,10 @@ using System.Linq;
 using Gdk;
 using Gtk;
 using Mono.Unix;
-
+using Tasque;
 using Tasque.Backends;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	public class TaskWindow : Gtk.Window 
 	{
@@ -670,7 +670,7 @@ namespace Tasque
 			int count = 0;
 			var model = application.Backend.Tasks;
 			count = model.Count (t => t != null &&
-			                     (t.State == TaskState.Active || t.State == TaskState.Inactive) &&
+			                     t.State == TaskState.Active &&
 			                     category.ContainsTask (t));
 			return count;
 		}

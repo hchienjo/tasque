@@ -105,6 +105,7 @@
     <Compile Include="GtkLinuxApplication.cs" />
     <Compile Include="GtkWinApplication.cs" />
     <Compile Include="TreeModelListAdapter.cs" />
+    <Compile Include="TimerColumn.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <Compile Include="RemoteControl.cs" />

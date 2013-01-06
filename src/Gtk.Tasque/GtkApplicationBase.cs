@@ -28,12 +28,13 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Mono.Unix;
+using Tasque;
 using Gtk;
 #if ENABLE_NOTIFY_SHARP
 using Notifications;
 #endif
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	public abstract class GtkApplicationBase : NativeApplication
 	{

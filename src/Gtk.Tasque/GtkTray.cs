@@ -27,10 +27,11 @@ using System;
 using System.Linq;
 using System.Text;
 using Mono.Unix;
-using Gtk;
+using Tasque;
 using Tasque.Backends;
+using Gtk;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	public abstract class GtkTray : IDisposable
 	{

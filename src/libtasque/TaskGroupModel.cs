@@ -335,11 +335,6 @@ namespace Tasque
 				throw new NotSupportedException ();
 			}
 			
-			void ITask.Inactivate ()
-			{
-				throw new NotSupportedException ();
-			}
-			
 			void ITask.Complete ()
 			{
 				throw new NotSupportedException ();

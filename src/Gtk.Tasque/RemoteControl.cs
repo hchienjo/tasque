@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Mono.Unix; // for Catalog.GetString ()
+using Tasque;
 
 #if ENABLE_NOTIFY_SHARP
 using Notifications;
@@ -17,7 +18,7 @@ using Notifications;
 using org.freedesktop.DBus;
 using DBus;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	[Interface ("org.gnome.Tasque.RemoteControl")]
 	public class RemoteControl : MarshalByRefObject
@@ -61,7 +62,7 @@ namespace Tasque
 				RemoteInstanceKnocked ();
 		}
 		
-		public Action RemoteInstanceKnocked { get; set; }
+		public System.Action RemoteInstanceKnocked { get; set; }
 				
 		/// <summary>
 		/// Create a new task in Tasque using the given categoryName and name.

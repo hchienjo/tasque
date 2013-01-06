@@ -191,13 +191,6 @@ namespace Tasque.Backends.Sqlite
 			CompletionDate = DateTime.MinValue;
 		}
 		
-		public override void Inactivate ()
-		{
-			// Logger.Debug ("SqliteTask.Inactivate ()");
-			LocalState = TaskState.Inactive;
-			CompletionDate = DateTime.Now;
-		}
-		
 		public override void Complete ()
 		{
 			//Logger.Debug ("SqliteTask.Complete ()");

@@ -3,10 +3,11 @@
 
 using System;
 using System.Collections.Generic;
-using Gtk;
 using Mono.Unix;
+using Tasque;
+using Gtk;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	/// <summary>
 	/// This is the main TreeView widget that is used to show tasks in Tasque's
@@ -16,9 +17,9 @@ namespace Tasque
 	{
 		IPreferences preferences;
 
+		TimerColumn timerCol;
+
 		private static Gdk.Pixbuf notePixbuf;
-		
-		private static Gdk.Pixbuf[] inactiveAnimPixbufs;
 		
 		private Gtk.TreeModelFilter modelFilter;
 		private ICategory filterCategory;	
@@ -29,12 +30,6 @@ namespace Tasque
 		static TaskTreeView ()
 		{
 			notePixbuf = Utilities.GetIcon ("tasque-note", 12);
-			
-			inactiveAnimPixbufs = new Gdk.Pixbuf [12];
-			for (int i = 0; i < 12; i++) {
-				string iconName = string.Format ("tasque-completing-{0}", i);
-				inactiveAnimPixbufs [i] = Utilities.GetIcon (iconName, 16);
-			}
 		}
 		
 		public event EventHandler NumberOfTasksChanged;
@@ -242,20 +237,17 @@ namespace Tasque
 			//
 			// Timer Column
 			//
-			column = new Gtk.TreeViewColumn ();
-			// Title for Timer Column
-			column.Title = Catalog.GetString ("Timer");
-			column.Sizing = Gtk.TreeViewColumnSizing.Fixed;
-			column.FixedWidth = 20;
-			column.Resizable = false;
-			
-			renderer = new Gtk.CellRendererPixbuf ();
-			renderer.Xalign = 0.5f;
-			column.PackStart (renderer, false);
-			column.SetCellDataFunc (renderer,
-				new Gtk.TreeCellDataFunc (TaskTimerCellDataFunc));
-			
-			AppendColumn (column);
+			timerCol = new TimerColumn (preferences, model);
+			timerCol.TimerExpired += (sender, e) => {
+				if (!e.Canceled)
+					e.Task.Complete ();
+			};
+
+			timerCol.Tick += (sender, e) => {
+				var status = string.Format (Catalog.GetString ("Completing Task In: {0}"), e.CountdownTick);
+				TaskWindow.ShowStatus (status, 2000);
+			};
+			AppendColumn (timerCol);
 		}
 
 		void CellRenderer_EditingStarted (object o, EditingStartedArgs args)
@@ -271,11 +263,7 @@ namespace Tasque
 				return;
 
 			taskBeingEdited = task;
-
-			if (task.State != TaskState.Inactive)
-				return;
-
-			InactivateTimer.ToggleTimer (taskBeingEdited);
+			timerCol.PauseTimer (taskBeingEdited);
 		}
 		
 		void SetCellRendererCallbacks (CellRendererText renderer, EditedHandler handler)
@@ -285,10 +273,9 @@ namespace Tasque
 			// Canceled: timer can continue.
 			renderer.EditingCanceled += (o, args) => {
 				if (taskBeingEdited != null) {
-					if (taskBeingEdited.State == TaskState.Inactive) {
-						taskBeingEdited.Inactivate ();
-						InactivateTimer.ToggleTimer (taskBeingEdited);
-					}
+					var timerState = timerCol.GetTimerState (taskBeingEdited);
+					if (timerState != null && (TimerColumn.TaskTimerState)timerState == TimerColumn.TaskTimerState.Paused)
+						timerCol.ResumeTimer (taskBeingEdited);
 					taskBeingEdited = null;
 				}
 			};
@@ -298,10 +285,9 @@ namespace Tasque
 					handler (o, args);
 
 				if (taskBeingEdited != null) {
-					if (taskBeingEdited.State == TaskState.Inactive) {
-						taskBeingEdited.Inactivate ();
-						InactivateTimer.ToggleTimer (taskBeingEdited);
-					}
+					var timerState = timerCol.GetTimerState (taskBeingEdited);
+					if (timerState != null && (TimerColumn.TaskTimerState)timerState == TimerColumn.TaskTimerState.Paused)
+						timerCol.ResumeTimer (taskBeingEdited);
 					taskBeingEdited = null;
 				}
 			};
@@ -352,8 +338,8 @@ namespace Tasque
 			if (task == null)
 				crt.Active = false;
 			else {
-				crt.Active =
-					task.State == TaskState.Active ? false : true;
+				var timerState = timerCol.GetTimerState (task);
+				crt.Active = !(task.State == TaskState.Active && timerState == null);
 			}
 		}
 
@@ -460,9 +446,12 @@ namespace Tasque
 				crt.Foreground = overdueTaskColor;
 
 			switch (task.State) {
-			case TaskState.Inactive:
+			case TaskState.Active:
 				// Strikeout the text
-				formatString = "<span strikethrough=\"true\">{0}</span>";
+				var timerState = timerCol.GetTimerState (task);
+				if (timerState != null && (TimerColumn.TaskTimerState)timerState
+				    == TimerColumn.TaskTimerState.Running)
+					formatString = "<span strikethrough=\"true\">{0}</span>";
 				break;
 			case TaskState.Deleted:
 			case TaskState.Completed:
@@ -516,83 +505,6 @@ namespace Tasque
 			crp.Pixbuf = task.HasNotes ? notePixbuf : null;
 		}
 		
-		private void TaskTimerCellDataFunc (Gtk.TreeViewColumn treeColumn,
-				Gtk.CellRenderer renderer, Gtk.TreeModel model,
-				Gtk.TreeIter iter)
-		{
-			Gtk.CellRendererPixbuf crp = renderer as Gtk.CellRendererPixbuf;
-			ITask task = model.GetValue (iter, 0) as ITask;
-			if (task == null)
-				return;
-			
-			if (task.State != TaskState.Inactive) {
-				// The task is not in the inactive state so don't show any icon
-				crp.Pixbuf = null;
-				return;
-			}
-
-			int timerSeconds = preferences.GetInt (PreferencesKeys.InactivateTimeoutKey);
-			// convert to milliseconds for more granularity
-			long timeout = timerSeconds * 1000;
-			
-			//Logger.Debug ("TaskTimerCellDataFunc ()\n\tNow.Ticks: {0}\n\tCompletionDate.Ticks: {1}",
-			//				DateTime.Now.Ticks, task.CompletionDate.Ticks);
-			long elapsedTicks = DateTime.Now.Ticks - task.CompletionDate.Ticks;
-			//Logger.Debug ("\tElapsed Ticks: {0}", elapsedTicks);
-			long elapsedMillis = elapsedTicks / 10000;
-			//Logger.Debug ("\tElapsed Milliseconds: {0}", elapsedMillis);
-			
-			double percentComplete = (double)elapsedMillis / (double)timeout;
-			//Logger.Debug ("\tPercent Complete: {0}", percentComplete);
-			
-			Gdk.Pixbuf pixbuf = GetIconForPercentage (percentComplete * 100);
-			crp.Pixbuf = pixbuf;
-		}
-		
-		protected static Gdk.Pixbuf GetIconForPercentage (double timeoutPercent)
-		{
-			int iconNum = GetIconNumForPercentage (timeoutPercent);
-			if (iconNum == -1 || iconNum > 11)
-				return null;
-			
-			return inactiveAnimPixbufs [iconNum];
-		}
-		
-		protected static int GetIconNumForPercentage (double timeoutPercent)
-		{
-			//Logger.Debug ("GetIconNumForPercentage: {0}", timeoutPercent);
-			int numOfIcons = 12;
-			double percentIncrement = (double)100 / (double)numOfIcons;
-			//Logger.Debug ("\tpercentIncrement: {0}", percentIncrement);
-			
-			if (timeoutPercent < percentIncrement)
-				return 0;
-			if (timeoutPercent < percentIncrement * 2)
-				return 1;
-			if (timeoutPercent < percentIncrement * 3)
-				return 2;
-			if (timeoutPercent < percentIncrement * 4)
-				return 3;
-			if (timeoutPercent < percentIncrement * 5)
-				return 4;
-			if (timeoutPercent < percentIncrement * 6)
-				return 5;
-			if (timeoutPercent < percentIncrement * 7)
-				return 6;
-			if (timeoutPercent < percentIncrement * 8)
-				return 7;
-			if (timeoutPercent < percentIncrement * 9)
-				return 8;
-			if (timeoutPercent < percentIncrement * 10)
-				return 9;
-			if (timeoutPercent < percentIncrement * 11)
-				return 10;
-			if (timeoutPercent < percentIncrement * 12)
-				return 11;
-			
-			return -1;
-		}
-		
 		protected virtual bool FilterFunc (Gtk.TreeModel model,
 										   Gtk.TreeIter iter)
 		{
@@ -629,8 +541,8 @@ namespace Tasque
 			if (task == null)
 				return;
 
-			// remove any timer set up on this task			
-			InactivateTimer.CancelTimer(task);
+			// remove any timer set up on this task
+			timerCol.CancelTimer (task);
 			
 			if (task.State == TaskState.Active) {
 				bool showCompletedTasks =
@@ -642,17 +554,8 @@ namespace Tasque
 				if (showCompletedTasks) {
 					task.Complete ();
 					ShowCompletedTaskStatus ();
-				} else {
-					task.Inactivate ();
-					
-					// Read the inactivate timeout from a preference
-					int timeout =
-						preferences.GetInt (PreferencesKeys.InactivateTimeoutKey);
-					Logger.Debug ("Read timeout from prefs: {0}", timeout);
-					InactivateTimer timer =
-						new InactivateTimer (this, iter, task, (uint) timeout);
-					timer.StartTimer ();
-				}
+				} else
+					timerCol.StartTimer (task);
 			} else {
 				status = Catalog.GetString ("Action Canceled");
 				TaskWindow.ShowStatus (status);
@@ -806,157 +709,5 @@ namespace Tasque
 			NumberOfTasksChanged (this, EventArgs.Empty);
 		}
 		#endregion // EventHandlers
-		
-		#region Private Classes
-		/// <summary>
-		/// Does the work of walking a task through the Inactive -> Complete
-		/// states
-		/// </summary>
-		class InactivateTimer
-		{
-			/// <summary>
-			/// Keep track of all the timers so that the pulseTimeoutId can
-			/// be removed at the proper time.
-			/// </summary>
-			private static Dictionary<uint, InactivateTimer> timers;
-			
-			static InactivateTimer ()
-			{
-				timers = new Dictionary<uint,InactivateTimer> ();
-			}
-			
-			private TaskTreeView tree;
-			private ITask task;
-			private uint delay;
-			private uint secondsLeft;
-			protected uint pulseTimeoutId;
-			private uint secondTimerId;
-			private Gtk.TreeIter iter;
-			private Gtk.TreePath path;
-			
-			public InactivateTimer (TaskTreeView treeView,
-									Gtk.TreeIter taskIter,
-									ITask taskToComplete,
-									uint delayInSeconds)
-			{
-				tree = treeView;
-				iter = taskIter;
-				path = treeView.Model.GetPath (iter);
-				task = taskToComplete;
-				secondsLeft = delayInSeconds;
-				delay = delayInSeconds * 1000; // Convert to milliseconds
-				pulseTimeoutId = 0;
-			}
-			
-			public bool Paused {
-				get; set;
-			}
-
-			public void StartTimer ()
-			{
-				pulseTimeoutId = GLib.Timeout.Add (500, PulseAnimation);
-				StartSecondCountdown ();
-				task.TimerID = GLib.Timeout.Add (delay, CompleteTask);
-				timers [task.TimerID] = this;
-			}
-
-			public static void ToggleTimer (ITask task)
-			{
-				InactivateTimer timer = null;
-				if (timers.TryGetValue (task.TimerID, out timer))
-					timer.Paused = !timer.Paused;
-			}
-
-			public static void CancelTimer(ITask task)
-			{
-				Logger.Debug ("Timeout Canceled for task: " + task.Name);
-				InactivateTimer timer = null;
-				uint timerId = task.TimerID;
-				if(timerId != 0) {
-					if (timers.ContainsKey (timerId)) {
-						timer = timers [timerId];
-						timers.Remove (timerId);
-					}
-					GLib.Source.Remove(timerId);
-					GLib.Source.Remove (timer.pulseTimeoutId);
-					timer.pulseTimeoutId = 0;
-					task.TimerID = 0;
-				}
-				
-				if (timer != null) {
-					GLib.Source.Remove (timer.pulseTimeoutId);
-					timer.pulseTimeoutId = 0;
-					GLib.Source.Remove (timer.secondTimerId);
-					timer.secondTimerId = 0;
-					timer.Paused = false;
-				}
-			}
-			
-			private bool CompleteTask ()
-			{
-				if (!Paused) {
-					GLib.Source.Remove (pulseTimeoutId);
-					if (timers.ContainsKey (task.TimerID))
-						timers.Remove (task.TimerID);
-					
-					if(task.State != TaskState.Inactive)
-						return false;
-						
-					task.Complete ();
-					ShowCompletedTaskStatus ();
-					tree.Refilter ();
-					return false; // Don't automatically call this handler again
-				}
-
-				return true;
-			}
-			
-			private bool PulseAnimation ()
-			{
-				if (tree.Model == null) {
-					// Widget has been closed, no need to call this again
-					return false;
-				} else {
-					if (!Paused) {
-						// Emit this signal to cause the TreeView to update the row
-						// where the task is located.  This will allow the
-						// CellRendererPixbuf to update the icon.
-						tree.Model.EmitRowChanged (path, iter);
-						
-						// Return true so that this method will be called after an
-						// additional timeout duration has elapsed.
-						return true;
-					}
-				}
-
-				return true;
-			}
-
-			private void StartSecondCountdown ()
-			{
-				SecondCountdown();
-				secondTimerId = GLib.Timeout.Add (1000, SecondCountdown);
-			}
-
-			private bool SecondCountdown ()
-			{
-				if (tree.Model == null) {
-					// Widget has been closed, no need to call this again
-					return false;
-				}
-				if (!Paused) {
-					if (secondsLeft > 0 && task.State == TaskState.Inactive) {
-						status = String.Format (Catalog.GetString ("Completing Task In: {0}"), secondsLeft--);
-						TaskWindow.ShowStatus (status);
-						return true;
-					} else {
-						return false;
-					}
-				}
-				return true;
-			}
-	
-		}
-		#endregion // Private Classes
 	}
 }

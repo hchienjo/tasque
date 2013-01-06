@@ -252,16 +252,6 @@ namespace Tasque.Backends.Rtm
 		}
 		
 		/// <summary>
-		/// Sets the task to be inactive
-		/// </summary>
-		public override void Inactivate ()
-		{
-			Logger.Debug("Inactivating Task: " + Name);		
-			state = TaskState.Inactive;
-			CompletionDate = DateTime.Now;
-		}
-		
-		/// <summary>
 		/// Completes the task
 		/// </summary>
 		public override void Complete ()

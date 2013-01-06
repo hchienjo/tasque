@@ -133,13 +133,6 @@ Logger.Debug ("DummyTask.Activate ()");
 			CompletionDate = DateTime.MinValue;
 		}
 		
-		public override void Inactivate ()
-		{
-Logger.Debug ("DummyTask.Inactivate ()");
-			state = TaskState.Inactive;
-			CompletionDate = DateTime.Now;
-		}
-		
 		public override void Complete ()
 		{
 			Logger.Debug ("DummyTask.Complete ()");
