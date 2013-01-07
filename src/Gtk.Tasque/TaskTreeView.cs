@@ -2,7 +2,6 @@
 // User: boyd on 2/9/2008
 
 using System;
-using System.Collections.Generic;
 using Mono.Unix;
 using Tasque;
 using Gtk;
@@ -238,16 +237,7 @@ namespace Gtk.Tasque
 			// Timer Column
 			//
 			timerCol = new TimerColumn (preferences, model);
-			timerCol.TimerExpired += (sender, e) => {
-				if (!e.Canceled)
-					e.Task.Complete ();
-			};
-
-			timerCol.Tick += (sender, e) => {
-				var status = string.Format (Catalog.GetString ("Completing Task In: {0}"), e.CountdownTick);
-				TaskWindow.ShowStatus (status, 2000);
-			};
-			AppendColumn (timerCol);
+			AppendColumn (timerCol.TreeViewColumn);
 		}
 
 		void CellRenderer_EditingStarted (object o, EditingStartedArgs args)
@@ -263,7 +253,9 @@ namespace Gtk.Tasque
 				return;
 
 			taskBeingEdited = task;
-			timerCol.PauseTimer (taskBeingEdited);
+			var timer = timerCol.GetTimer (taskBeingEdited);
+			if (timer != null)
+				timer.Pause ();
 		}
 		
 		void SetCellRendererCallbacks (CellRendererText renderer, EditedHandler handler)
@@ -273,9 +265,9 @@ namespace Gtk.Tasque
 			// Canceled: timer can continue.
 			renderer.EditingCanceled += (o, args) => {
 				if (taskBeingEdited != null) {
-					var timerState = timerCol.GetTimerState (taskBeingEdited);
-					if (timerState != null && (TimerColumn.TaskTimerState)timerState == TimerColumn.TaskTimerState.Paused)
-						timerCol.ResumeTimer (taskBeingEdited);
+					var timer = timerCol.GetTimer (taskBeingEdited);
+					if (timer != null && timer.State == TaskCompleteTimerState.Paused)
+						timer.Resume ();
 					taskBeingEdited = null;
 				}
 			};
@@ -285,9 +277,9 @@ namespace Gtk.Tasque
 					handler (o, args);
 
 				if (taskBeingEdited != null) {
-					var timerState = timerCol.GetTimerState (taskBeingEdited);
-					if (timerState != null && (TimerColumn.TaskTimerState)timerState == TimerColumn.TaskTimerState.Paused)
-						timerCol.ResumeTimer (taskBeingEdited);
+					var timer = timerCol.GetTimer (taskBeingEdited);
+					if (timer != null && timer.State == TaskCompleteTimerState.Paused)
+						timer.Resume ();
 					taskBeingEdited = null;
 				}
 			};
@@ -338,8 +330,7 @@ namespace Gtk.Tasque
 			if (task == null)
 				crt.Active = false;
 			else {
-				var timerState = timerCol.GetTimerState (task);
-				crt.Active = !(task.State == TaskState.Active && timerState == null);
+				crt.Active = !(task.State == TaskState.Active && timerCol.GetTimer (task) == null);
 			}
 		}
 
@@ -448,9 +439,8 @@ namespace Gtk.Tasque
 			switch (task.State) {
 			case TaskState.Active:
 				// Strikeout the text
-				var timerState = timerCol.GetTimerState (task);
-				if (timerState != null && (TimerColumn.TaskTimerState)timerState
-				    == TimerColumn.TaskTimerState.Running)
+				var timer = timerCol.GetTimer (task);
+				if (timer != null && timer.State == TaskCompleteTimerState.Running)
 					formatString = "<span strikethrough=\"true\">{0}</span>";
 				break;
 			case TaskState.Deleted:
@@ -542,7 +532,9 @@ namespace Gtk.Tasque
 				return;
 
 			// remove any timer set up on this task
-			timerCol.CancelTimer (task);
+			var tmr = timerCol.GetTimer (task);
+			if (tmr != null)
+				tmr.Cancel ();
 			
 			if (task.State == TaskState.Active) {
 				bool showCompletedTasks =
@@ -554,8 +546,18 @@ namespace Gtk.Tasque
 				if (showCompletedTasks) {
 					task.Complete ();
 					ShowCompletedTaskStatus ();
-				} else
-					timerCol.StartTimer (task);
+				} else {
+					var timer = timerCol.CreateTimer (task);
+					timer.TimerStopped += (s, e) => {
+						if (!e.Canceled)
+							e.Task.Complete ();
+					};
+					timer.Tick += (s, e) => {
+						var status = string.Format (Catalog.GetString ("Completing Task In: {0}"), e.CountdownTick);
+						TaskWindow.ShowStatus (status, 2000);
+					};
+					timer.Start ();
+				}
 			} else {
 				status = Catalog.GetString ("Action Canceled");
 				TaskWindow.ShowStatus (status);

@@ -106,6 +106,10 @@
     <Compile Include="GtkWinApplication.cs" />
     <Compile Include="TreeModelListAdapter.cs" />
     <Compile Include="TimerColumn.cs" />
+    <Compile Include="TaskCompleteTimer.cs" />
+    <Compile Include="TaskCompleteTimerTickEventArgs.cs" />
+    <Compile Include="TaskCompleteTimerState.cs" />
+    <Compile Include="TaskCompleteTimerStoppedEventArgs.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <Compile Include="RemoteControl.cs" />
