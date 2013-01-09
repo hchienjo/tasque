@@ -73,6 +73,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Private>False</Private>
+      <Package>mono-addins</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libtasque\libtasque.csproj">
@@ -94,7 +98,6 @@
     <Compile Include="PreferencesDialog.cs" />
     <Compile Include="TaskCalendar.cs" />
     <Compile Include="TaskGroup.cs" />
-    <Compile Include="TaskTreeView.cs" />
     <Compile Include="TaskWindow.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,11 +108,10 @@
     <Compile Include="GtkLinuxApplication.cs" />
     <Compile Include="GtkWinApplication.cs" />
     <Compile Include="TreeModelListAdapter.cs" />
-    <Compile Include="TimerColumn.cs" />
-    <Compile Include="TaskCompleteTimer.cs" />
-    <Compile Include="TaskCompleteTimerTickEventArgs.cs" />
-    <Compile Include="TaskCompleteTimerState.cs" />
-    <Compile Include="TaskCompleteTimerStoppedEventArgs.cs" />
+    <Compile Include="ITaskColumn.cs" />
+    <Compile Include="TaskColumnExtensionAttribute.cs" />
+    <Compile Include="TaskRowEditingEventArgs.cs" />
+    <Compile Include="TaskView.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <Compile Include="RemoteControl.cs" />

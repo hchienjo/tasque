@@ -111,6 +111,8 @@ _BUILDFILES = \
 	src/Addins/Backends/IceCore/IceCoreBackend.csproj \
 	src/Addins/Backends/Rtm/RtmBackend.csproj \
 	src/Addins/Backends/Sqlite/SqliteBackend.csproj \
+	src/Addins/Gtk.Tasque.Columns/Gtk.Tasque.Columns.csproj \
+	src/Addins/Gtk.Tasque.TimerCompleteColumns/Gtk.Tasque.TimerCompleteColumns.csproj \
 	data/data.mdproj \
 	tests/tests.csproj \
 	po/po.mdproj

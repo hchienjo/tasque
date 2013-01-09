@@ -105,6 +105,12 @@ Makefile.in
 /src/tasque/locale/
 /src/tasque/Tasque.exe.Defines.config
 
+# /src/Addins/*/
+/src/Addins/*/*.dll
+/src/Addins/*/*.mdb
+/src/Addins/*/*.pdb
+/src/Addins/*/obj/
+
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll
 /src/Addins/Backends/*/*.mdb

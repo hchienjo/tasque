@@ -27,9 +27,11 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using Mono.Addins;
 using Mono.Unix;
 using Tasque;
 using Gtk;
+
 #if ENABLE_NOTIFY_SHARP
 using Notifications;
 #endif
@@ -40,6 +42,9 @@ namespace Gtk.Tasque
 	{
 		protected GtkApplicationBase ()
 		{
+			AddinManager.Initialize ();
+			AddinManager.Registry.Update ();
+			
 			confDir = Path.Combine (Environment.GetFolderPath (
 				Environment.SpecialFolder.ApplicationData), "tasque");
 			if (!Directory.Exists (confDir))

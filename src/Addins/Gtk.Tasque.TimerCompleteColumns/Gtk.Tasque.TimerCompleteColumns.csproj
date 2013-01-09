@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">LinuxDebug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BFF82E44-DE40-441A-95C8-95269AB9C53D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>.</OutputPath>
+    <RootNamespace>Gtk.Tasque.TimerCompleteColumns</RootNamespace>
+    <AssemblyName>Gtk.Tasque.TimerCompleteColumns</AssemblyName>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
+    <PackageName>tasque</PackageName>
+    <TopBuildDir>..\..\..</TopBuildDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxDebug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <OutputPath>..\..\..\build\bin\lib\tasque</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'LinuxRelease|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
+    <OutputPath>..\..\..\build\bin\lib\tasque</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinDebug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <DefineConstants>DEBUG;TRACE;WIN</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRelease|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <DefineConstants>TRACE;WIN</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Private>False</Private>
+      <Package>mono-addins</Package>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CompleteWithTimerColumn.cs" />
+    <Compile Include="TimerColumn.cs" />
+    <Compile Include="..\..\..\build\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="TaskCompleteTimer.cs" />
+    <Compile Include="TaskCompleteTimerState.cs" />
+    <Compile Include="TaskCompleteTimerStoppedEventArgs.cs" />
+    <Compile Include="TaskCompleteTimerTickEventArgs.cs" />
+  </ItemGroup>
+  <Import Project="..\..\..\build\X.Common.targets" />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gtk.Tasque\Gtk.Tasque.csproj">
+      <Project>{B19B9840-669D-4984-9772-E1F55193A67F}</Project>
+      <Name>Gtk.Tasque</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libtasque\libtasque.csproj">
+      <Project>{784C9AA8-2B28-400B-8CC4-DCDC48CA37F0}</Project>
+      <Name>libtasque</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gtk.Tasque.Columns\Gtk.Tasque.Columns.csproj">
+      <Project>{C8454FAA-CE15-4202-9B93-4B536A8BC32D}</Project>
+      <Name>Gtk.Tasque.Columns</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

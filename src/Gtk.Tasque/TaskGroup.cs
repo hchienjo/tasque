@@ -18,7 +18,7 @@ namespace Tasque
 	public class TaskGroup : Gtk.VBox
 	{
 		Gtk.Label header;
-		TaskTreeView treeView;
+		TaskView taskView;
 		TreeModel treeModel;
 		Gtk.HBox extraWidgetHBox;
 		Gtk.Widget extraWidget;
@@ -88,13 +88,13 @@ namespace Tasque
 			//
 			// Group TreeView
 			//
-			treeView = new TaskTreeView (treeModel, application.Preferences);
-			treeView.Show ();
-			PackStart (treeView, true, true, 0);
+			taskView = new TaskView (treeModel, application.Preferences);
+			taskView.TreeView.Show ();
+			PackStart (taskView.TreeView, true, true, 0);
 			
-			treeView.NumberOfTasksChanged += OnNumberOfTasksChanged;
-			treeView.RowActivated += OnRowActivated;
-			treeView.ButtonPressEvent += OnButtonPressed;
+			taskView.NumberOfTasksChanged += OnNumberOfTasksChanged;
+			taskView.TreeView.RowActivated += OnRowActivated;
+			taskView.TreeView.ButtonPressEvent += OnButtonPressed;
 		}
 		#endregion // Constructor
 		
@@ -187,16 +187,16 @@ namespace Tasque
 			}
 		}
 		
-		public Gtk.TreeView TreeView
+		public TaskView TaskView
 		{
-			get { return this.treeView; }
+			get { return this.taskView; }
 		}
 		#endregion // Public Properties
 		
 		#region Public Methods
 		public void Refilter (ICategory selectedCategory)
 		{
-			treeView.Refilter (selectedCategory);
+			taskView.Refilter (selectedCategory);
 		}
 		
 		/// <summary>
@@ -218,7 +218,7 @@ namespace Tasque
 		public bool ContainsTask (ITask task, out Gtk.TreeIter iter)
 		{
 			Gtk.TreeIter tempIter;
-			Gtk.TreeModel model = treeView.Model;
+			Gtk.TreeModel model = taskView.Model;
 			
 			iter = Gtk.TreeIter.Zero;
 			
@@ -239,19 +239,19 @@ namespace Tasque
 		
 		public int GetNChildren(Gtk.TreeIter iter)
 		{
-			return treeView.Model.IterNChildren();
+			return taskView.Model.IterNChildren();
 		}
 			
 		// Find the index within the tree
 		public int GetIterIndex (Gtk.TreeIter iter)
 		{
-			Gtk.TreePath path = treeView.Model.GetPath (iter);
+			Gtk.TreePath path = taskView.Model.GetPath (iter);
 			Gdk.Rectangle rect =
-				treeView.GetBackgroundArea (path, treeView.GetColumn (0));
+				taskView.TreeView.GetBackgroundArea (path, taskView.TreeView.GetColumn (0));
 			
 			int pos = 0;
 			Gtk.TreeIter tempIter;
-			Gtk.TreeModel model = treeView.Model;
+			Gtk.TreeModel model = taskView.Model;
 			ITask task = model.GetValue (iter, 0) as ITask;
 			
 			if (!model.GetIterFirst (out tempIter))
@@ -273,14 +273,14 @@ namespace Tasque
 		// Find the height position within the tree
 		public int GetIterPos (Gtk.TreeIter iter)
 		{
-			Gtk.TreePath path = treeView.Model.GetPath (iter);
+			Gtk.TreePath path = taskView.Model.GetPath (iter);
 			Gdk.Rectangle rect =
-				treeView.GetBackgroundArea (path, treeView.GetColumn (0));
+				taskView.TreeView.GetBackgroundArea (path, taskView.TreeView.GetColumn (0));
 			int height = rect.Height;
 			
 			int pos = 0;
 			Gtk.TreeIter tempIter;
-			Gtk.TreeModel model = treeView.Model;
+			Gtk.TreeModel model = taskView.Model;
 			ITask task = model.GetValue (iter, 0) as ITask;
 			
 			if (!model.GetIterFirst (out tempIter))
@@ -310,14 +310,14 @@ namespace Tasque
 			// Select the iter and go into editing mode on the task name
 			
 			// TODO: Figure out a way to NOT hard-code the column number
-			Gtk.TreeViewColumn nameColumn = treeView.Columns [2];
+			Gtk.TreeViewColumn nameColumn = taskView.TreeView.Columns [2];
 			Gtk.CellRendererText nameCellRendererText =
 				nameColumn.CellRenderers [0] as Gtk.CellRendererText;
-			path = treeView.Model.GetPath (iter);
+			path = taskView.Model.GetPath (iter);
 			
-			treeView.Model.IterNChildren();
+			taskView.Model.IterNChildren();
 				
-			treeView.SetCursorOnCell (path, nameColumn, nameCellRendererText, true);
+			taskView.TreeView.SetCursorOnCell (path, nameColumn, nameCellRendererText, true);
 		}
 		#endregion // Methods
 		
@@ -330,7 +330,7 @@ namespace Tasque
 		{
 			base.OnRealized ();
 			
-			if (treeView.GetNumberOfTasks () == 0
+			if (taskView.GetNumberOfTasks () == 0
 					&& (!Model.ShowCompletedTasks || hideWhenEmpty))
 				Hide ();
 			else
@@ -416,7 +416,7 @@ namespace Tasque
 		{
 			//Logger.Debug ("TaskGroup (\"{0}\").OnNumberOfTasksChanged ()", DisplayName);
 			// Check to see whether this group should be hidden or shown.
-			if (treeView.GetNumberOfTasks () == 0
+			if (taskView.GetNumberOfTasks () == 0
 					&& (!Model.ShowCompletedTasks || hideWhenEmpty))
 				Hide ();
 			else

@@ -558,7 +558,7 @@ namespace Gtk.Tasque
 
 			foreach (TaskGroup taskGroup in taskGroups) {
 				if (taskGroup.ContainsTask (task, out iter)) {
-					taskGroup.TreeView.Selection.SelectIter (iter);
+					taskGroup.TaskView.TreeView.Selection.SelectIter (iter);
 					break;
 				}
 			}
@@ -601,7 +601,7 @@ namespace Gtk.Tasque
 				//Logger.Debug("taskGroupHeights: {0}", taskGroupHeights);
 				TreePath start;
 				TreePath end;
-				if (taskGroup.TreeView.GetVisibleRange (out start, out end)) {
+				if (taskGroup.TaskView.TreeView.GetVisibleRange (out start, out end)) {
 					Logger.Debug ("TaskGroup '{0}' range: {1} - {2}",
 						taskGroup.DisplayName,
 						start.ToString (),
@@ -634,7 +634,7 @@ namespace Gtk.Tasque
 	
 					//scroll to the new task
 					scrolledWindow.Vadjustment.Value = scrollDistance;
-					taskGroup.TreeView.Selection.SelectIter (iter);
+					taskGroup.TaskView.TreeView.Selection.SelectIter (iter);
 				}
 				if (taskGroup.Visible) {
 					taskGroupHeights += taskGroup.Requisition.Height;
@@ -1144,10 +1144,10 @@ namespace Gtk.Tasque
 				ICategory category =
 					categoryComboBox.Model.GetValue (iter, 0) as ICategory;
 
-				TaskTreeView tree = futureGroup.TreeView as TaskTreeView;
+				TaskView tree = futureGroup.TaskView as TaskView;
 
 				// Don't add a new empty task if we're still editing a task
-				if (tree.TaskBeingEdited != null)
+				if (tree.IsTaskBeingEdited)
 					return;
 
 				ITask task = CreateTask (String.Empty, category);
@@ -1157,7 +1157,7 @@ namespace Gtk.Tasque
 				// Since we added an empty task, it'll always be on top
 				// Looks like a hack
 				Gtk.TreePath path = new Gtk.TreePath ("0");
-				tree.SetCursor (path, tree.GetColumn (2), true);
+				tree.TreeView.SetCursor (path, tree.TreeView.GetColumn (2), true);
 			}
 		}
 

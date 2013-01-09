@@ -85,6 +85,12 @@
     <Proj Include="X.Common.targets" />
     <Proj Include="X.Substitute.targets" />
     <Proj Include="X.Translate.targets" />
+    <Proj Include="..\src\Addins\Gtk.Tasque.Columns\Gtk.Tasque.Columns.csproj">
+      <Link>Addins\Gtk.Tasque.Columns.csproj</Link>
+    </Proj>
+    <Proj Include="..\src\Addins\Gtk.Tasque.TimerCompleteColumns\Gtk.Tasque.TimerCompleteColumns.csproj">
+      <Link>Addins\Gtk.Tasque.TimerCompleteColumns.csproj</Link>
+    </Proj>
   </ItemGroup>
   <ItemGroup>
     <None Include="build.csproj" />

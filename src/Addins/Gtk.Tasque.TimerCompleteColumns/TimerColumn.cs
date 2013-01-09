@@ -30,17 +30,12 @@ using Tasque;
 
 namespace Gtk.Tasque
 {
-	public class TimerColumn
-	{
-		public TimerColumn (IPreferences preferences, TreeModel model)
+	// TODO: Use xml addin description model to provide localized column name
+	[TaskColumnExtension ("Timer")]
+	public class TimerColumn : ITaskColumn
+	{		
+		public TimerColumn ()
 		{
-			if (model == null)
-				throw new ArgumentNullException ("model");
-			this.model = model;
-			if (preferences == null)
-				throw new ArgumentNullException ("preferences");
-			this.preferences = preferences;
-
 			timeoutTargets = new ConcurrentDictionary<ITask, TaskCompleteTimer> ();
 
 			TreeViewColumn = new TreeViewColumn {
@@ -55,7 +50,31 @@ namespace Gtk.Tasque
 			TreeViewColumn.SetCellDataFunc (renderer, TaskTimerCellDataFunc);
 		}
 		
+		public int DefaultPosition { get { return int.MaxValue; } }
+		
 		public TreeViewColumn TreeViewColumn { get; private set; }
+		
+		public void Initialize (TreeModel model, TaskView view, IPreferences preferences)
+		{
+			if (model == null)
+				throw new ArgumentNullException ("model");
+			this.model = model;
+			if (preferences == null)
+				throw new ArgumentNullException ("preferences");
+			this.preferences = preferences;
+			
+			view.RowEditingStarted += (sender, e) => {
+				var timer = GetTimer (e.Task);
+				if (timer != null && timer.State == TaskCompleteTimerState.Running)
+					timer.Pause ();
+			};
+			
+			view.RowEditingFinished += (sender, e) => {
+				var timer = GetTimer (e.Task);
+				if (timer != null && timer.State == TaskCompleteTimerState.Paused)
+					timer.Resume ();
+			};
+		}
 		
 		public TaskCompleteTimer CreateTimer (ITask task)
 		{
@@ -93,6 +112,9 @@ namespace Gtk.Tasque
 				return timer;
 			return null;
 		}
+		
+		public event EventHandler<TaskRowEditingEventArgs> CellEditingStarted;
+		public event EventHandler<TaskRowEditingEventArgs> CellEditingFinished;
 
 		void TaskTimerCellDataFunc (TreeViewColumn treeColumn, CellRenderer cell,
 		                            TreeModel treeModel, TreeIter iter)
