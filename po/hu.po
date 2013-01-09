@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-06 22:47+0100\n"
+"POT-Creation-Date: 2013-01-09 22:16+0100\n"
 "PO-Revision-Date: 2010-06-08 01:28+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
@@ -164,106 +164,6 @@ msgstr "Kategória"
 msgid "New task created."
 msgstr "Feladat létrehozva."
 
-#. Title for Completed/Checkbox Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:90 ../src/Gtk.Tasque/TaskWindow.cs:351
-msgid "Completed"
-msgstr "Kész"
-
-#. Title for Priority Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:107
-msgid "Priority"
-msgstr "Prioritás"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:120 ../src/Gtk.Tasque/TaskTreeView.cs:415
-#: ../src/Gtk.Tasque/TaskTreeView.cs:578
-msgid "1"
-msgstr "1"
-
-#. High
-#: ../src/Gtk.Tasque/TaskTreeView.cs:121 ../src/Gtk.Tasque/TaskTreeView.cs:412
-#: ../src/Gtk.Tasque/TaskTreeView.cs:576
-msgid "2"
-msgstr "2"
-
-#. Medium
-#: ../src/Gtk.Tasque/TaskTreeView.cs:122 ../src/Gtk.Tasque/TaskTreeView.cs:409
-#: ../src/Gtk.Tasque/TaskTreeView.cs:574
-msgid "3"
-msgstr "3"
-
-#. Low
-#: ../src/Gtk.Tasque/TaskTreeView.cs:123 ../src/Gtk.Tasque/TaskTreeView.cs:418
-msgid "-"
-msgstr "–"
-
-#. Title for Task Name Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:137
-msgid "Task Name"
-msgstr "Feladat neve"
-
-#. Title for Due Date Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:179
-msgid "Due Date"
-msgstr "Határidő"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:195
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:660
-#: ../src/Gtk.Tasque/TaskTreeView.cs:663 ../src/Gtk.Tasque/TaskTreeView.cs:668
-msgid "M/d - "
-msgstr "M d. – "
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:193 ../src/Gtk.Tasque/TaskTreeView.cs:660
-#: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
-msgid "Today"
-msgstr "Ma"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:195 ../src/Gtk.Tasque/TaskTreeView.cs:663
-#: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
-msgid "Tomorrow"
-msgstr "Holnap"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:197 ../src/Gtk.Tasque/TaskTreeView.cs:199
-#: ../src/Gtk.Tasque/TaskTreeView.cs:201 ../src/Gtk.Tasque/TaskTreeView.cs:203
-#: ../src/Gtk.Tasque/TaskTreeView.cs:205 ../src/Gtk.Tasque/TaskTreeView.cs:488
-#: ../src/Gtk.Tasque/TaskTreeView.cs:677
-msgid "M/d - ddd"
-msgstr "M d. – ddd"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:207 ../src/Gtk.Tasque/TaskTreeView.cs:668
-msgid "In 1 Week"
-msgstr "Egy héten belül"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:208 ../src/Gtk.Tasque/TaskTreeView.cs:665
-#: ../src/Gtk.Tasque/Utilities.cs:308
-msgid "No Date"
-msgstr "Nincs dátum"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:209 ../src/Gtk.Tasque/TaskTreeView.cs:670
-msgid "Choose Date..."
-msgstr "Válasszon dátumot…"
-
-#. Title for Notes Column
-#: ../src/Gtk.Tasque/TaskTreeView.cs:225
-msgid "Notes"
-msgstr "Jegyzetek"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:247
-#, csharp-format
-msgid "Completing Task In: {0}"
-msgstr "Feladat befejezése: {0}"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:327
-msgid "Task Completed"
-msgstr "Feladat befejezve"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:490
-msgid "M/d/yy - ddd"
-msgstr "yy. M d. – ddd"
-
-#: ../src/Gtk.Tasque/TaskTreeView.cs:560
-msgid "Action Canceled"
-msgstr "Művelet megszakítva"
-
 #. The new task entry widget
 #. Clear the entry if it contains the default text
 #: ../src/Gtk.Tasque/TaskWindow.cs:157 ../src/Gtk.Tasque/TaskWindow.cs:828
@@ -284,6 +184,18 @@ msgstr "_Feladat hozzáadása"
 msgid "Overdue"
 msgstr "Késik"
 
+#: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:50
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:117
+msgid "Today"
+msgstr "Ma"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:52
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:120
+msgid "Tomorrow"
+msgstr "Holnap"
+
 #: ../src/Gtk.Tasque/TaskWindow.cs:320
 msgid "Next 7 Days"
 msgstr "Következő hét nap"
@@ -291,6 +203,12 @@ msgstr "Következő hét nap"
 #: ../src/Gtk.Tasque/TaskWindow.cs:336
 msgid "Future"
 msgstr "Jövő"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:351
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:39
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:39
+msgid "Completed"
+msgstr "Kész"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
 #: ../src/Gtk.Tasque/TaskWindow.cs:487 ../src/Gtk.Tasque/TaskWindow.cs:1230
@@ -337,10 +255,6 @@ msgstr "Feladat betöltése…"
 msgid "Not connected."
 msgstr "Nincs kapcsolat."
 
-#: ../src/Gtk.Tasque/TimerColumn.cs:48
-msgid "Timer"
-msgstr "Időzítő"
-
 #: ../src/Gtk.Tasque/Utilities.cs:274
 #, csharp-format
 msgid "Today, {0}"
@@ -383,6 +297,12 @@ msgstr "MMMM d, h:mm tt"
 #: ../src/Gtk.Tasque/Utilities.cs:306
 msgid "MMMM d"
 msgstr "MMMM d"
+
+#: ../src/Gtk.Tasque/Utilities.cs:308
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:122
+msgid "No Date"
+msgstr "Nincs dátum"
 
 #: ../src/Gtk.Tasque/Utilities.cs:311
 msgid "MMMM d yyyy, h:mm tt"
@@ -433,6 +353,100 @@ msgstr "Meghiúsult, próbálja újra"
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:150
 msgid "Thank You"
 msgstr "Köszönjük"
+
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:80
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:97
+msgid "Task Completed"
+msgstr "Feladat befejezve"
+
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:82
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:113
+msgid "Action Canceled"
+msgstr "Művelet megszakítva"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:39
+msgid "Due Date"
+msgstr "Határidő"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:50
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:52
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:64
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:117
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:119
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:124
+msgid "M/d - "
+msgstr "M d. – "
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:54
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:56
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:58
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:60
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:62
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:134
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
+msgid "M/d - ddd"
+msgstr "M d. – ddd"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:64
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:125
+msgid "In 1 Week"
+msgstr "Egy héten belül"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:66
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:127
+msgid "Choose Date..."
+msgstr "Válasszon dátumot…"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:193
+msgid "M/d/yy - ddd"
+msgstr "yy. M d. – ddd"
+
+#: ../src/Addins/Gtk.Tasque.Columns/NotesColumn.cs:45
+msgid "Notes"
+msgstr "Jegyzetek"
+
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:39
+msgid "Priority"
+msgstr "Prioritás"
+
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:48
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:88
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:149
+msgid "1"
+msgstr "1"
+
+#. High
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:49
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:86
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:146
+msgid "2"
+msgstr "2"
+
+#. Medium
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:50
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:84
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:143
+msgid "3"
+msgstr "3"
+
+#. Low
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:152
+msgid "-"
+msgstr "–"
+
+#: ../src/Addins/Gtk.Tasque.Columns/TaskNameColumn.cs:40
+msgid "Task Name"
+msgstr "Feladat neve"
+
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:107
+#, csharp-format
+msgid "Completing Task In: {0}"
+msgstr "Feladat befejezése: {0}"
+
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/TimerColumn.cs:42
+msgid "Timer"
+msgstr "Időzítő"
 
 #. Token "O". Notice only the suffix is translated.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
