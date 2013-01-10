@@ -244,19 +244,9 @@ namespace Tasque
 				if (task.CompletionDate == DateTime.MinValue)
 					return false; // Just in case
 				
-				if (!IsToday (task.CompletionDate))
+				if (task.CompletionDate.Date != DateTime.Today)
 					return false;
 			}
-			
-			return true;
-		}
-		
-		private bool IsToday (DateTime testDate)
-		{
-			DateTime today = DateTime.Now;
-			if (today.Year != testDate.Year
-					|| today.DayOfYear != testDate.DayOfYear)
-				return false;
 			
 			return true;
 		}
