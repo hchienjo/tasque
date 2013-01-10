@@ -43,8 +43,6 @@ namespace Tasque
 
 			treeModel = CreateModel (rangeStart, rangeEnd, tasks);
 			
-			Application.Preferences.SettingChanged += OnSettingChanged;
-			
 			// TODO: Add something to watch events so that the group will
 			// automatically refilter and display/hide itself accordingly.
 			
@@ -330,7 +328,7 @@ namespace Tasque
 		{
 			base.OnRealized ();
 			
-			if (!Model.Any () && (!Model.ShowCompletedTasks || hideWhenEmpty))
+			if (!Model.Any () && hideWhenEmpty)
 				Hide ();
 			else
 				Show ();
@@ -415,7 +413,7 @@ namespace Tasque
 		{
 			//Logger.Debug ("TaskGroup (\"{0}\").OnNumberOfTasksChanged ()", DisplayName);
 			// Check to see whether this group should be hidden or shown.
-			if (!Model.Any () && (!Model.ShowCompletedTasks || hideWhenEmpty))
+			if (!Model.Any () && hideWhenEmpty)
 				Hide ();
 			else
 				Show ();
@@ -434,24 +432,6 @@ namespace Tasque
 			// Pass this on to the TaskWindow
 			if (ButtonPressed != null)
 				ButtonPressed (sender, args);
-		}
-		
-		protected void OnSettingChanged (IPreferences preferences,
-										 string settingKey)
-		{
-			if (settingKey.CompareTo (PreferencesKeys.ShowCompletedTasksKey) != 0)
-				return;
-			
-			bool newValue =
-				preferences.GetBool (PreferencesKeys.ShowCompletedTasksKey);
-			if (Model.ShowCompletedTasks == newValue)
-				return; // don't do anything if nothing has changed
-			
-			Model.ShowCompletedTasks = newValue;
-			
-			ICategory cat = GetSelectedCategory ();
-			if (cat != null)
-				Refilter (cat);
 		}
 
 		#endregion // Event Handlers

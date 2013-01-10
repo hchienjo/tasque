@@ -14,15 +14,6 @@ namespace Tasque
 	public class TaskGroupModel
 		: IEnumerable<ITask>, INotifyCollectionChanged, INotifyPropertyChanged, IDisposable
 	{
-		public bool ShowCompletedTasks
-		{
-			get { return showCompletedTasks; }
-			set {
-				showCompletedTasks = value;
-				OnPropertyChanged ("ShowCompletedTasks");
-			}
-		}
-
 		public DateTime TimeRangeStart
 		{
 			get { return timeRangeStart; }

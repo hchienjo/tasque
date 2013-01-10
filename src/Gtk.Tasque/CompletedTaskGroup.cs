@@ -34,13 +34,29 @@ namespace Tasque
 		                           DateTime rangeEnd, ICollection<ITask> tasks, INativeApplication application)
 			: base (groupName, rangeStart, rangeEnd, new CompletedTasksSortModel(tasks), application)
 		{
-			// Don't hide this group when it's empty because then the range
-			// slider won't appear and the user won't be able to customize the
-			// range.
-			this.HideWhenEmpty = false;
+			var preferences = application.Preferences;
+			// Only hide this group, when ShowCompletedTasks is unset in prefs.
+			// If it's set, don't hide this group when it's empty because then the range
+			// slider won't appear and the user won't be able to customize the range.
+			HideWhenEmpty = !preferences.GetBool (PreferencesKeys.ShowCompletedTasksKey);
 			
-			selectedCategory = GetSelectedCategory ();
-			application.Preferences.SettingChanged += OnSelectedCategorySettingChanged;
+			// track changes in prefs for ShowCompletedTasks setting
+			preferences.SettingChanged += (prefs, key) => {
+				switch (key) {
+				case PreferencesKeys.ShowCompletedTasksKey:
+					HideWhenEmpty = !prefs.GetBool (PreferencesKeys.ShowCompletedTasksKey);
+					
+					// refresh ui
+					var cat = GetSelectedCategory ();
+					if (cat != null)
+						Refilter (cat);
+					break;
+				case PreferencesKeys.SelectedCategoryKey:
+					selectedCategory = GetSelectedCategory ();
+					Refilter (selectedCategory);
+					break;
+				}
+			};
 			
 			CreateRangeSlider ();
 			UpdateDateRanges ();
@@ -85,17 +101,6 @@ namespace Tasque
 			Model = new CompletedTaskGroupModel (rangeStart, rangeEnd,
 			                                     tasks, Application.Preferences);
 			return new TreeModelListAdapter<ITask> (Model);
-		}
-		
-		protected void OnSelectedCategorySettingChanged (
-								IPreferences preferences,
-								string settingKey)
-		{
-			if (settingKey.CompareTo (PreferencesKeys.SelectedCategoryKey) != 0)
-				return;
-			
-			selectedCategory = GetSelectedCategory ();
-			Refilter (selectedCategory);
 		}
 		
 		protected ICategory GetSelectedCategory ()
