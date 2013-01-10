@@ -330,8 +330,7 @@ namespace Tasque
 		{
 			base.OnRealized ();
 			
-			if (taskView.GetNumberOfTasks () == 0
-					&& (!Model.ShowCompletedTasks || hideWhenEmpty))
+			if (!Model.Any () && (!Model.ShowCompletedTasks || hideWhenEmpty))
 				Hide ();
 			else
 				Show ();
@@ -416,8 +415,7 @@ namespace Tasque
 		{
 			//Logger.Debug ("TaskGroup (\"{0}\").OnNumberOfTasksChanged ()", DisplayName);
 			// Check to see whether this group should be hidden or shown.
-			if (taskView.GetNumberOfTasks () == 0
-					&& (!Model.ShowCompletedTasks || hideWhenEmpty))
+			if (!Model.Any () && (!Model.ShowCompletedTasks || hideWhenEmpty))
 				Hide ();
 			else
 				Show ();

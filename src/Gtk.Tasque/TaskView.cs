@@ -123,11 +123,6 @@ namespace Gtk.Tasque
 			modelFilter.Refilter ();
 		}
 		
-		public int GetNumberOfTasks ()
-		{
-			return modelFilter.IterNChildren ();
-		}
-		
 		public ITaskColumn GetColumn (Type taskColumnType)
 		{
 			return columns.SingleOrDefault (c => c.GetType () == taskColumnType);
