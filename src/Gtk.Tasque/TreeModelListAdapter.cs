@@ -41,7 +41,7 @@ namespace Gtk.Tasque
 				throw new ArgumentNullException ("source");
 			var observableSource = source as INotifyCollectionChanged;
 			if (observableSource == null)
-				throw new ArgumentException ("source must be InotifyCollectionChanged");
+				throw new ArgumentException ("source must be INotifyCollectionChanged");
 			this.source = source;
 			observableSource.CollectionChanged += HandleCollectionChanged;
 			
