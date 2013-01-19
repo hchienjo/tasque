@@ -247,7 +247,7 @@ namespace Tasque.Backends.Rtm
 		public override void Activate ()
 		{
 			Logger.Debug("Activating Task: " + Name);
-			state = TaskState.Active;
+			SetState (TaskState.Active);
 			CompletionDate = DateTime.MinValue;
 		}
 		
@@ -256,8 +256,8 @@ namespace Tasque.Backends.Rtm
 		/// </summary>
 		public override void Complete ()
 		{
-			Logger.Debug("Completing Task: " + Name);			
-			state = TaskState.Completed;
+			Logger.Debug("Completing Task: " + Name);
+			SetState (TaskState.Completed);
 			if(CompletionDate == DateTime.MinValue)
 				CompletionDate = DateTime.Now;
 		}
@@ -267,7 +267,7 @@ namespace Tasque.Backends.Rtm
 		/// </summary>
 		public override void Delete ()
 		{
-			state = TaskState.Deleted;
+			SetState (TaskState.Deleted);
 			rtmBackend.DeleteTask (this);
 		}
 		
@@ -318,5 +318,14 @@ namespace Tasque.Backends.Rtm
 		}		
 
 		#endregion // Public Methods
+
+		void SetState (TaskState value)
+		{
+			if (value == state)
+				return;
+			OnPropertyChanging ("State");
+			state = value;
+			OnPropertyChanged ("State");
+		}
 	}
 }

@@ -129,21 +129,21 @@ Logger.Debug ("Setting new task priority");
 		public override void Activate ()
 		{
 Logger.Debug ("DummyTask.Activate ()");
-			state = TaskState.Active;
+			SetState (TaskState.Active);
 			CompletionDate = DateTime.MinValue;
 		}
 		
 		public override void Complete ()
 		{
 			Logger.Debug ("DummyTask.Complete ()");
-			state = TaskState.Completed;
+			SetState (TaskState.Completed);
 			CompletionDate = DateTime.Now;
 		}
 		
 		public override void Delete ()
 		{
 Logger.Debug ("DummyTask.Delete ()");
-			state = TaskState.Deleted;
+			SetState (TaskState.Deleted);
 			backend.DeleteTask (this);
 		}
 		
@@ -161,5 +161,14 @@ Logger.Debug ("DummyTask.Delete ()");
 		}
 
 		#endregion // Public Methods
+
+		void SetState (TaskState value)
+		{
+			if (value == state)
+				return;
+			OnPropertyChanging ("State");
+			state = value;
+			OnPropertyChanged ("State");
+		}
 	}
 }

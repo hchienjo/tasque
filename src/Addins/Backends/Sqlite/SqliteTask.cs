@@ -144,9 +144,11 @@ namespace Tasque.Backends.Sqlite
 		{
 			get { return (TaskState) this.state; }
 			set {
+				OnPropertyChanging ("State");
 				this.state = (int) value;
 				string command = String.Format("UPDATE Tasks set State='{0}' where ID='{1}'", this.state, id);
 				backend.Database.ExecuteScalar(command);
+				OnPropertyChanged ("State");
 			}
 		}
 
