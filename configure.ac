@@ -69,6 +69,11 @@ PKG_CHECK_MODULES([DBUS_SHARP_10], [dbus-sharp-1.0])
 PKG_CHECK_MODULES([DBUS_SHARP_GLIB_10], [dbus-sharp-glib-1.0])
 
 #
+# Check for Mono.Addins
+#
+PKG_CHECK_MODULES(MONO_ADDINS, mono-addins >= 0.6)
+
+#
 # Allow the project to build without notify-sharp
 #
 PKG_CHECK_MODULES(NOTIFY_SHARP, notify-sharp, enable_notify_sharp="yes", enable_notify_sharp="no")
