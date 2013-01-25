@@ -1,5 +1,5 @@
 //
-// TaskCompletingTimer.cs
+// TaskCompleteTimer.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -24,7 +24,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Timers;
 using Tasque;
 using Gdk;
 
@@ -47,42 +46,20 @@ namespace Gtk.Tasque
 		{
 			if (model == null)
 				throw new ArgumentNullException ("model");
-			if (timeout < 0)
+
+			// prevent overflows
+			if (timeout < 0 || timeout > 1000)
 				timeout = 5;
-			
+
 			CurrentAnimPixbuf = inactiveAnimPixbufs [0];
 			
-			long lngTimeout = timeout * 1000;
-			var interval = lngTimeout / (double)inactiveAnimPixbufs.Length;
+			var msTimeout = timeout * 1000;
+			interval = (uint)(msTimeout / inactiveAnimPixbufs.Length);
 			
 			this.model = model;
 			this.iter = iter;
-			
-			timer = new Timer (interval);
-			timer.Elapsed += delegate {
-				try {
-					CurrentAnimPixbuf = inactiveAnimPixbufs [++i];
-					NotifyChange ();
-				} catch (IndexOutOfRangeException) {
-					StopTimer (false);
-				}
-			};
-			
+
 			countdown = timeout;
-			sTimer = new Timer (1000);
-			sTimer.Elapsed += delegate {
-				if (countdown == 0) {
-					sTimer.Dispose ();
-					return;
-				}
-				
-				var task = model.GetValue (iter, 0) as ITask;
-				if (task == null)
-					return;
-				
-				if (Tick != null)
-					Tick (this, new TaskCompleteTimerTickEventArgs (--countdown, task));
-			};
 		}
 		
 		public Pixbuf CurrentAnimPixbuf { get; private set; }
@@ -91,26 +68,21 @@ namespace Gtk.Tasque
 		
 		public void Start ()
 		{
-			timer.Start ();
-			sTimer.Start ();
 			State = TaskCompleteTimerState.Running;
 			NotifyChange ();
+			GLib.Timeout.Add (interval, PixbufTimerElapsed);
+			GLib.Timeout.Add (1000, SecondsTimerElapsed);
 		}
 		
 		public void Pause ()
 		{
-			timer.Stop ();
-			sTimer.Stop ();
 			State = TaskCompleteTimerState.Paused;
 			NotifyChange ();
 		}
 		
 		public void Resume ()
 		{
-			timer.Start ();
-			sTimer.Start ();
-			State = TaskCompleteTimerState.Running;
-			NotifyChange ();
+			Start ();
 		}
 		
 		public void Cancel ()
@@ -130,26 +102,57 @@ namespace Gtk.Tasque
 		
 		void StopTimer (bool canceled)
 		{
-			timer.Dispose ();
-			sTimer.Dispose ();
 			State = TaskCompleteTimerState.Stopped;
 			CurrentAnimPixbuf = null;
 			
 			var task = model.GetValue (iter, 0) as ITask;
 			if (task == null)
 				return;
-			
+
 			NotifyChange ();
 			
 			if (TimerStopped != null)
 				TimerStopped (this, new TaskCompleteTimerStoppedEventArgs (task, canceled));
 		}
+
+		bool PixbufTimerElapsed ()
+		{
+			// if Pause () has been called on timer or timer has stopped, don't proceed
+			if (State == TaskCompleteTimerState.Paused || State == TaskCompleteTimerState.Stopped)
+				return false;
+			
+			try {
+				CurrentAnimPixbuf = inactiveAnimPixbufs [++i];
+				NotifyChange ();
+				return true;
+			} catch (IndexOutOfRangeException) {
+				StopTimer (false);
+				return false;
+			}
+		}
+		
+		bool SecondsTimerElapsed ()
+		{
+			// if Pause () has been called on timer or timer has stopped, don't proceed
+			if (State == TaskCompleteTimerState.Paused || State == TaskCompleteTimerState.Stopped)
+				return false;
+			
+			if (countdown == 0)
+				return false;
+			
+			var task = model.GetValue (iter, 0) as ITask;
+			if (task == null)
+				return false;
+			
+			if (Tick != null)
+				Tick (this, new TaskCompleteTimerTickEventArgs (--countdown, task));
+			return true;
+		}
 		
 		int i;
 		int countdown;
+		uint interval;
 		TreeModel model;
 		TreeIter iter;
-		Timer timer;
-		Timer sTimer;
 	}
 }
