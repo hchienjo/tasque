@@ -61,7 +61,7 @@ namespace Tasque
 			
 			VBox.PackStart (sw, true, true, 0);
 
-			if(task.SupportsMultipleNotes) {
+			if(task.NoteSupport == NoteSupport.Multiple) {
 				addButton = new Gtk.Button(Gtk.Stock.Add);
 				addButton.Show();
 				this.ActionArea.PackStart(addButton);

@@ -176,9 +176,9 @@ namespace Tasque.Backends.Rtm
 		/// <value>
 		/// Returns if the task supports multiple notes
 		/// </value>
-		public override bool SupportsMultipleNotes
+		public override NoteSupport NoteSupport
 		{
-			get { return true; }
+			get { return NoteSupport.Multiple; }
 		}
 		
 		/// <value>

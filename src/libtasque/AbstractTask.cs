@@ -51,7 +51,7 @@ namespace Tasque
 			get;
 		}
 		
-		public abstract bool SupportsMultipleNotes
+		public abstract NoteSupport NoteSupport
 		{
 			get;
 		}

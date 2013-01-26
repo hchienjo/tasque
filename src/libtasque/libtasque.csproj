@@ -80,6 +80,7 @@
     <Compile Include="AllCategory.cs" />
     <Compile Include="IPreferences.cs" />
     <Compile Include="PreferencesKeys.cs" />
+    <Compile Include="NoteSupport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />

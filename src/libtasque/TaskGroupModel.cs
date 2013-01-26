@@ -274,7 +274,7 @@ namespace Tasque
 				IsComplete = originalTask.IsComplete;
 				Priority = originalTask.Priority;
 				HasNotes = originalTask.HasNotes;
-				SupportsMultipleNotes = originalTask.SupportsMultipleNotes;
+				NoteSupport = originalTask.NoteSupport;
 				State = originalTask.State;
 				Category = originalTask.Category;
 				TimerID = originalTask.TimerID;
@@ -298,7 +298,7 @@ namespace Tasque
 			
 			public bool HasNotes { get; private set; }
 			
-			public bool SupportsMultipleNotes { get; private set; }
+			public NoteSupport NoteSupport { get; private set; }
 			
 			public TaskState State { get; private set; }
 			

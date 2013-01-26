@@ -130,9 +130,9 @@ namespace Tasque.Backends.Sqlite
 			}
 		}
 		
-		public override bool SupportsMultipleNotes
+		public override NoteSupport NoteSupport
 		{
-			get { return true; }
+			get { return NoteSupport.Multiple; }
 		}
 		
 		public override TaskState State

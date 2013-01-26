@@ -72,14 +72,14 @@ namespace Tasque
 		{
 			get;
 		}
-		
+
+		/// <summary>
+		/// Gets the type of note support of this task/backend.
+		/// </summary>
 		/// <value>
-		/// Should be true if the task supports having multiple notes.
+		/// The note support.
 		/// </value>
-		bool SupportsMultipleNotes
-		{
-			get;
-		}
+		NoteSupport NoteSupport { get; }
 		
 		/// <value>
 		/// The state of the task.  Note: sreeves' LOVES source code comments
