@@ -9,8 +9,6 @@ namespace Tasque
 {
 	public abstract class AbstractTask : ITask
 	{
-		private uint timerID = 0;
-		
 		#region Properties
 		public abstract string Id
 		{
@@ -71,16 +69,6 @@ namespace Tasque
 		{
 			get;
 		}
-
-		/// <value>
-		/// The ID of the timer used to complete a task after being marked
-		/// inactive.
-		/// </value>
-		public uint TimerID
-		{
-			get { return timerID; }
-			set { timerID = value; }
-		}		
 		#endregion // Properties
 		
 		#region Methods

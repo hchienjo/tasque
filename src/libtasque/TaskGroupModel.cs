@@ -277,7 +277,6 @@ namespace Tasque
 				NoteSupport = originalTask.NoteSupport;
 				State = originalTask.State;
 				Category = originalTask.Category;
-				TimerID = originalTask.TimerID;
 			}
 			
 			public int OriginalIndex { get; private set; }
@@ -303,8 +302,6 @@ namespace Tasque
 			public TaskState State { get; private set; }
 			
 			public ICategory Category { get; set; }
-			
-			public uint TimerID { get; set; }
 			
 			#region Explicit content
 			List<INote> ITask.Notes {

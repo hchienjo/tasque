@@ -106,16 +106,6 @@ namespace Tasque
 		{
 			get;
 		}
-		
-		/// <value>
-		/// The ID of the timer used to complete a task after being marked
-		/// inactive.
-		/// </value>
-		uint TimerID
-		{
-			get;
-			set;
-		}	
 
 		#endregion // Properties
 		
