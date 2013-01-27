@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Tasque.Backends.Dummy
 {
-	public class DummyTask : AbstractTask
+	public class DummyTask : Task
 	{
 		DummyBackend backend;
 		string name;

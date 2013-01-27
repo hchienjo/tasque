@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Tasque.Backends.Rtm
 {
-	public class RtmTask : AbstractTask
+	public class RtmTask : Task
 	{
 		private RtmBackend rtmBackend;
 		private TaskState state;
@@ -15,7 +15,7 @@ namespace Tasque.Backends.Rtm
 		private List<INote> notes;		
 
 		TaskSeries taskSeries;
-		Task task;
+		RtmNet.Task task;
 		
 		/// <summary>
 		/// Constructor that is created from an RTM Task Series
@@ -23,13 +23,13 @@ namespace Tasque.Backends.Rtm
 		/// <param name="taskSeries">
 		/// A <see cref="TaskSeries"/>
 		/// </param>
-		public RtmTask(TaskSeries taskSeries, Task task, RtmBackend be, string listID)
+		public RtmTask(TaskSeries taskSeries, RtmNet.Task task, RtmBackend be, string listID)
 		{
 			this.taskSeries = taskSeries;
 			this.rtmBackend = be;
 			this.category = be.GetCategory(listID);
 			this.task = task;
-			
+
 			if(CompletionDate == DateTime.MinValue )
 				state = TaskState.Active;
 			else

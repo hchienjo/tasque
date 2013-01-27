@@ -34,7 +34,7 @@ using Hiveminder;
 
 namespace Tasque.Backends.HmBackend
 {
-	public class HmTask : AbstractTask
+	public class HmTask : Task
 	{
 		Task task;
 

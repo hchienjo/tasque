@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Tasque
 {
-	public abstract class AbstractTask : ITask
+	public abstract class Task : ITask
 	{
 		#region Properties
 		public abstract string Id

@@ -8,7 +8,7 @@ using Mono.Data.Sqlite;
 
 namespace Tasque.Backends.Sqlite
 {
-	public class SqliteTask : AbstractTask
+	public class SqliteTask : Task
 	{
 		private SqliteBackend backend;
 		private int id;
