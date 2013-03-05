@@ -4,7 +4,7 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="Tasque">
-          <Directory Id="DATADIR" Name="tasque">
+          <Directory Id="DATADIR" Name="share">
             <Directory Id="icons" Name="icons">
               <Directory Id="hicolor" Name="hicolor">
                 <Directory Id="_6x16" Name="16x16">
