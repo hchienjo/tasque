@@ -12,7 +12,7 @@
     <AssemblyName>IceCoreBackend</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ReleaseVersion>0.1.12.2</ReleaseVersion>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
     <EnableBackendIceCore Condition=" '$(EnableBackendIceCore)' == '' ">false</EnableBackendIceCore>
     <BuildEnabled>$(EnableBackendIceCore)</BuildEnabled>
     <PackageName>tasque</PackageName>

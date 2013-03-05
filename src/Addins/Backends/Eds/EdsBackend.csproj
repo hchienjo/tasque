@@ -12,7 +12,7 @@
     <AssemblyName>EdsBackend</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ReleaseVersion>0.1.12.2</ReleaseVersion>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
     <EnableBackendEds Condition=" '$(EnableBackendEds)' == '' ">false</EnableBackendEds>
     <BuildEnabled>$(EnableBackendEds)</BuildEnabled>
     <PackageName>tasque</PackageName>

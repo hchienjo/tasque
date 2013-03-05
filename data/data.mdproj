@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}</ProjectGuid>
     <OutputPath>.</OutputPath>
-    <ReleaseVersion>0.1.12.2</ReleaseVersion>
+    <ReleaseVersion>0.1.13</ReleaseVersion>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..</TopBuildDir>
   </PropertyGroup>
