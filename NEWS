@@ -4,6 +4,13 @@ Website: http://live.gnome.org/Tasque
 Bugs/Issues: http://bugzilla.gnome.org/browse.cgi?product=Tasque
 Mailing list: http://groups.google.com/group/tasky
 
+Version 0.1.12.2 (Windows release)
+* Fix for "Setup doesn't recognize Gtk# being installed".
+* Fix for "Icons not visible".
+
+Version 0.1.12.1 (Windows release)
+* Fix cab file missing from installer.
+
 Version 0.1.12
 * xbuild is now used for the build. An interface for autotools build is
 still in place. So you can do "./configure && make && make install".
