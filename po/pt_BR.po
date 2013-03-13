@@ -11,17 +11,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tasque HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-09 22:16+0100\n"
-"PO-Revision-Date: 2010-09-11 18:45-0300\n"
-"Last-Translator: Mateus Zenaide Henriques <matzenh@gmail.com>\n"
+"Project-Id-Version: tasque\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-01-30 19:09+0000\n"
+"PO-Revision-Date: 2013-03-11 23:01-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -35,32 +37,31 @@ msgstr "Gerenciamento fácil e rápido de tarefas"
 msgid "Task Manager"
 msgstr "Gerenciador de tarefas"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:160
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:165
 #: ../src/Gtk.Tasque/Utilities.cs:282
 msgid "Yesterday"
 msgstr "Ontem"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:162
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
 msgid "Last 7 Days"
 msgstr "Últimos 7 dias"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:164
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
 msgid "Last Month"
 msgstr "Último mês"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:166
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
 msgid "Last Year"
 msgstr "Último ano"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:174
 #: ../src/libtasque/AllCategory.cs:30
 msgid "All"
 msgstr "Todas"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © 2008 - 2011 Novell, Inc e contribuidores."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:89
 #, csharp-format
@@ -116,7 +117,7 @@ msgstr "Atualizar tarefas..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:190
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Alternar para janela de tarefas"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:24
 #, csharp-format
