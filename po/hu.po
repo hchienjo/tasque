@@ -5,19 +5,21 @@
 #
 # Gergely Szarka <gszarka at invitel dot hu>, 2009.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2010.
+# Balázs Úr <urbalazs at gmail dot com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-09 22:16+0100\n"
-"PO-Revision-Date: 2010-06-08 01:28+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-01-20 00:20+0000\n"
+"PO-Revision-Date: 2013-03-16 20:22+0100\n"
+"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../data/tasque.desktop.in.h:1
@@ -55,9 +57,8 @@ msgid "All"
 msgstr "Összes"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © Novell, Inc. és a közreműködők, 2008-2011."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:89
 #, csharp-format
@@ -107,7 +108,7 @@ msgstr "Feladatok frissítése…"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:190
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Feladat ablak átváltása"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:24
 #, csharp-format
