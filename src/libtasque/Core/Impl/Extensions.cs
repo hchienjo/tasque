@@ -24,11 +24,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tasque.Core.Impl
 {
 	public static class Extensions
 	{
+		static List<Tuple<object, string>> updatingProperties
+			= new List<Tuple<object, string>> ();
+		
 		public static void SetProperty<TProperty, T> (
 			this T source, string name, TProperty val, TProperty curVal,
 			Action<TProperty> setVal, Func<T, TProperty, TProperty> update)
@@ -41,8 +46,14 @@ namespace Tasque.Core.Impl
 				return;
 			
 			if (!source.IsBackendDetached) {
-				if (Equals (curVal, val = update (source, val)))
-					return;
+				if (!updatingProperties.Any (t => Equals (t.Item1, source) &&
+				                             t.Item2 == name)) {
+					var pair = new Tuple<object, string> (source, name);
+					updatingProperties.Add (pair);
+					if (Equals (curVal, val = update (source, val)))
+						return;
+					updatingProperties.Remove (pair);
+				}
 			}
 			
 			source.OnPropertyChanging (name);
