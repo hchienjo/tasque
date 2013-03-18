@@ -166,7 +166,6 @@ namespace Tasque.Backends.Rtm
 		
 		void INoteCollectionRepo.Remove (ITaskCore container, INoteCore item)
 		{
-			var taskList = container.TaskListContainers.First ();
 			string taskSeriesId, taskId;
 			backend.DecodeTaskId (container, out taskSeriesId, out taskId);
 			backend.Rtm.NotesDelete (backend.Timeline, item.Id);
