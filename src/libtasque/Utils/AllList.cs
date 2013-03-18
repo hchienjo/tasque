@@ -111,8 +111,12 @@ namespace Tasque.Utils
 		}
 
 		public event NotifyCollectionChangedEventHandler CollectionChanged {
-			add { tasks.CollectionChanged += value; }
-			remove { tasks.CollectionChanged -= value; }
+			add {
+				tasks.CollectionChanged += (sender, e) => { value (this, e); };
+			}
+			remove {
+				tasks.CollectionChanged -= (sender, e) => { value (this, e); };
+			}
 		}
 
 		#region Explicit content
