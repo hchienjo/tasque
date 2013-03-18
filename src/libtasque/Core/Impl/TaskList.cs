@@ -64,8 +64,7 @@ namespace Tasque.Core.Impl
 			this.noteRepo = noteRepo;
 
 			isBackendDetached = true;
-
-			Name = name;
+			InitName (name);
 		}
 
 		public TaskList (string name, ITaskListRepository taskListRepo,
@@ -77,7 +76,7 @@ namespace Tasque.Core.Impl
 		{
 			isBackendDetached = true;
 			ListType = TaskListType.Smart;
-			Name = name;
+			InitName (name);
 		}
 
 		public int Count { get { return Tasks.Count; } }
@@ -251,6 +250,16 @@ namespace Tasque.Core.Impl
 			get {
 				return tasks ?? (tasks = new TaskListTaskCollection (this));
 			}
+		}
+		
+		void InitName (string name)
+		{
+			if (name == null)
+				throw new ArgumentNullException ("name");
+			if (string.IsNullOrWhiteSpace (name))
+				throw new ArgumentException (
+					"Must not be empty or white space", "name");
+			this.name = name;
 		}
 
 		void ThrowIfIsReadOnly ()
