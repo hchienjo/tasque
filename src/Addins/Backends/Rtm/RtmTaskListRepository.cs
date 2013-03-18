@@ -65,6 +65,10 @@ namespace Tasque.Backends.Rtm
 			throw new NotSupportedException (
 				"Cannot change the name of a task list.");
 		}
+		
+		bool ITaskListTaskCollectionRepo.SupportsSharingItemsWithOtherCollections {
+			get { return false; }
+		}
 
 		IEnumerable<ITaskCore> ITaskListTaskCollectionRepo.GetAll (
 			ITaskListCore container)
@@ -90,6 +94,7 @@ namespace Tasque.Backends.Rtm
 					task.Priority = rtmTask.GetTaskPriority ();
 
 					CacheNotes (rtmTaskSeries);
+					yield return task;
 				}
 			}
 		}
@@ -123,7 +128,7 @@ namespace Tasque.Backends.Rtm
 		                                         ITaskCore item)
 		{
 			string taskSeriesId, taskId;
-			backend.DecodeTaskId (item.Id, out taskSeriesId, out taskId);
+			backend.DecodeTaskId (item, out taskSeriesId, out taskId);
 			backend.Rtm.TasksDelete (backend.Timeline, container.Id,
 			                         taskSeriesId, taskId);
 		}

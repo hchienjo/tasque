@@ -710,7 +710,7 @@ namespace Gtk.Tasque
 			Gtk.Menu menu = new Menu ();
 			
 			foreach (var cat in taskListsModel) {
-				if (cat is AllList)
+				if (cat.ListType == TaskListType.Smart)
 					continue;
 				var item = new TaskListMenuItem (cat);
 				item.Activated += OnNewTaskByTaskList;
@@ -973,7 +973,7 @@ namespace Gtk.Tasque
 					taskListComboBox.Model.GetValue (iter, 0) as ITaskList;
 				
 				// Check to see if "All" is selected
-				if (selectedTaskList is AllList) {
+				if (selectedTaskList.ListType == TaskListType.Smart) {
 					// See if the item.ITaskList is currently being shown in
 					// the "All" taskList and if not, select the taskList
 					// specifically.
@@ -1094,7 +1094,8 @@ namespace Gtk.Tasque
 
 				    var filteredTaskLists = new ListStore (typeof (ITaskList));
 				    foreach (var cat in application.BackendManager.TaskLists) {
-					    if (cat != null && !(cat is AllList) && !cat.Contains (clickedTask))
+					    if (cat != null && !(cat.ListType == TaskListType.Smart)
+					    && !cat.Contains (clickedTask))
 						    filteredTaskLists.AppendValues (cat);
 		        	}
 
@@ -1167,7 +1168,7 @@ namespace Gtk.Tasque
 				return;
 		
 			var taskList = application.BackendManager.TaskLists.First (
-				l => !(l is AllList) && l.Contains (clickedTask));
+				l => !(l.ListType == TaskListType.Smart) && l.Contains (clickedTask));
 			taskList.Remove (clickedTask);
 			
 			status = Catalog.GetString ("ITask deleted");
@@ -1241,7 +1242,7 @@ namespace Gtk.Tasque
 			// relationship. Now it's many-to-many. However, we stick to the
 			// old model until a general overhaul.
 			var prevList = application.BackendManager.TaskLists.FirstOrDefault (
-				c => !(c is AllList) && c.Contains (clickedTask));
+				c => !(c.ListType == TaskListType.Smart) && c.Contains (clickedTask));
 			prevList.Remove (clickedTask);
 			var list = ((TaskListMenuItem)sender).ITaskList;
 			list.Add (clickedTask);

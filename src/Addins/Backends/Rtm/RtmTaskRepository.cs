@@ -111,8 +111,10 @@ namespace Tasque.Backends.Rtm
 			var taskList = task.TaskListContainers.First ();
 			string taskSeriesId, taskId;
 			backend.DecodeTaskId (task, out taskSeriesId, out taskId);
-			backend.Rtm.TasksComplete (backend.Timeline, taskList.Id,
-			                           taskSeriesId, taskId);
+			var list = backend.Rtm.TasksComplete (backend.Timeline,
+			    taskList.Id, taskSeriesId, taskId);
+			var last = list.TaskSeriesCollection [0].TaskCollection.Length - 1;
+			return list.TaskSeriesCollection [0].TaskCollection [last].Completed;
 		}
 		
 		void ITaskRepository.Discard (ITaskCore task)
@@ -126,6 +128,10 @@ namespace Tasque.Backends.Rtm
 		{
 			throw new NotSupportedException (
 				"This backend supports multiple notes.");
+		}
+		
+		bool INoteCollectionRepo.SupportsSharingItemsWithOtherCollections {
+			get { return false; }
 		}
 		
 		IEnumerable<INoteCore> INoteCollectionRepo.GetAll (ITaskCore container)
@@ -174,6 +180,10 @@ namespace Tasque.Backends.Rtm
 		#endregion
 
 		#region Nested tasks
+		
+		bool ITaskTaskCollectionRepo.SupportsSharingItemsWithOtherCollections {
+			get { throw new NotSupportedException (NestedTasksErrMsg); }
+		}
 
 		IEnumerable<ITaskCore> ITaskTaskCollectionRepo.GetAll (
 			ITaskCore container)

@@ -582,7 +582,7 @@ namespace Gtk.Tasque
 			
 			filteredTaskLists = new ListStore (typeof (ITaskList));
 			foreach (var item in application.BackendManager.TaskLists) {
-				if (!(item == null || item is AllList))
+				if (!(item == null || item.ListType == TaskListType.Smart))
 					filteredTaskLists.AppendValues (item);
 			}
 			taskListsTree.Model = filteredTaskLists;

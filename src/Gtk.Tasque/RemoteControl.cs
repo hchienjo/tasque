@@ -198,7 +198,7 @@ namespace Gtk.Tasque
 				return emptyArray;
 			
 			foreach (var item in model) {
-				if (!(item is AllList))
+				if (!(item.ListType == TaskListType.Smart))
 					taskLists.Add (item.Name);
 			}
 			
@@ -283,7 +283,7 @@ namespace Gtk.Tasque
 		{
 			var task = GetTaskById (id);
 			var list = application.BackendManager.TaskLists.FirstOrDefault (
-				l => !(l is AllList) && l.Contains (task));
+				l => !(l.ListType == TaskListType.Smart) && l.Contains (task));
 			return task != null ? list.Name : string.Empty;
 		}
 		
@@ -312,7 +312,7 @@ namespace Gtk.Tasque
 			// old model until a general overhaul.
 			var lists = application.BackendManager.TaskLists;
 			var prevList = lists.FirstOrDefault (
-				l => !(l is AllList) && l.Contains (task));
+				l => !(l.ListType == TaskListType.Smart) && l.Contains (task));
 			var newList = lists.FirstOrDefault (
 				l => l.Name == listName);
 
@@ -485,7 +485,7 @@ namespace Gtk.Tasque
 				return false;
 			
 			var taskList = application.BackendManager.TaskLists.First (
-				l => !(l is AllList) && l.Contains (task));
+				l => !(l.ListType == TaskListType.Smart) && l.Contains (task));
 			taskList.Remove (task);
 			return true;
 		}

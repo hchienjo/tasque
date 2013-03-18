@@ -36,6 +36,7 @@ namespace Tasque.Backends.Rtm
 				throw new NullReferenceException ("source");
 
 			switch (source.Priority) {
+			default:
 			case "N":
 				return TaskPriority.None;
 			case "1":
@@ -53,6 +54,7 @@ namespace Tasque.Backends.Rtm
 				throw new NullReferenceException ("source");
 
 			switch (source.Priority) {
+			default:
 			case TaskPriority.None:
 				return "N";
 			case TaskPriority.High:

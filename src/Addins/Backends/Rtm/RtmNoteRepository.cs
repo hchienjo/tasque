@@ -39,31 +39,21 @@ namespace Tasque.Backends.Rtm
 
 		public string UpdateTitle (INoteCore note, string title)
 		{
-			throw new NotImplementedException ();
+			UpdateNote (note, title, note.Text);
+			return note.Title;
 		}
 
 		string INoteRepository.UpdateText (INoteCore note, string text)
 		{
-
+			UpdateNote (note, note.Title, text);
+			return note.Text;
 		}
 
 		void UpdateNote (INoteCore note, string title, string text)
 		{
 			var rtmNote = backend.Rtm.NotesEdit (backend.Timeline, note.Id, note.Title, note.Text);
-			note.Title =
-		}
-
-		internal void SaveNote (RtmTask rtmTask, RtmNote note)
-		{
-			if (rtm != null) {
-				try {
-					rtm.NotesEdit (timeline, note.ID, String.Empty, note.Text);
-				} catch (Exception e) {
-					Logger.Debug ("RtmBackend.SaveNote: Unable to save note");
-					Logger.Debug (e.ToString ());
-				}
-			} else
-				throw new Exception ("Unable to communicate with Remember The Milk");
+			note.Title = rtmNote.Title;
+			note.Text = rtmNote.Text;
 		}
 
 		RtmBackend backend;
