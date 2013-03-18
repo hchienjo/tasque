@@ -467,7 +467,7 @@ namespace Gtk.Tasque
 			
 			// Save the user preference
 			application.Preferences.Set (PreferencesKeys.CurrentBackend,
-										 newBackend.GetType ().ToString ());
+										 newBackend);
 			
 			//taskListsToHide = BuildNewTaskListList ();
 			//Application.Preferences.SetStringList (IPreferences.HideInAllTaskList,
