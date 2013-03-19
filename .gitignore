@@ -10,7 +10,6 @@ Makefile.in
 /*.usertasks
 /*.diff
 /*.patch
-/*.userprefs
 /*.usertasks
 /configure
 /config.*
@@ -37,21 +36,15 @@ Makefile.in
 /*.tar.gz
 /*.suo
 /*.csproj.user
-/bin
-/obj
-/Properties
 /*.mdb
 /*.dll
 /*.pidb
-/*.userprefs
-/*.usertasks
 
 # /data
 /data/org.gnome.Tasque.service
 /data/tomboy-addins.pc
 /data/*.desktop
 /data/*.schemas
-/data/data.mdp
 !/data/Makefile.in
 
 # /help
@@ -72,38 +65,23 @@ Makefile.in
 /po/po2tbl.sed.*
 /po/*.pot
 /po/stamp-cat-id
-/po/po.mdp
-!/po/Makefile.in
 
 # /src/Gtk.Tasque/
 /src/Gtk.Tasque/*.dll
+/src/Gtk.Tasque/*.exe
 /src/Gtk.Tasque/*.mdb
 /src/Gtk.Tasque/*.pdb
+/src/Gtk.Tasque/*.pc
+/src/Gtk.Tasque/tasque
 /src/Gtk.Tasque/Defines.cs
-/src/Gtk.Tasque/Gtk.Tasque.csp
 /src/Gtk.Tasque/obj/
-!/src/Gtk.Tasque/Makefile.in
+/src/Gtk.Tasque/locale/
 
 # /src/libtasque/
 /src/libtasque/*.dll
 /src/libtasque/*.mdb
 /src/libtasque/*.pdb
-/src/libtasque/libtasque.csp
 /src/libtasque/obj/
-!/src/libtasque/Makefile.in
-
-# /src/tasque/
-/src/tasque/*.exe
-/src/tasque/*.dll
-/src/tasque/*.mdb
-/src/tasque/*.pdb
-/src/tasque/*.pc
-/src/tasque/tasque
-/src/tasque/tasque.csp
-/src/tasque/obj/
-!/src/tasque/Makefile.in
-/src/tasque/locale/
-/src/tasque/Tasque.exe.Defines.config
 
 # /src/Addins/*/
 /src/Addins/*/*.dll
@@ -115,17 +93,13 @@ Makefile.in
 /src/Addins/Backends/*/*.dll
 /src/Addins/Backends/*/*.mdb
 /src/Addins/Backends/*/*.pdb
-/src/Addins/Backends/*/*.csp
 /src/Addins/Backends/*/obj/
-!/src/Addins/Backends/*/Makefile.in
 
 # /src/Libraries/RtmNet
 /src/Libraries/RtmNet/*.dll
 /src/Libraries/RtmNet/*.mdb
 /src/Libraries/RtmNet/*.pdb
-/src/Libraries/RtmNet/RtmNet.csp
 /src/Libraries/RtmNet/obj/
-!/src/Libraries/RtmNet/Makefile.in
 
 # /build/
 /build/*.dll
@@ -139,6 +113,13 @@ Makefile.in
 /tests/*.mdb
 /tests/*.pdb
 /tests/obj/
+/tests/Tasque.exe
+/tests/Tasque.exe.config
+/tests/Tasque.exe.Defines.config
+
+# /tests/libtasque.Test/
+/tests/libtasque.Test/bin/
+/tests/libtasque.Test/test-results/
 
 # /WindowsSetup/
 /WindowsSetup/obj/
