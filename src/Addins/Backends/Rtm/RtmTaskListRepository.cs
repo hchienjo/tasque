@@ -109,7 +109,7 @@ namespace Tasque.Backends.Rtm
 		                                      ITaskCore item)
 		{
 			throw new NotSupportedException (
-				"A task can only have one task list.");
+				"A task can only belong to one task list.");
 		}
 
 		void ITaskListTaskCollectionRepo.AddNew (ITaskListCore container,
