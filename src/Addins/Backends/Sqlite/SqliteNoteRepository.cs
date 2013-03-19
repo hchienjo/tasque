@@ -1,10 +1,10 @@
 //
-// SqlitePreferences.cs
+// SqliteNoteRepository.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
 //
-// Copyright (c) 2012 Antonius Riha
+// Copyright (c) 2013 Antonius Riha
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,44 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using Gtk;
+using System;
+using Mono.Data.Sqlite;
 
-namespace Tasque.Data.Sqlite.Gtk
+namespace Tasque.Data.Sqlite
 {
-	public class SqlitePreferences : Box, IBackendPreferences
+	public class SqliteNoteRepository : INoteRepository
 	{
-		public SqlitePreferences () : base ()
+		public SqliteNoteRepository (Database database)
 		{
-			var lbl = new Label ("Local file requires no configuration.");
-			PackStart (lbl, true, true, 0);
-			ShowAll ();
+			if (database == null)
+				throw new ArgumentNullException ("database");
+			this.database = database;
 		}
+
+		string INoteRepository.UpdateTitle (INoteCore note, string title)
+		{
+			var command = "UPDATE Notes SET Name=@name WHERE ID=@id";
+			using (var cmd = new SqliteCommand (database.Connection)) {
+				cmd.CommandText = command;
+				cmd.Parameters.AddWithValue ("@name", title);
+				cmd.Parameters.AddIdParameter (note);
+				cmd.ExecuteNonQuery ();
+			}
+			return title;
+		}
+
+		string INoteRepository.UpdateText (INoteCore note, string text)
+		{
+			var command = "UPDATE Notes SET Text=@text WHERE ID=@id";
+			using (var cmd = new SqliteCommand (database.Connection)) {
+				cmd.CommandText = command;
+				cmd.Parameters.AddWithValue ("@text", text);
+				cmd.Parameters.AddIdParameter (note);
+				cmd.ExecuteNonQuery ();
+			}
+			return text;
+		}
+
+		Database database;
 	}
 }

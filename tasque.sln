@@ -199,6 +199,7 @@ Global
 		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.MonoMacRelease|Any CPU.ActiveCfg = MonoMacRelease|Any CPU
 		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.MonoMacRelease|Any CPU.Build.0 = MonoMacRelease|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxDebug|Any CPU.ActiveCfg = GtkLinuxDebug|Any CPU
+		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxDebug|Any CPU.Build.0 = GtkLinuxDebug|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxRelease|Any CPU.ActiveCfg = GtkLinuxRelease|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxRelease|Any CPU.Build.0 = GtkLinuxRelease|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkWinDebug|Any CPU.ActiveCfg = GtkWinDebug|Any CPU

@@ -1,310 +1,176 @@
-// SqliteBackend.cs created with MonoDevelop
-// User: boyd at 7:10 AM 2/11/2008
+//
+// SqliteBackend.cs
+//
+// Author:
+//       Antonius Riha <antoniusriha@gmail.com>
+//
+// Copyright (c) 2013 Antonius Riha
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using Mono.Data.Sqlite;
-using Tasque.Backends;
-using Gtk.Tasque.Backends.Sqlite;
+using Tasque.Data.Sqlite.Gtk;
+using Tasque.Utils;
 
-namespace Tasque.Backends.Sqlite
+namespace Tasque.Data.Sqlite
 {
-	public class SqliteBackend : IBackend
+	[BackendExtension ("Local file")]
+	public class SqliteBackend : IBackend2
 	{
-		private bool initialized;
-		private bool configured = true;
+		public TasqueObjectFactory Factory { get; private set; }
 
-		ObservableCollection<Task> taskStore;
-		ObservableCollection<TaskList> taskListListStore;
-		ReadOnlyObservableCollection<Task> readOnlyTaskStore;
-		ReadOnlyObservableCollection<TaskList> readOnlyTaskListStore;
-		
-		TaskComparer taskComparer;
-		TaskListComparer taskListComparer;
-		
-		private Database db;
+		public bool IsInitialized { get; private set; }
 
-		public event EventHandler BackendInitialized;
-		public event EventHandler BackendSyncStarted;
-		public event EventHandler BackendSyncFinished;
-		
-		SqliteList defaultTaskList;
-		//SqliteTaskList workTaskList;
-		//SqliteTaskList projectsTaskList;
-		
-		public SqliteBackend ()
-		{
-			initialized = false;
-			taskStore = new ObservableCollection<Task> ();
-			taskListListStore = new ObservableCollection<TaskList> ();
-			readOnlyTaskStore = new ReadOnlyObservableCollection<Task> (taskStore);
-			readOnlyTaskListStore
-				= new ReadOnlyObservableCollection<TaskList> (taskListListStore);
-			taskComparer = new TaskComparer ();
-			taskListComparer = new TaskListComparer ();
+		public event EventHandler Initialized, Disposed;
+
+		bool IBackend2.IsConfigured { get { return IsInitialized; } }
+
+		IBackendPreferences IBackend2.Preferences {
+			get { return new SqlitePreferences (); }
 		}
 		
-		#region Public Properties
-		public string Name
-		{
-			get { return "Local File"; } // TODO: Return something more usable to the user like, "Built-in" or whatever
+		INoteRepository IRepositoryProvider<INoteRepository>.Repository {
+			get { return noteRepo; }
 		}
 		
-		/// <value>
-		/// All the tasks including ITaskDivider items.
-		/// </value>
-		public ICollection<Task> Tasks
-		{
-			get { return readOnlyTaskStore; }
+		ITaskListRepository IRepositoryProvider<ITaskListRepository>
+			.Repository { get { return taskListRepo; }
 		}
 		
-		/// <value>
-		/// This returns all the task lists (taskLists) that exist.
-		/// </value>
-		public ICollection<TaskList> TaskLists
-		{
-			get { return readOnlyTaskListStore; }
+		ITaskRepository IRepositoryProvider<ITaskRepository>.Repository {
+			get { return taskRepo; }
 		}
 		
-		/// <value>
-		/// Indication that the Sqlite backend is configured
-		/// </value>
-		public bool Configured 
-		{
-			get { return configured; }
-		}
-		
-		
-		/// <value>
-		/// Inidication that the backend is initialized
-		/// </value>
-		public bool Initialized
-		{
-			get { return initialized; }
-		}		
-		
-		public Database Database
-		{
-			get { return db; }
-		}
-		
-		public IBackendPreferences Preferences {
-			get {
-				// TODO: Replace this with returning null once things are going
-				// so that the Preferences Dialog doesn't waste space.
-				return new SqlitePreferences ();
-			}
-		}
-		#endregion // Public Properties
-		
-		#region Public Methods
-		public Task CreateTask (string taskName, TaskList taskList)
-		{
-			// not sure what to do here with the taskList
-			SqliteTask task = new SqliteTask (this, taskName);
-			
-			// Determine and set the task taskList
-			if (taskList == null || taskList is Tasque.AllList)
-				defaultTaskList.Add (task); // Default to work
-			else
-				taskList.Add (task);
-			
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			
-			return task;
-		}
-		
-		public void DeleteTask(Task task)
-		{
-			//string id = task.Id;
-			task.Delete ();
-			//string command = "delete from Tasks where id=" + id;
-			//db.ExecuteNonQuery (command);
-		}
-		
-		public void Refresh()
-		{}
-		
-		public void Initialize (IPreferences preferences)
+		void IBackend2.Initialize (IPreferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
-
-			if(db == null)
-				db = new Database();
-				
-			db.Open();
 			
-			//
-			// Add in the "All" TaskList
-			//
-			var allList = new AllList (this, preferences);
-			AddTaskList (allList);
+			database = new Database ();
+			database.Open ();
+			
+			allList = new AllList (preferences);
 
-			RefreshTaskLists();
-			RefreshTasks();
+			taskListRepo = new SqliteTaskListRepository (this, database);
+			taskRepo = new SqliteTaskRepository (this, database);
+			noteRepo = new SqliteNoteRepository (database);
 
-			initialized = true;
-			if(BackendInitialized != null) {
-				BackendInitialized(null, null);
-			}
+			Factory = new TasqueObjectFactory (
+				taskListRepo, taskRepo, noteRepo);
+
+			IsInitialized = true;
+			if (Initialized != null)
+				Initialized (this, EventArgs.Empty);
 		}
 
-		public void Dispose()
+		void IDisposable.Dispose ()
 		{
 			if (disposed)
 				return;
 
-			this.taskListListStore.Clear();
-			this.taskStore.Clear();
-
-			if (db != null)
-				db.Close();
-			db = null;
-			initialized = false;
+			database.Close ();
+			database = null;
 			disposed = true;
-		}
-
-		/// <summary>
-		/// Given some text to be input into the database, do whatever
-		/// processing is required to make sure special characters are
-		/// escaped, etc.
-		/// </summary>
-		public string SanitizeText (string text)
-		{
-			return text.Replace ("'", "''");
+			if (Disposed != null)
+				Disposed (this, EventArgs.Empty);
 		}
 		
-		#endregion // Public Methods
-		public void RefreshTaskLists()
+		IEnumerable<ITaskListCore> IBackend2.GetAll ()
 		{
-			SqliteList newTaskList;
-			bool hasValues = false;
-			
-			string command = "SELECT id, name FROM Categories";
-			SqliteCommand cmd = db.Connection.CreateCommand();
-			cmd.CommandText = command;
-			SqliteDataReader dataReader = cmd.ExecuteReader();
-			while(dataReader.Read()) {
-			    int id = dataReader.GetInt32(0);
-				var name = dataReader.GetString (1);
-				hasValues = true;
-				
-				newTaskList = new SqliteList (this, id, name);
-				if( (defaultTaskList == null) || (newTaskList.Name.CompareTo("Work") == 0) )
-					defaultTaskList = newTaskList;
-				AddTaskList (newTaskList);
+			yield return allList;
+
+			ITaskListCore taskList;
+			var hasValues = false;
+
+			var command = "SELECT id, name FROM Categories";
+			using (var cmd = new SqliteCommand (
+				command, database.Connection)) {
+				using (var dataReader = cmd.ExecuteReader ()) {
+					while (dataReader.Read ()) {
+						var id = dataReader.GetInt32 (0).ToString ();
+						var name = dataReader.GetString (1);
+						hasValues = true;
+						taskList = Factory.CreateTaskList (id, name);
+						yield return taskList;
+					}
+				}
 			}
-			
-			dataReader.Close();
-			cmd.Dispose();
 
-			if(!hasValues)
-			{
-				defaultTaskList = newTaskList = new SqliteList (this, "Work");
-				AddTaskList (defaultTaskList);
+			if (!hasValues) {
+				var workCategory = CreateInitialTaskList ("Work");
+				yield return workCategory;
+				yield return CreateInitialTaskList ("Personal");
+				yield return CreateInitialTaskList ("Family");
+				yield return CreateInitialTaskList ("Project");
 
-				newTaskList = new SqliteList (this, "Personal");
-				AddTaskList (newTaskList);
-				
-				newTaskList = new SqliteList (this, "Family");
-				AddTaskList (newTaskList);
-
-				newTaskList = new SqliteList (this, "Project");
-				AddTaskList (newTaskList);
+				var taskName = "Create some tasks";
+				var insertCommand = string.Format (
+					"INSERT INTO Tasks" +
+					"(Name, DueDate, CompletionDate, Priority, State, " +
+					"Category, ExternalID) " +
+					"VALUES ('{0}', '{1}', '{2}', " +
+					"'{3}', '{4}', '{5}', '{6}');",
+					taskName, Database.FromDateTime (DateTime.MinValue),
+					Database.FromDateTime (DateTime.MinValue), 0,
+					(int)TaskState.Active, workCategory.Id, string.Empty);
+				using (var cmd = new SqliteCommand (database.Connection)) {
+					cmd.CommandText = insertCommand;
+					cmd.ExecuteNonQuery ();
+				}
 			}
-		}
-
-		public void RefreshTasks()
-		{
-			SqliteTask newTask;
-			bool hasValues = false;
-			
-			string command = "SELECT id,Category,Name,DueDate,CompletionDate,Priority, State FROM Tasks";
-			SqliteCommand cmd = db.Connection.CreateCommand();
-			cmd.CommandText = command;
-			SqliteDataReader dataReader = cmd.ExecuteReader();
-			while(dataReader.Read()) {
-				int id = dataReader.GetInt32(0);
-				int taskList = dataReader.GetInt32(1);
-				string name = dataReader.GetString(2);
-				long dueDate = dataReader.GetInt64(3);
-				long completionDate = dataReader.GetInt64(4);
-				int priority = dataReader.GetInt32(5);
-				int state = dataReader.GetInt32(6);
-				
-				hasValues = true;
-				
-				newTask = new SqliteTask (this, id, name, dueDate,
-				                          completionDate, priority, state);
-				var list = TaskLists.Single (l => {
-					var sqliteList = l as SqliteList;
-					if (sqliteList != null)
-						return sqliteList.ID == taskList;
-					return false;
-				});
-				list.Add (newTask);
-				AddTask (newTask);
-				newTask.PropertyChanged += HandlePropertyChanged;
-			}
-			
-			dataReader.Close();
-			cmd.Dispose();
-			
-			if(!hasValues)
-			{
-				newTask = new SqliteTask (this, "Create some tasks");
-				defaultTaskList.Add (newTask);
-				newTask.DueDate = DateTime.Now;
-				newTask.Priority = TaskPriority.Medium;
-				AddTask (newTask);
-				newTask.PropertyChanged += HandlePropertyChanged;
-			}
-		}
-
-		#region Private Methods
-		internal void DeleteTask (SqliteTask task)
-		{
-			if (taskStore.Remove (task))
-				task.PropertyChanged -= HandlePropertyChanged;
-		}
-
-		void AddTaskList (TaskList taskList)
-		{
-			var index = taskListListStore.Count;
-			var valIdx = taskListListStore.Select ((val, idx) => new { val, idx })
-				.FirstOrDefault (x => taskListComparer.Compare (x.val, taskList) > 0);
-			if (valIdx != null)
-				index = valIdx.idx;
-			taskListListStore.Insert (index, taskList);
 		}
 		
-		void AddTask (SqliteTask task)
+		ITaskListCore IBackend2.GetBy (string id)
 		{
-			var index = taskStore.Count;
-			var valIdx = taskStore.Select ((val, idx) => new { val, idx })
-				.FirstOrDefault (t => taskComparer.Compare (t.val, task) > 0);
-			if (valIdx != null)
-				index = valIdx.idx;
-			
-			taskStore.Insert (index, task);
+			throw new NotImplementedException ();
 		}
-
-		void HandlePropertyChanged (object sender, PropertyChangedEventArgs e)
-		{
-			// when a property changes (any property atm), "reorder" tasks
-			var task = (SqliteTask)sender;
-			if (taskStore.Remove (task))
-				AddTask (task);
-		}
-		#endregion // Private Methods
 		
-		#region Event Handlers
-		#endregion // Event Handlers
+		void IBackend2.Create (ITaskListCore taskList)
+		{
+			throw new NotImplementedException ();
+		}
+		
+		void IBackend2.Delete (ITaskListCore taskList)
+		{
+			throw new NotImplementedException ();
+		}
+		
+		event EventHandler IBackend2.NeedsConfiguration { add {} remove {} }
+
+		ITaskListCore CreateInitialTaskList (string listName)
+		{
+			var command = "INSERT INTO Categories (Name, ExternalID) " +
+				"values (@name, ''); SELECT last_insert_rowid();";
+			using (var cmd = new SqliteCommand (database.Connection)) {
+				cmd.CommandText = command;
+				cmd.Parameters.AddWithValue ("@name", listName);
+				var id = cmd.ExecuteScalar ().ToString ();
+				return Factory.CreateTaskList (id, listName);
+			}
+		}
 
 		bool disposed;
+		Database database;
+		AllList allList;
+		ITaskListRepository taskListRepo;
+		ITaskRepository taskRepo;
+		INoteRepository noteRepo;
 	}
 }

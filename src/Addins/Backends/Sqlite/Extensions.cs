@@ -1,10 +1,10 @@
 //
-// SqlitePreferences.cs
+// Extensions.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
 //
-// Copyright (c) 2012 Antonius Riha
+// Copyright (c) 2013 Antonius Riha
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,21 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using Gtk;
+using System;
+using Mono.Data.Sqlite;
 
-namespace Tasque.Data.Sqlite.Gtk
+namespace Tasque.Data.Sqlite
 {
-	public class SqlitePreferences : Box, IBackendPreferences
+	public static class Extensions
 	{
-		public SqlitePreferences () : base ()
+		public static void AddIdParameter (
+			this SqliteParameterCollection source, ITasqueCore item)
 		{
-			var lbl = new Label ("Local file requires no configuration.");
-			PackStart (lbl, true, true, 0);
-			ShowAll ();
+			if (source == null)
+				throw new NullReferenceException ("source");
+			if (item == null)
+				throw new ArgumentNullException ("item");
+			source.AddWithValue ("@id", int.Parse (item.Id));
 		}
 	}
 }
