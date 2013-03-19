@@ -75,7 +75,6 @@
     <Compile Include="Data\TransactionException.cs" />
     <Compile Include="IPreferences.cs" />
     <Compile Include="Data\ICollectionRepository.cs" />
-    <Compile Include="Core\TaskState.cs" />
     <Compile Include="Data\TasqueObjectFactory.cs" />
     <Compile Include="Core\INote.cs" />
     <Compile Include="Core\ITasqueObject.cs" />
@@ -112,6 +111,7 @@
     <Compile Include="Utils\AllList.cs" />
     <Compile Include="Core\TaskListType.cs" />
     <Compile Include="IContainee.cs" />
+    <Compile Include="TaskState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />

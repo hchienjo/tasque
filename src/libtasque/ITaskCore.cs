@@ -34,6 +34,7 @@ namespace Tasque
 		string Text { get; set; }
 		DateTime DueDate { get; set; }
 		TaskPriority Priority { get; set; }
+		TaskState State { get; }
 
 		IEnumerable<ITaskListCore> TaskListContainers { get; }
 		IEnumerable<ITaskCore> TaskContainers { get; }

@@ -32,7 +32,6 @@ namespace Tasque.Core
 	{
 		DateTime CompletionDate { get; }
 		bool IsComplete { get; }
-		TaskState State { get; }
 
 		NoteSupport NoteSupport { get; }
 		bool SupportsSharingNotesWithOtherTasks { get; }
