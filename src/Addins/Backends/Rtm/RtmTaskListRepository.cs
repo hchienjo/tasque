@@ -84,11 +84,11 @@ namespace Tasque.Backends.Rtm
 					                                   rtmTask.TaskID);
 					ITaskCore task;
 					if (rtmTask.Completed == DateTime.MinValue) {
-						task = backend.Factory.CreateCompletedTask (
-							taskId, rtmTaskSeries.Name, rtmTask.Completed);
-					} else {
 						task = backend.Factory.CreateTask (
 							taskId, rtmTaskSeries.Name);
+					} else {
+						task = backend.Factory.CreateCompletedTask (
+							taskId, rtmTaskSeries.Name, rtmTask.Completed);
 					}
 					task.DueDate = rtmTask.Due;
 					task.Priority = rtmTask.GetTaskPriority ();
