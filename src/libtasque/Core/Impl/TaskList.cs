@@ -155,7 +155,10 @@ namespace Tasque.Core.Impl
 		/// </param>
 		public ITask CreateTask (string text)
 		{
-			throw new NotImplementedException ();
+			ThrowIfIsReadOnly ();
+			var task = new Task (text, taskRepo, noteRepo);
+			Tasks.Add (task);
+			return task;
 		}
 
 		public void Add (ITask item)
