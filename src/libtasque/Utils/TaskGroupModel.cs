@@ -6,7 +6,6 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using Tasque.Core;
-using System.Collections.ObjectModel;
 
 namespace Tasque.Utils
 {
@@ -61,7 +60,7 @@ namespace Tasque.Utils
 					break;
 				index++;
 			}
-			var mementoTask = new MementoTask (task, index);
+			var mementoTask = new MementoTask (task, this, index);
 			taskChangeLog.Add (mementoTask);
 		}
 
@@ -71,7 +70,7 @@ namespace Tasque.Utils
 			var mementoTask = taskChangeLog.First (m => m.OriginalTaskRef == task);
 			taskChangeLog.Remove (mementoTask);
 			
-			if (FilterTasks (mementoTask)) {
+			if (mementoTask.Filtered) {
 				if (!FilterTasks (task)) {
 					var eArgs = new NotifyCollectionChangedEventArgs (
 						NotifyCollectionChangedAction.Remove, task, mementoTask.OriginalIndex);
@@ -264,130 +263,19 @@ namespace Tasque.Utils
 		List<MementoTask> taskChangeLog;
 		bool disposed;
 		
-		class MementoTask : ITask
+		class MementoTask
 		{
-			public MementoTask (ITask originalTask, int index)
+			public MementoTask (
+				ITask originalTask, TaskGroupModel groupModel, int index)
 			{
 				OriginalTaskRef = originalTask;
-				Id = originalTask.Id;
-				Text = originalTask.Text;
-				DueDate = originalTask.DueDate;
-				CompletionDate = originalTask.CompletionDate;
-				IsComplete = originalTask.IsComplete;
-				Priority = originalTask.Priority;
-				HasNotes = originalTask.HasNotes;
-				NoteSupport = originalTask.NoteSupport;
-				SupportsSharingNotesWithOtherTasks =
-					originalTask.SupportsSharingNotesWithOtherTasks;
-				State = originalTask.State;
-				SupportsNestedTasks = originalTask.SupportsNestedTasks;
-				SupportsSharingNestedTasksWithOtherTasks =
-					originalTask.SupportsSharingNestedTasksWithOtherTasks;
-				HasNestedTasks = originalTask.HasNestedTasks;
-				SupportsDiscarding = originalTask.SupportsDiscarding;
+				OriginalIndex = index;
+				Filtered = groupModel.FilterTasks (originalTask);
 			}
-
+			
 			public int OriginalIndex { get; private set; }
-			
 			public ITask OriginalTaskRef { get; private set; }
-			
-			public string Id { get; private set; }
-
-			public string Text { get; set; }
-			
-			public DateTime DueDate { get; set; }
-			
-			public DateTime CompletionDate { get; private set; }
-			
-			public bool IsComplete { get; private set; }
-			
-			public TaskPriority Priority { get; set; }
-			
-			public bool HasNotes { get; private set; }
-			
-			public NoteSupport NoteSupport { get; private set; }
-
-			public bool SupportsSharingNotesWithOtherTasks { get; private set; }
-			
-			public TaskState State { get; private set; }
-
-			public INote Note { get; set; }
-
-			public ObservableCollection<INote> Notes { get; private set; }
-			
-			public bool SupportsNestedTasks { get; private set; }
-
-			public bool SupportsSharingNestedTasksWithOtherTasks { get; private set; }
-
-			public bool HasNestedTasks { get; private set; }
-
-			public ObservableCollection<ITask> NestedTasks {
-				get; private set;
-			}
-			
-			public bool SupportsDiscarding { get; private set; }
-			
-			public IEnumerable<ITask> TaskContainers { get; private set; }
-			
-			public IEnumerable<ITaskList> TaskListContainers {
-				get; private set;
-			}
-
-			IEnumerable<ITaskCore> IContainee<ITaskCore>.Containers {
-				get { return TaskContainers; }
-			}
-
-			IEnumerable<ITaskListCore> IContainee<ITaskListCore>.Containers {
-				get { return TaskListContainers; }
-			}
-
-			IEnumerable<ITaskCore> ITaskCore.TaskContainers {
-				get { return TaskContainers; }
-			}
-
-			IEnumerable<ITaskListCore> ITaskCore.TaskListContainers {
-				get { return TaskListContainers; }
-			}
-
-			public void Activate ()
-			{
-				throw new NotImplementedException ();
-			}
-			
-			public void Complete ()
-			{
-				throw new NotImplementedException ();
-			}
-			
-			public void Discard ()
-			{
-				throw new NotImplementedException ();
-			}
-			
-			public INote CreateNote ()
-			{
-				throw new NotImplementedException ();
-			}
-			
-			public INote CreateNote (string text)
-			{
-				throw new NotImplementedException ();
-			}
-			
-			public ITask CreateNestedTask (string text)
-			{
-				throw new NotImplementedException ();
-			}
-			
-			public void Refresh ()
-			{
-				throw new NotImplementedException ();
-			}
-
-			public event EventHandler Completing, Completed,
-				Activating, Activated, Discarding, Discarded;
-			public event PropertyChangedEventHandler PropertyChanged;
-			public event PropertyChangingEventHandler PropertyChanging;
+			public bool Filtered { get; private set; }
 		}
 	}
 }
