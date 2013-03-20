@@ -447,6 +447,7 @@ namespace Tasque.Core.Impl
 //
 //			foreach (var note in Notes)
 //				note.AttachBackend ();
+			throw new NotImplementedException ();
 		}
 
 		public override void Merge (ITasqueCore source)
