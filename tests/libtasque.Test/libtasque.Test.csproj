@@ -32,7 +32,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Impl\TasqueObjectTest.cs" />
     <Compile Include="Core\Impl\NoteTest.cs" />
+    <Compile Include="Core\Impl\TasqueObjectCollectionTest.cs" />
+    <Compile Include="Core\Impl\TasqueObjectCollectionSharingTest.cs" />
+    <Compile Include="Core\Impl\TasqueContainerObject.cs" />
+    <Compile Include="Core\Impl\TaskTest.cs" />
+    <Compile Include="Core\Impl\TaskBackendDetachedTest.cs" />
+    <Compile Include="Core\Impl\TaskBackendAttachedTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -45,13 +52,5 @@
     <Folder Include="Core\" />
     <Folder Include="Core\Impl\" />
     <Folder Include="Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Core\Impl\TaskBackendAttachedTest.cs" />
-    <None Include="Core\Impl\TaskBackendDetachedTest.cs" />
-    <None Include="Core\Impl\TaskTest.cs" />
-    <None Include="Core\Impl\TasqueObjectTest.cs" />
-    <None Include="Core\Impl\TasqueObjectCollectionTest.cs" />
-    <None Include="Core\Impl\TasqueObjectCollectionSharingTest.cs" />
   </ItemGroup>
 </Project>

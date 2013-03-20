@@ -31,11 +31,8 @@ using Tasque.Data;
 namespace Tasque.Core.Impl
 {
 	using IContainerRepo = ICollectionRepository<ITasqueCore, ITasqueCore>;
-	using Container =
-		TasqueObject<ICollectionRepository<ITasqueCore, ITasqueCore>>;
-	using TasqueCollection = TasqueObjectCollection<ITasqueCore,
-	TasqueObject<ICollectionRepository<ITasqueCore, ITasqueCore>>,
-	ICollectionRepository<ITasqueCore, ITasqueCore>>;
+	using TasqueCollection = TasqueObjectCollection<ITasqueCore, ITasqueObject,
+		TasqueContainerObject, ICollectionRepository<ITasqueCore, ITasqueCore>>;
 
 	[TestFixture]
 	public class TasqueObjectCollectionSharingTest
@@ -58,7 +55,7 @@ namespace Tasque.Core.Impl
 
 		}
 
-		Mock<Container> container;
+		Mock<TasqueContainerObject> container;
 		Mock<IContainerRepo> containerRepo;
 		TasqueCollection collection;
 	}

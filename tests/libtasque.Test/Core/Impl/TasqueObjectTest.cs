@@ -30,7 +30,6 @@ using Tasque.Data;
 
 namespace Tasque.Core.Impl
 {
-	using TasqueObject = TasqueObject<IRepository>;
 	using TasqueObjectMock = Mock<TasqueObject<IRepository>>;
 
 	[TestFixture]
@@ -73,7 +72,7 @@ namespace Tasque.Core.Impl
 			var curValue = "oldValue";
 			var repoMock = new Mock<IRepo> ();
 			Action<string> setVal = x => curValue = x;
-			Func<TasqueObject, string, string> update
+			Func<TasqueObject<IRepository>, string, string> update
 				= repoMock.Object.Update;
 
 			SetupNotifyEventsTest (tasqueObject, propertyName, "#A");
@@ -81,7 +80,7 @@ namespace Tasque.Core.Impl
 			var value = "newValue";
 			repoMock.Setup (r => r.Update (tasqueObject, value))
 				.Returns (value);
-			tasqueObject.SetProperty<string, TasqueObject> (
+			tasqueObject.SetProperty<string, TasqueObject<IRepository>> (
 				propertyName, value, curValue, setVal, update);
 			repoMock.Verify (r => r.Update (tasqueObject, value),
 			                 Times.Once (), "#B0");
@@ -90,7 +89,7 @@ namespace Tasque.Core.Impl
 			Assert.AreEqual (1, propChangedCount, "#B3");
 
 			// try setting the same value again
-			tasqueObject.SetProperty<string, TasqueObject> (
+			tasqueObject.SetProperty<string, TasqueObject<IRepository>> (
 				propertyName, value, curValue, setVal, update);
 			repoMock.Verify (r => r.Update (tasqueObject, value),
 			                 Times.Once (), "#C0");
@@ -109,7 +108,7 @@ namespace Tasque.Core.Impl
 			var curValue = "oldValue";
 			var repoMock = new Mock<IRepo> ();
 			Action<string> setVal = x => curValue = x;
-			Func<TasqueObject, string, string> update
+			Func<TasqueObject<IRepository>, string, string> update
 				= repoMock.Object.Update;
 
 			SetupNotifyEventsTest (tasqueObject, propertyName, "#A");
@@ -119,7 +118,7 @@ namespace Tasque.Core.Impl
 			var changedNewValue = newValue.Replace ("'", "\\'");
 			repoMock.Setup (r => r.Update (tasqueObject, newValue))
 				.Returns (changedNewValue);
-			tasqueObject.SetProperty<string, TasqueObject> (
+			tasqueObject.SetProperty<string, TasqueObject<IRepository>> (
 				propertyName, newValue, curValue, setVal, update);
 			repoMock.Verify (r => r.Update (tasqueObject, newValue),
 			                 Times.Once (), "#B0");
@@ -128,7 +127,7 @@ namespace Tasque.Core.Impl
 			Assert.AreEqual (1, propChangedCount, "#B3");
 			
 			// setting a new value that is changed to the old value by the repo
-			tasqueObject.SetProperty<string, TasqueObject> (
+			tasqueObject.SetProperty<string, TasqueObject<IRepository>> (
 				propertyName, newValue, curValue, setVal, update);
 			repoMock.Verify (r => r.Update (tasqueObject, newValue),
 			                 Times.Exactly (2), "#C0");
@@ -147,14 +146,14 @@ namespace Tasque.Core.Impl
 			var curValue = "oldValue";
 			var repoMock = new Mock<IRepo> ();
 			Action<string> setVal = x => curValue = x;
-			Func<TasqueObject, string, string> update
+			Func<TasqueObject<IRepository>, string, string> update
 				= repoMock.Object.Update;
 			
 			SetupNotifyEventsTest (tasqueObject, propertyName, "#A");
 
 			var newValue = "value 378";
 			repoMock.Setup (r => r.Update (tasqueObject, newValue));
-			tasqueObject.SetProperty<string, TasqueObject> (
+			tasqueObject.SetProperty<string, TasqueObject<IRepository>> (
 				propertyName, newValue, curValue, setVal, update);
 			repoMock.Verify (r => r.Update (tasqueObject, newValue),
 			                 Times.Never (), "#B0");
@@ -163,7 +162,7 @@ namespace Tasque.Core.Impl
 			Assert.AreEqual (1, propChangedCount, "#B3");
 		}
 
-		void SetupNotifyEventsTest (TasqueObject tasqueObject,
+		void SetupNotifyEventsTest (TasqueObject<IRepository> tasqueObject,
 			string propertyName, string msgPrefix)
 		{
 			tasqueObject.PropertyChanging += (sender, e) => {
@@ -186,7 +185,7 @@ namespace Tasque.Core.Impl
 
 		public interface IRepo
 		{
-			string Update (TasqueObject obj, string value);
+			string Update (TasqueObject<IRepository> obj, string value);
 		}
 	}
 }

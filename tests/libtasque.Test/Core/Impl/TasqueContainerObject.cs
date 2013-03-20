@@ -1,5 +1,5 @@
 //
-// TasqueObjectCollectionTest.cs
+// TasqueContainerObject.cs
 //
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
@@ -23,60 +23,17 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using System;
-using NUnit.Framework;
-using Moq;
+using System.Collections.Generic;
 using Tasque.Data;
 
 namespace Tasque.Core.Impl
 {
 	using IContainerRepo = ICollectionRepository<ITasqueCore, ITasqueCore>;
-	using TasqueCollection = TasqueObjectCollection<ITasqueObject, ITasqueCore,
-		TasqueContainerObject, ICollectionRepository<ITasqueCore, ITasqueCore>>;
 
-	[TestFixture]
-	public class TasqueObjectCollectionTest
+	public abstract class TasqueContainerObject
+		: TasqueObject<IContainerRepo>, IContainer<ITasqueObject>
 	{
-		[SetUp]
-		public void Setup ()
-		{
-			containerRepoMock = new Mock<IContainerRepo> ();
-			containerMock = new Mock<TasqueContainerObject> (
-				containerRepoMock.Object) {
-				CallBase = true
-			};
-			collection = new TasqueCollection (containerMock.Object);
-		}
-
-		[Test]
-		public void Add_CannotShareItemsWithOtherCollections ()
-		{
-			containerRepoMock.SetupGet (r => r
-				.SupportsSharingItemsWithOtherCollections).Returns (false);
-			var tasqueCoreMock = new Mock<ITasqueObject> ();
-			Assert.Throws<NotSupportedException> (delegate {
-				collection.Add (tasqueCoreMock.Object);
-			});
-		}
-
-		[Test]
-		public void Add_CanShareItemsWithOtherCollections ()
-		{
-			Assert.Inconclusive ();
-		}
-
-		[Test]
-		public void GetAll ()
-		{}
-
-		[Test]
-		public void GetBy ()
-		{
-
-		}
-
-		Mock<TasqueContainerObject> containerMock;
-		Mock<IContainerRepo> containerRepoMock;
-		TasqueCollection collection;
+		public TasqueContainerObject (IContainerRepo repo) : base (repo) {}
+		public abstract IEnumerable<ITasqueObject> Items { get; }
 	}
 }

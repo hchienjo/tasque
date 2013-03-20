@@ -64,9 +64,9 @@ namespace Tasque.Core.Impl
 			Assert.AreEqual (TaskRepoMock.Object, Task.Repository, "#A1");
 			Assert.IsNull (Task.Id, "#A2");
 			Assert.AreEqual (InitialText, Task.Text, "#A3");
-			Assert.IsEmpty (((IInternalContainee<TaskList>)Task)
+			Assert.IsEmpty (((IInternalContainee<TaskList, Task>)Task)
 			                .InternalContainers, "#A4");
-			Assert.IsEmpty (((IInternalContainee<Task>)Task)
+			Assert.IsEmpty (((IInternalContainee<Task, Task>)Task)
 			                .InternalContainers, "#A5");
 			Assert.IsTrue (Task.IsBackendDetached, "#A6");
 			Assert.AreEqual (DateTime.MinValue, Task.DueDate, "#A7");
