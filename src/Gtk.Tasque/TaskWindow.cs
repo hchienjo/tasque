@@ -776,7 +776,6 @@ namespace Gtk.Tasque
 		private ITask CreateTask (string taskText, ITaskList taskList)
 		{
 			var task = taskList.CreateTask (taskText);
-			taskList.Add (task);
 			
 			if (task == null) {
 				Logger.Debug ("Error creating a new task!");
