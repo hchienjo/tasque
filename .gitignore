@@ -88,6 +88,8 @@ Makefile.in
 /src/Addins/*/*.mdb
 /src/Addins/*/*.pdb
 /src/Addins/*/obj/
+/src/Addins/*/*.exe
+/src/Addins/*/*.exe.Defines.config
 
 # /src/Addins/Backends/*/
 /src/Addins/Backends/*/*.dll
@@ -119,6 +121,7 @@ Makefile.in
 
 # /tests/libtasque.Test/
 /tests/libtasque.Test/bin/
+/tests/libtasque.Test/obj/
 /tests/libtasque.Test/test-results/
 
 # /WindowsSetup/
