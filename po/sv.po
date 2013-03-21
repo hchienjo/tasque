@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-09 22:16+0100\n"
+"POT-Creation-Date: 2013-03-21 14:50+0100\n"
 "PO-Revision-Date: 2010-12-31 12:13+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -30,25 +30,25 @@ msgstr "Snabb och enkel aktivitetshantering"
 msgid "Task Manager"
 msgstr "Aktivitetshanterare"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:160
-#: ../src/Gtk.Tasque/Utilities.cs:282
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
+#: ../src/Gtk.Tasque/Utilities.cs:283
 msgid "Yesterday"
 msgstr "Igår"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:162
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
 msgid "Last 7 Days"
 msgstr "De senaste 7 dagarna"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:164
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
 msgid "Last Month"
 msgstr "Förra månaden"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:166
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:173
 msgid "Last Year"
 msgstr "Förra året"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
-#: ../src/libtasque/AllCategory.cs:30
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:176
+#: ../src/libtasque/Utils/AllList.cs:85
 msgid "All"
 msgstr "Alla"
 
@@ -57,33 +57,33 @@ msgstr "Alla"
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Copyright © 2008 Novell, Inc."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:89
-#, csharp-format
-msgid "{0} task is Overdue\n"
-msgid_plural "{0} tasks are Overdue\n"
+#: ../src/Gtk.Tasque/GtkTray.cs:87
+#, fuzzy, csharp-format
+msgid "{0} task is Overdue"
+msgid_plural "{0} tasks are Overdue"
 msgstr[0] "{0} aktivitet har förfallit\n"
 msgstr[1] "{0} aktiviteter har förfallit\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:98
-#, csharp-format
-msgid "{0} task for Today\n"
-msgid_plural "{0} tasks for Today\n"
+#: ../src/Gtk.Tasque/GtkTray.cs:97
+#, fuzzy, csharp-format
+msgid "{0} task for Today"
+msgid_plural "{0} tasks for Today"
 msgstr[0] "{0} aktivitet ska vara klara idag\n"
 msgstr[1] "{0} aktiviteter ska vara klara idag\n"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:107
-#, csharp-format
-msgid "{0} task for Tomorrow\n"
-msgid_plural "{0} tasks for Tomorrow\n"
+#: ../src/Gtk.Tasque/GtkTray.cs:108
+#, fuzzy, csharp-format
+msgid "{0} task for Tomorrow"
+msgid_plural "{0} tasks for Tomorrow"
 msgstr[0] "{0} aktivitet ska vara klara imorgon\n"
 msgstr[1] "{0} aktiviteter ska vara klara imorgon\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
-#: ../src/Gtk.Tasque/GtkTray.cs:113
+#: ../src/Gtk.Tasque/GtkTray.cs:115
 msgid "Tasque Rocks"
 msgstr "Tasque är grymt"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:150
+#: ../src/Gtk.Tasque/GtkTray.cs:138
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -92,226 +92,228 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:159
-msgid "A Useful Task List"
+#: ../src/Gtk.Tasque/GtkTray.cs:147
+#, fuzzy
+msgid "A Useful ITask List"
 msgstr "En användbar aktivitetslista"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:161
+#: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "Tasque Project Homepage"
 msgstr "Tasque-projektets webbplats"
 
-#: ../src/Gtk.Tasque/GtkTray.cs:174
-msgid "New Task ..."
+#: ../src/Gtk.Tasque/GtkTray.cs:161
+#, fuzzy
+msgid "New ITask ..."
 msgstr "Ny aktivitet..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:184
+#: ../src/Gtk.Tasque/GtkTray.cs:168
 msgid "Refresh Tasks ..."
 msgstr "Uppdatera aktiviteter ..."
 
-#: ../src/Gtk.Tasque/GtkTray.cs:190
-msgid "Toggle Task Window"
+#: ../src/Gtk.Tasque/GtkTray.cs:184
+msgid "Toggle ITask Window"
 msgstr ""
 
-#: ../src/Gtk.Tasque/NoteDialog.cs:24
+#: ../src/Gtk.Tasque/NoteDialog.cs:26
 #, csharp-format
 msgid "Notes for: {0:s}"
 msgstr "Anteckningar för: {0:s}"
 
 #. Update the window title
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:102
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:103
 msgid "Tasque Preferences"
 msgstr "Inställningar för Tasque"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:121
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:122
 msgid "General"
 msgstr "Allmänt"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:129
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:130
 msgid "Appearance"
 msgstr "Utseende"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:165
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:166
 msgid "Color Management"
 msgstr "Färghantering"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:176
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:177
 msgid "Today:"
 msgstr "Idag:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:204
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:205
 msgid "Overdue:"
 msgstr "Förfallna:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:248
-msgid "Task Management System"
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:249
+#, fuzzy
+msgid "ITask Management System"
 msgstr "Aktivitetshanteringssystem"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:290
-msgid "Task Filtering"
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:291
+#, fuzzy
+msgid "ITask Filtering"
 msgstr "Aktivitetsfiltrering"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:309
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:310
 msgid "Sh_ow completed tasks"
 msgstr "Visa a_vklarade aktiviteter"
 
-#. Categories TreeView
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:318
-msgid "Only _show these categories when \"All\" is selected:"
+#. TaskLists TreeView
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:319
+#, fuzzy
+msgid "Only _show these lists when \"All\" is selected:"
 msgstr "_Visa endast dessa kategorier när \"Alla\" är valda:"
 
-#: ../src/Gtk.Tasque/PreferencesDialog.cs:336
-msgid "Category"
-msgstr "Kategori"
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:337
+#, fuzzy
+msgid "ITask List"
+msgstr "En användbar aktivitetslista"
 
-#: ../src/Gtk.Tasque/RemoteControl.cs:174
+#: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
 msgstr "Ny aktivitet skapad."
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:157 ../src/Gtk.Tasque/TaskWindow.cs:828
-#: ../src/Gtk.Tasque/TaskWindow.cs:884 ../src/Gtk.Tasque/TaskWindow.cs:894
-#: ../src/Gtk.Tasque/TaskWindow.cs:905
+#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:819
+#: ../src/Gtk.Tasque/TaskWindow.cs:875 ../src/Gtk.Tasque/TaskWindow.cs:885
+#: ../src/Gtk.Tasque/TaskWindow.cs:896
 msgid "New task..."
 msgstr "Ny aktivitet..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:173
+#: ../src/Gtk.Tasque/TaskWindow.cs:172
 msgid "_Add"
 msgstr "_Lägg till"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:178
-msgid "_Add Task"
+#: ../src/Gtk.Tasque/TaskWindow.cs:177
+#, fuzzy
+msgid "_Add ITask"
 msgstr "_Lägg till aktivitet"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:266
+#: ../src/Gtk.Tasque/TaskWindow.cs:261
 msgid "Overdue"
 msgstr "Förfallna"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:284 ../src/Gtk.Tasque/Utilities.cs:276
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:50
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:117
+#: ../src/Gtk.Tasque/TaskWindow.cs:278 ../src/Gtk.Tasque/Utilities.cs:277
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
 msgid "Today"
 msgstr "Idag"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:302 ../src/Gtk.Tasque/Utilities.cs:295
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:52
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:120
+#: ../src/Gtk.Tasque/TaskWindow.cs:295 ../src/Gtk.Tasque/Utilities.cs:296
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:121
 msgid "Tomorrow"
 msgstr "Imorgon"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:320
+#: ../src/Gtk.Tasque/TaskWindow.cs:312
 msgid "Next 7 Days"
 msgstr "Kommande 7 dagar"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:336
+#: ../src/Gtk.Tasque/TaskWindow.cs:328
 msgid "Future"
 msgstr "Framtiden"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:351
-#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:39
-#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:39
+#: ../src/Gtk.Tasque/TaskWindow.cs:341
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:40
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:40
 msgid "Completed"
 msgstr "Avklarad"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:487 ../src/Gtk.Tasque/TaskWindow.cs:1230
+#: ../src/Gtk.Tasque/TaskWindow.cs:478 ../src/Gtk.Tasque/TaskWindow.cs:1211
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr "Aktiviteter inlästa: {0}"
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:792
+#: ../src/Gtk.Tasque/TaskWindow.cs:783
 msgid "Error creating a new task"
 msgstr "Fel vid skapande av ny aktivitet"
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:796
-msgid "Task created successfully"
+#: ../src/Gtk.Tasque/TaskWindow.cs:787
+#, fuzzy
+msgid "ITask created successfully"
 msgstr "Aktiviteten skapades"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1080
+#: ../src/Gtk.Tasque/TaskWindow.cs:1071
 msgid "_Notes..."
 msgstr "_Anteckningar"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1087
+#: ../src/Gtk.Tasque/TaskWindow.cs:1078
 msgid "_Delete task"
 msgstr "_Ta bort aktivitet"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1092
+#: ../src/Gtk.Tasque/TaskWindow.cs:1083
 msgid "_Edit task"
 msgstr "_Redigera aktivitet"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1123
-msgid "_Change category"
+#: ../src/Gtk.Tasque/TaskWindow.cs:1115
+#, fuzzy
+msgid "_Change list"
 msgstr "_Byt kategori"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1179
-msgid "Task deleted"
+#: ../src/Gtk.Tasque/TaskWindow.cs:1173
+#, fuzzy
+msgid "ITask deleted"
 msgstr "Aktiviteten borttagen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1221
-msgid "Loading tasks..."
-msgstr "Läser in aktiviteter..."
-
-#: ../src/Gtk.Tasque/TaskWindow.cs:1242
-msgid "Not connected."
-msgstr "Inte ansluten."
-
-#: ../src/Gtk.Tasque/Utilities.cs:274
+#: ../src/Gtk.Tasque/Utilities.cs:275
 #, csharp-format
 msgid "Today, {0}"
 msgstr "Idag, {0}"
 
-#: ../src/Gtk.Tasque/Utilities.cs:280
+#: ../src/Gtk.Tasque/Utilities.cs:281
 #, csharp-format
 msgid "Yesterday, {0}"
 msgstr "Igår, {0}"
 
-#: ../src/Gtk.Tasque/Utilities.cs:286
+#: ../src/Gtk.Tasque/Utilities.cs:287
 #, csharp-format
 msgid "{0} days ago, {1}"
 msgstr "{0} dagar sedan, {1}"
 
-#: ../src/Gtk.Tasque/Utilities.cs:288
+#: ../src/Gtk.Tasque/Utilities.cs:289
 #, csharp-format
 msgid "{0} days ago"
 msgstr "{0} dagar sedan"
 
-#: ../src/Gtk.Tasque/Utilities.cs:293
+#: ../src/Gtk.Tasque/Utilities.cs:294
 #, csharp-format
 msgid "Tomorrow, {0}"
 msgstr "Imorgon, {0}"
 
-#: ../src/Gtk.Tasque/Utilities.cs:299
+#: ../src/Gtk.Tasque/Utilities.cs:300
 #, csharp-format
 msgid "In {0} days, {1}"
 msgstr "Om {0} dagar, {1}"
 
-#: ../src/Gtk.Tasque/Utilities.cs:301
+#: ../src/Gtk.Tasque/Utilities.cs:302
 #, csharp-format
 msgid "In {0} days"
 msgstr "Om {0} dagar"
 
-#: ../src/Gtk.Tasque/Utilities.cs:305
+#: ../src/Gtk.Tasque/Utilities.cs:306
 msgid "MMMM d, h:mm tt"
 msgstr "MMMM d, hh:mm"
 
-#: ../src/Gtk.Tasque/Utilities.cs:306
+#: ../src/Gtk.Tasque/Utilities.cs:307
 msgid "MMMM d"
 msgstr "MMMM d"
 
-#: ../src/Gtk.Tasque/Utilities.cs:308
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:122
+#: ../src/Gtk.Tasque/Utilities.cs:309
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:66
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:123
 msgid "No Date"
 msgstr "Inget datum"
 
-#: ../src/Gtk.Tasque/Utilities.cs:311
+#: ../src/Gtk.Tasque/Utilities.cs:312
 msgid "MMMM d yyyy, h:mm tt"
 msgstr "d MMMM yyyy hh:mm"
 
-#: ../src/Gtk.Tasque/Utilities.cs:312
+#: ../src/Gtk.Tasque/Utilities.cs:313
 msgid "MMMM d yyyy"
 msgstr "d MMMM yyyy"
 
@@ -357,200 +359,209 @@ msgstr "Misslyckades. Försök igen"
 msgid "Thank You"
 msgstr "Tack"
 
-#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:80
-#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:97
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:81
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:98
 msgid "Task Completed"
 msgstr "Aktivitet färdig"
 
-#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:82
-#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:113
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:83
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:114
 msgid "Action Canceled"
 msgstr "Åtgärden avbruten"
 
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:39
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:40
 msgid "Due Date"
 msgstr "Förfallodag"
 
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:50
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:52
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:64
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:117
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:119
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:124
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:120
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:125
 msgid "M/d - "
 msgstr "d/M - "
 
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:54
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:56
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:58
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:60
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:62
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:134
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:55
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:57
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:59
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:61
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:63
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:135
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:189
 msgid "M/d - ddd"
 msgstr "d/M - ddd"
 
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:64
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:125
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:126
 msgid "In 1 Week"
 msgstr "Inom en vecka"
 
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:66
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:127
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:67
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:128
 msgid "Choose Date..."
 msgstr "Välj datum..."
 
-#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:193
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
 msgid "M/d/yy - ddd"
 msgstr "d/M/yy - ddd"
 
-#: ../src/Addins/Gtk.Tasque.Columns/NotesColumn.cs:45
+#: ../src/Addins/Gtk.Tasque.Columns/NotesColumn.cs:47
 msgid "Notes"
 msgstr "Anteckningar"
 
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:39
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:40
 msgid "Priority"
 msgstr "Prioritet"
 
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:48
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:88
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:149
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:49
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:89
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:150
 msgid "1"
 msgstr "1"
 
 #. High
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:49
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:86
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:146
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:50
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:87
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:147
 msgid "2"
 msgstr "2"
 
 #. Medium
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:50
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:84
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:143
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:85
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:144
 msgid "3"
 msgstr "3"
 
 #. Low
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:51
-#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:152
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:52
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:153
 msgid "-"
 msgstr "-"
 
-#: ../src/Addins/Gtk.Tasque.Columns/TaskNameColumn.cs:40
+#: ../src/Addins/Gtk.Tasque.Columns/TaskNameColumn.cs:42
 msgid "Task Name"
 msgstr "Aktivitetsnamn"
 
-#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:107
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:108
 #, csharp-format
 msgid "Completing Task In: {0}"
 msgstr "Färdigställer aktivitet om: {0}"
 
-#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/TimerColumn.cs:42
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/TimerColumn.cs:43
 msgid "Timer"
 msgstr "Timer"
 
 #. Token "O". Notice only the suffix is translated.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:49
+#: ../src/libtasque/DateFormatters/TaskParser.cs:49
 msgid "th,st,nd,rd"
 msgstr "e,a,a,e"
 
 #. Token "T"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:53
+#: ../src/libtasque/DateFormatters/TaskParser.cs:53
 msgid "today"
 msgstr "idag"
 
 #. Token "T"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:57
+#: ../src/libtasque/DateFormatters/TaskParser.cs:57
 msgid "tomorrow"
 msgstr "imorgon"
 
 #. Token "m". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:61
+#: ../src/libtasque/DateFormatters/TaskParser.cs:61
 msgid "month|months"
 msgstr "månad|månader"
 
 #. Token "w". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:65
+#: ../src/libtasque/DateFormatters/TaskParser.cs:65
 msgid "week|weeks"
 msgstr "vecka|veckor"
 
 #. Token "y". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:69
+#: ../src/libtasque/DateFormatters/TaskParser.cs:69
 msgid "year|years"
 msgstr "år|år"
 
 #. Token "d". Don't forget to include the plural value, if any
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:73
+#: ../src/libtasque/DateFormatters/TaskParser.cs:73
 msgid "day|days"
 msgstr "dag|dagar"
 
 #. Token "u". More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:207
+#: ../src/libtasque/DateFormatters/TaskParser.cs:207
 msgid "due before|due by|due"
 msgstr "färdig före|färdig den|färdig"
 
 #. Token "n". Examples could be: "Next Month", "Next Monday"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:233
+#: ../src/libtasque/DateFormatters/TaskParser.cs:233
 msgid "next"
 msgstr "nästa"
 
 #. Token "o". Examples could be: "On April 1st", "On Wednesday"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:239
+#: ../src/libtasque/DateFormatters/TaskParser.cs:239
 msgid "on"
 msgstr ""
 
 #. Token "i". Examples could be: "In 2 weeks", "In 3 months"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:245
+#: ../src/libtasque/DateFormatters/TaskParser.cs:245
 msgid "in"
 msgstr "om"
 
 #. Represents "Today and Tomorrow" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:260
+#: ../src/libtasque/DateFormatters/TaskParser.cs:260
 msgid "u T"
 msgstr "u T"
 
 #. Represents: "Next" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:263
+#: ../src/libtasque/DateFormatters/TaskParser.cs:263
 msgid "n w|n m|n y|n D"
 msgstr "n w|n m|n y|n D"
 
 #. Represents "Due" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:266
+#: ../src/libtasque/DateFormatters/TaskParser.cs:266
 msgid "u o D|u M O|u M N|u O|u M"
 msgstr "u o D|u M O|u M N|u O|u M"
 
 #. Represents "On" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:269
+#: ../src/libtasque/DateFormatters/TaskParser.cs:269
 msgid "o D|o O"
 msgstr "o D|o O"
 
 #. Represents "In" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:272
+#: ../src/libtasque/DateFormatters/TaskParser.cs:272
 msgid "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 
 #. Represents all other expressions not using tokens.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
-#: ../src/libtasque/TaskParser.cs:275
+#: ../src/libtasque/DateFormatters/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|M O|M N|O|A"
+
+#~ msgid "Category"
+#~ msgstr "Kategori"
+
+#~ msgid "Loading tasks..."
+#~ msgstr "Läser in aktiviteter..."
+
+#~ msgid "Not connected."
+#~ msgstr "Inte ansluten."
 
 #~ msgid "_File"
 #~ msgstr "_Arkiv"
