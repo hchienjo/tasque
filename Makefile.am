@@ -157,6 +157,7 @@ distcheck-hook:
 
 clean-local:
 	rm -f $(shell find -name *.dll)
+	rm -f $(shell find -name *.exe)
 	rm -f $(shell find -name *.mdb)
 
 change-log:
