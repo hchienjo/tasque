@@ -31,23 +31,23 @@ namespace Tasque
 		public const string AuthTokenKey = "AuthToken";
 		public const string CurrentBackend = "CurrentBackend";
 		public const string InactivateTimeoutKey = "InactivateTimeout";
-		public const string SelectedCategoryKey = "SelectedCategory";
+		public const string SelectedTaskListKey = "SelectedTaskList";
 		public const string ParseDateEnabledKey = "ParseDateEnabled";
 		public const string TodayTaskTextColor = "TodayTaskTextColor";
 		public const string OverdueTaskTextColor = "OverdueTaskTextColor";
 		
 		/// <summary>
-		/// A list of category names to show in the TaskWindow when the "All"
-		/// category is selected.
+		/// A list of taskList names to show in the TaskWindow when the "All"
+		/// taskList is selected.
 		/// </summary>
-		public const string HideInAllCategory = "HideInAllCategory";
+		public const string HideInAllTaskList = "HideInAllTaskList";
 		public const string ShowCompletedTasksKey = "ShowCompletedTasks";
 		public const string UserNameKey = "UserName";
 		public const string UserIdKey = "UserID";
 		
 		/// <summary>
 		/// This setting allows a user to specify how many completed tasks to
-		/// show in the Completed Tasks Category.  The setting should be one of:
+		/// show in the Completed Tasks TaskList.  The setting should be one of:
 		/// "Yesterday", "Last7Days", "LastMonth", "LastYear", or "All".
 		/// </summary>
 		public const string CompletedTasksRange = "CompletedTasksRange";

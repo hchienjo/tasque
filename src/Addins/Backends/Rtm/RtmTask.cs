@@ -10,9 +10,8 @@ namespace Tasque.Backends.Rtm
 	public class RtmTask : Task
 	{
 		private RtmBackend rtmBackend;
-		private TaskState state;
-		private RtmCategory category;
-		private List<INote> notes;		
+		private RtmList list;
+		private List<INote> notes;
 
 		TaskSeries taskSeries;
 		RtmNet.Task task;
@@ -27,17 +26,22 @@ namespace Tasque.Backends.Rtm
 		{
 			this.taskSeries = taskSeries;
 			this.rtmBackend = be;
-			this.category = be.GetCategory(listID);
+			this.list = be.GetTaskList(listID);
 			this.task = task;
 
-			if(CompletionDate == DateTime.MinValue )
-				state = TaskState.Active;
+			Id = task.TaskID;
+			Name = taskSeries.Name;
+			DueDate = task.Due;
+			CompletionDate = task.Completed;
+			if (CompletionDate == DateTime.MinValue)
+				State = TaskState.Active;
 			else
-				state = TaskState.Completed;
+				State = TaskState.Completed;
+			Priority = GetPriority ();
 			notes = new List<INote>();
 
 			if (taskSeries.Notes.NoteCollection != null) {
-				foreach(Note note in taskSeries.Notes.NoteCollection) {
+				foreach(var note in taskSeries.Notes.NoteCollection) {
 					RtmNote rtmNote = new RtmNote(note);
 					notes.Add(rtmNote);
 				}
@@ -45,44 +49,20 @@ namespace Tasque.Backends.Rtm
 		}
 		
 		#region Public Properties
-		/// <value>
-		/// Gets the id of the task
-		/// </value>
-		public override string Id
+
+		protected override void OnNameChanged ()
 		{
-			get { return task.TaskID; }
+			taskSeries.Name = Name;
+			rtmBackend.UpdateTaskName (this);
+			base.OnNameChanged ();
 		}
 
-		/// <value>
-		/// Holds the name of the task
-		/// </value>		
-		public override string Name
+		protected override void OnDueDateChanged ()
 		{
-			get { return taskSeries.Name; }
-			set {
-				if (value != null) {
-					OnPropertyChanging ("Name");
-					taskSeries.Name = value.Trim ();
-					rtmBackend.UpdateTaskName(this);
-					OnPropertyChanged ("CompletionDate");
-				}
-			}
+			task.Due = DueDate;
+			rtmBackend.UpdateTaskDueDate (this);
+			base.OnDueDateChanged ();
 		}
-		
-		/// <value>
-		/// Due Date for the task
-		/// </value>
-		public override DateTime DueDate
-		{
-			get { return task.Due; }
-			set {
-				OnPropertyChanging ("DueDate");
-				task.Due = value;
-				rtmBackend.UpdateTaskDueDate(this);
-				OnPropertyChanged ("CompletionDate");
-			}
-		}
-		
 
 		/// <value>
 		/// Due Date for the task
@@ -97,110 +77,40 @@ namespace Tasque.Backends.Rtm
 			}
 		}
 
-		
-		/// <value>
-		/// Completion Date for the task
-		/// </value>
-		public override DateTime CompletionDate
+		protected override void OnCompletionDateChanged ()
 		{
-			get { return task.Completed; }
-			set {
-				OnPropertyChanging ("CompletionDate");
-				task.Completed = value;
-				OnPropertyChanged ("CompletionDate");
-			}
+			task.Completed = CompletionDate;
+			base.OnCompletionDateChanged ();
 		}
-		
-		/// <value>
-		/// Returns if the task is complete
-		/// </value>
-		public override bool IsComplete
+
+		protected override void OnPriorityChanged ()
 		{
-			get { return state == TaskState.Completed; }
-		}
-		
-		/// <value>
-		/// Holds the priority of the task
-		/// </value>
-		public override TaskPriority Priority
-		{
-			get { 
-				switch (task.Priority) {
-					default:
-					case "N":
-						return TaskPriority.None;
-					case "1":
-						return TaskPriority.High;
-					case "2":
-						return TaskPriority.Medium;
-					case "3":
-						return TaskPriority.Low;
-				}
+			switch (Priority) {
+			default:
+			case TaskPriority.None:
+				task.Priority = "N";
+				break;
+			case TaskPriority.High:
+				task.Priority = "1";
+				break;
+			case TaskPriority.Medium:
+				task.Priority = "2";
+				break;
+			case TaskPriority.Low:
+				task.Priority = "3";
+				break;
 			}
-			set {
-				OnPropertyChanging ("Priority");
-				switch (value) {
-					default:
-					case TaskPriority.None:
-						task.Priority = "N";
-						break;
-					case TaskPriority.High:
-						task.Priority = "1";
-						break;
-					case TaskPriority.Medium:
-						task.Priority = "2";
-						break;
-					case TaskPriority.Low:
-						task.Priority = "3";
-						break;
-				}
-				rtmBackend.UpdateTaskPriority(this);
-				OnPropertyChanged ("CompletionDate");
-			}
+			rtmBackend.UpdateTaskPriority (this);
+			base.OnPriorityChanged ();
 		}
 		
 		public string PriorityString
 		{
 			get { return task.Priority; }
-		}		
-		
-		
-		/// <value>
-		/// Returns if the task has any notes
-		/// </value>
-		public override bool HasNotes
-		{
-			get { return (notes.Count > 0); }
 		}
-		
-		/// <value>
-		/// Returns if the task supports multiple notes
-		/// </value>
-		public override NoteSupport NoteSupport
-		{
+
+		public override NoteSupport NoteSupport {
 			get { return NoteSupport.Multiple; }
-		}
-		
-		/// <value>
-		/// Holds the current state of the task
-		/// </value>
-		public override TaskState State
-		{
-			get { return state; }
-		}
-		
-		/// <value>
-		/// Returns the category object for this task
-		/// </value>
-		public override ICategory Category
-		{
-			get { return category; } 
-			set {
-				OnPropertyChanging ("Category");
-				RtmCategory rtmCategory = value as RtmCategory;
-				rtmBackend.MoveTaskCategory(this, rtmCategory.ID);
-				OnPropertyChanged ("CompletionDate");
-			}
 		}
 		
 		/// <value>
@@ -236,39 +146,27 @@ namespace Tasque.Backends.Rtm
 		
 		public string ListID
 		{
-			get { return category.ID; }
+			get { return list.ID; }
 		}
 		#endregion // Public Properties
 		
 		#region Public Methods
-		/// <summary>
-		/// Activates the task
-		/// </summary>
-		public override void Activate ()
+		protected override void OnActivated ()
 		{
-			Logger.Debug("Activating Task: " + Name);
-			SetState (TaskState.Active);
-			CompletionDate = DateTime.MinValue;
+			rtmBackend.UpdateTaskActive (this);
+			base.OnActivated ();
 		}
-		
-		/// <summary>
-		/// Completes the task
-		/// </summary>
-		public override void Complete ()
+
+		protected override void OnCompleted ()
 		{
-			Logger.Debug("Completing Task: " + Name);
-			SetState (TaskState.Completed);
-			if(CompletionDate == DateTime.MinValue)
-				CompletionDate = DateTime.Now;
+			rtmBackend.UpdateTaskCompleted (this);
+			base.OnCompleted ();
 		}
-		
-		/// <summary>
-		/// Deletes the task
-		/// </summary>
-		public override void Delete ()
+
+		protected override void OnDeleted ()
 		{
-			SetState (TaskState.Deleted);
 			rtmBackend.DeleteTask (this);
+			base.OnDeleted ();
 		}
 		
 		/// <summary>
@@ -315,17 +213,23 @@ namespace Tasque.Backends.Rtm
 		public override void SaveNote(INote note)
 		{		
 			rtmBackend.SaveNote(this, (note as RtmNote));
-		}		
+		}
+
+		TaskPriority GetPriority ()
+		{
+			switch (task.Priority) {
+			default:
+			case "N":
+				return TaskPriority.None;
+			case "1":
+				return TaskPriority.High;
+			case "2":
+				return TaskPriority.Medium;
+			case "3":
+				return TaskPriority.Low;
+			}
+		}
 
 		#endregion // Public Methods
-
-		void SetState (TaskState value)
-		{
-			if (value == state)
-				return;
-			OnPropertyChanging ("State");
-			state = value;
-			OnPropertyChanged ("State");
-		}
 	}
 }

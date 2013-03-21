@@ -26,6 +26,6 @@
 using System.Reflection;
 using Mono.Addins;
 
-[assembly: AssemblyTitle("Gtk.Tasque")]
-[assembly: AssemblyDescription("Gtk# frontend for Tasque")]
-[assembly: AddinRoot ("GtkTasque", "0.1.13")]
+[assembly: AssemblyTitle("Tasque")]
+[assembly: AssemblyDescription("Gtk# client for Tasque")]
+[assembly: AddinRoot ("GtkTasque", "0.2.0")]

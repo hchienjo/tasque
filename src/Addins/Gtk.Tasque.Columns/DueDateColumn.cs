@@ -26,6 +26,7 @@
 using System;
 using Mono.Unix;
 using Tasque;
+using Tasque.Core;
 
 namespace Gtk.Tasque
 {
@@ -112,7 +113,7 @@ namespace Gtk.Tasque
 					
 					var newDate = DateTime.MinValue;
 					var tday = DateTime.Now;
-					var task = model.GetValue (iter, 0) as ITask;			
+					var task = model.GetValue (iter, 0) as ITask;
 					
 					if (newText == tday.ToString (Catalog.GetString ("M/d - ")) + Catalog.GetString ("Today"))
 						newDate = tday;
@@ -140,10 +141,7 @@ namespace Gtk.Tasque
 					
 					Logger.Debug ("task.State {0}", task.State);
 					
-					if (task.State == TaskState.Completed) {
-						// Modify the completion date
-						task.CompletionDate = newDate;
-					} else {
+					if (task.State != TaskState.Completed) {
 						// Modify the due date
 						task.DueDate = newDate;
 					}

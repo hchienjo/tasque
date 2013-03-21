@@ -4,7 +4,7 @@
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
 // 
-// Copyright (c) 2012 Antonius Riha
+// Copyright (c) 2012-2013 Antonius Riha
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ namespace Tasque
 {
 	public class GtkWinApplication : GtkApplicationBase
 	{
-		public override void Initialize (string[] args)
+		public GtkWinApplication (string[] args) : base (args)
 		{
 			base.Initialize (args);
 #if DEBUG

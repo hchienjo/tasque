@@ -10,6 +10,8 @@ using System.Linq;
 
 using Mono.Unix; // for Catalog.GetString ()
 using Tasque;
+using Tasque.Core;
+using Tasque.DateFormatters;
 
 #if ENABLE_NOTIFY_SHARP
 using Notifications;
@@ -36,7 +38,7 @@ namespace Gtk.Tasque
 			return Bus.Session.GetObject<RemoteControl> (Namespace, new ObjectPath (Path));
 		}
 		
-		public static RemoteControl Register (INativeApplication application)
+		public static RemoteControl Register (GtkApplicationBase application)
 		{
 			BusG.Init ();
 			
@@ -49,7 +51,7 @@ namespace Gtk.Tasque
 			return remoteControl;
 		}
 		
-		RemoteControl (INativeApplication application)
+		RemoteControl (GtkApplicationBase application)
 		{
 			if (application == null)
 				throw new ArgumentNullException ("application");
@@ -65,11 +67,11 @@ namespace Gtk.Tasque
 		public System.Action RemoteInstanceKnocked { get; set; }
 				
 		/// <summary>
-		/// Create a new task in Tasque using the given categoryName and name.
+		/// Create a new task in Tasque using the given taskListName and name.
 		/// Will not attempt to parse due date information.
 		/// </summary>
-		/// <param name="categoryName">
-		/// A <see cref="System.String"/>.  The name of an existing category.
+		/// <param name="taskListName">
+		/// A <see cref="System.String"/>.  The name of an existing taskList.
 		/// Matches are not case-sensitive.
 		/// </param>
 		/// <param name="taskName">
@@ -84,17 +86,17 @@ namespace Gtk.Tasque
 		/// A unique <see cref="System.String"/> which can be used to reference
 		/// the task later.
 		/// </returns>
-		public string CreateTask (string categoryName, string taskName,
+		public string CreateTask (string taskListName, string taskName,
 						bool enterEditMode)
 		{
-			return CreateTask (categoryName, taskName, enterEditMode, false);
+			return CreateTask (taskListName, taskName, enterEditMode, false);
 		}
 
 		/// <summary>
-		/// Create a new task in Tasque using the given categoryName and name.
+		/// Create a new task in Tasque using the given taskListName and name.
 		/// </summary>
-		/// <param name="categoryName">
-		/// A <see cref="System.String"/>.  The name of an existing category.
+		/// <param name="taskListName">
+		/// A <see cref="System.String"/>.  The name of an existing taskList.
 		/// Matches are not case-sensitive.
 		/// </param>
 		/// <param name="taskName">
@@ -114,30 +116,30 @@ namespace Gtk.Tasque
 		/// A unique <see cref="System.String"/> which can be used to reference
 		/// the task later.
 		/// </returns>
-		public string CreateTask (string categoryName, string taskName,
+		public string CreateTask (string taskListName, string taskName,
 						bool enterEditMode, bool parseDate)
 		{
-			var model = application.Backend.Categories;
+			var model = application.BackendManager.TaskLists;
 			
 			//
 			// Validate the input parameters.  Don't allow null or empty strings
 			// be passed-in.
 			//
-			if (categoryName == null || categoryName.Trim () == string.Empty
+			if (taskListName == null || taskListName.Trim () == string.Empty
 					|| taskName == null || taskName.Trim () == string.Empty) {
 				return string.Empty;
 			}
 			
 			//
-			// Look for the specified category
+			// Look for the specified taskList
 			//
 			if (model.Count == 0) {
 				return string.Empty;
 			}
 			
-			ICategory category = model.FirstOrDefault (c => c.Name.ToLower () == categoryName.ToLower ());
+			ITaskList taskList = model.FirstOrDefault (c => c.Name.ToLower () == taskListName.ToLower ());
 			
-			if (category == null) {
+			if (taskList == null) {
 				return string.Empty;
 			}
 			
@@ -151,7 +153,8 @@ namespace Gtk.Tasque
 				                         out taskDueDate);
 			ITask task = null;
 			try {
-				task = application.Backend.CreateTask (taskName, category);
+				task = taskList.CreateTask (taskName);
+				taskList.Add (task);
 				if (taskDueDate != DateTime.MinValue)
 					task.DueDate = taskDueDate;
 			} catch (Exception e) {
@@ -164,7 +167,7 @@ namespace Gtk.Tasque
 			}
 			
 			if (enterEditMode) {
-				TaskWindow.SelectAndEdit (task, application);
+//				TaskWindow.SelectAndEdit (task, application);
 			}
 			
 			#if ENABLE_NOTIFY_SHARP
@@ -179,32 +182,32 @@ namespace Gtk.Tasque
 		}
 		
 		/// <summary>
-		/// Return an array of Category names.
+		/// Return an array of ITaskList names.
 		/// </summary>
 		/// <returns>
 		/// A <see cref="System.String"/>
 		/// </returns>
-		public string[] GetCategoryNames ()
+		public string[] GetTaskListNames ()
 		{
-			List<string> categories = new List<string> ();
-			string[] emptyArray = categories.ToArray ();
+			List<string> taskLists = new List<string> ();
+			string[] emptyArray = taskLists.ToArray ();
 
-			var model = application.Backend.Categories;
+			var model = application.BackendManager.TaskLists;
 			
 			if (model.Count == 0)
 				return emptyArray;
 			
 			foreach (var item in model) {
-				if (!(item is AllCategory))
-					categories.Add (item.Name);
+				if (!(item is AllList))
+					taskLists.Add (item.Name);
 			}
 			
-			return categories.ToArray ();
+			return taskLists.ToArray ();
 		}
 		
 		public void ShowTasks ()
 		{
-			TaskWindow.ShowWindow (application);
+//			TaskWindow.ShowWindow (application);
 		}
 		
 		/// <summary>
@@ -217,7 +220,7 @@ namespace Gtk.Tasque
 		public string[] GetTaskIds ()
 		{
 			var ids = new List<string> ();
-			var model = application.Backend.Tasks;
+			var model = application.BackendManager.Tasks;
 
 			if (model.Count == 0)
 				return new string[0];
@@ -240,7 +243,7 @@ namespace Gtk.Tasque
 		public string GetNameForTaskById (string id)
 		{
 			ITask task = GetTaskById (id);
-			return task != null ? task.Name : string.Empty;
+			return task != null ? task.Text : string.Empty;
 		}
 		
 		/// <summary>
@@ -263,58 +266,64 @@ namespace Gtk.Tasque
 			{
 				return false;
 			}
-			task.Name = name;
+			task.Text = name;
 			return true;
 		}
-		
+
 		/// <summary>
-		/// Gets the category of a task for a given ID
+		/// Gets the list of a task for a given ID
 		/// </summary>
 		/// <param name="id">
 		/// A <see cref="System.String"/> for the ID of the task
 		/// </param>
 		/// <returns>
-		/// A <see cref="System.String"/> the category of the task
+		/// A <see cref="System.String"/> the list of the task
 		/// </returns>
-		public string GetCategoryForTaskById (string id)
+		public string GetTaskListForTaskById (string id)
 		{
-			ITask task = GetTaskById (id);
-			return task != null ? task.Category.Name : string.Empty;
+			var task = GetTaskById (id);
+			var list = application.BackendManager.TaskLists.FirstOrDefault (
+				l => !(l is AllList) && l.Contains (task));
+			return task != null ? list.Name : string.Empty;
 		}
 		
 		/// <summary>
-		/// Sets the category of a task for a given ID
+		/// Sets the list of a task for a given ID
 		/// </summary>
 		/// <param name="id">
 		/// A <see cref="System.String"/> for the ID of the task
 		/// </param>
-		/// <param name="category">
-		/// A <see cref="System.String"/> the category of the task
+		/// <param name="listName">
+		/// A <see cref="System.String"/> the list of the task
 		/// </param>
 		/// <returns>
 		/// A <see cref="System.Boolean"/>, true for success, false
 		/// for failure.
 		/// </returns>
-		public bool SetCategoryForTaskById (string id,
-							string categoryName)
+		public bool SetTaskListForTaskById (string id,
+			string listName)
 		{
-			ITask task = GetTaskById (id);
+			var task = GetTaskById (id);
 			if (task == null)
-			{
 				return false;
+
+			// NOTE: the previous data model had a one taskList to many tasks
+			// relationship. Now it's many-to-many. However, we stick to the
+			// old model until a general overhaul.
+			var lists = application.BackendManager.TaskLists;
+			var prevList = lists.FirstOrDefault (
+				l => !(l is AllList) && l.Contains (task));
+			var newList = lists.FirstOrDefault (
+				l => l.Name == listName);
+
+			if (prevList != null)
+				prevList.Remove (task);
+
+			if (newList != null) {
+				newList.Add (task);
+				return true;
 			}
 
-			var model = application.Backend.Categories;
-			
-			if (model.Count == 0)
-				return false;
-			
-			foreach (var item in model) {
-				if (item.Name == categoryName) {
-					task.Category = item;
-					return true;
-				}
-			}
 			return false;
 		}
 		
@@ -474,8 +483,10 @@ namespace Gtk.Tasque
 			ITask task = GetTaskById (id);
 			if (task == null)
 				return false;
-				
-			task.Delete ();
+			
+			var taskList = application.BackendManager.TaskLists.First (
+				l => !(l is AllList) && l.Contains (task));
+			taskList.Remove (task);
 			return true;
 		}
 		
@@ -490,10 +501,10 @@ namespace Gtk.Tasque
 		/// </returns>
 		private ITask GetTaskById (string id)
 		{
-			var model = application.Backend.Tasks;
+			var model = application.BackendManager.Tasks;
 			return model.FirstOrDefault (t => t.Id == id);
 		}
 
-		INativeApplication application;
+		GtkApplicationBase application;
 	}
 }

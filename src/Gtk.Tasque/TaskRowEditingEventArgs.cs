@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 using System;
 using Tasque;
+using Tasque.Core;
 
 namespace Gtk.Tasque
 {
@@ -34,7 +35,7 @@ namespace Gtk.Tasque
 		{
 			if (task == null)
 				throw new ArgumentNullException ("task");
-			Task = task;
+			ITask = task;
 			if (path == null)
 				throw new ArgumentNullException ("path");
 			Path = path;
@@ -43,6 +44,6 @@ namespace Gtk.Tasque
 		
 		public TreeIter Iter { get; private set; }
 		public TreePath Path { get; private set; }
-		public ITask Task { get; private set; }
+		public ITask ITask { get; private set; }
 	}
 }

@@ -36,25 +36,25 @@ using Gdk;
 using Gtk;
 using Mono.Unix;
 using Tasque;
-using Tasque.Backends;
+using Tasque.Core;
+using Tasque.DateFormatters;
 
 namespace Gtk.Tasque
 {
 	public class TaskWindow : Gtk.Window 
 	{
-		INativeApplication application;
+		GtkApplicationBase application;
 
 		private static TaskWindow taskWindow = null;
 		private static int lastXPos;
 		private static int lastYPos;
 		private static Gdk.Pixbuf noteIcon;
 		
-		private IBackend backend;
 		private ScrolledWindow scrolledWindow;
 		
 		private Entry addTaskEntry;
 		private MenuToolButton addTaskButton;
-		private Gtk.ComboBox categoryComboBox;
+		private Gtk.ComboBox taskListComboBox;
 		private Gtk.VBox targetVBox;
 		
 		private TaskGroup overdueGroup;
@@ -87,13 +87,12 @@ namespace Gtk.Tasque
 			noteIcon = Utilities.GetIcon ("tasque-note", 16);
 		}
 		
-		public TaskWindow (IBackend aBackend, INativeApplication application) : base (Gtk.WindowType.Toplevel)
+		public TaskWindow (GtkApplicationBase application) : base (Gtk.WindowType.Toplevel)
 		{
 			if (application == null)
 				throw new ArgumentNullException ("application");
 			this.application = application;
 
-			this.backend = aBackend;
 			taskGroups = new List<TaskGroup> ();
 			noteDialogs = new Dictionary<ITask, NoteDialog> ();
 			InitWindow();
@@ -132,22 +131,22 @@ namespace Gtk.Tasque
 			HBox topHBox = new HBox (false, 0);
 			topHBox.BorderWidth = 4;
 			
-			categoryComboBox = new ComboBox ();
-			categoryComboBox.Accessible.Description = "Category Selection";
-			categoryComboBox.WidthRequest = 150;
-			categoryComboBox.WrapWidth = 1;
-			categoryComboBox.Sensitive = false;
+			taskListComboBox = new ComboBox ();
+			taskListComboBox.Accessible.Description = "ITaskList Selection";
+			taskListComboBox.WidthRequest = 150;
+			taskListComboBox.WrapWidth = 1;
+			taskListComboBox.Sensitive = false;
 			CellRendererText comboBoxRenderer = new Gtk.CellRendererText ();
 			comboBoxRenderer.WidthChars = 20;
 			comboBoxRenderer.Ellipsize = Pango.EllipsizeMode.End;
-			categoryComboBox.PackStart (comboBoxRenderer, true);
-			categoryComboBox.SetCellDataFunc (comboBoxRenderer,
-				new Gtk.CellLayoutDataFunc (CategoryComboBoxDataFunc));
+			taskListComboBox.PackStart (comboBoxRenderer, true);
+			taskListComboBox.SetCellDataFunc (comboBoxRenderer,
+				new Gtk.CellLayoutDataFunc (TaskListComboBoxDataFunc));
 			
-			categoryComboBox.Show ();
-			topHBox.PackStart (categoryComboBox, false, false, 0);
+			taskListComboBox.Show ();
+			topHBox.PackStart (taskListComboBox, false, false, 0);
 			
-			// Space the addTaskButton and the categoryComboBox
+			// Space the addTaskButton and the taskListComboBox
 			// far apart by using a blank label that expands
 			Label spacer = new Label (string.Empty);
 			spacer.Show ();
@@ -175,7 +174,7 @@ namespace Gtk.Tasque
 			buttonHBox.PackStart (l, true, true, 0);
 			buttonHBox.Show ();
 			addTaskButton = 
-				new MenuToolButton (buttonHBox, Catalog.GetString ("_Add Task"));
+				new MenuToolButton (buttonHBox, Catalog.GetString ("_Add ITask"));
 			addTaskButton.UseUnderline = true;
 			// Disactivate the button until the backend is initialized
 			addTaskButton.Sensitive = false;
@@ -237,13 +236,9 @@ namespace Gtk.Tasque
 			Shown += OnWindowShown;
 			DeleteEvent += WindowDeleted;
 			
-			backend.BackendInitialized += OnBackendInitialized;
-			backend.BackendSyncStarted += OnBackendSyncStarted;
-			backend.BackendSyncFinished += OnBackendSyncFinished;
-			// if the backend is already initialized, go ahead... initialize
-			if(backend.Initialized) {
-				OnBackendInitialized();
-			}
+			application.BackendManager.BackendInitialized += OnBackendInitialized;
+			// FIXME: if the backend is already initialized, go ahead... initialize
+			OnBackendInitialized (null, null);
 			
 			application.Preferences.SettingChanged += OnSettingChanged;
 		}
@@ -263,9 +258,8 @@ namespace Gtk.Tasque
 			rangeEnd = new DateTime (rangeEnd.Year, rangeEnd.Month, rangeEnd.Day,
 									 23, 59, 59);
 			
-			overdueGroup = new TaskGroup (Catalog.GetString ("Overdue"),
-										  rangeStart, rangeEnd,
-										  backend.Tasks, application);
+			overdueGroup = new TaskGroup (Catalog.GetString ("Overdue"), rangeStart, rangeEnd,
+										  application.BackendManager.Tasks, application);
 			overdueGroup.RowActivated += OnRowActivated;
 			overdueGroup.ButtonPressed += OnButtonPressed;
 			overdueGroup.Show ();
@@ -281,9 +275,8 @@ namespace Gtk.Tasque
 			rangeEnd = DateTime.Now;
 			rangeEnd = new DateTime (rangeEnd.Year, rangeEnd.Month,
 									 rangeEnd.Day, 23, 59, 59);
-			todayGroup = new TaskGroup (Catalog.GetString ("Today"),
-										rangeStart, rangeEnd,
-										backend.Tasks, application);
+			todayGroup = new TaskGroup (Catalog.GetString ("Today"), rangeStart, rangeEnd,
+										application.BackendManager.Tasks, application);
 			todayGroup.RowActivated += OnRowActivated;
 			todayGroup.ButtonPressed += OnButtonPressed;
 			todayGroup.Show ();
@@ -299,11 +292,10 @@ namespace Gtk.Tasque
 			rangeEnd = DateTime.Now.AddDays (1);
 			rangeEnd = new DateTime (rangeEnd.Year, rangeEnd.Month,
 									 rangeEnd.Day, 23, 59, 59);
-			tomorrowGroup = new TaskGroup (Catalog.GetString ("Tomorrow"),
-										   rangeStart, rangeEnd,
-										   backend.Tasks, application);
+			tomorrowGroup = new TaskGroup (Catalog.GetString ("Tomorrow"), rangeStart, rangeEnd,
+										   application.BackendManager.Tasks, application);
 			tomorrowGroup.RowActivated += OnRowActivated;
-			tomorrowGroup.ButtonPressed += OnButtonPressed;			
+			tomorrowGroup.ButtonPressed += OnButtonPressed;
 			tomorrowGroup.Show ();
 			targetVBox.PackStart (tomorrowGroup, false, false, 0);
 			taskGroups.Add (tomorrowGroup);
@@ -317,11 +309,11 @@ namespace Gtk.Tasque
 			rangeEnd = DateTime.Now.AddDays (6);
 			rangeEnd = new DateTime (rangeEnd.Year, rangeEnd.Month,
 									 rangeEnd.Day, 23, 59, 59);
-			nextSevenDaysGroup = new TaskGroup (Catalog.GetString ("Next 7 Days"),
-										   rangeStart, rangeEnd,
-										   backend.Tasks, application);
+			nextSevenDaysGroup = new TaskGroup (Catalog.GetString ("Next 7 Days"), rangeStart,
+			                                    rangeEnd, application.BackendManager.Tasks,
+			                                    application);
 			nextSevenDaysGroup.RowActivated += OnRowActivated;
-			nextSevenDaysGroup.ButtonPressed += OnButtonPressed;				
+			nextSevenDaysGroup.ButtonPressed += OnButtonPressed;
 			nextSevenDaysGroup.Show ();
 			targetVBox.PackStart (nextSevenDaysGroup, false, false, 0);
 			taskGroups.Add (nextSevenDaysGroup);
@@ -333,11 +325,10 @@ namespace Gtk.Tasque
 			rangeStart = new DateTime (rangeStart.Year, rangeStart.Month,
 									   rangeStart.Day, 0, 0, 0);
 			rangeEnd = DateTime.MaxValue;
-			futureGroup = new TaskGroup (Catalog.GetString ("Future"),
-										 rangeStart, rangeEnd,
-										 backend.Tasks, application);
+			futureGroup = new TaskGroup (Catalog.GetString ("Future"), rangeStart, rangeEnd,
+										 application.BackendManager.Tasks, application);
 			futureGroup.RowActivated += OnRowActivated;
-			futureGroup.ButtonPressed += OnButtonPressed;			
+			futureGroup.ButtonPressed += OnButtonPressed;
 			futureGroup.Show ();
 			targetVBox.PackStart (futureGroup, false, false, 0);
 			taskGroups.Add (futureGroup);
@@ -347,10 +338,10 @@ namespace Gtk.Tasque
 			//
 			rangeStart = DateTime.MinValue;
 			rangeEnd = DateTime.MaxValue;
-			completedTaskGroup = new CompletedTaskGroup (
-					Catalog.GetString ("Completed"),
-					rangeStart, rangeEnd,
-					backend.Tasks, application);
+			completedTaskGroup = new CompletedTaskGroup (Catalog.GetString ("Completed"),
+			                                             rangeStart, rangeEnd,
+			                                             application.BackendManager.Tasks,
+			                                             application);
 			completedTaskGroup.RowActivated += OnRowActivated;
 			completedTaskGroup.ButtonPressed += OnButtonPressed;
 			completedTaskGroup.Show ();
@@ -365,27 +356,27 @@ namespace Gtk.Tasque
 			
 			// Set up the combo box (after the above to set the current filter)
 
-			var categoryComboStore = new ListStore (typeof(ICategory));
-			foreach (var item in application.Backend.Categories) {
-				categoryComboStore.AppendValues (item);
+			var taskListComboStore = new ListStore (typeof(ITaskList));
+			foreach (var item in application.BackendManager.TaskLists) {
+				taskListComboStore.AppendValues (item);
 			}
 			
-			categoryComboBox.Model = categoryComboStore;
+			taskListComboBox.Model = taskListComboStore;
 
-			// Read preferences for the last-selected category and select it
-			string selectedCategoryName =
-				application.Preferences.Get (PreferencesKeys.SelectedCategoryKey);
+			// Read preferences for the last-selected taskList and select it
+			string selectedTaskListName =
+				application.Preferences.Get (PreferencesKeys.SelectedTaskListKey);
 			
-			categoryComboBox.Changed += OnCategoryChanged;
+			taskListComboBox.Changed += OnTaskListChanged;
 			
-			SelectCategory (selectedCategoryName);
+			SelectTaskList (selectedTaskListName);
 		}
 		
 		#region Public Methods
 		/// <summary>
-		/// Method to allow other classes to "click" on the "Add Task" button.
+		/// Method to allow other classes to "click" on the "Add ITask" button.
 		/// </summary>
-		public static void AddTask (INativeApplication application)
+		public static void AddTask (GtkApplicationBase application)
 		{
 			if (taskWindow == null)
 				TaskWindow.ShowWindow (application);
@@ -415,17 +406,17 @@ namespace Gtk.Tasque
 
 		}
 		
-		public static void ShowWindow (INativeApplication application)
+		public static void ShowWindow (GtkApplicationBase application)
 		{
 			ShowWindow (false, application);
 		}
 		
-		public static void ToggleWindowVisible (INativeApplication application)
+		public static void ToggleWindowVisible (GtkApplicationBase application)
 		{
 			ShowWindow (true, application);
 		}
 		
-		private static void ShowWindow (bool supportToggle, INativeApplication application)
+		private static void ShowWindow (bool supportToggle, GtkApplicationBase application)
 		{
 			if(taskWindow != null) {
 				if(taskWindow.IsActive && supportToggle) {
@@ -448,8 +439,8 @@ namespace Gtk.Tasque
 					}
 					taskWindow.Present();
 				}
-			} else if (application.Backend != null) {
-				TaskWindow.taskWindow = new TaskWindow (application.Backend, application);
+			} else if (application.BackendManager.CurrentBackend != null) {
+				taskWindow = new TaskWindow (application);
 				if(lastXPos == 0 || lastYPos == 0)
 				{
 					lastXPos = application.Preferences.GetInt("MainWindowLastXPos");
@@ -466,7 +457,7 @@ namespace Gtk.Tasque
 			}
 		}
 		
-		public static void GrabNewTaskEntryFocus (INativeApplication application)
+		public static void GrabNewTaskEntryFocus (GtkApplicationBase application)
 		{
 			if (taskWindow == null)
 				TaskWindow.ShowWindow (application);
@@ -474,7 +465,7 @@ namespace Gtk.Tasque
 			taskWindow.addTaskEntry.GrabFocus ();
 		}
 		
-		public static void SelectAndEdit (ITask task, INativeApplication application)
+		public static void SelectAndEdit (ITask task, GtkApplicationBase application)
 		{
 			ShowWindow (application);
 			taskWindow.EnterEditMode (task, true);
@@ -532,7 +523,7 @@ namespace Gtk.Tasque
 		/// <summary>
 		/// This should be called after a new IBackend has been set
 		/// </summary>
-		public static void Reinitialize (bool show, INativeApplication application)
+		public static void Reinitialize (bool show, GtkApplicationBase application)
 		{
 			if (TaskWindow.taskWindow != null) {
 				TaskWindow.taskWindow.Hide ();
@@ -551,7 +542,7 @@ namespace Gtk.Tasque
 			// Make sure we've waited around for the new task to fully
 			// be added to the TreeModel before continuing.  Some
 			// backends might be threaded and will have used something
-			// like Gtk.Idle.Add () to actually store the new Task in
+			// like Gtk.Idle.Add () to actually store the new ITask in
 			// their TreeModel.
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration ();
@@ -579,7 +570,7 @@ namespace Gtk.Tasque
 			// Make sure we've waited around for the new task to fully
 			// be added to the TreeModel before continuing.  Some
 			// backends might be threaded and will have used something
-			// like Gtk.Idle.Add () to actually store the new Task in
+			// like Gtk.Idle.Add () to actually store the new ITask in
 			// their TreeModel.
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration ();
@@ -589,7 +580,7 @@ namespace Gtk.Tasque
 			// Make sure we've waited around for the new task to fully
 			// be added to the TreeModel before continuing.  Some
 			// backends might be threaded and will have used something
-			// like Gtk.Idle.Add () to actually store the new Task in
+			// like Gtk.Idle.Add () to actually store the new ITask in
 			// their TreeModel.
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration ();
@@ -644,34 +635,34 @@ namespace Gtk.Tasque
 		#endregion // Public Methods
 		
 		#region Private Methods
-		void CategoryComboBoxDataFunc (Gtk.CellLayout layout,
+		void TaskListComboBoxDataFunc (Gtk.CellLayout layout,
 									   Gtk.CellRenderer renderer,
 									   Gtk.TreeModel model,
 									   Gtk.TreeIter iter)
 		{
 			Gtk.CellRendererText crt = renderer as Gtk.CellRendererText;
-			ICategory category = model.GetValue (iter, 0) as ICategory;
+			ITaskList taskList = model.GetValue (iter, 0) as ITaskList;
 
 			// CRG: What?  I added this check for null and we don't crash
 			// but I never see anything called unknown
-			if(category != null && category.Name != null) {
+			if(taskList != null && taskList.Name != null) {
 				crt.Text =
 					string.Format ("{0} ({1})",
-								   category.Name,
-								   GetTaskCountInCategory (category));
+								   taskList.Name,
+								   GetTaskCountInTaskList (taskList));
 			} else
 				crt.Text = "unknown";
 		}
 		
-		// TODO: Move this method into a property of ICategory.TaskCount
-		private int GetTaskCountInCategory (ICategory category)
+		// TODO: Move this method into a property of ITaskList.TaskCount
+		private int GetTaskCountInTaskList (ITaskList taskList)
 		{
 			// This is disgustingly inefficient, but, oh well
 			int count = 0;
-			var model = application.Backend.Tasks;
+			var model = application.BackendManager.Tasks;
 			count = model.Count (t => t != null &&
 			                     t.State == TaskState.Active &&
-			                     category.ContainsTask (t));
+			                     taskList.Contains (t));
 			return count;
 		}
 		
@@ -693,7 +684,7 @@ namespace Gtk.Tasque
 			// Make sure we've waited around for the new task to fully
 			// be added to the TreeModel before continuing.  Some
 			// backends might be threaded and will have used something
-			// like Gtk.Idle.Add () to actually store the new Task in
+			// like Gtk.Idle.Add () to actually store the new ITask in
 			// their TreeModel.
 			while (Gtk.Application.EventsPending ())
 				Gtk.Application.RunIteration ();
@@ -714,15 +705,15 @@ namespace Gtk.Tasque
 			}
 		}
 		
-		private void RebuildAddTaskMenu (ICollection<ICategory> categoriesModel)
+		private void RebuildAddTaskMenu (ICollection<ITaskList> taskListsModel)
 		{
 			Gtk.Menu menu = new Menu ();
 			
-			foreach (var cat in categoriesModel) {
-				if (cat is AllCategory)
+			foreach (var cat in taskListsModel) {
+				if (cat is AllList)
 					continue;
-				var item = new CategoryMenuItem (cat);
-				item.Activated += OnNewTaskByCategory;
+				var item = new TaskListMenuItem (cat);
+				item.Activated += OnNewTaskByTaskList;
 				item.ShowAll ();
 				menu.Add (item);
 			}
@@ -730,37 +721,37 @@ namespace Gtk.Tasque
 			addTaskButton.Menu = menu;
 		}
 		
-		private void SelectCategory (string categoryName)
+		private void SelectTaskList (string taskListName)
 		{
 			Gtk.TreeIter iter;
-			Gtk.TreeModel model = categoryComboBox.Model;
-			bool categoryWasSelected = false;
+			Gtk.TreeModel model = taskListComboBox.Model;
+			bool taskListWasSelected = false;
 
-			if (categoryName != null) {
+			if (taskListName != null) {
 				// Iterate through (yeah, I know this is gross!) and find the
-				// matching category
+				// matching taskList
 				if (model.GetIterFirst (out iter)) {
 					do {
-						ICategory cat = model.GetValue (iter, 0) as ICategory;
+						ITaskList cat = model.GetValue (iter, 0) as ITaskList;
 						if (cat == null)
 							continue; // Needed for some reason to prevent crashes from some backends
-						if (cat.Name.CompareTo (categoryName) == 0) {
-							categoryComboBox.SetActiveIter (iter);
-							categoryWasSelected = true;
+						if (cat.Name.CompareTo (taskListName) == 0) {
+							taskListComboBox.SetActiveIter (iter);
+							taskListWasSelected = true;
 							break;
 						}
 					} while (model.IterNext (ref iter));
 				}
 			}
 			
-			if (!categoryWasSelected) {
+			if (!taskListWasSelected) {
 				// Select the first item in the list (which should be the "All"
-				// category.
+				// taskList.
 				if (model.GetIterFirst (out iter)) {
-					// Make sure we can actually get a category
-					ICategory cat = model.GetValue (iter, 0) as ICategory;
+					// Make sure we can actually get a taskList
+					ITaskList cat = model.GetValue (iter, 0) as ITaskList;
 					if (cat != null)
-						categoryComboBox.SetActiveIter (iter);
+						taskListComboBox.SetActiveIter (iter);
 				}
 			}
 		}
@@ -782,9 +773,10 @@ namespace Gtk.Tasque
 			dialog.Present ();
 		}
 		
-		private ITask CreateTask (string taskText, ICategory category)
+		private ITask CreateTask (string taskText, ITaskList taskList)
 		{
-			ITask task = backend.CreateTask (taskText, category);
+			var task = taskList.CreateTask (taskText);
+			taskList.Add (task);
 			
 			if (task == null) {
 				Logger.Debug ("Error creating a new task!");
@@ -793,7 +785,7 @@ namespace Gtk.Tasque
 				TaskWindow.ShowStatus (status);
 			} else {
 				// Show successful status
-				status = Catalog.GetString ("Task created successfully");	
+				status = Catalog.GetString ("ITask created successfully");	
 				TaskWindow.ShowStatus (status);
 				// Clear out the entry
 				addTaskEntry.Text = string.Empty;
@@ -867,10 +859,10 @@ namespace Gtk.Tasque
 		
 		void OnSettingChanged (IPreferences preferences, string settingKey)
 		{
-			if (settingKey.CompareTo (PreferencesKeys.HideInAllCategory) != 0)
+			if (settingKey.CompareTo (PreferencesKeys.HideInAllTaskList) != 0)
 				return;
 			
-			OnCategoryChanged (this, EventArgs.Empty);
+			OnTaskListChanged (this, EventArgs.Empty);
 		}
 		
 		void OnGrabEntryFocus (object sender, EventArgs args)
@@ -932,11 +924,11 @@ namespace Gtk.Tasque
 				return;
 			
 			Gtk.TreeIter iter;
-			if (!categoryComboBox.GetActiveIter (out iter))
+			if (!taskListComboBox.GetActiveIter (out iter))
 				return;
 			
-			ICategory category =
-				categoryComboBox.Model.GetValue (iter, 0) as ICategory;
+			ITaskList taskList =
+				taskListComboBox.Model.GetValue (iter, 0) as ITaskList;
 		
 			// If enabled, attempt to parse due date information
 			// out of the entered task text.
@@ -950,7 +942,7 @@ namespace Gtk.Tasque
 			else
 				taskName = enteredTaskText;
 			
-			ITask task = CreateTask (taskName, category);
+			ITask task = CreateTask (taskName, taskList);
 			if (task == null)
 				return; // TODO: Explain error to user!
 			
@@ -960,67 +952,67 @@ namespace Gtk.Tasque
 			HighlightTask (task);
 		}
 		
-		void OnNewTaskByCategory (object sender, EventArgs args)
+		void OnNewTaskByTaskList (object sender, EventArgs args)
 		{
 			string newTaskText = addTaskEntry.Text.Trim ();
 			if (newTaskText.Length == 0)
 				return;
 			
-			CategoryMenuItem item = sender as CategoryMenuItem;
+			TaskListMenuItem item = sender as TaskListMenuItem;
 			if (item == null)
 				return;
 			
-			// Determine if the selected category is currently shown in the
+			// Determine if the selected taskList is currently shown in the
 			// task window.  If we're in a specific cateogory or on the All
-			// category and the selected category is not showing, we've got
-			// to switch the category first so the user will be able to edit
+			// taskList and the selected taskList is not showing, we've got
+			// to switch the taskList first so the user will be able to edit
 			// the title of the task.
 			Gtk.TreeIter iter;
-			if (categoryComboBox.GetActiveIter (out iter)) {
-				ICategory selectedCategory =
-					categoryComboBox.Model.GetValue (iter, 0) as ICategory;
+			if (taskListComboBox.GetActiveIter (out iter)) {
+				ITaskList selectedTaskList =
+					taskListComboBox.Model.GetValue (iter, 0) as ITaskList;
 				
 				// Check to see if "All" is selected
-				if (selectedCategory is AllCategory) {
-					// See if the item.Category is currently being shown in
-					// the "All" category and if not, select the category
+				if (selectedTaskList is AllList) {
+					// See if the item.ITaskList is currently being shown in
+					// the "All" taskList and if not, select the taskList
 					// specifically.
-					List<string> categoriesToHide =
+					List<string> taskListsToHide =
 						application.Preferences.GetStringList (
-							PreferencesKeys.HideInAllCategory);
-					if (categoriesToHide != null && categoriesToHide.Contains (item.Category.Name)) {
-						SelectCategory (item.Category.Name);
+							PreferencesKeys.HideInAllTaskList);
+					if (taskListsToHide != null && taskListsToHide.Contains (item.ITaskList.Name)) {
+						SelectTaskList (item.ITaskList.Name);
 					}
-				} else if (selectedCategory.Name.CompareTo (item.Category.Name) != 0) {
-					SelectCategory (item.Category.Name);
+				} else if (selectedTaskList.Name.CompareTo (item.ITaskList.Name) != 0) {
+					SelectTaskList (item.ITaskList.Name);
 				}
 			}
 			
-			ITask task = CreateTask (newTaskText, item.Category);
+			ITask task = CreateTask (newTaskText, item.ITaskList);
 			
 			HighlightTask (task);
 		}
 		
-		void OnCategoryChanged (object sender, EventArgs args)
+		void OnTaskListChanged (object sender, EventArgs args)
 		{
 			Gtk.TreeIter iter;
-			if (!categoryComboBox.GetActiveIter (out iter))
+			if (!taskListComboBox.GetActiveIter (out iter))
 				return;
 			
-			ICategory category =
-				categoryComboBox.Model.GetValue (iter, 0) as ICategory;
+			ITaskList taskList =
+				taskListComboBox.Model.GetValue (iter, 0) as ITaskList;
 				
 			// Update the TaskGroups so they can filter accordingly
-			overdueGroup.Refilter (category);
-			todayGroup.Refilter (category);
-			tomorrowGroup.Refilter (category);
-			nextSevenDaysGroup.Refilter (category);
-			futureGroup.Refilter (category);
-			completedTaskGroup.Refilter (category);
+			overdueGroup.Refilter (taskList);
+			todayGroup.Refilter (taskList);
+			tomorrowGroup.Refilter (taskList);
+			nextSevenDaysGroup.Refilter (taskList);
+			futureGroup.Refilter (taskList);
+			completedTaskGroup.Refilter (taskList);
 			
-			// Save the selected category in preferences
-			application.Preferences.Set (PreferencesKeys.SelectedCategoryKey,
-										 category.Name);
+			// Save the selected taskList in preferences
+			application.Preferences.Set (PreferencesKeys.SelectedTaskListKey,
+										 taskList.Name);
 		}
 		
 		void OnRowActivated (object sender, Gtk.RowActivatedArgs args)
@@ -1095,34 +1087,34 @@ namespace Gtk.Tasque
 					popupMenu.Add (item);
 
 					/*
-					 * Depending on the currently selected task's category, we create a context popup
-					 * here in order to enable changing categories. The list of available categories
-					 * is pre-filtered as to not contain the current category and the AllCategory.
+					 * Depending on the currently selected task's taskList, we create a context popup
+					 * here in order to enable changing taskLists. The list of available taskLists
+					 * is pre-filtered as to not contain the current taskList and the AllTaskList.
 					 */
 
-				    var filteredCategories = new ListStore (typeof (ICategory));
-				    foreach (var cat in application.Backend.Categories) {
-					    if (cat != null && !(cat is AllCategory) && !cat.Equals (clickedTask.Category))
-						    filteredCategories.AppendValues (cat);
+				    var filteredTaskLists = new ListStore (typeof (ITaskList));
+				    foreach (var cat in application.BackendManager.TaskLists) {
+					    if (cat != null && !(cat is AllList) && !cat.Contains (clickedTask))
+						    filteredTaskLists.AppendValues (cat);
 		        	}
 
-					// The categories submenu is only created in case we actually provide at least one category.
-					if (filteredCategories.GetIterFirst(out iter))
+					// The taskLists submenu is only created in case we actually provide at least one taskList.
+					if (filteredTaskLists.GetIterFirst(out iter))
 					{
-						Menu categoryMenu = new Menu();
-						CategoryMenuItem categoryItem;
+						Menu taskListMenu = new Menu();
+						TaskListMenuItem taskListItem;
 
-						filteredCategories.Foreach(delegate(TreeModel t, TreePath p, TreeIter i) {
-							categoryItem = new CategoryMenuItem((ICategory)t.GetValue(i, 0));
-							categoryItem.Activated += OnChangeCategory;
-							categoryMenu.Add(categoryItem);
+						filteredTaskLists.Foreach(delegate(TreeModel t, TreePath p, TreeIter i) {
+							taskListItem = new TaskListMenuItem((ITaskList)t.GetValue(i, 0));
+							taskListItem.Activated += OnChangeTaskList;
+							taskListMenu.Add(taskListItem);
 							return false;
 						});
 					
 						// TODO Needs translation.
-						item = new ImageMenuItem(Catalog.GetString("_Change category"));
+						item = new ImageMenuItem(Catalog.GetString("_Change list"));
 						item.Image = new Gtk.Image(Gtk.Stock.Convert, IconSize.Menu);
-						item.Submenu = categoryMenu;
+						item.Submenu = taskListMenu;
 						popupMenu.Add(item);
 					}
 				
@@ -1138,11 +1130,11 @@ namespace Gtk.Tasque
 		{
 			if (args.Event.Button == 1) {
 				Gtk.TreeIter iter;
-				if (!categoryComboBox.GetActiveIter (out iter))
+				if (!taskListComboBox.GetActiveIter (out iter))
 					return;
 
-				ICategory category =
-					categoryComboBox.Model.GetValue (iter, 0) as ICategory;
+				ITaskList taskList =
+					taskListComboBox.Model.GetValue (iter, 0) as ITaskList;
 
 				TaskView tree = futureGroup.TaskView as TaskView;
 
@@ -1150,7 +1142,7 @@ namespace Gtk.Tasque
 				if (tree.IsTaskBeingEdited)
 					return;
 
-				ITask task = CreateTask (String.Empty, category);
+				ITask task = CreateTask (String.Empty, taskList);
 				if (task == null)
 					return; // TODO: explain error to user
 
@@ -1174,9 +1166,11 @@ namespace Gtk.Tasque
 			if (clickedTask == null)
 				return;
 		
-			application.Backend.DeleteTask(clickedTask);
+			var taskList = application.BackendManager.TaskLists.First (
+				l => !(l is AllList) && l.Contains (clickedTask));
+			taskList.Remove (clickedTask);
 			
-			status = Catalog.GetString ("Task deleted");
+			status = Catalog.GetString ("ITask deleted");
 			TaskWindow.ShowStatus (status);
 		}
 
@@ -1198,50 +1192,32 @@ namespace Gtk.Tasque
 				return;
 			}
 			
-			if (!noteDialogs.ContainsKey (dialog.Task)) {
+			if (!noteDialogs.ContainsKey (dialog.ITask)) {
 				Logger.Warn ("Closed NoteDialog not found in noteDialogs");
 				return;
 			}
 			
 			Logger.Debug ("Removing NoteDialog from noteDialogs");
-			noteDialogs.Remove (dialog.Task);
+			noteDialogs.Remove (dialog.ITask);
 			
 			dialog.Destroy ();
 		}
 		
-		private void OnBackendInitialized()
-		{		
-			backend.BackendInitialized -= OnBackendInitialized;
+		private void OnBackendInitialized (object sender, EventArgs e)
+		{
 			PopulateWindow();
-			OnBackendSyncFinished (); // To update the statusbar
-		}
-		
-		private void OnBackendSyncStarted ()
-		{
-			TaskWindow.ShowStatus (Catalog.GetString ("Loading tasks..."));
-		}
-		
-		private void OnBackendSyncFinished ()
-		{
-			Logger.Debug("Backend sync finished");
-			if (application.Backend.Configured) {
-				string now = DateTime.Now.ToString ();
-				// Translators: This status shows the date and time when the task list was last refreshed
-				status = string.Format (Catalog.GetString ("Tasks loaded: {0}"), now);
-				TaskWindow.lastLoadedTime = now;
-				TaskWindow.ShowStatus (status);
-				RebuildAddTaskMenu (application.Backend.Categories);
-				addTaskEntry.Sensitive = true;
-				categoryComboBox.Sensitive = true;
-				// Keep insensitive text color
-				Gdk.Color insensitiveColor =
-					addTaskEntry.Style.Text (Gtk.StateType.Insensitive);
-				addTaskEntry.ModifyText (Gtk.StateType.Normal, insensitiveColor);
-			} else {
-				string status =
-					string.Format (Catalog.GetString ("Not connected."));
-				TaskWindow.ShowStatus (status);
-			}
+			string now = DateTime.Now.ToString ();
+			// Translators: This status shows the date and time when the task list was last refreshed
+			status = string.Format (Catalog.GetString ("Tasks loaded: {0}"), now);
+			TaskWindow.lastLoadedTime = now;
+			TaskWindow.ShowStatus (status);
+			RebuildAddTaskMenu (application.BackendManager.TaskLists);
+			addTaskEntry.Sensitive = true;
+			taskListComboBox.Sensitive = true;
+			// Keep insensitive text color
+			Gdk.Color insensitiveColor =
+				addTaskEntry.Style.Text (Gtk.StateType.Insensitive);
+			addTaskEntry.ModifyText (Gtk.StateType.Normal, insensitiveColor);
 		}
 
 		void KeyPressed (object sender, Gtk.KeyPressEventArgs args)
@@ -1256,26 +1232,33 @@ namespace Gtk.Tasque
 			args.RetVal = false;
 		}
 
-		private void OnChangeCategory(object sender, EventArgs args)
+		private void OnChangeTaskList(object sender, EventArgs args)
 		{
 			if (clickedTask == null)
 				return;
 
-			clickedTask.Category = ((CategoryMenuItem)sender).Category;
+			// NOTE: the previous data model had a one taskList to many tasks
+			// relationship. Now it's many-to-many. However, we stick to the
+			// old model until a general overhaul.
+			var prevList = application.BackendManager.TaskLists.FirstOrDefault (
+				c => !(c is AllList) && c.Contains (clickedTask));
+			prevList.Remove (clickedTask);
+			var list = ((TaskListMenuItem)sender).ITaskList;
+			list.Add (clickedTask);
 		}
 		#endregion // Event Handlers
 		
 		#region Private Classes
-		class CategoryMenuItem : Gtk.MenuItem
+		class TaskListMenuItem : Gtk.MenuItem
 		{
-			private ICategory cat;
+			private ITaskList cat;
 			
-			public CategoryMenuItem (ICategory category) : base (category.Name)
+			public TaskListMenuItem (ITaskList taskList) : base (taskList.Name)
 			{
-				cat = category;
+				cat = taskList;
 			}
 			
-			public ICategory Category
+			public ITaskList ITaskList
 			{
 				get { return cat; }
 			}

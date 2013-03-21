@@ -30,15 +30,16 @@ using System;
 using System.Collections.Generic;
 using Gtk;
 using Mono.Unix;
-using Tasque.Backends;
+using Tasque;
+using Tasque.Core;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 
 	public class PreferencesDialog : Gtk.Dialog
 	{
 //		private CheckButton		showCompletedTasksCheck;
-		INativeApplication application;
+		GtkApplicationBase application;
 		
 		Gtk.Notebook			notebook;
 		
@@ -48,12 +49,12 @@ namespace Tasque
 		Gtk.Widget				generalPage;
 		int						generalPageId;
 		Gtk.ComboBox			backendComboBox;
-		Dictionary<int, IBackend> backendComboMap; // track backends
+		Dictionary<int, string> backendComboMap; // track backends
 		int 					selectedBackend;
 		Gtk.CheckButton			showCompletedTasksCheckButton;
-		Gtk.ListStore   		filteredCategories;
-		List<string>			categoriesToHide;
-		Gtk.TreeView			categoriesTree;
+		Gtk.ListStore   		filteredTaskLists;
+		List<string>			taskListsToHide;
+		Gtk.TreeView			taskListsTree;
 
 		//
 		// Appearance Page Widgets
@@ -70,7 +71,7 @@ namespace Tasque
 		Gtk.Widget				backendPage;
 		int						backendPageId;
 
-		public PreferencesDialog (INativeApplication application) : base ()
+		public PreferencesDialog (GtkApplicationBase application) : base ()
 		{
 			if (application == null)
 				throw new ArgumentNullException ("application");
@@ -134,17 +135,17 @@ namespace Tasque
 			backendPage = null;
 			backendPageId = -1;
 			
-			if (application.Backend != null) {
-				backendPage = (Widget)application.Backend.Preferences;
+			var backendType = application.BackendManager.CurrentBackend;
+			if (backendType != null) {
+				backendPage = (Widget)application.BackendManager.GetBackendPreferencesWidget ();
 				if (backendPage != null) {
 					backendPage.Show ();
-					Label l =
-						new Label (GLib.Markup.EscapeText (application.Backend.Name));
+					var l = new Label (GLib.Markup.EscapeText (
+						application.BackendManager.AvailableBackends [backendType]));
 					l.UseMarkup = false;
 					l.UseUnderline = false;
 					l.Show ();
-					backendPageId =
-						notebook.AppendPage (backendPage, l);
+					backendPageId = notebook.AppendPage (backendPage, l);
 				}
 			}
 			
@@ -240,12 +241,12 @@ namespace Tasque
 			vbox.BorderWidth = 10;
 			
 			//
-			// Task Management System
+			// ITask Management System
 			//
 			VBox sectionVBox = new VBox (false, 4);
 			Label l = new Label ();
 			l.Markup = string.Format ("<span size=\"large\" weight=\"bold\">{0}</span>",
-									  Catalog.GetString ("Task Management System"));
+									  Catalog.GetString ("ITask Management System"));
 			l.UseUnderline = false;
 			l.UseMarkup = true;
 			l.Wrap = false;
@@ -255,14 +256,14 @@ namespace Tasque
 			sectionVBox.PackStart (l, false, false, 0);
 			
 			backendComboBox = ComboBox.NewText ();
-			backendComboMap = new Dictionary<int,IBackend> ();
+			backendComboMap = new Dictionary<int, string> ();
 			// Fill out the ComboBox
 			int i = 0;
 			selectedBackend = -1;
-			foreach (IBackend backend in application.AvailableBackends) {
-				backendComboBox.AppendText (backend.Name);
-				backendComboMap [i] = backend;
-				if (backend == application.Backend)
+			foreach (var backend in application.BackendManager.AvailableBackends) {
+				backendComboBox.AppendText (backend.Value);
+				backendComboMap [i] = backend.Key;
+				if (backend.Key == application.BackendManager.CurrentBackend)
 					selectedBackend = i;
 				i++;
 			}
@@ -282,12 +283,12 @@ namespace Tasque
 			vbox.PackStart (sectionVBox, false, false, 0);
 			
 			//
-			// Task Filtering
+			// ITask Filtering
 			//
 			sectionVBox = new VBox (false, 4);
 			l = new Label ();
 			l.Markup = string.Format ("<span size=\"large\" weight=\"bold\">{0}</span>",
-									  Catalog.GetString ("Task Filtering"));
+									  Catalog.GetString ("ITask Filtering"));
 			l.UseUnderline = false;
 			l.UseMarkup = true;
 			l.Wrap = false;
@@ -314,8 +315,8 @@ namespace Tasque
 			hbox.Show ();
 			innerSectionVBox.PackStart (hbox, false, false, 0);
 			
-			// Categories TreeView
-			l = new Label (Catalog.GetString ("Only _show these categories when \"All\" is selected:"));
+			// TaskLists TreeView
+			l = new Label (Catalog.GetString ("Only _show these lists when \"All\" is selected:"));
 			l.UseUnderline = true;
 			l.Xalign = 0;
 			l.Show ();
@@ -326,19 +327,19 @@ namespace Tasque
 			sw.VscrollbarPolicy = PolicyType.Automatic;
 			sw.ShadowType = ShadowType.EtchedIn;
 			
-			categoriesTree = new TreeView ();
-			categoriesTree.Selection.Mode = SelectionMode.None;
-			categoriesTree.RulesHint = false;
-			categoriesTree.HeadersVisible = false;
-			l.MnemonicWidget = categoriesTree;
+			taskListsTree = new TreeView ();
+			taskListsTree.Selection.Mode = SelectionMode.None;
+			taskListsTree.RulesHint = false;
+			taskListsTree.HeadersVisible = false;
+			l.MnemonicWidget = taskListsTree;
 			
 			Gtk.TreeViewColumn column = new Gtk.TreeViewColumn ();
-			column.Title = Catalog.GetString ("Category");
+			column.Title = Catalog.GetString ("ITask List");
 			column.Sizing = Gtk.TreeViewColumnSizing.Autosize;
 			column.Resizable = false;
 			
 			Gtk.CellRendererToggle toggleCr = new CellRendererToggle ();
-			toggleCr.Toggled += OnCategoryToggled;
+			toggleCr.Toggled += OnTaskListToggled;
 			column.PackStart (toggleCr, false);
 			column.SetCellDataFunc (toggleCr,
 						new Gtk.TreeCellDataFunc (ToggleCellDataFunc));
@@ -348,10 +349,10 @@ namespace Tasque
 			column.SetCellDataFunc (textCr,
 						new Gtk.TreeCellDataFunc (TextCellDataFunc));
 			
-			categoriesTree.AppendColumn (column);
+			taskListsTree.AppendColumn (column);
 			
-			categoriesTree.Show ();
-			sw.Add (categoriesTree);
+			taskListsTree.Show ();
+			sw.Add (taskListsTree);
 			sw.Show ();
 			innerSectionVBox.PackStart (sw, true, true, 0);
 			innerSectionVBox.Show ();
@@ -379,10 +380,10 @@ namespace Tasque
 		private void LoadPreferences()
 		{
 			Logger.Debug("Loading preferences");
-			categoriesToHide =
-				application.Preferences.GetStringList (PreferencesKeys.HideInAllCategory);
-			//if (categoriesToHide == null || categoriesToHide.Count == 0)
-			//	categoriesToHide = BuildNewCategoryList ();
+			taskListsToHide =
+				application.Preferences.GetStringList (PreferencesKeys.HideInAllTaskList);
+			//if (taskListsToHide == null || taskListsToHide.Count == 0)
+			//	taskListsToHide = BuildNewTaskListList ();
 		}
 
 		private void ConnectEvents()
@@ -435,30 +436,14 @@ namespace Tasque
 				}
 				
 				// if yes (replace backend)
-				if (backendComboMap.ContainsKey (selectedBackend)) {
-					// Cleanup old backend
-					IBackend oldBackend = backendComboMap [selectedBackend];
-					Logger.Info ("Cleaning up '{0}'...", oldBackend.Name);
-					try {
-						oldBackend.Dispose ();
-					} catch (Exception e) {
-						Logger.Warn ("Exception cleaning up '{0}': {2}",
-									 oldBackend.Name,
-									 e.Message);
-						
-					}
-					
+				if (backendComboMap.ContainsKey (selectedBackend))
 					selectedBackend = -1;
-				}
 			}
 			
-			IBackend newBackend = null;
-			if (backendComboMap.ContainsKey (backendComboBox.Active)) {
+			string newBackend = null;
+			if (backendComboMap.ContainsKey (backendComboBox.Active))
 				newBackend = backendComboMap [backendComboBox.Active];
-			}
-			
-			// TODO: Set the new backend
-			application.Backend = newBackend;
+			application.BackendManager.SetBackend (newBackend);
 			
 			if (newBackend == null)
 				return;
@@ -466,30 +451,28 @@ namespace Tasque
 			selectedBackend = backendComboBox.Active;
 			
 			// Add a backend prefs page if one exists
-			backendPage = (Widget)newBackend.Preferences;
+			backendPage = (Widget)application.BackendManager.GetBackendPreferencesWidget ();
 			if (backendPage != null) {
 				backendPage.Show ();
-				Label l = new Label (GLib.Markup.EscapeText (newBackend.Name));
+				var l = new Label (GLib.Markup.EscapeText (
+					application.BackendManager.AvailableBackends [newBackend]));
 				l.UseMarkup = false;
 				l.UseUnderline = false;
 				l.Show ();
-				backendPageId =
-					notebook.AppendPage (backendPage, l);
-				
-				// If the new backend is not configured, automatically switch
+				backendPageId = notebook.AppendPage (backendPage, l);
+
+				// TODO: If the new backend is not configured, automatically switch
 				// to the backend's preferences page
-				if (!newBackend.Configured)
-					notebook.Page = backendPageId;
 			}
 			
 			// Save the user preference
 			application.Preferences.Set (PreferencesKeys.CurrentBackend,
 										 newBackend.GetType ().ToString ());
 			
-			//categoriesToHide = BuildNewCategoryList ();
-			//Application.Preferences.SetStringList (IPreferences.HideInAllCategory,
-			//									   categoriesToHide);
-			RebuildCategoryTree ();
+			//taskListsToHide = BuildNewTaskListList ();
+			//Application.Preferences.SetStringList (IPreferences.HideInAllTaskList,
+			//									   taskListsToHide);
+			RebuildTaskListTree ();
 		}
 		
 		private void ToggleCellDataFunc (Gtk.TreeViewColumn column,
@@ -498,20 +481,20 @@ namespace Tasque
 											 Gtk.TreeIter iter)
 		{
 			Gtk.CellRendererToggle crt = cell as Gtk.CellRendererToggle;
-			ICategory category = model.GetValue (iter, 0) as ICategory;
-			if (category == null) {
+			ITaskList taskList = model.GetValue (iter, 0) as ITaskList;
+			if (taskList == null) {
 				crt.Active = true;
 				return;
 			}
 			
-			// If the setting is null or empty, show all categories
-			if (categoriesToHide == null || categoriesToHide.Count == 0) {
+			// If the setting is null or empty, show all taskLists
+			if (taskListsToHide == null || taskListsToHide.Count == 0) {
 				crt.Active = true;
 				return;
 			}
 			
-			// Check to see if the category is specified in the list
-			if (categoriesToHide.Contains (category.Name)) {
+			// Check to see if the taskList is specified in the list
+			if (taskListsToHide.Contains (taskList.Name)) {
 				crt.Active = false;
 				return;
 			}
@@ -525,47 +508,47 @@ namespace Tasque
 		{
 			Gtk.CellRendererText crt = renderer as Gtk.CellRendererText;
 			crt.Ellipsize = Pango.EllipsizeMode.End;
-			ICategory category = model.GetValue (iter, 0) as ICategory;
-			if (category == null) {
+			ITaskList taskList = model.GetValue (iter, 0) as ITaskList;
+			if (taskList == null) {
 				crt.Text = string.Empty;
 				return;
 			}
 			
-			crt.Text = GLib.Markup.EscapeText (category.Name);
+			crt.Text = GLib.Markup.EscapeText (taskList.Name);
 		}
 		
-		void OnCategoryToggled (object sender, Gtk.ToggledArgs args)
+		void OnTaskListToggled (object sender, Gtk.ToggledArgs args)
 		{
-			Logger.Debug ("OnCategoryToggled");
+			Logger.Debug ("OnTaskListToggled");
 			Gtk.TreeIter iter;
 			Gtk.TreePath path = new Gtk.TreePath (args.Path);
-			if (!categoriesTree.Model.GetIter (out iter, path))
+			if (!taskListsTree.Model.GetIter (out iter, path))
 				return; // Do nothing
 			
-			ICategory category = categoriesTree.Model.GetValue (iter, 0) as ICategory;
-			if (category == null)
+			ITaskList taskList = taskListsTree.Model.GetValue (iter, 0) as ITaskList;
+			if (taskList == null)
 				return;
 			
-			//if (categoriesToHide == null)
-			//	categoriesToHide = BuildNewCategoryList ();
+			//if (taskListsToHide == null)
+			//	taskListsToHide = BuildNewTaskListList ();
 			
-			if (categoriesToHide.Contains (category.Name))
-				categoriesToHide.Remove (category.Name);
+			if (taskListsToHide.Contains (taskList.Name))
+				taskListsToHide.Remove (taskList.Name);
 			else
-				categoriesToHide.Add (category.Name);
+				taskListsToHide.Add (taskList.Name);
 			
-			application.Preferences.SetStringList (PreferencesKeys.HideInAllCategory,
-												   categoriesToHide);
+			application.Preferences.SetStringList (PreferencesKeys.HideInAllTaskList,
+												   taskListsToHide);
 		}
 		
 /*
 		/// <summary>
-		/// Build a new category list setting from all the categories
+		/// Build a new taskList list setting from all the taskLists
 		/// </summary>
 		/// <param name="?">
 		/// A <see cref="System.String"/>
 		/// </param>
-		List<string> BuildNewCategoryList ()
+		List<string> BuildNewTaskListList ()
 		{
 			List<string> list = new List<string> ();
 			TreeModel model;
@@ -573,15 +556,15 @@ namespace Tasque
 			if (backend == null)
 				return list;
 			
-			model = backend.Categories;
+			model = backend.TaskLists;
 			Gtk.TreeIter iter;
 			if (model.GetIterFirst (out iter) == false)
 				return list;
 			
 			do {
-				ICategory cat = model.GetValue (iter, 0) as ICategory;
-				if (cat == null || cat is AllCategory)
-					continue;				
+				ITaskList cat = model.GetValue (iter, 0) as ITaskList;
+				if (cat == null || cat is AllTaskList)
+					continue;
 
 				list.Add (cat.Name);
 			} while (model.IterNext (ref iter) == true);
@@ -590,25 +573,24 @@ namespace Tasque
 		}
 */
 		
-		void RebuildCategoryTree ()
+		void RebuildTaskListTree ()
 		{
 			if (!backendComboMap.ContainsKey (selectedBackend)) {
-				categoriesTree.Model = null;
+				taskListsTree.Model = null;
 				return;
 			}
 			
-			IBackend backend = backendComboMap [selectedBackend];
-			filteredCategories = new ListStore (typeof (ICategory));
-			foreach (var item in backend.Categories) {
-				if (!(item == null || item is AllCategory))
-					filteredCategories.AppendValues (item);
+			filteredTaskLists = new ListStore (typeof (ITaskList));
+			foreach (var item in application.BackendManager.TaskLists) {
+				if (!(item == null || item is AllList))
+					filteredTaskLists.AppendValues (item);
 			}
-			categoriesTree.Model = filteredCategories;
+			taskListsTree.Model = filteredTaskLists;
 		}
 		
 		void OnShown (object sender, EventArgs args)
 		{
-			RebuildCategoryTree ();
+			RebuildTaskListTree ();
 		}
 	}
 }

@@ -27,13 +27,14 @@ using System;
 using System.Collections.Concurrent;
 using Mono.Unix;
 using Tasque;
+using Tasque.Core;
 
 namespace Gtk.Tasque
 {
 	// TODO: Use xml addin description model to provide localized column name
 	[TaskColumnExtension ("Timer")]
 	public class TimerColumn : ITaskColumn
-	{		
+	{
 		public TimerColumn ()
 		{
 			timeoutTargets = new ConcurrentDictionary<ITask, TaskCompleteTimer> ();
@@ -64,13 +65,13 @@ namespace Gtk.Tasque
 			this.preferences = preferences;
 			
 			view.RowEditingStarted += (sender, e) => {
-				var timer = GetTimer (e.Task);
+				var timer = GetTimer (e.ITask);
 				if (timer != null && timer.State == TaskCompleteTimerState.Running)
 					timer.Pause ();
 			};
 			
 			view.RowEditingFinished += (sender, e) => {
-				var timer = GetTimer (e.Task);
+				var timer = GetTimer (e.ITask);
 				if (timer != null && timer.State == TaskCompleteTimerState.Paused)
 					timer.Resume ();
 			};

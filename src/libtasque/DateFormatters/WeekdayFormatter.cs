@@ -35,9 +35,9 @@ namespace Tasque.DateFormatters {
 				return DateTime.MinValue;
 
 			DateTime todayDateTime = DateTime.Now;
-			uint today = todayDateTime.DayOfWeek.ToUint ();
-			uint future = weekDay.ToDayOfWeek ().ToUint ();
-			if (future > today) 
+			var today = (int)todayDateTime.DayOfWeek;
+			var future = (int)weekDay.ToDayOfWeek ();
+			if (future > today)
 				return DateTime.Now.AddDays (future - today);
 			else if (today > future)
 				return DateTime.Now.AddDays (7 - (today - future));

@@ -30,7 +30,7 @@ namespace Gtk.Tasque
 {
 	public class StatusIconTray : GtkTray
 	{
-		public StatusIconTray (INativeApplication application) : base  (application)
+		public StatusIconTray (GtkApplicationBase application) : base  (application)
 		{
 			tray = new StatusIcon (Utilities.GetIcon (IconName, 24));
 			tray.Visible = true;

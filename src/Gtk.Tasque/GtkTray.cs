@@ -4,7 +4,7 @@
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
 // 
-// Copyright (c) 2012 Antonius Riha
+// Copyright (c) 2012-2013 Antonius Riha
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,18 +24,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using Mono.Unix;
 using Tasque;
-using Tasque.Backends;
 using Gtk;
 
 namespace Gtk.Tasque
 {
-	public abstract class GtkTray : IDisposable
+	public abstract class GtkTray
 	{
-		public static GtkTray CreateTray (INativeApplication application)
+		public static GtkTray CreateTray (GtkApplicationBase application)
 		{
 			var desktopSession = Environment.GetEnvironmentVariable ("DESKTOP_SESSION");
 			GtkTray tray;
@@ -55,65 +55,67 @@ namespace Gtk.Tasque
 			return tray;
 		}
 
-		protected GtkTray (INativeApplication application)
+		protected GtkTray (GtkApplicationBase application)
 		{
 			if (application == null)
 				throw new ArgumentNullException ("application");
 			this.application = application;
 
-			UpdateBackend ();
-			application.BackendChanged += HandleBackendChanged;
+			RegisterUIManager ();
+			
+			application.BackendManager.BackendChanging += delegate {
+				SwitchBackendItems (false); };
+			application.BackendManager.BackendInitialized += delegate {
+				SwitchBackendItems (true); };
+			((INotifyCollectionChanged)application.BackendManager.Tasks).CollectionChanged
+				+= delegate { RefreshTrayIconTooltip (); };
 			RefreshTrayIconTooltip ();
 		}
 
-		#region IDisposable implementation
-		public void Dispose ()
-		{
-			if (disposed)
-				return;
-			application.BackendChanged -= HandleBackendChanged;
-			disposed = true;
-		}
-		#endregion
-		
 		public void RefreshTrayIconTooltip ()
 		{
 			var oldTooltip = Tooltip;
 			var sb = new StringBuilder ();
-			
-			var overdueTasks = application.OverdueTasks;
-			if (overdueTasks != null) {
-				int count = overdueTasks.Count ();
+			var tasks = application.BackendManager.Tasks;
 
-				if (count > 0) {
-					sb.Append (String.Format (Catalog.GetPluralString ("{0} task is Overdue\n", "{0} tasks are Overdue\n", count), count));
-				}
+			var overdueStart = DateTime.MinValue;
+			var overdueEnd = DateTime.Today.AddSeconds (-1);
+			var overdueTasks = tasks.Where (
+				t => t.DueDate > overdueStart && t.DueDate < overdueEnd);
+			if (overdueTasks.Any ()) {
+				var overdueCount = overdueTasks.Count ();
+				sb.AppendFormat (Catalog.GetPluralString ("{0} task is Overdue",
+				    "{0} tasks are Overdue", overdueCount), overdueCount);
+				sb.AppendLine ();
 			}
-			
-			var todayTasks = application.TodayTasks;
-			if (todayTasks != null) {
-				int count = todayTasks.Count ();
 
-				if (count > 0) {
-					sb.Append (String.Format (Catalog.GetPluralString ("{0} task for Today\n", "{0} tasks for Today\n", count), count));
-				}
+			var todayEnd = DateTime.Today.AddDays (1).AddSeconds (-1);
+			var todayTasks = tasks.Where (
+				t => t.DueDate > DateTime.Today && t.DueDate < todayEnd);
+			if (todayTasks.Any ()) {
+				var todayCount = todayTasks.Count ();
+				sb.AppendFormat (Catalog.GetPluralString ("{0} task for Today",
+				    "{0} tasks for Today", todayCount), todayCount);
+				sb.AppendLine ();
 			}
-			
-			var tomorrowTasks = application.TomorrowTasks;
-			if (tomorrowTasks != null) {
-				int count = tomorrowTasks.Count ();
 
-				if (count > 0) {
-					sb.Append (String.Format (Catalog.GetPluralString ("{0} task for Tomorrow\n", "{0} tasks for Tomorrow\n", count), count));
-				}
+			var tomorrowStart = DateTime.Today.AddDays (1);
+			var tomorrowEnd = DateTime.Today.AddDays (2).AddSeconds (-1);
+			var tomorrowTasks = tasks.Where (
+				t => t.DueDate > tomorrowStart && t.DueDate < tomorrowEnd);
+			if (tomorrowTasks.Any ()) {
+				var tomorrowCount = tomorrowTasks.Count ();
+				sb.AppendFormat (Catalog.GetPluralString ("{0} task for Tomorrow",
+				    "{0} tasks for Tomorrow", tomorrowCount), tomorrowCount);
+				sb.AppendLine ();
 			}
 
 			if (sb.Length == 0) {
 				// Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 				Tooltip = Catalog.GetString ("Tasque Rocks");
 			} else
-				Tooltip = sb.ToString ().TrimEnd ('\n');
-			
+				Tooltip = sb.ToString ().TrimEnd (Environment.NewLine.ToCharArray ());
+
 			if (Tooltip != oldTooltip)
 				OnTooltipChanged ();
 		}
@@ -121,11 +123,7 @@ namespace Gtk.Tasque
 		protected string IconName { get { return "tasque-panel"; } }
 		
 		protected Menu Menu {
-			get {
-				if (uiManager == null)
-					RegisterUIManager ();
-				return (Menu)uiManager.GetWidget ("/TrayIconMenu");
-			}
+			get { return (Menu)uiManager.GetWidget ("/TrayIconMenu"); }
 		}
 		
 		protected Gtk.Action ToggleTaskWindowAction { get; private set; }
@@ -133,16 +131,6 @@ namespace Gtk.Tasque
 		protected string Tooltip { get; private set; }
 		
 		protected virtual void OnTooltipChanged () {}
-		
-		void HandleBackendChanged (object sender, EventArgs e)
-		{
-			UpdateBackend ();
-		}
-
-		void HandleBackendInitialized ()
-		{
-			UpdateActionSensitivity ();
-		}
 
 		void OnAbout (object sender, EventArgs args)
 		{
@@ -156,7 +144,7 @@ namespace Gtk.Tasque
 			about.Version = Defines.Version;
 			about.Logo = Utilities.GetIcon("tasque", 48);
 			about.Copyright = Defines.CopyrightInfo;
-			about.Comments = Catalog.GetString ("A Useful Task List");
+			about.Comments = Catalog.GetString ("A Useful ITask List");
 			about.Website = Defines.Website;
 			about.WebsiteLabel = Catalog.GetString("Tasque Project Homepage");
 			about.Authors = authors;
@@ -169,60 +157,47 @@ namespace Gtk.Tasque
 
 		void RegisterUIManager ()
 		{
-			var trayActionGroup = new ActionGroup ("Tray");
-			trayActionGroup.Add (new ActionEntry [] {
-				new ActionEntry ("NewTaskAction", Stock.New, Catalog.GetString ("New Task ..."), null, null, delegate {
-					// Show the TaskWindow and then cause a new task to be created
-					TaskWindow.ShowWindow (application);
-					TaskWindow.GrabNewTaskEntryFocus (application);
-				}),
-
-				new ActionEntry ("AboutAction", Stock.About, OnAbout),
-
-				new ActionEntry ("PreferencesAction", Stock.Preferences, delegate { application.ShowPreferences (); }),
-
-				new ActionEntry ("RefreshAction", Stock.Execute, Catalog.GetString ("Refresh Tasks ..."),
-				                 null, null, delegate { application.Backend.Refresh(); }),
-
-				new ActionEntry ("QuitAction", Stock.Quit, delegate { application.Exit (); })
+			var newTaskAction = new ActionEntry ("NewTaskAction", Stock.New,
+			    Catalog.GetString ("New ITask ..."), null, null, delegate {
+				// Show the TaskWindow and then cause a new task to be created
+				TaskWindow.ShowWindow (application);
+				TaskWindow.GrabNewTaskEntryFocus (application);
 			});
 			
-			ToggleTaskWindowAction = new Gtk.Action ("ToggleTaskWindowAction", Catalog.GetString ("Toggle Task Window"));
+			var refreshAction =	new ActionEntry ("RefreshAction", Stock.Execute,
+			    Catalog.GetString ("Refresh Tasks ..."), null, null,
+			    delegate { application.BackendManager.ReInitializeBackend ();
+			});
+			
+			
+			var trayActionGroup = new ActionGroup ("Tray");
+			trayActionGroup.Add (new ActionEntry [] {
+				newTaskAction,
+				new ActionEntry ("AboutAction", Stock.About, OnAbout),
+				new ActionEntry ("PreferencesAction", Stock.Preferences,
+				                 delegate { application.ShowPreferences (); }),
+				refreshAction,
+				new ActionEntry ("QuitAction", Stock.Quit,
+				                 delegate { application.Exit (); })
+			});
+			
+			ToggleTaskWindowAction = new Gtk.Action ("ToggleTaskWindowAction", Catalog.GetString ("Toggle ITask Window"));
 			ToggleTaskWindowAction.ActionGroup = trayActionGroup;
 			ToggleTaskWindowAction.Activated += delegate { TaskWindow.ToggleWindowVisible (application); };
 			
 			uiManager = new UIManager ();
 			uiManager.AddUiFromString (MenuXml);
 			uiManager.InsertActionGroup (trayActionGroup, 0);
-		}
-
-		void UpdateActionSensitivity ()
-		{
-			var backend = application.Backend;
-			var backendItemsSensitive = (backend != null && backend.Initialized);
 			
-			if (uiManager == null)
-				RegisterUIManager ();
-			
-			uiManager.GetAction ("/TrayIconMenu/NewTaskAction").Sensitive = backendItemsSensitive;
-			uiManager.GetAction ("/TrayIconMenu/RefreshAction").Sensitive = backendItemsSensitive;
+			SwitchBackendItems (false);
 		}
 
-		void UpdateBackend ()
-		{
-			if (backend != null)
-				backend.BackendInitialized -= HandleBackendInitialized;
-			backend = application.Backend;
-
-			if (backend != null)
-				backend.BackendInitialized += HandleBackendInitialized;
-
-			UpdateActionSensitivity ();
+		void SwitchBackendItems (bool onOrOff) {
+			uiManager.GetAction ("/TrayIconMenu/NewTaskAction").Sensitive = onOrOff;
+			uiManager.GetAction ("/TrayIconMenu/RefreshAction").Sensitive = onOrOff;
 		}
 
-		INativeApplication application;
-		IBackend backend;
-		bool disposed;
+		GtkApplicationBase application;
 		UIManager uiManager;
 		const string MenuXml = @"
 <ui>

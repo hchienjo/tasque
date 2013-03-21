@@ -6,7 +6,7 @@ using Mono.Unix;
 using Gdk;
 using Gtk;
 using Tasque;
-using Tasque.Backends;
+using Tasque.Data;
 
 namespace Tasque.Backends.Rtm
 {

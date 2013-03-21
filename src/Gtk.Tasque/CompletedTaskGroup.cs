@@ -12,6 +12,8 @@ using System.Linq;
 using Mono.Unix;
 using Gtk;
 using Gtk.Tasque;
+using Tasque.Core;
+using Tasque.Utils;
 
 namespace Tasque
 {
@@ -26,12 +28,12 @@ namespace Tasque
 	
 	public class CompletedTaskGroup : TaskGroup
 	{
-		ICategory selectedCategory;
+		ITaskList selectedTaskList;
 		HScale rangeSlider;
 		ShowCompletedRange currentRange;
 		
 		public CompletedTaskGroup (string groupName, DateTime rangeStart,
-		                           DateTime rangeEnd, ICollection<ITask> tasks, INativeApplication application)
+		                           DateTime rangeEnd, ICollection<ITask> tasks, GtkApplicationBase application)
 			: base (groupName, rangeStart, rangeEnd, new CompletedTasksSortModel(tasks), application)
 		{
 			var preferences = application.Preferences;
@@ -47,13 +49,13 @@ namespace Tasque
 					HideWhenEmpty = !prefs.GetBool (PreferencesKeys.ShowCompletedTasksKey);
 					
 					// refresh ui
-					var cat = GetSelectedCategory ();
+					var cat = GetSelectedTaskList ();
 					if (cat != null)
 						Refilter (cat);
 					break;
-				case PreferencesKeys.SelectedCategoryKey:
-					selectedCategory = GetSelectedCategory ();
-					Refilter (selectedCategory);
+				case PreferencesKeys.SelectedTaskListKey:
+					selectedTaskList = GetSelectedTaskList ();
+					Refilter (selectedTaskList);
 					break;
 				}
 			};
@@ -103,18 +105,18 @@ namespace Tasque
 			return new TreeModelListAdapter<ITask> (Model);
 		}
 		
-		protected ICategory GetSelectedCategory ()
+		protected ITaskList GetSelectedTaskList ()
 		{
-			ICategory foundCategory = null;
+			ITaskList foundTaskList = null;
 			
 			string cat = Application.Preferences.Get (
-				PreferencesKeys.SelectedCategoryKey);
+				PreferencesKeys.SelectedTaskListKey);
 			if (cat != null) {
-				var model = Application.Backend.Categories;
-				foundCategory = model.FirstOrDefault (c => c.Name == cat);
+				var model = Application.BackendManager.TaskLists;
+				foundTaskList = model.FirstOrDefault (c => c.Name == cat);
 			}
 			
-			return foundCategory;
+			return foundTaskList;
 		}
 		
 		private void OnRangeSliderChanged (object sender, EventArgs args)
@@ -215,6 +217,7 @@ namespace Tasque
 	{
 		public CompletedTasksSortModel (ICollection<ITask> childModel)
 		{
+			completionDateComparer = new TaskCompletionDateComparer ();
 			originalTasks = childModel;
 			((INotifyCollectionChanged)childModel).CollectionChanged += HandleCollectionChanged;
 			foreach (var item in originalTasks)
@@ -253,10 +256,11 @@ namespace Tasque
 				return 0;
 			
 			// Reverse the logic with the '-' so it's in reverse
-			return -(x.CompareToByCompletionDate (y));
+			return -(completionDateComparer.Compare (x, y));
 		}
 		#endregion // Private Methods
 		
 		ICollection<ITask> originalTasks;
+		TaskCompletionDateComparer completionDateComparer;
 	}
 }

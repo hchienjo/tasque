@@ -34,7 +34,7 @@ using System.Configuration;
 using System.IO;
 using Mono.Unix;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	public static class Defines
 	{

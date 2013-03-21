@@ -6,14 +6,14 @@
     <ProjectGuid>{B19B9840-669D-4984-9772-E1F55193A67F}</ProjectGuid>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <OutputPath>.</OutputPath>
-    <AssemblyName>Gtk.Tasque</AssemblyName>
+    <AssemblyName>Tasque</AssemblyName>
     <RootNamespace>Gtk.Tasque</RootNamespace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GtkSharp12 Condition=" '$(EnableGtkSharp12)' == '' Or '$(EnableGtkSharp12)' ">GTK_2_12</GtkSharp12>
-    <ReleaseVersion>0.1.13</ReleaseVersion>
+    <ReleaseVersion>0.2.0</ReleaseVersion>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..\..</TopBuildDir>
   </PropertyGroup>
@@ -50,33 +50,47 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="appindicator-sharp, Version=0.2.0.0, Culture=neutral, PublicKeyToken=bcae265d1c7ab4c2">
       <Private>False</Private>
+      <Package>appindicator-sharp-0.1</Package>
     </Reference>
     <Reference Include="notify-sharp, Version=0.4.0.0, Culture=neutral, PublicKeyToken=2df29c54e245917a">
       <Private>False</Private>
+      <Package>notify-sharp</Package>
     </Reference>
     <Reference Include="dbus-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5">
       <Private>False</Private>
+      <Package>dbus-sharp-1.0</Package>
     </Reference>
     <Reference Include="dbus-sharp-glib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5">
       <Private>False</Private>
+      <Package>dbus-sharp-glib-1.0</Package>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Private>False</Private>
       <Package>mono-addins</Package>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libtasque\libtasque.csproj">
@@ -94,7 +108,6 @@
     <Compile Include="DateButton.cs" />
     <Compile Include="NoteDialog.cs" />
     <Compile Include="NoteWidget.cs" />
-    <None Include="OSXApplication.cs" />
     <Compile Include="PreferencesDialog.cs" />
     <Compile Include="TaskCalendar.cs" />
     <Compile Include="TaskGroup.cs" />
@@ -112,12 +125,29 @@
     <Compile Include="TaskColumnExtensionAttribute.cs" />
     <Compile Include="TaskRowEditingEventArgs.cs" />
     <Compile Include="TaskView.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="..\Options.cs">
+      <Link>Options.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'LinuxDebug' Or '$(Configuration)' == 'LinuxRelease' ">
     <Compile Include="RemoteControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Substitute Include="Defines.cs.in" />
+    <Substitute Include="Tasque.exe.Defines.config.in" />
+    <Substitute Include="tasque.in" />
+    <Substitute Include="tasque.pc.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <DistFile Include="Tasque.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </DistFile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tasque.exe.Defines.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -132,6 +162,23 @@
     </CreateItem>
     <CreateItem Include="@authors@|$(SrcDir)\..\..\AUTHORS|path">
       <Output TaskParameter="Include" ItemName="Substitution" />
+    </CreateItem>
+  </Target>
+  <Target Name="AfterSubstitute" Condition=" '$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' ">
+    <Exec Command="chmod +x tasque" />
+  </Target>
+  <Target Name="SetupInstallFile">
+    <CreateItem Condition="'$(Configuration)' == 'GtkLinuxDebug' Or '$(Configuration)' == 'GtkLinuxRelease' " Include="$(SrcDir)\Tasque.exe.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.config;Executable=false">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Include="Tasque.exe.Defines.config" AdditionalMetadata="InstallPath=$(PkgLibDir);InstallFileName=Tasque.exe.Defines.config;Executable=false">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Include="tasque.pc" AdditionalMetadata="InstallPath=$(PkgConfigDir);InstallFileName=tasque.pc;Executable=false">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
+    </CreateItem>
+    <CreateItem Include="tasque" AdditionalMetadata="InstallPath=$(BinDir);InstallFileName=tasque;Executable=true">
+      <Output TaskParameter="Include" ItemName="InstallFile" />
     </CreateItem>
   </Target>
 </Project>

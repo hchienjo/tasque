@@ -31,13 +31,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gtk.Tasque.Columns", "src\A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gtk.Tasque.TimerCompleteColumns", "src\Addins\Gtk.Tasque.TimerCompleteColumns\Gtk.Tasque.TimerCompleteColumns.csproj", "{BFF82E44-DE40-441A-95C8-95269AB9C53D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tasque", "src\tasque\tasque.csproj", "{A70BD496-A280-4EF5-BBE8-254E0CA89C62}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoMac.Tasque", "src\MonoMac.Tasque\MonoMac.Tasque.csproj", "{67188C62-9332-4402-8702-E8BC1CCA8D2F}"
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "po", "po\po.mdproj", "{51E65E50-71EE-4736-A47C-DA2ECF7F6793}"
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "data", "data\data.mdproj", "{6F2F4BAA-3C60-464D-B757-9DD18FED0BAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libtasque.Test", "tests\libtasque.Test\libtasque.Test.csproj", "{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,18 +135,15 @@ Global
 		{7E8C2A02-418B-4659-9AF7-7017FD381F50}.GtkWinRelease|Any CPU.ActiveCfg = GtkRelease|Any CPU
 		{7E8C2A02-418B-4659-9AF7-7017FD381F50}.MonoMacDebug|Any CPU.ActiveCfg = MonoMacDebug|Any CPU
 		{7E8C2A02-418B-4659-9AF7-7017FD381F50}.MonoMacRelease|Any CPU.ActiveCfg = MonoMacRelease|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkLinuxDebug|Any CPU.ActiveCfg = GtkLinuxDebug|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkLinuxDebug|Any CPU.Build.0 = GtkLinuxDebug|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkLinuxRelease|Any CPU.ActiveCfg = GtkLinuxRelease|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkLinuxRelease|Any CPU.Build.0 = GtkLinuxRelease|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkWinDebug|Any CPU.ActiveCfg = GtkWinDebug|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkWinDebug|Any CPU.Build.0 = GtkWinDebug|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkWinRelease|Any CPU.ActiveCfg = GtkWinRelease|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.GtkWinRelease|Any CPU.Build.0 = GtkWinRelease|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.MonoMacDebug|Any CPU.ActiveCfg = MonoMacDebug|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.MonoMacDebug|Any CPU.Build.0 = MonoMacDebug|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.MonoMacRelease|Any CPU.ActiveCfg = MonoMacRelease|Any CPU
-		{A70BD496-A280-4EF5-BBE8-254E0CA89C62}.MonoMacRelease|Any CPU.Build.0 = MonoMacRelease|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.GtkLinuxDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.GtkLinuxDebug|Any CPU.Build.0 = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.GtkLinuxRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.GtkWinDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.GtkWinDebug|Any CPU.Build.0 = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.GtkWinRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.MonoMacDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.MonoMacDebug|Any CPU.Build.0 = Debug|Any CPU
+		{8820AFD6-D84B-4A13-A5DE-9EEEC92F3AC3}.MonoMacRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.GtkLinuxDebug|Any CPU.ActiveCfg = LinuxDebug|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.GtkLinuxDebug|Any CPU.Build.0 = LinuxDebug|Any CPU
 		{B19B9840-669D-4984-9772-E1F55193A67F}.GtkLinuxRelease|Any CPU.ActiveCfg = LinuxRelease|Any CPU
@@ -202,7 +199,6 @@ Global
 		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.MonoMacRelease|Any CPU.ActiveCfg = MonoMacRelease|Any CPU
 		{CC8935CB-342C-4FDA-BAF1-24FA3EB53490}.MonoMacRelease|Any CPU.Build.0 = MonoMacRelease|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxDebug|Any CPU.ActiveCfg = GtkLinuxDebug|Any CPU
-		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxDebug|Any CPU.Build.0 = GtkLinuxDebug|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxRelease|Any CPU.ActiveCfg = GtkLinuxRelease|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkLinuxRelease|Any CPU.Build.0 = GtkLinuxRelease|Any CPU
 		{CCCC10A5-662D-4788-82D3-25689F3D4D4F}.GtkWinDebug|Any CPU.ActiveCfg = GtkWinDebug|Any CPU
@@ -232,8 +228,8 @@ Global
 		{FBDF2B11-0EEE-4463-A282-009AC1F7FC76} = {E2E6EE06-C957-4D1E-85CA-90F3773597DE}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\tasque\tasque.csproj
-		version = 0.1.13
+		StartupItem = src\Gtk.Tasque\Gtk.Tasque.csproj
+		version = 0.2.0
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

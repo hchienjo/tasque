@@ -1,10 +1,10 @@
 // 
 // GtkLinuxApplication.cs
-//  
+// 
 // Author:
 //       Antonius Riha <antoniusriha@gmail.com>
 // 
-// Copyright (c) 2012 Antonius Riha
+// Copyright (c) 2012-2013 Antonius Riha
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,8 @@ namespace Gtk.Tasque
 {
 	public class GtkLinuxApplication : GtkApplicationBase
 	{
+		public GtkLinuxApplication (string[] args) : base (args) {}
+
 		protected override void Dispose (bool disposing)
 		{
 			if (disposing && remoteInstance != null)

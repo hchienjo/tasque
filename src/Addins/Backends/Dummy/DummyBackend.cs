@@ -1,287 +1,222 @@
-// DummyBackend.cs created with MonoDevelop
-// User: boyd at 7:10 AM 2/11/2008
-
+//
+// DummyBackend.cs
+//
+// Author:
+//       Antonius Riha <antoniusriha@gmail.com>
+//
+// Copyright (c) 2013 Antonius Riha
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using Mono.Unix;
-using Tasque.Backends;
+using Tasque.Data;
 using Gtk.Tasque.Backends.Dummy;
-using System.ComponentModel;
 
 namespace Tasque.Backends.Dummy
 {
-	public class DummyBackend : IBackend
+	[BackendExtension ("Dummy")]
+	public class DummyBackend : IBackend2
 	{
-		private int newTaskId;
-		private bool initialized;
-		private bool configured = true;
-		
-		ObservableCollection<ITask> taskStore;
-		ObservableCollection<ICategory> categoryListStore;
-		ReadOnlyObservableCollection<ITask> readOnlyTaskStore;
-		ReadOnlyObservableCollection<ICategory> readOnlyCategoryStore;
-		
-		TaskComparer taskComparer;
-		CategoryComparer categoryComparer;
-		
-		public event BackendInitializedHandler BackendInitialized;
-		public event BackendSyncStartedHandler BackendSyncStarted;
-		public event BackendSyncFinishedHandler BackendSyncFinished;
-		
-		DummyCategory homeCategory;
-		DummyCategory workCategory;
-		DummyCategory projectsCategory;
-		
 		public DummyBackend ()
 		{
-			initialized = false;
-			newTaskId = 0;
-			taskStore = new ObservableCollection<ITask> ();
-			categoryListStore = new ObservableCollection<ICategory> ();
-			readOnlyTaskStore = new ReadOnlyObservableCollection<ITask> (taskStore);
-			readOnlyCategoryStore
-				= new ReadOnlyObservableCollection<ICategory> (categoryListStore);
-			taskComparer = new TaskComparer ();
-			categoryComparer = new CategoryComparer ();
+			// Create fake backend content
+			var sharedTask1 = new DummyTask ("Buy some nails") {
+				DueDate = DateTime.Now.AddDays (1),
+				Priority = 3
+			};
+
+			var sharedTask2 = new DummyTask ("Replace burnt out lightbulb") {
+				DueDate = DateTime.Now,
+				Priority = 1
+			};
+
+			var complTask1 = new DummyTask ("Call Roger") {
+				DueDate = DateTime.Now.AddDays (-1),
+			};
+
+			var complTask2 = new DummyTask ("Test task overdue") {
+				DueDate = DateTime.Now.AddDays (-89)
+			};
+
+			var notesTask1 = new DummyTask ("This task has a note.") {
+				DueDate = DateTime.Now.AddDays (2),
+				Priority = 4
+			};
+			notesTask1.TaskNotes.Add (new DummyNote ("This is the note."));
+
+			var homeList = new DummyList ("Home");
+			homeList.Tasks.Add (sharedTask1);
+			homeList.Tasks.Add (sharedTask2);
+			homeList.Tasks.Add (complTask1);
+			homeList.Tasks.Add (new DummyTask ("File taxes") {
+				DueDate = new DateTime (2008, 4, 1)
+			});
+			homeList.Tasks.Add (new DummyTask ("Pay storage rental fee") {
+				DueDate = DateTime.Now.AddDays (1)
+			});
+
+			var workList = new DummyList ("Work");
+			workList.Tasks.Add (complTask2);
+			workList.Tasks.Add (notesTask1);
+
+			var projectsList = new DummyList ("Projects");
+			projectsList.Tasks.Add (sharedTask1);
+			projectsList.Tasks.Add (sharedTask2);
+			projectsList.Tasks.Add (new DummyTask ("Purchase lumber") {
+				DueDate = DateTime.Now.AddDays (1),
+				Priority = 5
+			});
+			projectsList.Tasks.Add (new DummyTask ("Estimate drywall requirements") {
+				DueDate = DateTime.Now.AddDays (1),
+				Priority = 1
+			});
+			projectsList.Tasks.Add (new DummyTask ("Borrow framing nailer from Ben") {
+				DueDate = DateTime.Now.AddDays (1),
+				Priority = 4,
+			});
+			projectsList.Tasks.Add (new DummyTask ("Call for an insulation estimate") {
+				DueDate = DateTime.Now.AddDays (1),
+				Priority = 3
+			});
+			projectsList.Tasks.Add (new DummyTask ("Place carpet order"));
+
+			DummyLists = new List<DummyList> {
+				homeList,
+				workList,
+				projectsList
+			};
 		}
 		
-		#region Public Properties
-		public string Name
-		{
-			get { return "Debugging System"; }
+		public bool IsConfigured { get; private set; }
+
+		public bool IsInitialized { get; private set; }
+
+		public IBackendPreferences Preferences {
+			get { return new DummyPreferences (); }
 		}
-		
-		/// <value>
-		/// All the tasks including ITaskDivider items.
-		/// </value>
-		public ICollection<ITask> Tasks
-		{
-			get { return readOnlyTaskStore; }
-		}
-		
-		/// <value>
-		/// This returns all the task lists (categories) that exist.
-		/// </value>
-		public ICollection<ICategory> Categories
-		{
-			get { return readOnlyCategoryStore; }
-		}
-		
-		/// <value>
-		/// Indication that the dummy backend is configured
-		/// </value>
-		public bool Configured 
-		{
-			get { return configured; }
-		}
-		
-		/// <value>
-		/// Inidication that the backend is initialized
-		/// </value>
-		public bool Initialized
-		{
-			get { return initialized; }
-		}		
-		#endregion // Public Properties
-		
-		#region Public Methodsopen source contributors badges
-		public ITask CreateTask (string taskName, ICategory category)		
-		{
-			// not sure what to do here with the category
-			DummyTask task = new DummyTask (this, newTaskId, taskName);
-			
-			// Determine and set the task category
-			if (category == null || category is Tasque.AllCategory)
-				task.Category = workCategory; // Default to work
-			else
-				task.Category = category;
-			
-			AddTask (task);
-			newTaskId++;
-			
-			task.PropertyChanged += HandlePropertyChanged;
-			
-			return task;
-		}
-		
-		public void DeleteTask(ITask task)
-		{}
-		
-		public void Refresh()
-		{}
 
 		public void Initialize (IPreferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
+			if (IsInitialized)
+				return;
 
-			//
-			// Add in the "All" Category
-			//
-			AddCategory (new AllCategory (preferences));
-			
-			//
-			// Add in some fake categories
-			//
-			homeCategory = new DummyCategory ("Home");
-			AddCategory (homeCategory);
-			
-			workCategory = new DummyCategory ("Work");
-			AddCategory (workCategory);
-			
-			projectsCategory = new DummyCategory ("Projects");
-			AddCategory (projectsCategory);
-			
-			//
-			// Add in some fake tasks
-			//
-			
-			DummyTask task = new DummyTask (this, newTaskId, "Buy some nails");
-			task.Category = projectsCategory;
-			task.DueDate = DateTime.Now.AddDays (1);
-			task.Priority = TaskPriority.Medium;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Call Roger");
-			task.Category = homeCategory;
-			task.DueDate = DateTime.Now.AddDays (-1);
-			task.Complete ();
-			task.CompletionDate = task.DueDate;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Replace burnt out lightbulb");
-			task.Category = homeCategory;
-			task.DueDate = DateTime.Now;
-			task.Priority = TaskPriority.Low;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "File taxes");
-			task.Category = homeCategory;
-			task.DueDate = new DateTime (2008, 4, 1);
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Purchase lumber");
-			task.Category = projectsCategory;
-			task.DueDate = DateTime.Now.AddDays (1);
-			task.Priority = TaskPriority.High;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-						
-			task = new DummyTask (this, newTaskId, "Estimate drywall requirements");
-			task.Category = projectsCategory;
-			task.DueDate = DateTime.Now.AddDays (1);
-			task.Priority = TaskPriority.Low;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Borrow framing nailer from Ben");
-			task.Category = projectsCategory;
-			task.DueDate = DateTime.Now.AddDays (1);
-			task.Priority = TaskPriority.High;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Call for an insulation estimate");
-			task.Category = projectsCategory;
-			task.DueDate = DateTime.Now.AddDays (1);
-			task.Priority = TaskPriority.Medium;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Pay storage rental fee");
-			task.Category = homeCategory;
-			task.DueDate = DateTime.Now.AddDays (1);
-			task.Priority = TaskPriority.None;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Place carpet order");
-			task.Category = projectsCategory;
-			task.Priority = TaskPriority.None;
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			task = new DummyTask (this, newTaskId, "Test task overdue");
-			task.Category = workCategory;
-			task.DueDate = DateTime.Now.AddDays (-89);
-			task.Priority = TaskPriority.None;
-			task.Complete ();
-			AddTask (task);
-			task.PropertyChanged += HandlePropertyChanged;
-			newTaskId++;
-			
-			initialized = true;
-			if(BackendInitialized != null) {
-				BackendInitialized();
-			}		
+			// Establish connection to backend
+			// Nothing to do for Dummy Backend
+
+			// Setup repos
+			noteRepo = new NoteRepository (this);
+			taskListRepo = new TaskListRepository (this);
+			taskRepo = new TaskRepository (this);
+
+			// Setup TasqueObjectFactory
+			Factory = new TasqueObjectFactory (
+				taskListRepo, taskRepo, noteRepo);
+
+			IsConfigured = true;
+			IsInitialized = true;
+			if (Initialized != null)
+				Initialized (this, EventArgs.Empty);
 		}
 
-		public void Dispose () {}
-		
-		public IBackendPreferences Preferences
+		public IEnumerable<ITaskListCore> GetAll ()
 		{
-			get {
-				// TODO: Replace this with returning null once things are going
-				// so that the Preferences Dialog doesn't waste space.
-				return new DummyPreferences ();
+			foreach (var item in DummyLists) {
+				yield return Factory.CreateTaskList (
+					item.Id.ToString (), item.ListName);
 			}
 		}
-		#endregion // Public Methods
-		
-		#region Private Methods
-		internal void DeleteTask (DummyTask task)
+
+		public ITaskListCore GetBy (string id)
 		{
-			if (taskStore.Remove (task))
-				task.PropertyChanged -= HandlePropertyChanged;
+			var dummyList = GetTaskListBy (id);
+			return Factory.CreateTaskList (id, dummyList.ListName);
+		}
+
+		public void Create (ITaskListCore taskList)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public void Delete (ITaskListCore taskList)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public void Dispose ()
+		{
+			if (disposed)
+				return;
+			disposed = true;
+
+			// Cleanup and disconnect from backend
+			// Nothing to do for Dummy Backend
+
+			if (Disposed != null)
+				Disposed (this, EventArgs.Empty);
+		}
+
+		public event EventHandler Disposed;
+		public event EventHandler Initialized;
+		public event EventHandler NeedsConfiguration;
+
+		#region Explicit content
+		INoteRepository IRepositoryProvider<INoteRepository>.Repository {
+			get { return noteRepo; }
+		}
+
+		ITaskListRepository IRepositoryProvider<ITaskListRepository>.Repository {
+			get { return taskListRepo; }
+		}
+
+		ITaskRepository IRepositoryProvider<ITaskRepository>.Repository {
+			get { return taskRepo; }
+		}
+		#endregion
+
+		internal TasqueObjectFactory Factory { get; private set; }
+
+		internal List<DummyList> DummyLists { get; private set; }
+		
+		internal DummyNote GetNoteBy (string id)
+		{
+			return DummyLists.SelectMany (l => l.Tasks)
+				.SelectMany (t => t.TaskNotes)
+				.First (n => n.Id.ToString () == id);
 		}
 		
-		void AddCategory (ICategory category)
+		internal DummyTask GetTaskBy (string id)
 		{
-			var index = categoryListStore.Count;
-			var valIdx = categoryListStore.Select ((val, idx) => new { val, idx })
-				.FirstOrDefault (x => categoryComparer.Compare (x.val, category) > 0);
-			if (valIdx != null)
-				index = valIdx.idx;
-			categoryListStore.Insert (index, category);
+			return DummyLists.SelectMany (l => l.Tasks)
+				.First (t => t.Id.ToString () == id);
 		}
 		
-		void AddTask (DummyTask task)
+		internal DummyList GetTaskListBy (string id)
 		{
-			var index = taskStore.Count;
-			var valIdx = taskStore.Select ((val, idx) => new { val, idx })
-				.FirstOrDefault (t => taskComparer.Compare (t.val, task) > 0);
-			if (valIdx != null)
-				index = valIdx.idx;
-			
-			taskStore.Insert (index, task);
+			return DummyLists.Single (l => l.Id.ToString () == id);
 		}
-		
-		void HandlePropertyChanged (object sender, PropertyChangedEventArgs e)
-		{
-			// when a property changes (any property atm), "reorder" tasks
-			var task = (DummyTask)sender;
-			if (taskStore.Remove (task))
-				AddTask (task);
-		}
-		#endregion // Private Methods
-		
-		#region Event Handlers
-		#endregion // Event Handlers
+
+		bool disposed;
+		INoteRepository noteRepo;
+		ITaskListRepository taskListRepo;
+		ITaskRepository taskRepo;
 	}
 }

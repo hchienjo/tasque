@@ -24,6 +24,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System.Reflection;
+using Mono.Addins;
 
 [assembly: AssemblyTitle("DummyBackend")]
 [assembly: AssemblyDescription("Dummy backend for Tasque. Serves debug purposes.")]
+[assembly: Addin]
+[assembly: AddinDependency ("libtasque", "0.2.0")]

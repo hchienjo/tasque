@@ -7,6 +7,8 @@ using System.Linq;
 using Gdk;
 using Gtk;
 using Gtk.Tasque;
+using Tasque.Core;
+using Tasque.Utils;
 
 namespace Tasque
 {
@@ -27,7 +29,7 @@ namespace Tasque
 		
 		#region Constructor
 		public TaskGroup (string groupName, DateTime rangeStart,
-		                  DateTime rangeEnd, ICollection<ITask> tasks, INativeApplication application)
+		                  DateTime rangeEnd, ICollection<ITask> tasks, GtkApplicationBase application)
 		{
 			if (application == null)
 				throw new ArgumentNullException ("application");
@@ -192,9 +194,9 @@ namespace Tasque
 		#endregion // Public Properties
 		
 		#region Public Methods
-		public void Refilter (ICategory selectedCategory)
+		public void Refilter (ITaskList selectedTaskList)
 		{
-			taskView.Refilter (selectedCategory);
+			taskView.Refilter (selectedTaskList);
 		}
 		
 		/// <summary>
@@ -320,7 +322,7 @@ namespace Tasque
 		#endregion // Methods
 		
 		#region Private Methods
-		protected INativeApplication Application { get; private set; }
+		protected GtkApplicationBase Application { get; private set; }
 
 		protected TaskGroupModel Model { get; set; }
 
@@ -350,37 +352,37 @@ namespace Tasque
 		}
 		
 		/// <summary>
-		/// Refilter the hard way by discovering the category to filter on
+		/// Refilter the hard way by discovering the taskList to filter on
 		/// </summary>
 		private void Refilter ()
 		{
-			ICategory cat = GetSelectedCategory ();
+			ITaskList cat = GetSelectedTaskList ();
 			if (cat != null)
 				Refilter (cat);
 		}
 		
 		/// <summary>
-		/// This returns the currently selected category.
+		/// This returns the currently selected taskList.
 		/// TODO: This should really be moved as a method Application or
 		/// or something.
 		/// </summary>
 		/// <returns>
-		/// A <see cref="ICategory"/>
+		/// A <see cref="ITaskList"/>
 		/// </returns>
-		private ICategory GetSelectedCategory ()
+		private ITaskList GetSelectedTaskList ()
 		{
 			// TODO: Move this code into some function in the backend/somewhere
-			// with the signature of GetCategoryForName (string catName):ICategory
-			string selectedCategoryName =
-				Application.Preferences.Get (PreferencesKeys.SelectedCategoryKey);
+			// with the signature of GetTaskListForName (string catName):ITaskList
+			string selectedTaskListName =
+				Application.Preferences.Get (PreferencesKeys.SelectedTaskListKey);
 			
-			ICategory category = null;
-			if (selectedCategoryName != null) {
-				var model = Application.Backend.Categories;
-				category = model.FirstOrDefault (c => c != null && c.Name == selectedCategoryName);
+			ITaskList taskList = null;
+			if (selectedTaskListName != null) {
+				var model = Application.BackendManager.TaskLists;
+				taskList = model.FirstOrDefault (c => c != null && c.Name == selectedTaskListName);
 			}
 			
-			return category;
+			return taskList;
 		}
 		
 		/// <summary>

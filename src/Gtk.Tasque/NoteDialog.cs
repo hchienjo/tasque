@@ -4,8 +4,10 @@
 using System;
 using System.Collections.Generic;
 using Mono.Unix;
+using Tasque.Core;
+using Tasque;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	public class NoteDialog : Gtk.Dialog
 	{
@@ -21,7 +23,7 @@ namespace Tasque
 		{
 			this.ParentWindow = parentWindow.GdkWindow;
 			this.task = task;
-			this.Title = String.Format(Catalog.GetString("Notes for: {0:s}"), task.Name);
+			this.Title = String.Format(Catalog.GetString("Notes for: {0:s}"), task.Text);
 			this.HasSeparator = false;
 			this.SetSizeRequest(500,320);
 			this.Icon = Utilities.GetIcon ("tasque", 16);
@@ -46,7 +48,7 @@ namespace Tasque
 			innerEb.Show ();
 			
 			if(task.Notes != null) {
-				foreach (INote note in task.Notes) {
+				foreach (var note in task.Notes) {
 					NoteWidget noteWidget = new NoteWidget (note);
 					noteWidget.TextChanged += OnNoteTextChanged;
 					noteWidget.DeleteButtonClicked += OnDeleteButtonClicked;
@@ -79,7 +81,7 @@ namespace Tasque
 		#endregion // Constructors
 		
 		#region Properties
-		public ITask Task
+		public ITask ITask
 		{
 			get { return task; }
 		}
@@ -117,7 +119,7 @@ namespace Tasque
 		{
 			NoteWidget nWidget = sender as NoteWidget;
 			try {
-				task.DeleteNote(nWidget.Note);
+				task.Notes.Remove (nWidget.INote);
 				targetVBox.Remove (nWidget);
 			} catch(Exception e) {
 				Logger.Debug("Unable to delete the note");
@@ -138,19 +140,12 @@ namespace Tasque
 			NoteWidget nWidget = sender as NoteWidget;
 
 			// if null, add a note, else, modify it
-			if(nWidget.Note == null) {
+			if(nWidget.INote == null) {
 				try {
-					INote note = task.CreateNote(nWidget.Text);
-					nWidget.Note = note;
+					var note = task.CreateNote (nWidget.Text);
+					nWidget.INote = note;
 				} catch(Exception e) {
 					Logger.Debug("Unable to create a note");
-					Logger.Debug(e.ToString());
-				}
-			} else {
-				try {
-					task.SaveNote(nWidget.Note);
-				} catch(Exception e) {
-					Logger.Debug("Unable to save note");
 					Logger.Debug(e.ToString());
 				}
 			}

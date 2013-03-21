@@ -1,174 +1,69 @@
-// DummyTask.cs created with MonoDevelop
-// User: boyd at 8:50 PM 2/10/2008
-
+//
+// DummyTask.cs
+//
+// Author:
+//       Antonius Riha <antoniusriha@gmail.com>
+//
+// Copyright (c) 2013 Antonius Riha
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 using System;
-using Tasque;
 using System.Collections.Generic;
 
 namespace Tasque.Backends.Dummy
 {
-	public class DummyTask : Task
+	public class DummyTask : DummyObject
 	{
-		DummyBackend backend;
-		string name;
-		DateTime dueDate;
-		DateTime completionDate;
-		TaskPriority priority;
-		TaskState state;
-		int id;
-		DummyCategory category;
-		
-		public DummyTask(DummyBackend backend, int id, string taskName)
+		public DummyTask ()
 		{
-			this.backend = backend;
-			this.id = id;
-			this.name = taskName;
-			this.dueDate = DateTime.MinValue; // No due date specified
-			this.completionDate = DateTime.MinValue; // No due date specified
-			this.priority = TaskPriority.None;
-			this.state = TaskState.Active;
-		}
-		
-		#region Public Properties
-		
-		public int DummyId
-		{
-			get { return id; }
-			set { id = value; }
+			DueDate = DateTime.MaxValue;
+			CompletionDate = DateTime.MaxValue;
+			TaskNotes = new List<DummyNote> ();
 		}
 
-		public override string Id
+		public DummyTask (string text) : this ()
 		{
-			get { return id.ToString(); }
+			Text = text;
 		}
 
-		
-		public override string Name
-		{
-			get { return name; }
-			set {
-Logger.Debug ("Setting new task name");
-				OnPropertyChanging ("Name");
-				if (value == null)
-					name = string.Empty;
-				
-				name = value.Trim ();
-				OnPropertyChanged ("Name");
-			}
-		}
-		
-		public override DateTime DueDate
-		{
-			get { return dueDate; }
-			set {
-Logger.Debug ("Setting new task due date");
-				OnPropertyChanging ("DueDate");
-				dueDate = value;
-				OnPropertyChanged ("DueDate");
-			}
-		}
-		
-		public override DateTime CompletionDate
-		{
-			get { return completionDate; }
-			set {
-Logger.Debug ("Setting new task completion date");
-				OnPropertyChanging ("CompletionDate");
-				completionDate = value;
-				OnPropertyChanged ("CompletionDate");
-			}
-		}
-		
-		public override bool IsComplete
-		{
-			get { return state == TaskState.Completed; }
-		}
-		
-		public override TaskPriority Priority
-		{
-			get { return priority; }
-			set {
-Logger.Debug ("Setting new task priority");
-				OnPropertyChanging ("Priority");
-				priority = value;
-				OnPropertyChanged ("Priority");
-			}
-		}
+		public bool IsCompleted { get; private set; }
 
-		public override bool HasNotes
+		public string Text { get; set; }
+
+		public DateTime CompletionDate { get; private set; }
+
+		public DateTime DueDate { get; set; }
+
+		public int Priority { get; set; }
+
+		public List<DummyNote> TaskNotes { get; private set; }
+
+		public void CompleteTask ()
 		{
-			get { return true; }
-		}
-		
-		public override NoteSupport NoteSupport
-		{
-			get { return NoteSupport.Multiple; }
-		}
-		
-		public override TaskState State
-		{
-			get { return state; }
-		}
-		
-		public override ICategory Category
-		{
-			get { return category; } 
-			set {
-				category = value as DummyCategory;
-			}
-		}
-		
-		public override List<INote> Notes
-		{
-			get { return null; }
-		}		
-		
-		#endregion // Public Properties
-		
-		#region Public Methods
-		public override void Activate ()
-		{
-Logger.Debug ("DummyTask.Activate ()");
-			SetState (TaskState.Active);
-			CompletionDate = DateTime.MinValue;
-		}
-		
-		public override void Complete ()
-		{
-			Logger.Debug ("DummyTask.Complete ()");
-			SetState (TaskState.Completed);
+			IsCompleted = true;
 			CompletionDate = DateTime.Now;
 		}
-		
-		public override void Delete ()
-		{
-Logger.Debug ("DummyTask.Delete ()");
-			SetState (TaskState.Deleted);
-			backend.DeleteTask (this);
-		}
-		
-		public override INote CreateNote(string text)
-		{
-			return null;
-		}
-		
-		public override void DeleteNote(INote note)
-		{
-		}
 
-		public override void SaveNote(INote note)
+		public void RevertCompletion ()
 		{
-		}
-
-		#endregion // Public Methods
-
-		void SetState (TaskState value)
-		{
-			if (value == state)
-				return;
-			OnPropertyChanging ("State");
-			state = value;
-			OnPropertyChanged ("State");
+			IsCompleted = false;
+			CompletionDate = DateTime.MaxValue;
 		}
 	}
 }

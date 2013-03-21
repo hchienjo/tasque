@@ -1,36 +1,41 @@
-// Permission is hereby granted, free of charge, to any person obtaining 
-// a copy of this software and associated documentation files (the 
-// "Software"), to deal in the Software without restriction, including 
-// without limitation the rights to use, copy, modify, merge, publish, 
-// distribute, sublicense, and/or sell copies of the Software, and to 
-// permit persons to whom the Software is furnished to do so, subject to 
-// the following conditions: 
-//  
-// The above copyright notice and this permission notice shall be 
-// included in all copies or substantial portions of the Software. 
-//  
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION 
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+// 
+// GtkApplicationBase.cs
+// 
+// Authors:
+//       Sandy Armstrong <sanfordarmstrong@gmail.com>
+//       Antonius Riha <antoniusriha@gmail.com>
 // 
 // Copyright (c) 2008 Novell, Inc. (http://www.novell.com) 
-// Copyright (c) 2012 Antonius Riha
+// Copyright (c) 2012-2013 Antonius Riha
 // 
-// Authors: 
-//      Sandy Armstrong <sanfordarmstrong@gmail.com>
-//      Antonius Riha <antoniusriha@gmail.com>
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 // 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 using System;
-using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Mono.Addins;
+using Mono.Options;
 using Mono.Unix;
 using Tasque;
+using Tasque.Core;
+using Tasque.Utils;
 using Gtk;
+using System.Collections.Generic;
 
 #if ENABLE_NOTIFY_SHARP
 using Notifications;
@@ -38,68 +43,155 @@ using Notifications;
 
 namespace Gtk.Tasque
 {
-	public abstract class GtkApplicationBase : NativeApplication
+	public abstract class GtkApplicationBase : IDisposable
 	{
-		protected GtkApplicationBase ()
+		protected GtkApplicationBase (string[] args)
 		{
 			AddinManager.Initialize ();
 			AddinManager.Registry.Update ();
-			
-			confDir = Path.Combine (Environment.GetFolderPath (
-				Environment.SpecialFolder.ApplicationData), "tasque");
-			if (!Directory.Exists (confDir))
-				Directory.CreateDirectory (confDir);
-		}
-		
-		public override string ConfDir { get { return confDir; } }
 
-		protected override void OnInitialize ()
-		{
 			Catalog.Init ("tasque", Defines.LocaleDir);
+			
+			ConfDir = Path.Combine (Environment.GetFolderPath (
+				Environment.SpecialFolder.ApplicationData), "tasque");
+			if (!Directory.Exists (ConfDir))
+				Directory.CreateDirectory (ConfDir);
+
+			if (IsRemoteInstanceRunning ()) {
+				Logger.Info ("Another instance of Tasque is already running.");
+				Exit (0);
+			}
+			
+			RemoteInstanceKnocked += delegate {
+				TaskWindow.ShowWindow (this);
+			};
+			
+			preferences = new Preferences (ConfDir);
+			
+			ParseArgs (args);
+			
+			backendManager = new BackendManager (preferences);
+			backendManager.BackendConfigurationRequested += delegate {
+				ShowPreferences ();
+			};
+			
 			Gtk.Application.Init ();
 			
 			// add package icon path to default icon theme search paths
 			IconTheme.Default.PrependSearchPath (Defines.IconsDir);
-
+			
 			Gtk.Application.Init ();
 			GLib.Idle.Add (delegate {
 				InitializeIdle ();
 				return false;
 			});
-
+			
 			GLib.Timeout.Add (60000, delegate {
 				CheckForDaySwitch ();
 				return true;
 			});
-
-			Gtk.Application.Run ();
 			
-			base.OnInitialize ();
+			Gtk.Application.Run ();
 		}
 		
-		protected override void OnInitializeIdle ()
+		public BackendManager BackendManager { get { return backendManager; } }
+		
+		public string ConfDir { get; private set; }
+		
+		public IPreferences Preferences { get { return preferences; } }
+
+		protected void InitializeIdle ()
 		{
+			string backend = null;
+			if (customBackendId != null)
+				backend = customBackendId;
+			else {
+				var backendIdString = preferences.Get (PreferencesKeys.CurrentBackend);
+				Logger.Debug ("CurrentBackend specified in Preferences: {0}",
+				              backendIdString);
+				var bs = backendManager.AvailableBackends.SingleOrDefault (
+					b => b.Key == backendIdString).Key;
+				if (!string.IsNullOrWhiteSpace (bs))
+					backend = bs;
+			}
+			
+			backendManager.SetBackend (backend);
+			
 			trayIcon = GtkTray.CreateTray (this);
 			
-			if (Backend == null) {
+			BackendManager.BackendChanging += delegate {
+				backendWasNullBeforeChange = BackendManager.CurrentBackend == null;
+			};
+			
+			BackendManager.BackendInitialized += delegate {
+				if (backendWasNullBeforeChange)
+					TaskWindow.Reinitialize (!quietStart, this);
+				else
+					TaskWindow.Reinitialize (true, this);
+				
+				if (trayIcon != null)
+					trayIcon.RefreshTrayIconTooltip ();
+			};
+			
+			if (backendManager.CurrentBackend == null) {
 				// Pop open the preferences dialog so the user can choose a
 				// backend service to use.
 				ShowPreferences ();
-			} else if (!QuietStart)
+			} else if (!quietStart)
 				TaskWindow.ShowWindow (this);
 			
-			if (Backend == null || !Backend.Configured) {
+			if (backendManager.CurrentBackend == null ||
+			    !backendManager.IsBackendConfigured) {
 				GLib.Timeout.Add (1000, new GLib.TimeoutHandler (delegate {
-					RetryBackend ();
-					return Backend == null || !Backend.Configured;
+					try {
+						if (backendManager.CurrentBackend != null &&
+						    !backendManager.IsBackendConfigured) {
+							backendManager.ReInitializeBackend ();
+						}
+					} catch (Exception e) {
+						Logger.Error ("{0}", e.Message);
+					}
+					return backendManager.CurrentBackend == null ||
+						!backendManager.IsBackendConfigured;
 				}));
 			}
 			
-			base.OnInitializeIdle ();
+			OnInitializeIdle ();
+		}
+
+		public void Exit (int exitcode = 0)
+		{
+			Logger.Info ("Exit called - terminating application");
+			
+			if (backendManager != null)
+				backendManager.Dispose ();
+			
+			TaskWindow.SavePosition (Preferences);
+			Application.Quit ();
+			
+			if (Exiting != null)
+				Exiting (this, EventArgs.Empty);
+			
+			Environment.Exit (exitcode);
+		}
+
+		/// <summary>
+		/// Releases all resource used by the <see cref="Gtk.Tasque.GtkApplicationBase"/> object.
+		/// </summary>
+		/// <remarks>
+		/// Call <see cref="Dispose"/> when you are finished using the <see cref="Gtk.Tasque.GtkApplicationBase"/>. The
+		/// <see cref="Dispose"/> method leaves the <see cref="Gtk.Tasque.GtkApplicationBase"/> in an unusable state. After
+		/// calling <see cref="Dispose"/>, you must release all references to the <see cref="Gtk.Tasque.GtkApplicationBase"/>
+		/// so the garbage collector can reclaim the memory that the <see cref="Gtk.Tasque.GtkApplicationBase"/> was occupying.
+		/// </remarks>
+		public void Dispose ()
+		{
+			Dispose (true);
+			GC.SuppressFinalize (this);
 		}
 
 #if ENABLE_NOTIFY_SHARP
-		public override void ShowAppNotification (string summary, string body)
+		public void ShowAppNotification (string summary, string body)
 		{
 			var notification = new Notification (
 				summary, body, Utilities.GetIcon ("tasque", 48));
@@ -110,7 +202,7 @@ namespace Gtk.Tasque
 		}
 #endif
 		
-		public override void ShowPreferences ()
+		public void ShowPreferences ()
 		{
 			Logger.Info ("OnPreferences called");
 			if (preferencesDialog == null) {
@@ -121,66 +213,23 @@ namespace Gtk.Tasque
 			preferencesDialog.Present ();
 		}
 		
-		void OnPreferencesDialogHidden (object sender, EventArgs args)
+		/// <summary>
+		/// Dispose the <see cref="Tasque.GtkApplicationBase"/>.
+		/// </summary>
+		/// <param name='disposing'>
+		/// If set to <c>true</c> this method has been invoked by the
+		/// <see cref="Dispose"/> method. Otherwise it may have been invoked by
+		/// a finalizer.
+		/// </param>
+		protected virtual void Dispose (bool disposing)
 		{
-			preferencesDialog.Destroy ();
-			preferencesDialog.Hidden -= OnPreferencesDialogHidden;
-			preferencesDialog = null;
-		}
-		
-		protected override void OnBackendChanged ()
-		{
-			if (backendWasNullBeforeChange)
-				TaskWindow.Reinitialize (!QuietStart, this);
-			else
-				TaskWindow.Reinitialize (true, this);
+			if (disposed)
+				return;
+			disposed = true;
 			
-			Debug.WriteLine ("Configuration status: {0}", Backend.Configured.ToString ());
-			
-			RebuildTooltipTaskGroupModels ();
-			if (trayIcon != null)
-				trayIcon.RefreshTrayIconTooltip ();
-			
-			base.OnBackendChanged ();
+			if (disposing)
+				backendManager.Dispose ();
 		}
-		
-		protected override void OnBackendChanging ()
-		{
-			if (Backend != null)
-				UnhookFromTooltipTaskGroupModels ();
-			
-			backendWasNullBeforeChange = Backend == null;
-			
-			base.OnBackendChanging ();
-		}
-
-		protected override void OnDaySwitched ()
-		{
-			// Reinitialize window according to new date
-			if (TaskWindow.IsOpen)
-				TaskWindow.Reinitialize (true, this);
-			
-			UnhookFromTooltipTaskGroupModels ();
-			RebuildTooltipTaskGroupModels ();
-			if (trayIcon != null)
-				trayIcon.RefreshTrayIconTooltip ();
-		}
-
-		protected override void OnExit (int exitCode)
-		{
-			if (Backend != null)
-				UnhookFromTooltipTaskGroupModels ();
-			TaskWindow.SavePosition (Preferences);
-			Application.Quit ();
-			base.OnExit (exitCode);
-		}
-		
-		protected override void ShowMainWindow ()
-		{
-			TaskWindow.ShowWindow (this);
-		}
-		
-		protected override event EventHandler RemoteInstanceKnocked;
 		
 		protected void OnRemoteInstanceKnocked ()
 		{
@@ -188,53 +237,72 @@ namespace Gtk.Tasque
 				RemoteInstanceKnocked (this, EventArgs.Empty);
 		}
 
-		void OnTooltipModelChanged (object o, EventArgs args)
-		{
-			if (trayIcon != null)
-				trayIcon.RefreshTrayIconTooltip ();
-		}
+		protected abstract bool IsRemoteInstanceRunning ();
+		protected virtual void OnInitializeIdle () {}
 
-		void RebuildTooltipTaskGroupModels ()
-		{
-			if (Backend == null || Backend.Tasks == null) {
-				OverdueTasks = null;
-				TodayTasks = null;
-				TomorrowTasks = null;
-				
-				return;
-			}
-			
-			OverdueTasks = TaskGroupModelFactory.CreateOverdueModel (Backend.Tasks, Preferences);
-			TodayTasks = TaskGroupModelFactory.CreateTodayModel (Backend.Tasks, Preferences);
-			TomorrowTasks = TaskGroupModelFactory.CreateTomorrowModel (Backend.Tasks, Preferences);
-			
-			foreach (TaskGroupModel model in new TaskGroupModel[] { OverdueTasks, TodayTasks, TomorrowTasks })
-			{
-				if (model == null) {
-					continue;
-				}
+		public event EventHandler Exiting;
+		protected event EventHandler RemoteInstanceKnocked;
 
-				model.CollectionChanged += OnTooltipModelChanged;
-			}
-		}
-
-		void UnhookFromTooltipTaskGroupModels ()
-		{
-			foreach (TaskGroupModel model in new TaskGroupModel[] { OverdueTasks, TodayTasks, TomorrowTasks })
-			{
-				if (model == null) {
-					continue;
-				}
-				
-				model.CollectionChanged -= OnTooltipModelChanged;
-			}
-		}
-		
 		internal GtkTray TrayIcon { get { return trayIcon; } }
+
+		void OnPreferencesDialogHidden (object sender, EventArgs args)
+		{
+			preferencesDialog.Destroy ();
+			preferencesDialog.Hidden -= OnPreferencesDialogHidden;
+			preferencesDialog = null;
+		}
 		
-		bool backendWasNullBeforeChange;
-		string confDir;
-		PreferencesDialog preferencesDialog;
+		void CheckForDaySwitch ()
+		{
+			if (DateTime.Today != currentDay) {
+				Logger.Debug ("Day has changed, reloading tasks");
+				currentDay = DateTime.Today;
+				
+				// Reinitialize window according to new date
+//				if (TaskWindow.IsOpen)
+//					TaskWindow.Reinitialize (true, this);
+				
+				if (trayIcon != null)
+					trayIcon.RefreshTrayIconTooltip ();
+			}
+		}
+		
+		void ParseArgs (string[] args)
+		{
+			bool showHelp = false;
+			var p = new OptionSet () {
+				{ "q|quiet", "hide the Tasque window upon start.",
+					v => quietStart = true },
+				{ "b|backend=", "the name of the {BACKEND} to use.",
+					v => customBackendId = v },
+				{ "h|help",  "show this message and exit.",
+					v => showHelp = v != null },
+			};
+			
+			try {
+				p.Parse (args);
+			} catch (OptionException e) {
+				Console.Write ("tasque: ");
+				Console.WriteLine (e.Message);
+				Console.WriteLine ("Try `tasque --help' for more information.");
+				Exit (-1);
+			}
+			
+			if (showHelp) {
+				Console.WriteLine ("Usage: tasque [[-q|--quiet] [[-b|--backend] BACKEND]]");
+				Console.WriteLine ();
+				Console.WriteLine ("Options:");
+				p.WriteOptionDescriptions (Console.Out);
+				Exit (-1);
+			}
+		}
+		
+		IPreferences preferences;
+		BackendManager backendManager;
 		GtkTray trayIcon;
+		PreferencesDialog preferencesDialog;
+		DateTime currentDay;
+		bool backendWasNullBeforeChange, quietStart, disposed;
+		string customBackendId;
 	}
 }

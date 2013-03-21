@@ -104,7 +104,6 @@ _BUILDFILES = \
 	src/Libraries/RtmNet/RtmNet.csproj \
 	src/libtasque/libtasque.csproj \
 	src/Gtk.Tasque/Gtk.Tasque.csproj \
-	src/tasque/tasque.csproj \
 	src/Addins/Backends/Dummy/DummyBackend.csproj \
 	src/Addins/Backends/Eds/EdsBackend.csproj \
 	src/Addins/Backends/Hiveminder/HiveminderBackend.csproj \

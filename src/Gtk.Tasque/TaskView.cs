@@ -8,6 +8,7 @@ using System.Linq;
 using Mono.Addins;
 using Tasque;
 using Gtk;
+using Tasque.Core;
 
 namespace Gtk.Tasque
 {
@@ -20,7 +21,7 @@ namespace Gtk.Tasque
 	public class TaskView
 	{
 		private Gtk.TreeModelFilter modelFilter;
-		private ICategory filterCategory;	
+		private ITaskList filterTaskList;
 		
 		public event EventHandler NumberOfTasksChanged;
 
@@ -48,7 +49,7 @@ namespace Gtk.Tasque
 			// to select it and THEN have to click on the column item they want
 			// to modify.
 			
-			filterCategory = null;
+			filterTaskList = null;
 			
 			modelFilter = new Gtk.TreeModelFilter (model, null);
 			modelFilter.VisibleFunc = FilterFunc;
@@ -81,7 +82,7 @@ namespace Gtk.Tasque
 					if (rowEditingDictionary.IsEmpty)
 						IsTaskBeingEdited = true;
 					
-					if (!rowEditingDictionary.Any (v => v.Value.Task == e.Task)) {
+					if (!rowEditingDictionary.Any (v => v.Value.ITask == e.ITask)) {
 						if (RowEditingStarted != null)
 							RowEditingStarted (this, e);
 					}
@@ -91,7 +92,7 @@ namespace Gtk.Tasque
 				col.CellEditingFinished += (sender, e) => {
 					TaskRowEditingEventArgs args;
 					rowEditingDictionary.TryRemove ((ITaskColumn)sender, out args);
-					if (!rowEditingDictionary.Any (v => v.Value == e.Task)) {
+					if (!rowEditingDictionary.Any (v => v.Value.ITask == e.ITask)) {
 						if (RowEditingFinished != null)
 							RowEditingFinished (this, e);
 					}
@@ -113,12 +114,12 @@ namespace Gtk.Tasque
 		#region Public Methods
 		public void Refilter ()
 		{
-			Refilter (filterCategory);
+			Refilter (filterTaskList);
 		}
 		
-		public void Refilter (ICategory selectedCategory)
+		public void Refilter (ITaskList selectedTaskList)
 		{
-			this.filterCategory = selectedCategory;
+			this.filterTaskList = selectedTaskList;
 			TreeView.Model = modelFilter;
 			modelFilter.Refilter ();
 		}
@@ -171,9 +172,9 @@ namespace Gtk.Tasque
 			List<String> list = new List<String>();
 	
 			if(TreeView.Selection.GetSelected(out m, out iter)) {
-				ITask task = Model.GetValue (iter, 0) as ITask;							      
+				ITask task = Model.GetValue (iter, 0) as ITask;
 				if (task != null && task.HasNotes && task.Notes != null) {
-					foreach (INote note in task.Notes) {
+					foreach (var note in task.Notes) {
 						// for the tooltip, truncate any notes longer than 250 characters.
 						if (note.Text.Length > toolTipMaxLength)
 							list.Add(note.Text.Substring(0, toolTipMaxLength - snipText.Length) + 
@@ -217,15 +218,15 @@ namespace Gtk.Tasque
 				return false;
 			}
 			
-			if (task.State == TaskState.Deleted) {
+			if (task.State == TaskState.Discarded) {
 				//Logger.Debug ("TaskTreeView.FilterFunc:\n\t{0}\n\t{1}\n\tReturning false", task.Name, task.State);  
 				return false;
 			}
 			
-			if (filterCategory == null)
+			if (filterTaskList == null)
 				return true;
 			
-			return filterCategory.ContainsTask (task);
+			return filterTaskList.Contains (task);
 		}
 		#endregion // Private Methods
 		

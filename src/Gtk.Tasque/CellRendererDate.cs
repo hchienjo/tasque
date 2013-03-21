@@ -2,7 +2,7 @@
 using System;
 using Mono.Unix;
 using Gtk;
-using Tasque;
+using Gtk.Tasque;
 
 namespace Gtk.Extras
 {

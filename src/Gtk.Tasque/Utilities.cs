@@ -40,8 +40,9 @@ using System.Security.Cryptography;
 using Mono.Unix;
 using Gdk;
 using Gtk;
+using Tasque;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	// TODO: Change this class to internal
 	public static partial class Utilities

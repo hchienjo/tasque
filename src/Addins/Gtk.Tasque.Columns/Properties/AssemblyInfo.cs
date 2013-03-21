@@ -29,4 +29,4 @@ using Mono.Addins;
 [assembly: AssemblyTitle("Gtk.Tasque.Columns")]
 [assembly: AssemblyDescription("Standard Task Columns for the Gtk# frontend of Tasque")]
 [assembly: Addin]
-[assembly: AddinDependency ("GtkTasque", "0.1.13")]
+[assembly: AddinDependency ("GtkTasque", "0.2.0")]

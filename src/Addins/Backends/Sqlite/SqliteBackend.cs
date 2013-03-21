@@ -16,34 +16,34 @@ namespace Tasque.Backends.Sqlite
 		private bool initialized;
 		private bool configured = true;
 
-		ObservableCollection<ITask> taskStore;
-		ObservableCollection<ICategory> categoryListStore;
-		ReadOnlyObservableCollection<ITask> readOnlyTaskStore;
-		ReadOnlyObservableCollection<ICategory> readOnlyCategoryStore;
+		ObservableCollection<Task> taskStore;
+		ObservableCollection<TaskList> taskListListStore;
+		ReadOnlyObservableCollection<Task> readOnlyTaskStore;
+		ReadOnlyObservableCollection<TaskList> readOnlyTaskListStore;
 		
 		TaskComparer taskComparer;
-		CategoryComparer categoryComparer;
+		TaskListComparer taskListComparer;
 		
 		private Database db;
 
-		public event BackendInitializedHandler BackendInitialized;
-		public event BackendSyncStartedHandler BackendSyncStarted;
-		public event BackendSyncFinishedHandler BackendSyncFinished;
+		public event EventHandler BackendInitialized;
+		public event EventHandler BackendSyncStarted;
+		public event EventHandler BackendSyncFinished;
 		
-		SqliteCategory defaultCategory;
-		//SqliteCategory workCategory;
-		//SqliteCategory projectsCategory;
+		SqliteList defaultTaskList;
+		//SqliteTaskList workTaskList;
+		//SqliteTaskList projectsTaskList;
 		
 		public SqliteBackend ()
 		{
 			initialized = false;
-			taskStore = new ObservableCollection<ITask> ();
-			categoryListStore = new ObservableCollection<ICategory> ();
-			readOnlyTaskStore = new ReadOnlyObservableCollection<ITask> (taskStore);
-			readOnlyCategoryStore
-				= new ReadOnlyObservableCollection<ICategory> (categoryListStore);
+			taskStore = new ObservableCollection<Task> ();
+			taskListListStore = new ObservableCollection<TaskList> ();
+			readOnlyTaskStore = new ReadOnlyObservableCollection<Task> (taskStore);
+			readOnlyTaskListStore
+				= new ReadOnlyObservableCollection<TaskList> (taskListListStore);
 			taskComparer = new TaskComparer ();
-			categoryComparer = new CategoryComparer ();
+			taskListComparer = new TaskListComparer ();
 		}
 		
 		#region Public Properties
@@ -55,17 +55,17 @@ namespace Tasque.Backends.Sqlite
 		/// <value>
 		/// All the tasks including ITaskDivider items.
 		/// </value>
-		public ICollection<ITask> Tasks
+		public ICollection<Task> Tasks
 		{
 			get { return readOnlyTaskStore; }
 		}
 		
 		/// <value>
-		/// This returns all the task lists (categories) that exist.
+		/// This returns all the task lists (taskLists) that exist.
 		/// </value>
-		public ICollection<ICategory> Categories
+		public ICollection<TaskList> TaskLists
 		{
-			get { return readOnlyCategoryStore; }
+			get { return readOnlyTaskListStore; }
 		}
 		
 		/// <value>
@@ -100,16 +100,16 @@ namespace Tasque.Backends.Sqlite
 		#endregion // Public Properties
 		
 		#region Public Methods
-		public ITask CreateTask (string taskName, ICategory category)		
+		public Task CreateTask (string taskName, TaskList taskList)
 		{
-			// not sure what to do here with the category
+			// not sure what to do here with the taskList
 			SqliteTask task = new SqliteTask (this, taskName);
 			
-			// Determine and set the task category
-			if (category == null || category is Tasque.AllCategory)
-				task.Category = defaultCategory; // Default to work
+			// Determine and set the task taskList
+			if (taskList == null || taskList is Tasque.AllList)
+				defaultTaskList.Add (task); // Default to work
 			else
-				task.Category = category;
+				taskList.Add (task);
 			
 			AddTask (task);
 			task.PropertyChanged += HandlePropertyChanged;
@@ -117,7 +117,7 @@ namespace Tasque.Backends.Sqlite
 			return task;
 		}
 		
-		public void DeleteTask(ITask task)
+		public void DeleteTask(Task task)
 		{
 			//string id = task.Id;
 			task.Delete ();
@@ -139,18 +139,18 @@ namespace Tasque.Backends.Sqlite
 			db.Open();
 			
 			//
-			// Add in the "All" Category
+			// Add in the "All" TaskList
 			//
-			AllCategory allCategory = new Tasque.AllCategory (preferences);
-			AddCategory (allCategory);
+			var allList = new AllList (this, preferences);
+			AddTaskList (allList);
 
-			RefreshCategories();
-			RefreshTasks();		
+			RefreshTaskLists();
+			RefreshTasks();
 
 			initialized = true;
 			if(BackendInitialized != null) {
-				BackendInitialized();
-			}		
+				BackendInitialized(null, null);
+			}
 		}
 
 		public void Dispose()
@@ -158,7 +158,7 @@ namespace Tasque.Backends.Sqlite
 			if (disposed)
 				return;
 
-			this.categoryListStore.Clear();
+			this.taskListListStore.Clear();
 			this.taskStore.Clear();
 
 			if (db != null)
@@ -179,23 +179,24 @@ namespace Tasque.Backends.Sqlite
 		}
 		
 		#endregion // Public Methods
-		public void RefreshCategories()
+		public void RefreshTaskLists()
 		{
-			SqliteCategory newCategory;
+			SqliteList newTaskList;
 			bool hasValues = false;
 			
-			string command = "SELECT id FROM Categories";
+			string command = "SELECT id, name FROM Categories";
 			SqliteCommand cmd = db.Connection.CreateCommand();
 			cmd.CommandText = command;
 			SqliteDataReader dataReader = cmd.ExecuteReader();
 			while(dataReader.Read()) {
 			    int id = dataReader.GetInt32(0);
+				var name = dataReader.GetString (1);
 				hasValues = true;
 				
-				newCategory = new SqliteCategory (this, id);
-				if( (defaultCategory == null) || (newCategory.Name.CompareTo("Work") == 0) )
-					defaultCategory = newCategory;
-				AddCategory (newCategory);
+				newTaskList = new SqliteList (this, id, name);
+				if( (defaultTaskList == null) || (newTaskList.Name.CompareTo("Work") == 0) )
+					defaultTaskList = newTaskList;
+				AddTaskList (newTaskList);
 			}
 			
 			dataReader.Close();
@@ -203,17 +204,17 @@ namespace Tasque.Backends.Sqlite
 
 			if(!hasValues)
 			{
-				defaultCategory = newCategory = new SqliteCategory (this, "Work");
-				AddCategory (defaultCategory);
+				defaultTaskList = newTaskList = new SqliteList (this, "Work");
+				AddTaskList (defaultTaskList);
 
-				newCategory = new SqliteCategory (this, "Personal");
-				AddCategory (newCategory);
+				newTaskList = new SqliteList (this, "Personal");
+				AddTaskList (newTaskList);
 				
-				newCategory = new SqliteCategory (this, "Family");
-				AddCategory (newCategory);
+				newTaskList = new SqliteList (this, "Family");
+				AddTaskList (newTaskList);
 
-				newCategory = new SqliteCategory (this, "Project");
-				AddCategory (newCategory);
+				newTaskList = new SqliteList (this, "Project");
+				AddTaskList (newTaskList);
 			}
 		}
 
@@ -228,7 +229,7 @@ namespace Tasque.Backends.Sqlite
 			SqliteDataReader dataReader = cmd.ExecuteReader();
 			while(dataReader.Read()) {
 				int id = dataReader.GetInt32(0);
-				int category = dataReader.GetInt32(1);
+				int taskList = dataReader.GetInt32(1);
 				string name = dataReader.GetString(2);
 				long dueDate = dataReader.GetInt64(3);
 				long completionDate = dataReader.GetInt64(4);
@@ -237,9 +238,15 @@ namespace Tasque.Backends.Sqlite
 				
 				hasValues = true;
 				
-				newTask = new SqliteTask(this, id, category,
-				                         name, dueDate, completionDate,
-				                         priority, state);
+				newTask = new SqliteTask (this, id, name, dueDate,
+				                          completionDate, priority, state);
+				var list = TaskLists.Single (l => {
+					var sqliteList = l as SqliteList;
+					if (sqliteList != null)
+						return sqliteList.ID == taskList;
+					return false;
+				});
+				list.Add (newTask);
 				AddTask (newTask);
 				newTask.PropertyChanged += HandlePropertyChanged;
 			}
@@ -250,7 +257,7 @@ namespace Tasque.Backends.Sqlite
 			if(!hasValues)
 			{
 				newTask = new SqliteTask (this, "Create some tasks");
-				newTask.Category = defaultCategory;
+				defaultTaskList.Add (newTask);
 				newTask.DueDate = DateTime.Now;
 				newTask.Priority = TaskPriority.Medium;
 				AddTask (newTask);
@@ -265,14 +272,14 @@ namespace Tasque.Backends.Sqlite
 				task.PropertyChanged -= HandlePropertyChanged;
 		}
 
-		void AddCategory (ICategory category)
+		void AddTaskList (TaskList taskList)
 		{
-			var index = categoryListStore.Count;
-			var valIdx = categoryListStore.Select ((val, idx) => new { val, idx })
-				.FirstOrDefault (x => categoryComparer.Compare (x.val, category) > 0);
+			var index = taskListListStore.Count;
+			var valIdx = taskListListStore.Select ((val, idx) => new { val, idx })
+				.FirstOrDefault (x => taskListComparer.Compare (x.val, taskList) > 0);
 			if (valIdx != null)
 				index = valIdx.idx;
-			categoryListStore.Insert (index, category);
+			taskListListStore.Insert (index, taskList);
 		}
 		
 		void AddTask (SqliteTask task)

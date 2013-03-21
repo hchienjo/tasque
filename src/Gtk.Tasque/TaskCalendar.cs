@@ -8,6 +8,7 @@ using System;
 using GLib;
 using Gtk;
 using Tasque;
+using Tasque.Core;
 
 namespace Tasque
 {

@@ -31,4 +31,4 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright (C) 2008-2011 Novell, Inc and Contributors. http://live.gnome.org/Tasque")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("0.1.13.*")]
+[assembly: AssemblyVersion("0.2.0.*")]

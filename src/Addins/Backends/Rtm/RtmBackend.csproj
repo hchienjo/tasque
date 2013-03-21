@@ -12,7 +12,7 @@
     <AssemblyName>RtmBackend</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ReleaseVersion>0.1.13</ReleaseVersion>
+    <ReleaseVersion>0.2.0</ReleaseVersion>
     <BuildEnabled>$(EnableBackendRtm)</BuildEnabled>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..\..\..\..</TopBuildDir>
@@ -47,18 +47,26 @@
     <Reference Include="System" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>glib-sharp-2.0</Package>
     </Reference>
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
+      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Private>False</Private>
+      <Package>mono-addins</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\libtasque\libtasque.csproj">
@@ -71,19 +79,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RtmTask.cs" />
-    <Compile Include="RtmNote.cs" />
-    <Compile Include="RtmCategory.cs" />
     <Compile Include="RtmBackend.cs" />
     <Compile Include="Gtk\RtmPreferencesWidget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\..\..\..\build\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="RtmNoteRepository.cs" />
+    <Compile Include="RtmTaskRepository.cs" />
+    <Compile Include="RtmTaskListRepository.cs" />
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Gtk\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="..\..\..\..\build\X.Common.targets" />
+  <ItemGroup>
+    <None Include="RtmTask.cs" />
+    <None Include="RtmNote.cs" />
+    <None Include="RtmList.cs" />
+  </ItemGroup>
 </Project>

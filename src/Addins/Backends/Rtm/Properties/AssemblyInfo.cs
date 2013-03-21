@@ -24,6 +24,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System.Reflection;
+using Mono.Addins;
 
 [assembly: AssemblyTitle("RtmBackend")]
 [assembly: AssemblyDescription("Remember the Milk backend for Tasque")]
+[assembly: Addin]
+[assembly: AddinDependency ("libtasque", "0.2.0")]

@@ -26,7 +26,9 @@
 using System;
 using Mono.Unix;
 using Tasque;
+using Tasque.Core;
 using Gdk;
+
 
 namespace Gtk.Tasque
 {

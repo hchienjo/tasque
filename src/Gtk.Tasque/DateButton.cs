@@ -29,7 +29,7 @@
 using System;
 using GLib;
 using Gtk;
-using Tasque;
+using Gtk.Tasque;
 
 namespace Gtk.Extras
 {

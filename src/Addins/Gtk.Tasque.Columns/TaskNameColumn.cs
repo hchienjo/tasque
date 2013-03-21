@@ -27,6 +27,8 @@ using System;
 using Mono.Unix;
 using Tasque;
 using GLib;
+using Tasque.Core;
+using Tasque.DateFormatters;
 
 namespace Gtk.Tasque
 {
@@ -91,7 +93,7 @@ namespace Gtk.Tasque
 						newText = parsedTaskText;
 					}
 					
-					task.Name = newText;
+					task.Text = newText;
 				}
 				EndCellEditing ();
 			};
@@ -160,7 +162,7 @@ namespace Gtk.Tasque
 //				if (timer != null && timer.State == TaskCompleteTimerState.Running)
 //					formatString = "<span strikethrough=\"true\">{0}</span>";
 //				break;
-			case TaskState.Deleted:
+			case TaskState.Discarded:
 			case TaskState.Completed:
 				// Gray out the text and add strikeout
 				// TODO: Determine the grayed-out text color appropriate for the current theme
@@ -169,7 +171,7 @@ namespace Gtk.Tasque
 				break;
 			}
 			
-			crt.Markup = string.Format (formatString, Markup.EscapeText (task.Name));
+			crt.Markup = string.Format (formatString, Markup.EscapeText (task.Text));
 		}
 
 		TreeModel model;

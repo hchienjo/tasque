@@ -4,8 +4,10 @@
 using System;
 using Mono.Unix;
 using Gtk;
+using Tasque.Core;
+using Tasque;
 
-namespace Tasque
+namespace Gtk.Tasque
 {
 	public class NoteWidget : Gtk.Notebook
 	{
@@ -72,10 +74,10 @@ namespace Tasque
 		#endregion // Events
 		
 		#region Properties
-		public INote Note
+		public INote INote
 		{
 			get { return note; }
-			set { 
+			set {
 				note = value;
 				Text = value.Text;
 			}

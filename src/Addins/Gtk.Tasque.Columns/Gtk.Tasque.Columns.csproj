@@ -12,7 +12,7 @@
     <AssemblyName>Gtk.Tasque.Columns</AssemblyName>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ReleaseVersion>0.1.13</ReleaseVersion>
+    <ReleaseVersion>0.2.0</ReleaseVersion>
     <PackageName>tasque</PackageName>
     <TopBuildDir>..\..\..</TopBuildDir>
   </PropertyGroup>
@@ -60,6 +60,10 @@
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <Private>False</Private>
       <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Private>False</Private>
+      <Package>glib-sharp-2.0</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
