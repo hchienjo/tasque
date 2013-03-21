@@ -19,5 +19,5 @@ src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs
 src/Addins/Gtk.Tasque.Columns/TaskNameColumn.cs
 src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs
 src/Addins/Gtk.Tasque.TimerCompleteColumns/TimerColumn.cs
-src/libtasque/AllCategory.cs
-src/libtasque/TaskParser.cs
+src/libtasque/Utils/AllList.cs
+src/libtasque/DateFormatters/TaskParser.cs
