@@ -95,9 +95,4 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="..\..\..\..\build\X.Common.targets" />
-  <ItemGroup>
-    <None Include="RtmTask.cs" />
-    <None Include="RtmNote.cs" />
-    <None Include="RtmList.cs" />
-  </ItemGroup>
 </Project>
