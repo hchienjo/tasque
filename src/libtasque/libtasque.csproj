@@ -64,15 +64,12 @@
     <Compile Include="DateFormatters\RegularExpressionFormatter.cs" />
     <Compile Include="DateFormatters\DateFormatterFactory.cs" />
     <Compile Include="Data\BackendExtensionAttribute.cs" />
-    <Compile Include="Data\BackendInitializationException.cs" />
-    <Compile Include="Data\IBackend2.cs" />
     <Compile Include="Data\IBackendPreferences.cs" />
     <Compile Include="Data\INoteRepository.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\ITaskListRepository.cs" />
     <Compile Include="Data\ITaskRepository.cs" />
     <Compile Include="Data\IRepositoryProvider.cs" />
-    <Compile Include="Data\TransactionException.cs" />
     <Compile Include="IPreferences.cs" />
     <Compile Include="Data\ICollectionRepository.cs" />
     <Compile Include="Data\TasqueObjectFactory.cs" />
@@ -112,6 +109,7 @@
     <Compile Include="Core\TaskListType.cs" />
     <Compile Include="IContainee.cs" />
     <Compile Include="TaskState.cs" />
+    <Compile Include="Data\IBackend.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateFormatters\" />
@@ -122,7 +120,4 @@
     <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="..\..\build\X.Common.targets" />
-  <ItemGroup>
-    <None Include="Data\IBackend.cs" />
-  </ItemGroup>
 </Project>

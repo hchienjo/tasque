@@ -31,7 +31,7 @@ using Tasque.Utils;
 namespace Tasque.Backends.Rtm
 {
 	[BackendExtension ("Remember the Milk")]
-	public class RtmBackend : IBackend2
+	public class RtmBackend : IBackend
 	{
 		public bool IsConfigured { get; private set; }
 

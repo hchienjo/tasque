@@ -32,7 +32,7 @@ using Gtk.Tasque.Backends.Dummy;
 namespace Tasque.Backends.Dummy
 {
 	[BackendExtension ("Dummy")]
-	public class DummyBackend : IBackend2
+	public class DummyBackend : IBackend
 	{
 		public DummyBackend ()
 		{

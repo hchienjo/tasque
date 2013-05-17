@@ -1,98 +1,94 @@
-// ITaskBackend.cs created with MonoDevelop
-// User: boyd at 7:02 AM 2/11/2008
-
+//
+// IBackend.cs
+//
+// Author:
+//       Antonius Riha <antoniusriha@gmail.com>
+//
+// Copyright (c) 2013 Antonius Riha
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 using System;
 using System.Collections.Generic;
+using Mono.Addins;
 
-namespace Tasque.Backends
+namespace Tasque.Data
 {
-	/// <summary>
-	/// This is the main integration interface for different backends that
-	/// Tasque can use.
-	/// </summary>
-	public interface IBackend : IDisposable
+	[TypeExtensionPoint (ExtensionAttributeType =
+	                     typeof (BackendExtensionAttribute))]
+	public interface IBackend : IDisposable,
+		IRepositoryProvider<INoteRepository>,
+		IRepositoryProvider<ITaskListRepository>,
+		IRepositoryProvider<ITaskRepository>
 	{
-		event EventHandler BackendInitialized;
-		event EventHandler BackendSyncStarted;
-		event EventHandler BackendSyncFinished;
+		bool IsConfigured { get; }
+		bool IsInitialized { get; }
+		IBackendPreferences Preferences { get; }
 
-		#region Properties
-		/// <value>
-		/// A human-readable name for the backend that will be displayed in the
-		/// preferences dialog to allow the user to select which backend Tasque
-		/// should use.
-		/// </value>
-		string Name
-		{
-			get;
-		}
-		
-		/// <value>
-		/// All the tasks provided by the backend.
-		/// </value>
-		ICollection<Task> Tasks
-		{
-			get;
-		}
-		
-		/// <value>
-		/// This returns all the ITaskList items from the backend.
-		/// </value>
-		ICollection<TaskList> TaskLists
-		{
-			get;
-		}
-		
-		/// <value>
-		/// Indication that the backend has enough information
-		/// (credentials/etc.) to run.  If false, the properties dialog will
-		/// be shown so the user can configure the backend.
-		/// </value>
-		bool Configured
-		{
-			get;
-		}
-		
-		/// <value>
-		/// Inidication that the backend is initialized
-		/// </value>
-		bool Initialized
-		{
-			get;
-		}
-		
 		/// <summary>
-		/// An object that provides a means of managing backend specific preferences.
+		/// Initializes the backend.
+		/// </summary>
+		/// <param name='preferences'>
+		/// An object to access Tasque preferences.
+		/// </param>
+		/// <exception cref="T:Tasque.BackendInitializationException">
+		/// thrown when the initialization of the backend fails.
+		/// </exception>
+		void Initialize (IPreferences preferences);
+
+		/// <summary>
+		/// Gets all task lists populated with tasks, which in turn are
+		/// populated with notes and possibly nested tasks.
 		/// </summary>
 		/// <returns>
-		/// A <see cref="Tasque.Backends.IBackendPreferences"/>
+		/// The lists.
 		/// </returns>
-		IBackendPreferences Preferences { get; }
-		#endregion // Properties
-		
-		#region Methods
-		/// <summary>
-		/// Create a new task.
-		/// </summary>
-		Task CreateTask (string taskName, TaskList list);
+		/// <exception cref="T:Tasque.TransactionException">
+		/// thrown when the transaction failed to commit on the backend
+		/// </exception>
+		IEnumerable<ITaskListCore> GetAll ();
 
+		ITaskListCore GetBy (string id);
+		
 		/// <summary>
-		/// Deletes the specified task.
+		/// Create the specified task list on the backend.
 		/// </summary>
-		/// <param name="task">
-		/// A <see cref="Task"/>
+		/// <param name='item'>
+		/// The list to create.
 		/// </param>
-		void DeleteTask (Task task);
+		/// <exception cref="T:Tasque.TransactionException">
+		/// thrown when the transaction failed to commit on the backend
+		/// </exception>
+		void Create (ITaskListCore taskList);
 		
 		/// <summary>
-		/// Refreshes the backend.
+		/// Delete the specified task list.
 		/// </summary>
-		void Refresh();
-		
-		/// <summary>
-		/// Initializes the backend
-		/// </summary>
-		void Initialize (IPreferences preferences);
-		#endregion // Methods
+		/// <param name='item'>
+		/// The list.
+		/// </param>
+		/// <exception cref="T:Tasque.TransactionException">
+		/// thrown when the transaction failed to commit on the backend
+		/// </exception>
+		void Delete (ITaskListCore taskList);
+
+		event EventHandler Disposed;
+		event EventHandler Initialized;
+		event EventHandler NeedsConfiguration;
 	}
 }

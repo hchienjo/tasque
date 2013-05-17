@@ -32,7 +32,7 @@ using Tasque.Utils;
 namespace Tasque.Data.Sqlite
 {
 	[BackendExtension ("Local file")]
-	public class SqliteBackend : IBackend2
+	public class SqliteBackend : IBackend
 	{
 		public TasqueObjectFactory Factory { get; private set; }
 
@@ -40,9 +40,9 @@ namespace Tasque.Data.Sqlite
 
 		public event EventHandler Initialized, Disposed;
 
-		bool IBackend2.IsConfigured { get { return IsInitialized; } }
+		bool IBackend.IsConfigured { get { return IsInitialized; } }
 
-		IBackendPreferences IBackend2.Preferences {
+		IBackendPreferences IBackend.Preferences {
 			get { return new SqlitePreferences (); }
 		}
 		
@@ -58,7 +58,7 @@ namespace Tasque.Data.Sqlite
 			get { return taskRepo; }
 		}
 		
-		void IBackend2.Initialize (IPreferences preferences)
+		void IBackend.Initialize (IPreferences preferences)
 		{
 			if (preferences == null)
 				throw new ArgumentNullException ("preferences");
@@ -92,7 +92,7 @@ namespace Tasque.Data.Sqlite
 				Disposed (this, EventArgs.Empty);
 		}
 		
-		IEnumerable<ITaskListCore> IBackend2.GetAll ()
+		IEnumerable<ITaskListCore> IBackend.GetAll ()
 		{
 			yield return allList;
 
@@ -137,22 +137,22 @@ namespace Tasque.Data.Sqlite
 			}
 		}
 		
-		ITaskListCore IBackend2.GetBy (string id)
+		ITaskListCore IBackend.GetBy (string id)
 		{
 			throw new NotImplementedException ();
 		}
 		
-		void IBackend2.Create (ITaskListCore taskList)
+		void IBackend.Create (ITaskListCore taskList)
 		{
 			throw new NotImplementedException ();
 		}
 		
-		void IBackend2.Delete (ITaskListCore taskList)
+		void IBackend.Delete (ITaskListCore taskList)
 		{
 			throw new NotImplementedException ();
 		}
 		
-		event EventHandler IBackend2.NeedsConfiguration { add {} remove {} }
+		event EventHandler IBackend.NeedsConfiguration { add {} remove {} }
 
 		ITaskListCore CreateInitialTaskList (string listName)
 		{

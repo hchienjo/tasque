@@ -47,7 +47,7 @@ namespace Tasque.Core.Impl
 
 			public ReadOnlyObservableCollection<ITask> Tasks { get; private set; }
 
-			public void LoadTaskLists (IBackend2 backend)
+			public void LoadTaskLists (IBackend backend)
 			{
 				if (backend == null)
 					throw new ArgumentNullException ("backend");
@@ -198,7 +198,7 @@ namespace Tasque.Core.Impl
 			}
 			
 			ObservableCollection<ITask> tasks;
-			IBackend2 backend;
+			IBackend backend;
 		}
 	}
 }

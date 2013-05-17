@@ -43,7 +43,7 @@ namespace Tasque.Core.Impl
 			this.preferences = preferences;
 			
 			availableBackendNodes = AddinManager
-				.GetExtensionNodes<BackendNode> (typeof(IBackend2));
+				.GetExtensionNodes<BackendNode> (typeof(IBackend));
 
 			taskLists = new TaskListCollection ();
 		}
@@ -166,7 +166,7 @@ namespace Tasque.Core.Impl
 				n => n.Id == currentBackend);
 			Logger.Info ("Using backend: {0} ({1})",
 			             node.Data.Name, currentBackend);
-			backend = (IBackend2)node.CreateInstance ();
+			backend = (IBackend)node.CreateInstance ();
 			backend.NeedsConfiguration += delegate {
 				if (BackendConfigurationRequested != null)
 					BackendConfigurationRequested (this, EventArgs.Empty);
@@ -194,7 +194,7 @@ namespace Tasque.Core.Impl
 		}
 
 		ExtensionNodeList<BackendNode> availableBackendNodes;
-		IBackend2 backend;
+		IBackend backend;
 		string currentBackend;
 		IPreferences preferences;
 		TaskListCollection taskLists;
