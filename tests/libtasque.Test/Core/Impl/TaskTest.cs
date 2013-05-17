@@ -29,7 +29,7 @@ using NUnit.Framework;
 using Moq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core.Impl.Tests
 {
 	using NoteCollectionRepo = ICollectionRepository<INote, ITask>;
 	using TaskCollectionRepo = ICollectionRepository<ITask, ITask>;

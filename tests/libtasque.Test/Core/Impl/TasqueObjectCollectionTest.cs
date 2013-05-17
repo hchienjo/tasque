@@ -28,7 +28,7 @@ using NUnit.Framework;
 using Moq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core.Impl.Tests
 {
 	using IContainerRepo = ICollectionRepository<ITasqueCore, ITasqueCore>;
 	using TasqueCollection = TasqueObjectCollection<ITasqueObject, ITasqueCore,

@@ -25,7 +25,7 @@
 // THE SOFTWARE.
 using NUnit.Framework;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core.Impl.Tests
 {
 	[TestFixture]
 	public class TaskBackendAttachedTest : TaskTest

@@ -28,7 +28,7 @@ using NUnit.Framework;
 using Moq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core.Impl.Tests
 {
 	[TestFixture]
 	public class NoteTest

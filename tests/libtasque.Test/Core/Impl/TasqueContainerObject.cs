@@ -26,7 +26,7 @@
 using System.Collections.Generic;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core.Impl.Tests
 {
 	using IContainerRepo = ICollectionRepository<ITasqueCore, ITasqueCore>;
 
