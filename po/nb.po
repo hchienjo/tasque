@@ -2,16 +2,16 @@
 # Copyright © 2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the tasks package.
 # Espen Stefansen <espenas@gmail.com>, 2007.
-# Kjartan Maraas <kmaraas@gnome.org>, 2011.
+# Kjartan Maraas <kmaraas@gnome.org>, 2011-2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tasque 0.1.10\n"
+"Project-Id-Version: tasque 0.1.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-09 22:16+0100\n"
-"PO-Revision-Date: 2011-02-23 14:29+0100\n"
+"POT-Creation-Date: 2013-05-30 21:17+0200\n"
+"PO-Revision-Date: 2013-05-30 21:20+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
-"Language-Team: Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>\n"
+"Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,32 +29,31 @@ msgstr "Enkel oppgavehåndtering"
 msgid "Task Manager"
 msgstr "Oppgavehåndterer"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:160
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:165
 #: ../src/Gtk.Tasque/Utilities.cs:282
 msgid "Yesterday"
 msgstr "I går"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:162
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
 msgid "Last 7 Days"
 msgstr "Siste 7 dager"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:164
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
 msgid "Last Month"
 msgstr "Siste måned"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:166
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
 msgid "Last Year"
 msgstr "Siste år"
 
-#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:174
 #: ../src/libtasque/AllCategory.cs:30
 msgid "All"
 msgstr "Alle"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Opphavsrett © 2008 Novell, Inc."
+msgstr "Opphavsrett © 2008 - 2011 Novell, Inc og bidragsytere."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:89
 #, csharp-format
@@ -67,15 +66,15 @@ msgstr[1] ""
 #, csharp-format
 msgid "{0} task for Today\n"
 msgid_plural "{0} tasks for Today\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} oppgave for i dag\n"
+msgstr[1] "{0} oppgaver for i dag\n"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:107
 #, csharp-format
 msgid "{0} task for Tomorrow\n"
 msgid_plural "{0} tasks for Tomorrow\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} oppgave for i morgen\n"
+msgstr[1] "{0} oppgaver for i morgen\n"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:113
@@ -106,7 +105,7 @@ msgstr "Oppdater oppgaver …"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:190
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Slå av/på oppgavevindu"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:24
 #, csharp-format
@@ -291,11 +290,11 @@ msgstr "Om {0} dager"
 
 #: ../src/Gtk.Tasque/Utilities.cs:305
 msgid "MMMM d, h:mm tt"
-msgstr ""
+msgstr "d MMMM, h.mm tt"
 
 #: ../src/Gtk.Tasque/Utilities.cs:306
 msgid "MMMM d"
-msgstr ""
+msgstr "d MMMM"
 
 #: ../src/Gtk.Tasque/Utilities.cs:308
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
@@ -305,11 +304,11 @@ msgstr "Ingen dato"
 
 #: ../src/Gtk.Tasque/Utilities.cs:311
 msgid "MMMM d yyyy, h:mm tt"
-msgstr ""
+msgstr "d MMMM yyyy, h.mm tt"
 
 #: ../src/Gtk.Tasque/Utilities.cs:312
 msgid "MMMM d yyyy"
-msgstr ""
+msgstr "d MMMM yyyy"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:78
 msgid "Click Here to Connect"
@@ -374,7 +373,7 @@ msgstr "Ferdigdato"
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:119
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:124
 msgid "M/d - "
-msgstr ""
+msgstr "d/M - "
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:54
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:56
@@ -384,7 +383,7 @@ msgstr ""
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:134
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
 msgid "M/d - ddd"
-msgstr ""
+msgstr "d/M - ddd"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:64
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:125
@@ -398,7 +397,7 @@ msgstr "Velg dato …"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:193
 msgid "M/d/yy - ddd"
-msgstr ""
+msgstr "d/M/yy - ddd"
 
 #: ../src/Addins/Gtk.Tasque.Columns/NotesColumn.cs:45
 msgid "Notes"
@@ -516,7 +515,7 @@ msgstr "om"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/TaskParser.cs:260
 msgid "u T"
-msgstr ""
+msgstr "u T"
 
 #. Represents: "Next" expression.
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
@@ -547,12 +546,3 @@ msgstr ""
 #: ../src/libtasque/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr ""
-
-#~ msgid "_File"
-#~ msgstr "_Fil"
-
-#~ msgid "_Window"
-#~ msgstr "_Vindu"
-
-#~ msgid "Show Tasks ..."
-#~ msgstr "Vis oppgaver …"
