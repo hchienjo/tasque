@@ -111,7 +111,7 @@
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --pot" />
     <Exec Command="$(IntlToolUpdate) --gettext-package tasque --dist -o %(GettextCompile.FileName).new.po %(GettextCompile.FileName)" />
     <Copy SourceFiles="%(FileName).new.po" DestinationFiles="@(GettextCompile)" />
-    <Delete Files="%(GettextTranslation.FileName).new.po" />
+    <Delete Files="%(GettextCompile.FileName).new.po" />
   </Target>
   <Target Name="DistCheck">
     <Delete Files="missing;notexist" />
