@@ -173,8 +173,7 @@ namespace Gtk.Tasque
 			l.Show ();
 			buttonHBox.PackStart (l, true, true, 0);
 			buttonHBox.Show ();
-			addTaskButton = 
-				new MenuToolButton (buttonHBox, Catalog.GetString ("_Add ITask"));
+			addTaskButton = new MenuToolButton (buttonHBox, Catalog.GetString ("_Add Task"));
 			addTaskButton.UseUnderline = true;
 			// Disactivate the button until the backend is initialized
 			addTaskButton.Sensitive = false;
@@ -784,7 +783,7 @@ namespace Gtk.Tasque
 				TaskWindow.ShowStatus (status);
 			} else {
 				// Show successful status
-				status = Catalog.GetString ("ITask created successfully");	
+				status = Catalog.GetString ("Task created successfully");
 				TaskWindow.ShowStatus (status);
 				// Clear out the entry
 				addTaskEntry.Text = string.Empty;
@@ -1170,7 +1169,7 @@ namespace Gtk.Tasque
 				l => !(l.ListType == TaskListType.Smart) && l.Contains (clickedTask));
 			taskList.Remove (clickedTask);
 			
-			status = Catalog.GetString ("ITask deleted");
+			status = Catalog.GetString ("Task deleted");
 			TaskWindow.ShowStatus (status);
 		}
 

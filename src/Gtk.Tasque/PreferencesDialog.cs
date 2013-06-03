@@ -246,7 +246,7 @@ namespace Gtk.Tasque
 			VBox sectionVBox = new VBox (false, 4);
 			Label l = new Label ();
 			l.Markup = string.Format ("<span size=\"large\" weight=\"bold\">{0}</span>",
-									  Catalog.GetString ("ITask Management System"));
+									  Catalog.GetString ("Task Management System"));
 			l.UseUnderline = false;
 			l.UseMarkup = true;
 			l.Wrap = false;
@@ -288,7 +288,7 @@ namespace Gtk.Tasque
 			sectionVBox = new VBox (false, 4);
 			l = new Label ();
 			l.Markup = string.Format ("<span size=\"large\" weight=\"bold\">{0}</span>",
-									  Catalog.GetString ("ITask Filtering"));
+									  Catalog.GetString ("Task Filtering"));
 			l.UseUnderline = false;
 			l.UseMarkup = true;
 			l.Wrap = false;
@@ -334,7 +334,7 @@ namespace Gtk.Tasque
 			l.MnemonicWidget = taskListsTree;
 			
 			Gtk.TreeViewColumn column = new Gtk.TreeViewColumn ();
-			column.Title = Catalog.GetString ("ITask List");
+			column.Title = Catalog.GetString ("Task List");
 			column.Sizing = Gtk.TreeViewColumnSizing.Autosize;
 			column.Resizable = false;
 			

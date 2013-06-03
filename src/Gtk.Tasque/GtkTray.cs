@@ -144,7 +144,7 @@ namespace Gtk.Tasque
 			about.Version = Defines.Version;
 			about.Logo = Utilities.GetIcon("tasque", 48);
 			about.Copyright = Defines.CopyrightInfo;
-			about.Comments = Catalog.GetString ("A Useful ITask List");
+			about.Comments = Catalog.GetString ("A Useful Task List");
 			about.Website = Defines.Website;
 			about.WebsiteLabel = Catalog.GetString("Tasque Project Homepage");
 			about.Authors = authors;
@@ -158,7 +158,7 @@ namespace Gtk.Tasque
 		void RegisterUIManager ()
 		{
 			var newTaskAction = new ActionEntry ("NewTaskAction", Stock.New,
-			    Catalog.GetString ("New ITask ..."), null, null, delegate {
+			    Catalog.GetString ("New Task ..."), null, null, delegate {
 				// Show the TaskWindow and then cause a new task to be created
 				TaskWindow.ShowWindow (application);
 				TaskWindow.GrabNewTaskEntryFocus (application);
@@ -181,7 +181,7 @@ namespace Gtk.Tasque
 				                 delegate { application.Exit (); })
 			});
 			
-			ToggleTaskWindowAction = new Gtk.Action ("ToggleTaskWindowAction", Catalog.GetString ("Toggle ITask Window"));
+			ToggleTaskWindowAction = new Gtk.Action ("ToggleTaskWindowAction", Catalog.GetString ("Toggle Task Window"));
 			ToggleTaskWindowAction.ActionGroup = trayActionGroup;
 			ToggleTaskWindowAction.Activated += delegate { TaskWindow.ToggleWindowVisible (application); };
 			
