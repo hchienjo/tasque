@@ -28,9 +28,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public class Note
+	class Note
 		: TasqueObject<INoteRepository>, INote, IInternalContainee<Task, Note>
 	{
 		public static Note CreateNote (string id, INoteRepository repository)

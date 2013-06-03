@@ -25,9 +25,9 @@
 // THE SOFTWARE.
 using System.Collections.ObjectModel;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public interface IInternalContainee<TContainer, out T>
+	interface IInternalContainee<TContainer, out T>
 		: IContainee<TContainer>
 		where TContainer : ITasqueObject, IContainer<T>
 	{

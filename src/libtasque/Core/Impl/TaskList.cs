@@ -29,12 +29,12 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
 	using TaskListTaskCollection =
 		TasqueObjectCollection<ITask, ITaskCore, TaskList, ITaskListRepository>;
 
-	public class TaskList : TasqueObject<ITaskListRepository>, ITaskList,
+	class TaskList : TasqueObject<ITaskListRepository>, ITaskList,
 		ICollection<ITask>, IContainer<Task>, INotifyCollectionChanged
 	{
 		const string ItemExistsExMsg = "The specified Task exists already.";

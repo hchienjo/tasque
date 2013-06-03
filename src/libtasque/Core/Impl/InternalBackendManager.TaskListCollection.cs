@@ -29,9 +29,9 @@ using System.Collections.Specialized;
 using System.Linq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public partial class InternalBackendManager
+	partial class InternalBackendManager
 	{
 		public class TaskListCollection : ObservableCollection<ITaskList>
 		{

@@ -26,11 +26,11 @@
 using System.Collections.Generic;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl.Tests
+namespace Tasque.Core.Tests
 {
 	using IContainerRepo = ICollectionRepository<ITasqueCore, ITasqueCore>;
 
-	public abstract class TasqueContainerObject
+	abstract class TasqueContainerObject
 		: TasqueObject<IContainerRepo>, IContainer<ITasqueObject>
 	{
 		public TasqueContainerObject (IContainerRepo repo) : base (repo) {}

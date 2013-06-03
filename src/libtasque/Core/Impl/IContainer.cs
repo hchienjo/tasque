@@ -25,9 +25,9 @@
 // THE SOFTWARE.
 using System.Collections.Generic;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public interface IContainer<out T>
+	interface IContainer<out T>
 	{
 		IEnumerable<T> Items { get; }
 	}

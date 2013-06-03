@@ -28,7 +28,7 @@ using NUnit.Framework;
 using Moq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl.Tests
+namespace Tasque.Core.Tests
 {
 	using TasqueObjectMock = Mock<TasqueObject<IRepository>>;
 
@@ -183,7 +183,7 @@ namespace Tasque.Core.Impl.Tests
 		Mock<IRepository> repoMock;
 		TasqueObjectMock tasqueObjectMock;
 
-		public interface IRepo
+		interface IRepo
 		{
 			string Update (TasqueObject<IRepository> obj, string value);
 		}

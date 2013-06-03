@@ -25,9 +25,9 @@
 // THE SOFTWARE.
 using System.ComponentModel;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public interface INotifying
+	interface INotifying
 		: INotifyPropertyChanged, INotifyPropertyChanging
 	{
 		void OnPropertyChanged (string propertyName);

@@ -27,9 +27,9 @@ using System;
 using System.ComponentModel;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public abstract class TasqueObject<TRepo> : IInternalTasqueObject,
+	abstract class TasqueObject<TRepo> : IInternalTasqueObject,
 		IBackendDetachable, IIdEditable<ITasqueObject>, INotifying
 		where TRepo : IRepository
 	{

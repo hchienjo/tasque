@@ -29,7 +29,7 @@ using NUnit.Framework;
 using Moq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl.Tests
+namespace Tasque.Core.Tests
 {
 	using NoteCollectionRepo = ICollectionRepository<INote, ITask>;
 	using TaskCollectionRepo = ICollectionRepository<ITask, ITask>;
@@ -37,7 +37,7 @@ namespace Tasque.Core.Impl.Tests
 	[TestFixture]
 	public class TaskTest
 	{
-		protected Task Task { get; set; }
+		internal Task Task { get; set; }
 		protected string InitialText { get; set; }
 		protected Mock<ITaskRepository> TaskRepoMock { get; set; }
 		protected Mock<INoteRepository> NoteRepoMock { get; set; }

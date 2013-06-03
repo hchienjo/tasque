@@ -34,14 +34,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
 	using NoteCollection =
 		TasqueObjectCollection<INote, INoteCore, Task, ITaskRepository>;
 	using TaskTaskCollection =
 		TasqueObjectCollection<ITask, ITaskCore, Task, ITaskRepository>;
 
-	public class Task : TasqueObject<ITaskRepository>, ITask,
+	class Task : TasqueObject<ITaskRepository>, ITask,
 		IInternalContainee<TaskList, Task>, IContainer<Note>,
 		IContainer<Task>, IInternalContainee<Task, Task>
 	{

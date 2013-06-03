@@ -27,9 +27,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public static class Extensions
+	static class Extensions
 	{
 		static List<Tuple<object, string>> updatingProperties
 			= new List<Tuple<object, string>> ();

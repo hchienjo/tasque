@@ -30,11 +30,11 @@ using System.Linq;
 using Mono.Addins;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
 	using BackendNode = TypeExtensionNode<BackendExtensionAttribute>;
 
-	public partial class InternalBackendManager
+	partial class InternalBackendManager
 	{
 		public InternalBackendManager (IPreferences preferences)
 		{

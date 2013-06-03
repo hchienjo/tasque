@@ -28,9 +28,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Tasque.Data;
 
-namespace Tasque.Core.Impl
+namespace Tasque.Core
 {
-	public class TasqueObjectCollection<T, TCore, TContainer, TContainerRepo>
+	class TasqueObjectCollection<T, TCore, TContainer, TContainerRepo>
 		: ObservableCollection<T>, IBackendDetachable
 		where TCore : ITasqueCore
 		where T : TCore, ITasqueObject

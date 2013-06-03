@@ -26,7 +26,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Tasque.Core.Impl;
 using Tasque.Data;
 
 namespace Tasque.Core
