@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-21 14:50+0100\n"
+"POT-Creation-Date: 2013-06-03 19:29+0200\n"
 "PO-Revision-Date: 2008-10-11 20:45+0800\n"
 "Last-Translator: Yuren Ju <yurenju@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -89,7 +89,7 @@ msgstr ""
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
 #, fuzzy
-msgid "A Useful ITask List"
+msgid "A Useful Task List"
 msgstr "一個好用的工作清單"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:149
@@ -98,7 +98,7 @@ msgstr "Tasque 專案首頁"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
 #, fuzzy
-msgid "New ITask ..."
+msgid "New Task ..."
 msgstr "新增工作…"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:168
@@ -107,7 +107,7 @@ msgid "Refresh Tasks ..."
 msgstr "更新工作"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-msgid "Toggle ITask Window"
+msgid "Toggle Task Window"
 msgstr ""
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
@@ -144,12 +144,12 @@ msgstr "過期"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
 #, fuzzy
-msgid "ITask Management System"
+msgid "Task Management System"
 msgstr "工作管理系統"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
 #, fuzzy
-msgid "ITask Filtering"
+msgid "Task Filtering"
 msgstr "工作過濾器"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:310
@@ -164,7 +164,7 @@ msgstr "當選擇『全部』時，僅顯示以下分類： (_s)"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
 #, fuzzy
-msgid "ITask List"
+msgid "Task List"
 msgstr "一個好用的工作清單"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
@@ -173,9 +173,9 @@ msgstr "已建立新工作"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:819
-#: ../src/Gtk.Tasque/TaskWindow.cs:875 ../src/Gtk.Tasque/TaskWindow.cs:885
-#: ../src/Gtk.Tasque/TaskWindow.cs:896
+#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:818
+#: ../src/Gtk.Tasque/TaskWindow.cs:874 ../src/Gtk.Tasque/TaskWindow.cs:884
+#: ../src/Gtk.Tasque/TaskWindow.cs:895
 msgid "New task..."
 msgstr "新增工作…"
 
@@ -183,78 +183,78 @@ msgstr "新增工作…"
 msgid "_Add"
 msgstr "增加 (_A)"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:177
+#: ../src/Gtk.Tasque/TaskWindow.cs:176
 #, fuzzy
-msgid "_Add ITask"
+msgid "_Add Task"
 msgstr "新增工作 (_A)"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:261
+#: ../src/Gtk.Tasque/TaskWindow.cs:260
 msgid "Overdue"
 msgstr "過期"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:278 ../src/Gtk.Tasque/Utilities.cs:277
+#: ../src/Gtk.Tasque/TaskWindow.cs:277 ../src/Gtk.Tasque/Utilities.cs:277
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
 msgid "Today"
 msgstr "今天"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:295 ../src/Gtk.Tasque/Utilities.cs:296
+#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:296
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:121
 msgid "Tomorrow"
 msgstr "明天"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:312
+#: ../src/Gtk.Tasque/TaskWindow.cs:311
 msgid "Next 7 Days"
 msgstr "接下來七天"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:328
+#: ../src/Gtk.Tasque/TaskWindow.cs:327
 msgid "Future"
 msgstr "未來"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:341
+#: ../src/Gtk.Tasque/TaskWindow.cs:340
 #: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:40
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:40
 msgid "Completed"
 msgstr "已完成"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:478 ../src/Gtk.Tasque/TaskWindow.cs:1211
+#: ../src/Gtk.Tasque/TaskWindow.cs:477 ../src/Gtk.Tasque/TaskWindow.cs:1210
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr ""
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:783
+#: ../src/Gtk.Tasque/TaskWindow.cs:782
 msgid "Error creating a new task"
 msgstr ""
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:787
-msgid "ITask created successfully"
+#: ../src/Gtk.Tasque/TaskWindow.cs:786
+msgid "Task created successfully"
 msgstr ""
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1071
+#: ../src/Gtk.Tasque/TaskWindow.cs:1070
 msgid "_Notes..."
 msgstr "註解… (_N)"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1078
+#: ../src/Gtk.Tasque/TaskWindow.cs:1077
 msgid "_Delete task"
 msgstr "刪除工作 (_D)"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1083
+#: ../src/Gtk.Tasque/TaskWindow.cs:1082
 msgid "_Edit task"
 msgstr "編輯工作 (_E)"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1115
+#: ../src/Gtk.Tasque/TaskWindow.cs:1114
 #, fuzzy
 msgid "_Change list"
 msgstr "分類"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1173
+#: ../src/Gtk.Tasque/TaskWindow.cs:1172
 #, fuzzy
-msgid "ITask deleted"
+msgid "Task deleted"
 msgstr "工作過濾器"
 
 #: ../src/Gtk.Tasque/Utilities.cs:275

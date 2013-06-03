@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-21 14:50+0100\n"
+"POT-Creation-Date: 2013-06-03 19:29+0200\n"
 "PO-Revision-Date: 2009-11-27 00:49+0100\n"
 "Last-Translator: Nils-Christoph Fiedler <fiedler@medienkompanie.de>\n"
 "Language-Team: Low German <nds-lowgerman@lists.sourceforge.net>\n"
@@ -88,7 +88,7 @@ msgstr "Nils-Christoph Fiedler <fiedler@medienkompanie.de>"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
 #, fuzzy
-msgid "A Useful ITask List"
+msgid "A Useful Task List"
 msgstr "Eene Opgavenlist för elken Gebruk"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:149
@@ -97,7 +97,7 @@ msgstr "Tasque Projektnetsiet"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
 #, fuzzy
-msgid "New ITask ..."
+msgid "New Task ..."
 msgstr "Neje Opgav ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:168
@@ -105,7 +105,7 @@ msgid "Refresh Tasks ..."
 msgstr "Opgaven opfrischen ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-msgid "Toggle ITask Window"
+msgid "Toggle Task Window"
 msgstr ""
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
@@ -140,12 +140,12 @@ msgstr "Överfällig:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
 #, fuzzy
-msgid "ITask Management System"
+msgid "Task Management System"
 msgstr "Opgavoppassensystem"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
 #, fuzzy
-msgid "ITask Filtering"
+msgid "Task Filtering"
 msgstr "Opgavfilter"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:310
@@ -160,7 +160,7 @@ msgstr "Düsse Rebeete just _opwiesen, wenn \"All\" is utwählt:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
 #, fuzzy
-msgid "ITask List"
+msgid "Task List"
 msgstr "Eene Opgavenlist för elken Gebruk"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
@@ -169,9 +169,9 @@ msgstr "Neje Opgav erstellt"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:819
-#: ../src/Gtk.Tasque/TaskWindow.cs:875 ../src/Gtk.Tasque/TaskWindow.cs:885
-#: ../src/Gtk.Tasque/TaskWindow.cs:896
+#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:818
+#: ../src/Gtk.Tasque/TaskWindow.cs:874 ../src/Gtk.Tasque/TaskWindow.cs:884
+#: ../src/Gtk.Tasque/TaskWindow.cs:895
 msgid "New task..."
 msgstr "Neje Opgav..."
 
@@ -179,79 +179,79 @@ msgstr "Neje Opgav..."
 msgid "_Add"
 msgstr "H_entofögen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:177
+#: ../src/Gtk.Tasque/TaskWindow.cs:176
 #, fuzzy
-msgid "_Add ITask"
+msgid "_Add Task"
 msgstr "Opgav _hentofögen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:261
+#: ../src/Gtk.Tasque/TaskWindow.cs:260
 msgid "Overdue"
 msgstr "Överfällig"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:278 ../src/Gtk.Tasque/Utilities.cs:277
+#: ../src/Gtk.Tasque/TaskWindow.cs:277 ../src/Gtk.Tasque/Utilities.cs:277
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
 msgid "Today"
 msgstr "Vandag"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:295 ../src/Gtk.Tasque/Utilities.cs:296
+#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:296
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:121
 msgid "Tomorrow"
 msgstr "Morn"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:312
+#: ../src/Gtk.Tasque/TaskWindow.cs:311
 msgid "Next 7 Days"
 msgstr "Nähste 7 Dage"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:328
+#: ../src/Gtk.Tasque/TaskWindow.cs:327
 msgid "Future"
 msgstr "Tokunft"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:341
+#: ../src/Gtk.Tasque/TaskWindow.cs:340
 #: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:40
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:40
 msgid "Completed"
 msgstr "Fertig"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:478 ../src/Gtk.Tasque/TaskWindow.cs:1211
+#: ../src/Gtk.Tasque/TaskWindow.cs:477 ../src/Gtk.Tasque/TaskWindow.cs:1210
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr "Opgaven geladen: {0}"
 
 #. Show error status
-#: ../src/Gtk.Tasque/TaskWindow.cs:783
+#: ../src/Gtk.Tasque/TaskWindow.cs:782
 msgid "Error creating a new task"
 msgstr "Ji künnst grad keene neje Opgav erstellen"
 
 #. Show successful status
-#: ../src/Gtk.Tasque/TaskWindow.cs:787
+#: ../src/Gtk.Tasque/TaskWindow.cs:786
 #, fuzzy
-msgid "ITask created successfully"
+msgid "Task created successfully"
 msgstr "Opgav erstellt"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1071
+#: ../src/Gtk.Tasque/TaskWindow.cs:1070
 msgid "_Notes..."
 msgstr "_Notizen..."
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1078
+#: ../src/Gtk.Tasque/TaskWindow.cs:1077
 msgid "_Delete task"
 msgstr "Opgav _löschen"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1083
+#: ../src/Gtk.Tasque/TaskWindow.cs:1082
 msgid "_Edit task"
 msgstr "Opgav _bewarken"
 
 #. TODO Needs translation.
-#: ../src/Gtk.Tasque/TaskWindow.cs:1115
+#: ../src/Gtk.Tasque/TaskWindow.cs:1114
 #, fuzzy
 msgid "_Change list"
 msgstr "_Rebeet ännern"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:1173
+#: ../src/Gtk.Tasque/TaskWindow.cs:1172
 #, fuzzy
-msgid "ITask deleted"
+msgid "Task deleted"
 msgstr "Opgav löscht"
 
 #: ../src/Gtk.Tasque/Utilities.cs:275
