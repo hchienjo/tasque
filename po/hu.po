@@ -9,9 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2013-03-16 20:22+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-06-03 18:10+0000\n"
+"PO-Revision-Date: 2013-06-16 20:41+0200\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "Language: \n"
@@ -60,25 +61,25 @@ msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Copyright © Novell, Inc. és a közreműködők, 2008-2011."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} feladat lejárt\n"
-msgstr[1] "{0} feladat lejárt\n"
+msgstr[0] "{0} feladat lejárt"
+msgstr[1] "{0} feladat lejárt"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} feladat mára\n"
-msgstr[1] "{0} feladat mára\n"
+msgstr[0] "{0} feladat mára"
+msgstr[1] "{0} feladat mára"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} feladat holnapra\n"
-msgstr[1] "{0} feladat holnapra\n"
+msgstr[0] "{0} feladat holnapra"
+msgstr[1] "{0} feladat holnapra"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -90,7 +91,6 @@ msgid "translator-credits"
 msgstr "Gergely Szarka <gszarka@invitel.hu>"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
 msgstr "Hasznos feladatlista"
 
@@ -99,7 +99,6 @@ msgid "Tasque Project Homepage"
 msgstr "A Tasque projekt honlapja"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
 msgstr "Új feladat…"
 
@@ -108,7 +107,6 @@ msgid "Refresh Tasks ..."
 msgstr "Feladatok frissítése…"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-#, fuzzy
 msgid "Toggle Task Window"
 msgstr "Feladat ablak átváltása"
 
@@ -143,12 +141,10 @@ msgid "Overdue:"
 msgstr "Lejárt:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "Feladatkezelő rendszer"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Feladatszűrés"
 
@@ -158,14 +154,12 @@ msgstr "Befejezett feladatok _megjelenítése"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "_Csak az „Összes” kiválasztásakor jelenjenek meg ezek a kategóriák:"
+msgstr "_Csak az „Összes” kiválasztásakor jelenjenek meg ezek a listák:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Hasznos feladatlista"
+msgstr "Feladatlista"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -184,7 +178,6 @@ msgid "_Add"
 msgstr "_Hozzáadás"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "_Feladat hozzáadása"
 
@@ -231,7 +224,6 @@ msgstr "Hiba a feladat létrehozásakor"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Feladat sikeresen létrehozva"
 
@@ -249,12 +241,10 @@ msgstr "Feladat s_zerkesztése"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Kategória módosítása"
+msgstr "_Lista módosítása"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Feladat törölve"
 
