@@ -7,19 +7,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2010-10-26 18:20+0100\n"
-"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-06-16 18:41+0000\n"
+"PO-Revision-Date: 2013-06-18 16:15+0100\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -56,30 +56,29 @@ msgid "All"
 msgstr "Alle"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © 2008 - 2011 Novell, Inc and contributors."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} Aufgabe ist überfällig\n"
-msgstr[1] "{0} Aufgaben sind überfällig\n"
+msgstr[0] "{0} Aufgabe ist überfällig"
+msgstr[1] "{0} Aufgaben sind überfällig"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} Aufgabe für heute\n"
-msgstr[1] "{0} Aufgaben für heute\n"
+msgstr[0] "{0} Aufgabe für heute"
+msgstr[1] "{0} Aufgaben für heute"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} Aufgabe für morgen\n"
-msgstr[1] "{0} Aufgaben für morgen\n"
+msgstr[0] "{0} Aufgabe für morgen"
+msgstr[1] "{0} Aufgaben für morgen"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -94,16 +93,14 @@ msgstr ""
 "Christian Kirbach <Christian.Kirbach@googlemail.com>"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
-msgstr "Eine praktische Aufgabenliste"
+msgstr "Eine nützliche Aufgabenliste"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "Tasque Project Homepage"
 msgstr "Tasque-Projekt-Homepage"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
 msgstr "Neue Aufgabe …"
 
@@ -112,9 +109,8 @@ msgid "Refresh Tasks ..."
 msgstr "Aufgaben aktualisieren …"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-#, fuzzy
 msgid "Toggle Task Window"
-msgstr "Zeige/Verstecke Fenster"
+msgstr "Zeige/Verstecke Aufgaben-Fenster"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
 #, csharp-format
@@ -147,12 +143,10 @@ msgid "Overdue:"
 msgstr "Überfällig:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
-msgstr "Aufgabenverwaltung"
+msgstr "Aufgabenverwaltungssystem"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Aufgaben filtern"
 
@@ -162,14 +156,12 @@ msgstr "_Beendete Aufgaben anzeigen"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "Nur die_se Kategorien anzeigen, wenn »Alle« ausgewählt ist:"
+msgstr "Nur diese Kategorien _anzeigen, wenn »Alle« ausgewählt ist:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Eine praktische Aufgabenliste"
+msgstr "Aufgabenliste"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -188,9 +180,8 @@ msgid "_Add"
 msgstr "_Hinzufügen"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
-msgstr "_Aufgabe hinzufügen"
+msgstr "Aufgabe _hinzufügen"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:260
 msgid "Overdue"
@@ -235,7 +226,6 @@ msgstr "Fehler beim Erstellen einer neuen Aufgabe"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Aufgabe wurde erfolgreich erstellt"
 
@@ -253,12 +243,10 @@ msgstr "Aufgab_e bearbeiten"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "Kategorie än_dern"
+msgstr "Liste _wechseln"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Aufgabe gelöscht"
 
