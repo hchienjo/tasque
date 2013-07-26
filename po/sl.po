@@ -7,17 +7,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2012-10-30 21:46+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-06-03 18:10+0000\n"
+"PO-Revision-Date: 2013-07-14 11:53+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -61,31 +60,31 @@ msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Avtorske pravice © 2008 - 2011 Novell, Inc in podporniki."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} nalog je zakasnelih\n"
-msgstr[1] "{0} naloga je zakasnela\n"
-msgstr[2] "{0} nalogi sta zakasneli\n"
-msgstr[3] "{0} naloge so zakasnele\n"
+msgstr[0] "{0} nalog je zakasnelih"
+msgstr[1] "{0} naloga je zakasnela"
+msgstr[2] "{0} nalogi sta zakasneli"
+msgstr[3] "{0} naloge so zakasnele"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} nalog za danes\n"
-msgstr[1] "{0} naloga za danes\n"
-msgstr[2] "{0} nalogi za danes\n"
-msgstr[3] "{0} naloge za danes\n"
+msgstr[0] "{0} nalog za danes"
+msgstr[1] "{0} naloga za danes"
+msgstr[2] "{0} nalogi za danes"
+msgstr[3] "{0} naloge za danes"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} nalog za jutri\n"
-msgstr[1] "{0} naloga za jutri\n"
-msgstr[2] "{0} nalogi za jutri\n"
-msgstr[3] "{0} naloge za jutri\n"
+msgstr[0] "{0} nalog za jutri"
+msgstr[1] "{0} naloga za jutri"
+msgstr[2] "{0} nalogi za jutri"
+msgstr[3] "{0} naloge za jutri"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -97,7 +96,6 @@ msgid "translator-credits"
 msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
 msgstr "Uporaben seznam nalog"
 
@@ -106,7 +104,6 @@ msgid "Tasque Project Homepage"
 msgstr "Spletna stran projekta Tasque"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
 msgstr "Nova naloga ..."
 
@@ -115,7 +112,6 @@ msgid "Refresh Tasks ..."
 msgstr "Osveži naloge ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-#, fuzzy
 msgid "Toggle Task Window"
 msgstr "Preklopi okno nalog"
 
@@ -150,12 +146,10 @@ msgid "Overdue:"
 msgstr "Zakasnelo:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "Sistem upravljanja nalog"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Filtriranje nalog"
 
@@ -165,14 +159,12 @@ msgstr "P_okaži dokončane naloge"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "_Pokaži te kategorije le, ko je izbrano \"Vse\":"
+msgstr "_Pokaži te sezname le, ko je izbrano \"Vse\":"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Uporaben seznam nalog"
+msgstr "Seznam nalog"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -180,8 +172,10 @@ msgstr "Nova naloga je ustvarjena"
 
 #. The new task entry widget
 #. Clear the entry if it contains the default text
-#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:818
-#: ../src/Gtk.Tasque/TaskWindow.cs:874 ../src/Gtk.Tasque/TaskWindow.cs:884
+#: ../src/Gtk.Tasque/TaskWindow.cs:156
+#: ../src/Gtk.Tasque/TaskWindow.cs:818
+#: ../src/Gtk.Tasque/TaskWindow.cs:874
+#: ../src/Gtk.Tasque/TaskWindow.cs:884
 #: ../src/Gtk.Tasque/TaskWindow.cs:895
 msgid "New task..."
 msgstr "Nova naloga ..."
@@ -191,7 +185,6 @@ msgid "_Add"
 msgstr "_Dodaj"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "_Dodaj nalogo"
 
@@ -199,13 +192,15 @@ msgstr "_Dodaj nalogo"
 msgid "Overdue"
 msgstr "Zakasnelo"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:277 ../src/Gtk.Tasque/Utilities.cs:277
+#: ../src/Gtk.Tasque/TaskWindow.cs:277
+#: ../src/Gtk.Tasque/Utilities.cs:277
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
 msgid "Today"
 msgstr "Danes"
 
-#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:296
+#: ../src/Gtk.Tasque/TaskWindow.cs:294
+#: ../src/Gtk.Tasque/Utilities.cs:296
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:121
 msgid "Tomorrow"
@@ -226,7 +221,8 @@ msgid "Completed"
 msgstr "Končano"
 
 #. Translators: This status shows the date and time when the task list was last refreshed
-#: ../src/Gtk.Tasque/TaskWindow.cs:477 ../src/Gtk.Tasque/TaskWindow.cs:1210
+#: ../src/Gtk.Tasque/TaskWindow.cs:477
+#: ../src/Gtk.Tasque/TaskWindow.cs:1210
 #, csharp-format
 msgid "Tasks loaded: {0}"
 msgstr "Čas osvežitve nalog: {0}"
@@ -238,9 +234,8 @@ msgstr "Napaka med ustvarjanjem nove naloge"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
-msgstr "naloga je bila uspešno ustvarjena."
+msgstr "Naloga je bila uspešno ustvarjena."
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1070
 msgid "_Notes..."
@@ -256,12 +251,10 @@ msgstr "_Uredi nalogo"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Spremeni kategorijo"
+msgstr "_Spremeni seznam"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Naloga je izbrisana"
 
@@ -561,51 +554,3 @@ msgstr "i N d|i d|i N m|i m|i N y|i y"
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|M O|M"
 
-#~ msgid "Category"
-#~ msgstr "Kategorija"
-
-#~ msgid "Loading tasks..."
-#~ msgstr "Nalaganje nalog ..."
-
-#~ msgid "Not connected."
-#~ msgstr "Brez povezave."
-
-#~ msgid "_File"
-#~ msgstr "_Datoteka"
-
-#~ msgid "_Window"
-#~ msgstr "_Okno"
-
-#~ msgid "Show Tasks ..."
-#~ msgstr "Pokaži naloge ..."
-
-#, fuzzy
-#~ msgid "New task1..."
-#~ msgstr "Nova naloga ..."
-
-#~ msgid "Sunday"
-#~ msgstr "nedelja"
-
-#~ msgid "Monday"
-#~ msgstr "ponedeljek"
-
-#~ msgid "Tuesday"
-#~ msgstr "torek"
-
-#~ msgid "Wednesday"
-#~ msgstr "sreda"
-
-#~ msgid "Thursday"
-#~ msgstr "četrtek"
-
-#~ msgid "Friday"
-#~ msgstr "petek"
-
-#~ msgid "Saturday"
-#~ msgstr "sobota"
-
-#~ msgid "^(?<task>.+)\\s+today\\W*$"
-#~ msgstr "^(?<task>.+)\\s+danes\\W*$"
-
-#~ msgid "^(?<task>.+)\\s+tomorrow\\W*$"
-#~ msgstr "^(?<task>.+)\\s+jutri\\W*$"
