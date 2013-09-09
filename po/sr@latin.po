@@ -1,21 +1,22 @@
 # Serbian translation of tasque.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tasque package.
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2012.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2012-11-09 10:45+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=tasque"
+"&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-07-25 18:37+0000\n"
+"PO-Revision-Date: 2013-09-09 22:07+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/tasque.desktop.in.h:1
@@ -57,31 +58,31 @@ msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
 msgstr "Autorska prava © 2008 Novel, Doo i saradnici."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} zadatak je istekao\n"
-msgstr[1] "{0} zadatka su istekla\n"
-msgstr[2] "{0} zadataka je isteklo\n"
-msgstr[3] "Jedan zadatak je istekao\n"
+msgstr[0] "{0} zadatak je istekao"
+msgstr[1] "{0} zadatka su istekla"
+msgstr[2] "{0} zadataka je isteklo"
+msgstr[3] "Jedan zadatak je istekao"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} zadatak za danas\n"
-msgstr[1] "{0} zadatka za danas\n"
-msgstr[2] "{0} zadataka za danas\n"
-msgstr[3] "Jedan zadatak za danas\n"
+msgstr[0] "{0} zadatak za danas"
+msgstr[1] "{0} zadatka za danas"
+msgstr[2] "{0} zadataka za danas"
+msgstr[3] "Jedan zadatak za danas"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} zadatak za sutra\n"
-msgstr[1] "{0} zadatka za sutra\n"
-msgstr[2] "{0} zadataka za sutra\n"
-msgstr[3] "Jedan zadatak za sutra\n"
+msgstr[0] "{0} zadatak za sutra"
+msgstr[1] "{0} zadatka za sutra"
+msgstr[2] "{0} zadataka za sutra"
+msgstr[3] "Jedan zadatak za sutra"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -96,7 +97,6 @@ msgstr ""
 "http://prevod.org — prevod na srpski jezik"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
 msgstr "Koristan spisak zadataka"
 
@@ -105,7 +105,6 @@ msgid "Tasque Project Homepage"
 msgstr "Stranica projekta Zadačića"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
 msgstr "Novi zadatak ..."
 
@@ -114,7 +113,6 @@ msgid "Refresh Tasks ..."
 msgstr "Osveži zadatke ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-#, fuzzy
 msgid "Toggle Task Window"
 msgstr "Okini prozor zadatka"
 
@@ -149,14 +147,12 @@ msgid "Overdue:"
 msgstr "Prekoračeno:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "Sistem upravljanja zadatkom"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
-msgstr "Filtriranje zadataka"
+msgstr "Izdvajanje zadataka"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:310
 msgid "Sh_ow completed tasks"
@@ -164,14 +160,12 @@ msgstr "_Prikaži završene zadatke"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "Prikaži _samo ove kategorije kada je izabrano „Sve“:"
+msgstr "Prikaži _samo ove spiskove kada je izabrano „Sve“:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Koristan spisak zadataka"
+msgstr "Spisak zadataka"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -190,7 +184,6 @@ msgid "_Add"
 msgstr "_Dodaj"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "Dodaj _zadatak"
 
@@ -237,7 +230,6 @@ msgstr "Greška stvaranja novog zadatka"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Zadatak je uspešno napravljen"
 
@@ -255,12 +247,10 @@ msgstr "_Uredi zadatak"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Promeni kategoriju"
+msgstr "_Promeni spisak"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Zadatak je obrisan"
 
@@ -557,21 +547,3 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/DateFormatters/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|O M|N M|O|A"
-
-#~ msgid "Category"
-#~ msgstr "Kategorija"
-
-#~ msgid "Loading tasks..."
-#~ msgstr "Učitavam zadatke..."
-
-#~ msgid "Not connected."
-#~ msgstr "Nisam povezan."
-
-#~ msgid "_File"
-#~ msgstr "_Datoteka"
-
-#~ msgid "_Window"
-#~ msgstr "_Prozor"
-
-#~ msgid "Show Tasks ..."
-#~ msgstr "Prikaži zadatke ..."
