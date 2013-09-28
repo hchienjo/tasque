@@ -1,23 +1,25 @@
-# Esperanto translation of tasque.
-# Copyright (C) 2009 Colin Dean
+# Esperanto translation for tasque.
+# # Copyright (C) 2009 Colin Dean
+# Copyright (C) 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the tasque package.
 # Colin DEAN <cad@cad.cx>, 2009.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2010-07-20 15:33+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-09-09 20:11+0000\n"
+"PO-Revision-Date: 2013-09-28 12:21+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
-"Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
+"Language-Team: Esperanto <gnome-l10n-eo@lists.launchpad.net>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Esperanto\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -51,38 +53,37 @@ msgstr "Pasinta jaro"
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:176
 #: ../src/libtasque/Utils/AllList.cs:85
 msgid "All"
-msgstr "Ĉiuj"
+msgstr "Ĉiuj"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Kopirajto © 2008 Novell, Inc."
+msgstr "Kopirajto © 2008 - 2011 Novell, Inc kaj kontribuantoj."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} tasko estas posttempe\n"
-msgstr[1] "{0} taskoj estas posttempe\n"
+msgstr[0] "{0} tasko estas posttempe"
+msgstr[1] "{0} taskoj estas posttempe"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} tasko por hodiaŭ\n"
-msgstr[1] "{0} taskoj por hodiaŭ\n"
+msgstr[0] "{0} tasko por hodiaŭ"
+msgstr[1] "{0} taskoj por hodiaŭ"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} tasko por morgaŭ\n"
-msgstr[1] "{0} taskoj por morgaŭ\n"
+msgstr[0] "{0} tasko por morgaŭ"
+msgstr[1] "{0} taskoj por morgaŭ"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
 msgid "Tasque Rocks"
-msgstr "Tasko mojosas"
+msgstr "Taskil mojosas"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:138
 msgid "translator-credits"
@@ -91,16 +92,14 @@ msgstr ""
 "Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
-msgstr "Utila tasklisto "
+msgstr "Utila tasklisto"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "Tasque Project Homepage"
 msgstr "TTT-paĝo de Taskil-projekto"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
 msgstr "Nova tasko..."
 
@@ -110,7 +109,7 @@ msgstr "Aktualigi taskojn..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Baskuligi task-fenestron"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
 #, csharp-format
@@ -124,7 +123,7 @@ msgstr "Taskil-agordoj"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:122
 msgid "General"
-msgstr "Ĝenerale"
+msgstr "Ĝenerale"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:130
 msgid "Appearance"
@@ -143,12 +142,10 @@ msgid "Overdue:"
 msgstr "Posttempe:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
-msgstr "Taskadministrad-sistemo"
+msgstr "Tasko-administrad-sistemo"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Task-filtrado"
 
@@ -158,14 +155,12 @@ msgstr "Montri _plenumitajn taskojn"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "Montri _nur tiujn kategoriojn kiam \"Ĉiuj\" estas elektite:"
+msgstr "Montri _nur tiujn listojn kiam \"Ĉiuj\" estas elektite:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Utila tasklisto "
+msgstr "Tasklisto"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -184,7 +179,6 @@ msgid "_Add"
 msgstr "_Aldoni"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "_Aldoni taskon"
 
@@ -231,9 +225,8 @@ msgstr "Eraro dum kreado de novan taskon"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
-msgstr "Taskon kreitas sukcese"
+msgstr "Tasko estas sukcese kreita"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1070
 msgid "_Notes..."
@@ -249,12 +242,10 @@ msgstr "_Redakti taskon"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Ŝanĝi kategorio"
+msgstr "Ŝ_anĝi liston"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Tasko forigita"
 
