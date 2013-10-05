@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the tasque package.
 #
 # Arvis Lācis <arvis.lacis@gmail.com>, 2012.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2012.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2012-10-12 23:35+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-07-25 18:37+0000\n"
+"PO-Revision-Date: 2013-10-05 16:09+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -20,7 +21,7 @@ msgstr ""
 "2);\n"
 "X-Poedit-Language: Latvian\n"
 "X-Poedit-Country: LATVIA\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -57,33 +58,32 @@ msgid "All"
 msgstr "Visi"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Autortiesības © 2008 Novell, Inc."
+msgstr "Autortiesības © 2008 - 2011 Novell un atbalstītāji."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} nokavēts uzdevums\n"
-msgstr[1] "{0} nokavēti uzdevumi\n"
-msgstr[2] "{0} nokavētu uzdevumu\n"
+msgstr[0] "{0} nokavēts uzdevums"
+msgstr[1] "{0} nokavēti uzdevumi"
+msgstr[2] "{0} nokavētu uzdevumu"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} uzdevums šodienai\n"
-msgstr[1] "{0} uzdevumi šodienai\n"
-msgstr[2] "{0} uzdevumu šodienai\n"
+msgstr[0] "{0} uzdevums šodienai"
+msgstr[1] "{0} uzdevumi šodienai"
+msgstr[2] "{0} uzdevumu šodienai"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} uzdevums rītdienai\n"
-msgstr[1] "{0} uzdevumi rītdienai\n"
-msgstr[2] "{0} uzdevumu rītdienai\n"
+msgstr[0] "{0} uzdevums rītdienai"
+msgstr[1] "{0} uzdevumi rītdienai"
+msgstr[2] "{0} uzdevumu rītdienai"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -95,7 +95,6 @@ msgid "translator-credits"
 msgstr "Arvis Lācis"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
 msgstr "Noderīgs uzdevumu saraksts"
 
@@ -104,7 +103,6 @@ msgid "Tasque Project Homepage"
 msgstr "Tasque projekta mājaslapa"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
 msgstr "Jauns uzdevums..."
 
@@ -113,7 +111,6 @@ msgid "Refresh Tasks ..."
 msgstr "Atjaunināt uzdevumus..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-#, fuzzy
 msgid "Toggle Task Window"
 msgstr "Pārslēgt uzdevumu logu"
 
@@ -148,12 +145,10 @@ msgid "Overdue:"
 msgstr "Nokavētie:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "Uzdevumu pārvaldības sistēma"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Uzdevumu filtrēšana"
 
@@ -163,14 +158,12 @@ msgstr "Rādīt pabeigt_os uzdevumus"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "Rādīt kategorija_s tikai tad, kad ir izvēlēts “Visi”"
+msgstr "Rādīt _sarakstus tikai tad, kad ir izvēlēts “Visi”:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Noderīgs uzdevumu saraksts"
+msgstr "Uzdevumu saraksts"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -189,7 +182,6 @@ msgid "_Add"
 msgstr "_Pievienot"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "_Pievienot uzdevumu"
 
@@ -236,7 +228,6 @@ msgstr "Kļūda, izveidojot jaunu uzdevumu"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Uzdevums ir veiksmīgi izveidots"
 
@@ -254,12 +245,10 @@ msgstr "R_ediģēt uzdevumu"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "Mainīt _kategoriju"
+msgstr "_Mainīt sarakstu"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Uzdevums izdzēsts"
 
