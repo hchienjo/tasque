@@ -2,14 +2,15 @@
 # Copyright (C) 2008 Lucas Rocha.
 # This file is distributed under the same license as the tasque package.
 # Søren Juul <zpon.dk@gmail.com>, 2008, 2009, 2010.
+# Joe Hansen <joedalton2@yahoo.dk>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2010-09-01 19:59+0100\n"
-"Last-Translator: Søren Juul <zpon.dk@gmail.com>\n"
+"POT-Creation-Date: 2013-10-15 18:40+0200\n"
+"PO-Revision-Date: 2013-09-14 19:59+0100\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>,\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -52,30 +53,29 @@ msgid "All"
 msgstr "Alle"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Ophavsret © 2008 Novell, Inc."
+msgstr "Ophavsret © 2008 - 2011 Novell, Inc. og andre bidragydere."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} opgave er overskredet\n"
-msgstr[1] "{0} opgaver er overskredet\n"
+msgstr[0] "{0} opgave er overskredet"
+msgstr[1] "{0} opgaver er overskredet"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} opgave i dag\n"
-msgstr[1] "{0} opgaver i dag\n"
+msgstr[0] "{0} opgave i dag"
+msgstr[1] "{0} opgaver i dag"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} opgave i morgen\n"
-msgstr[1] "{0} opgaver i morgen\n"
+msgstr[0] "{0} opgave i morgen"
+msgstr[1] "{0} opgaver i morgen"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -86,12 +86,12 @@ msgstr "Tasque Styrer"
 msgid "translator-credits"
 msgstr ""
 "Søren Juul <zpon.dk@gmail.com>\n"
+"Joe Hansen <joedalton2@yahoo.dk>\n"
 "\n"
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
 msgstr "En nyttig opgaveliste"
 
@@ -100,9 +100,8 @@ msgid "Tasque Project Homepage"
 msgstr "Tasques projekthjemmeside"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
-msgstr "Ny opgave..."
+msgstr "Ny opgave ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:168
 msgid "Refresh Tasks ..."
@@ -110,7 +109,7 @@ msgstr "Genopfrisk opgaver ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Skift opgavevindue"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
 #, csharp-format
@@ -143,12 +142,10 @@ msgid "Overdue:"
 msgstr "Overskredet:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "System til opgavehåndtering"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Opgavefiltrering"
 
@@ -158,14 +155,12 @@ msgstr "Vis _udførte opgaver"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "Vi_s kun disse kategorier når \"Alle\" er valgt:"
+msgstr "Vi_s kun disse lister når \"Alle\" er valgt:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "En nyttig opgaveliste"
+msgstr "Opgaveliste"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -184,7 +179,6 @@ msgid "_Add"
 msgstr "_Tilføj"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "_Tilføj opgave"
 
@@ -231,7 +225,6 @@ msgstr "Fejl under oprettelse af ny opgave"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Opgave oprettet"
 
@@ -249,12 +242,10 @@ msgstr "R_edigér opgave"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Skift kategori"
+msgstr "_Skift liste"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Opgaven er slettet"
 
@@ -551,21 +542,3 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/DateFormatters/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|O M|M N|O|A"
-
-#~ msgid "Category"
-#~ msgstr "Kategori"
-
-#~ msgid "Loading tasks..."
-#~ msgstr "Indlæser opgaver..."
-
-#~ msgid "Not connected."
-#~ msgstr "Du er ikke forbundet."
-
-#~ msgid "_File"
-#~ msgstr "_Fil"
-
-#~ msgid "_Window"
-#~ msgstr "_Vindue"
-
-#~ msgid "Show Tasks ..."
-#~ msgstr "Vis opgaver..."
