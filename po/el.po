@@ -1,23 +1,24 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Simos Xenitellis <simos@gnome.org>, 2009.
 # Milonas Kostas <milonas.ko@gmail.com>, 2010.
-#
+# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2010-12-06 20:37+0200\n"
-"Last-Translator: Milonas Kostas <milonas.ko@gmail.com>\n"
-"Language-Team: Greek <team@gnome.gr>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-02-13 03:07+0000\n"
+"PO-Revision-Date: 2014-02-13 10:14+0300\n"
+"Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
+"Language-Team: team@lists.gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.0\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -54,30 +55,29 @@ msgid "All"
 msgstr "Όλες"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Πνευματικά δικαιώματα © 2008 Novell, Inc."
+msgstr "Πνευματικά δικαιώματα © 2008 - 2011 Novell, Inc και συντελεστές."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} εργασία είναι καθυστερημένη\n"
-msgstr[1] "{0} εργασίες είναι καθυστερημένες\n"
+msgstr[0] "{0} εργασία είναι καθυστερημένη"
+msgstr[1] "{0} εργασίες είναι καθυστερημένες"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} εργασία για σήμερα\n"
-msgstr[1] "{0} εργασίες για σήμερα\n"
+msgstr[0] "{0} εργασία για σήμερα"
+msgstr[1] "{0} εργασίες για σήμερα"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} εργασία για αύριο\n"
-msgstr[1] "{0} εργασίες για αύριο\n"
+msgstr[0] "{0} εργασία για αύριο"
+msgstr[1] "{0} εργασίες για αύριο"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -86,19 +86,19 @@ msgstr "Το Tasque είναι όλα τα λεφτά"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:138
 msgid "translator-credits"
-msgstr "Κώστας Μυλωνάς <milonas.ko@gmail.com>"
+msgstr ""
+"Κώστας Μυλωνάς <milonas.ko@gmail.com>\n"
+"Δημήτρης Σπίγγος <dmtrs32@gmail.com>"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
-msgstr "Μια χρήσιμη λίστα εργασιών"
+msgstr "Ένας χρήσιμος κατάλογος εργασιών"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "Tasque Project Homepage"
 msgstr "Αρχική σελίδα του έργου Tasque"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
 msgstr "Νέα εργασία..."
 
@@ -108,7 +108,7 @@ msgstr "Ανανέωση των εργασιών ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Εναλλαγή παραθύρου εργασίας"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
 #, csharp-format
@@ -134,19 +134,17 @@ msgstr "Διαχείριση χρωμάτων"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:177
 msgid "Today:"
-msgstr "Σήμερα"
+msgstr "Σήμερα:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:205
 msgid "Overdue:"
 msgstr "Καθυστερημένες:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "Σύστημα διαχείρισης εργασιών"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Φιλτράρισμα εργασιών"
 
@@ -156,14 +154,12 @@ msgstr "Προ_βολή των ολοκληρωμένων εργασιών"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "_Προβολή αυτών των κατηγοριών μόνο όταν είναι επιλεγμένο το \"Όλες\":"
+msgstr "_Προβολή αυτών των καταλόγων όταν είναι επιλεγμένο το \"Όλες\":"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Μια χρήσιμη λίστα εργασιών"
+msgstr "Κατάλογος εργασιών"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -182,7 +178,6 @@ msgid "_Add"
 msgstr "_Προσθήκη"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "_Προσθήκη εργασίας"
 
@@ -229,7 +224,6 @@ msgstr "Σφάλμα κατά τη δημιουργία μιας νέας εργ
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Η εργασία δημιουργήθηκε επιτυχώς"
 
@@ -247,12 +241,10 @@ msgstr "_Επεξεργασία εργασίας"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Αλλαγή κατηγορίας"
+msgstr "_Αλλαγή καταλόγου"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Η εργασία διαγράφηκε"
 
