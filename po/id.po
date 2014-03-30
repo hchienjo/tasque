@@ -2,21 +2,23 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tasque package.
 # Imam Musthaqim <userindesign@gmail.com>, 2009.
-# Andika Triwidada <andika@gmail.com>, 2010, 2012.
+# Andika Triwidada <andika@gmail.com>, 2010, 2012, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2012-09-09 01:43+0700\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-12-19 16:31+0000\n"
+"PO-Revision-Date: 2014-03-30 17:44+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: INDONESIA <gnome@i15n.org>\n"
-"Language: id_ID\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -53,27 +55,26 @@ msgid "All"
 msgstr "Semua"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Hak Cipta © 2008 Novell, Inc."
+msgstr "Hak Cipta © 2008 - 2011 Novell, Inc. dan para kontributor."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} tugas Terlambat\n"
+msgstr[0] "{0} tugas Terlambat"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} tugas untuk Hari Ini\n"
+msgstr[0] "{0} tugas untuk Hari Ini"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} tugas untuk Besok\n"
+msgstr[0] "{0} tugas untuk Besok"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -84,28 +85,25 @@ msgstr "Tasque Hebat"
 msgid "translator-credits"
 msgstr ""
 "Imam Musthaqim <userindesign@gmail.com>, 2009\n"
-"Andika Triwidada <andika@gmail.com>, 2010, 2012."
+"Andika Triwidada <andika@gmail.com>, 2010, 2012, 2014."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
-msgstr "Daftar Tugas yang Berguna"
+msgstr "Daftar Tugas Yang Berguna"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "Tasque Project Homepage"
 msgstr "Halaman Depan Proyek Tasque"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
-msgstr "Tugas Baru ..."
+msgstr "Tugas Baru …"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:168
 msgid "Refresh Tasks ..."
 msgstr "Perbarui Tugas ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
-#, fuzzy
 msgid "Toggle Task Window"
 msgstr "Jungkitkan Jendela Tugas"
 
@@ -140,12 +138,10 @@ msgid "Overdue:"
 msgstr "Terlambat:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "Sistem Manajemen Tugas"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Penyaringan Tugas"
 
@@ -155,14 +151,12 @@ msgstr "Tam_pilkan tugas yang selesai"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "Hanya _tampilkan kategori ini bila \"Semua\" dipilih:"
+msgstr "Hanya _tampilkan daftar ini bila \"Semua\" dipilih:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Daftar Tugas yang Berguna"
+msgstr "Daftar Tugas"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -181,9 +175,8 @@ msgid "_Add"
 msgstr "_Tambah"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
-msgstr "_Tambah Tugas"
+msgstr "T_ambah Tugas"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:260
 msgid "Overdue"
@@ -228,9 +221,8 @@ msgstr "Kesalahan saat membuat tugas baru"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
-msgstr "Tugas berhasil dibuat"
+msgstr "Tugas sukses dibuat"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1070
 msgid "_Notes..."
@@ -246,12 +238,10 @@ msgstr "_Edit tugas"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Ubah kategori"
+msgstr "_Ubah daftar"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Tugas dihapus"
 
@@ -548,18 +538,3 @@ msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
 #: ../src/libtasque/DateFormatters/TaskParser.cs:275
 msgid "T|D|M O|M N|O|A"
 msgstr "T|D|O M|N M|O|A"
-
-#~ msgid "Category"
-#~ msgstr "Kategori"
-
-#~ msgid "Loading tasks..."
-#~ msgstr "Memuat tugas..."
-
-#~ msgid "Not connected."
-#~ msgstr "Tidak tersambung."
-
-#~ msgid "_File"
-#~ msgstr "_File"
-
-#~ msgid "_Window"
-#~ msgstr "_Jendela"
