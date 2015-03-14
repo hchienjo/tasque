@@ -1,0 +1,547 @@
+# Bosnian translation for bosnianuniversetranslation
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the bosnianuniversetranslation package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bosnianuniversetranslation\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-02-27 00:02+0000\n"
+"PO-Revision-Date: 2014-10-17 21:25+0000\n"
+"Last-Translator: Almir Husic <ahusic3@etf.unsa.ba>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-15 06:18+0000\n"
+
+#: ../data/tasque.desktop.in.h:1
+msgid "Tasque"
+msgstr "Tasque"
+
+#: ../data/tasque.desktop.in.h:2
+msgid "Easy quick task management"
+msgstr "Jednostavno brzo upravljanje zadacima"
+
+#: ../data/tasque.desktop.in.h:3
+msgid "Task Manager"
+msgstr "Upravitelj zadataka"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
+#: ../src/Gtk.Tasque/Utilities.cs:283
+msgid "Yesterday"
+msgstr "Jučer"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+msgid "Last 7 Days"
+msgstr "Zadnjih 7 dana"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
+msgid "Last Month"
+msgstr "Prošlog mjeseca"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:173
+msgid "Last Year"
+msgstr "Prošle godine"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:176
+#: ../src/libtasque/Utils/AllList.cs:85
+msgid "All"
+msgstr "Sve"
+
+#: ../src/Gtk.Tasque/Defines.cs.in:59
+msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
+msgstr "Autorska prava © 2008 - 2011 Novell, Doo i saradnici."
+
+#: ../src/Gtk.Tasque/GtkTray.cs:87
+#, csharp-format
+msgid "{0} task is Overdue"
+msgid_plural "{0} tasks are Overdue"
+msgstr[0] "{0} zadatak je istekao"
+msgstr[1] "{0} zadatka su istekla"
+msgstr[2] "{0} zadataka je isteklo"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:97
+#, csharp-format
+msgid "{0} task for Today"
+msgid_plural "{0} tasks for Today"
+msgstr[0] "{0} zadatak za danas"
+msgstr[1] "{0} zadatka za danas"
+msgstr[2] "{0} zadataka za danas"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:108
+#, csharp-format
+msgid "{0} task for Tomorrow"
+msgid_plural "{0} tasks for Tomorrow"
+msgstr[0] "{0} zadatak za sutra"
+msgstr[1] "{0} zadatka za sutra"
+msgstr[2] "{0} zadatka za sutra"
+
+#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
+#: ../src/Gtk.Tasque/GtkTray.cs:115
+msgid "Tasque Rocks"
+msgstr "Tasque je najbolji"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:138
+msgid "translator-credits"
+msgstr ""
+"   Almir Husic https://launchpad.net/~ahusic3\n"
+"  Samir Ribić https://launchpad.net/~megaribi"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:147
+msgid "A Useful Task List"
+msgstr "Korisna lista zadataka"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:149
+msgid "Tasque Project Homepage"
+msgstr "Naslovna strana Tasque projekta"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:161
+msgid "New Task ..."
+msgstr "Novi zadatak ..."
+
+#: ../src/Gtk.Tasque/GtkTray.cs:168
+msgid "Refresh Tasks ..."
+msgstr "Osvježi zadatke ..."
+
+#: ../src/Gtk.Tasque/GtkTray.cs:184
+msgid "Toggle Task Window"
+msgstr "Prebaci prozor zadatka"
+
+#: ../src/Gtk.Tasque/NoteDialog.cs:26
+#, csharp-format
+msgid "Notes for: {0:s}"
+msgstr "Napomene za: {0:s}"
+
+#. Update the window title
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:103
+msgid "Tasque Preferences"
+msgstr "Postavke zadataka"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:122
+msgid "General"
+msgstr "Opšte"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:130
+msgid "Appearance"
+msgstr "Izgled"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:166
+msgid "Color Management"
+msgstr "Upravljanje bojama"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:177
+msgid "Today:"
+msgstr "Danas:"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:205
+msgid "Overdue:"
+msgstr "Prekoračeno:"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:249
+msgid "Task Management System"
+msgstr "Sistem upravljanja zadatkom"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:291
+msgid "Task Filtering"
+msgstr "Filtriranje zadataka"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:310
+msgid "Sh_ow completed tasks"
+msgstr "_Prikaži završene zadatke"
+
+#. TaskLists TreeView
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:319
+msgid "Only _show these lists when \"All\" is selected:"
+msgstr "_Prikaži samo ove liste kada je \"Sve\" selektirano:"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:337
+msgid "Task List"
+msgstr "Spisak zadataka"
+
+#: ../src/Gtk.Tasque/RemoteControl.cs:177
+msgid "New task created."
+msgstr "Novi zadatak kreiran."
+
+#. The new task entry widget
+#. Clear the entry if it contains the default text
+#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:818
+#: ../src/Gtk.Tasque/TaskWindow.cs:874 ../src/Gtk.Tasque/TaskWindow.cs:884
+#: ../src/Gtk.Tasque/TaskWindow.cs:895
+msgid "New task..."
+msgstr "Novi zadatak ..."
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:172
+msgid "_Add"
+msgstr "_Dodaj"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:176
+msgid "_Add Task"
+msgstr "_Dodaj zadatak"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:260
+msgid "Overdue"
+msgstr "Prekoračeno"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:277 ../src/Gtk.Tasque/Utilities.cs:277
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
+msgid "Today"
+msgstr "Danas"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:296
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:121
+msgid "Tomorrow"
+msgstr "Sutra"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:311
+msgid "Next 7 Days"
+msgstr "Narednih 7 dana"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:327
+msgid "Future"
+msgstr "Budućnost"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:340
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:40
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:40
+msgid "Completed"
+msgstr "Završen"
+
+#. Translators: This status shows the date and time when the task list was last refreshed
+#: ../src/Gtk.Tasque/TaskWindow.cs:477 ../src/Gtk.Tasque/TaskWindow.cs:1210
+#, csharp-format
+msgid "Tasks loaded: {0}"
+msgstr "Zadaci učitani: {0}"
+
+#. Show error status
+#: ../src/Gtk.Tasque/TaskWindow.cs:782
+msgid "Error creating a new task"
+msgstr "Greška prilikom kreiranja novog zadatka"
+
+#. Show successful status
+#: ../src/Gtk.Tasque/TaskWindow.cs:786
+msgid "Task created successfully"
+msgstr "Zadatak uspješno kreiran"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1070
+msgid "_Notes..."
+msgstr "_Napomene..."
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1077
+msgid "_Delete task"
+msgstr "_obrisi zadatak"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1082
+msgid "_Edit task"
+msgstr "_Uredi zadatak"
+
+#. TODO Needs translation.
+#: ../src/Gtk.Tasque/TaskWindow.cs:1114
+msgid "_Change list"
+msgstr "_Promjeni spisak"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1172
+msgid "Task deleted"
+msgstr "Zadatak obrisan"
+
+#: ../src/Gtk.Tasque/Utilities.cs:275
+#, csharp-format
+msgid "Today, {0}"
+msgstr "Danas, {0}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:281
+#, csharp-format
+msgid "Yesterday, {0}"
+msgstr "Jučer, {0}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:287
+#, csharp-format
+msgid "{0} days ago, {1}"
+msgstr "Prije {0} dana, {1}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:289
+#, csharp-format
+msgid "{0} days ago"
+msgstr "Prije {0} dana"
+
+#: ../src/Gtk.Tasque/Utilities.cs:294
+#, csharp-format
+msgid "Tomorrow, {0}"
+msgstr "Sutra, {0}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:300
+#, csharp-format
+msgid "In {0} days, {1}"
+msgstr "Kroz {0} dana, {1}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:302
+#, csharp-format
+msgid "In {0} days"
+msgstr "Kroz {0} dana"
+
+#: ../src/Gtk.Tasque/Utilities.cs:306
+msgid "MMMM d, h:mm tt"
+msgstr "D. MMMM, h:mm tt"
+
+#: ../src/Gtk.Tasque/Utilities.cs:307
+msgid "MMMM d"
+msgstr "D. MMMM"
+
+#: ../src/Gtk.Tasque/Utilities.cs:309
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:66
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:123
+msgid "No Date"
+msgstr "Nije određen datum"
+
+#: ../src/Gtk.Tasque/Utilities.cs:312
+msgid "MMMM d yyyy, h:mm tt"
+msgstr "D. MMMM yyyy, h:mm tt"
+
+#: ../src/Gtk.Tasque/Utilities.cs:313
+msgid "MMMM d yyyy"
+msgstr "MMMM d yyyy"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:78
+msgid "Click Here to Connect"
+msgstr "Kliknite ovdje za povezivanje"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:84
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:153
+msgid "You are currently connected"
+msgstr "Trenutno ste povezani"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:88
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:157
+msgid "You are currently connected as"
+msgstr "Trenutno ste povezani kao"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:92
+msgid "You are not connected"
+msgstr "Niste povezani"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:123
+msgid "Remember the Milk not responding. Try again later."
+msgstr "Sjeti se Milk ne reaguje. Pokušaj ponovno kasnije."
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:130
+msgid "Click Here After Authorizing"
+msgstr "Klikni ovdje nakon autorizacije"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:133
+msgid "Set the default browser and try again"
+msgstr "Postavite podrazumijevani pretraživač i pokušajte ponovno"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
+msgid "Processing..."
+msgstr "Analiziram..."
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:146
+msgid "Failed, Try Again"
+msgstr "Neuspjelo, pokušaj ponovno"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:150
+msgid "Thank You"
+msgstr "Hvala Vam"
+
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:81
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:98
+msgid "Task Completed"
+msgstr "Zadatak završen"
+
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:83
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:114
+msgid "Action Canceled"
+msgstr "Radnja prekinuta"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:40
+msgid "Due Date"
+msgstr "Krajnji rok"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:120
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:125
+msgid "M/d - "
+msgstr "M/d - "
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:55
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:57
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:59
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:61
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:63
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:135
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:189
+msgid "M/d - ddd"
+msgstr "M/d - ddd"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:126
+msgid "In 1 Week"
+msgstr "Kroz 1 sedmicu"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:67
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:128
+msgid "Choose Date..."
+msgstr "Izaberi Datum..."
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
+msgid "M/d/yy - ddd"
+msgstr "M/d/g - ddd"
+
+#: ../src/Addins/Gtk.Tasque.Columns/NotesColumn.cs:47
+msgid "Notes"
+msgstr "Napomene"
+
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:40
+msgid "Priority"
+msgstr "Prioritet"
+
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:49
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:89
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:150
+msgid "1"
+msgstr "1"
+
+#. High
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:50
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:87
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:147
+msgid "2"
+msgstr "2"
+
+#. Medium
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:85
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:144
+msgid "3"
+msgstr "3"
+
+#. Low
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:52
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:153
+msgid "-"
+msgstr "-"
+
+#: ../src/Addins/Gtk.Tasque.Columns/TaskNameColumn.cs:42
+msgid "Task Name"
+msgstr "Ime zadatka"
+
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:108
+#, csharp-format
+msgid "Completing Task In: {0}"
+msgstr "Završavanje zadatka za: {0}"
+
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/TimerColumn.cs:43
+msgid "Timer"
+msgstr "Mjerilac vremena"
+
+#. Token "O". Notice only the suffix is translated.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:49
+msgid "th,st,nd,rd"
+msgstr "4.,1.,2.,3."
+
+#. Token "T"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:53
+msgid "today"
+msgstr "danas"
+
+#. Token "T"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:57
+msgid "tomorrow"
+msgstr "sutra"
+
+#. Token "m". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:61
+msgid "month|months"
+msgstr "mjesec|mjeseci"
+
+#. Token "w". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:65
+msgid "week|weeks"
+msgstr "sedmica|sedmice"
+
+#. Token "y". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:69
+msgid "year|years"
+msgstr "godina|godine"
+
+#. Token "d". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:73
+msgid "day|days"
+msgstr "dan|dani"
+
+#. Token "u". More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:207
+msgid "due before|due by|due"
+msgstr "zbog prije | zbog koje | zbog"
+
+#. Token "n". Examples could bje: "Next Month", "Next Monday"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:233
+msgid "next"
+msgstr "dalje"
+
+#. Token "o". Examples could bje: "On April 1st", "On Wednesday"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:239
+msgid "on"
+msgstr "na"
+
+#. Token "i". Examples could bje: "In 2 weeks", "In 3 months"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:245
+msgid "in"
+msgstr "u"
+
+#. Represents "Today and Tomorrow" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:260
+msgid "u T"
+msgstr "u T"
+
+#. Represents: "Next" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:263
+msgid "n w|n m|n y|n D"
+msgstr "s s|s m|s g|s D"
+
+#. Represents "Due" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:266
+msgid "u o D|u M O|u M N|u O|u M"
+msgstr "u o D|u M O|u M N|u O|u M"
+
+#. Represents "On" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:269
+msgid "o D|o O"
+msgstr "o D|o O"
+
+#. Represents "In" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:272
+msgid "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
+msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
+
+#. Represents all other expressions not using tokens.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:275
+msgid "T|D|M O|M N|O|A"
+msgstr "T|D|M O|M N|O|A"
