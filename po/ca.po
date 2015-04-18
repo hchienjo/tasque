@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-12-19 16:31+0000\n"
 "PO-Revision-Date: 2010-09-27 19:50+0200\n"
 "Last-Translator: Sílvia Miranda <silvia@softcatala.cat>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -205,7 +206,7 @@ msgstr "Demà"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:311
 msgid "Next 7 Days"
-msgstr "Propers 7 dies"
+msgstr "7 dies vinents"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:327
 msgid "Future"
