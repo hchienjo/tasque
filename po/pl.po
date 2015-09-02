@@ -7,14 +7,14 @@
 # Wadim Dziedzic <wdziedzic@aviary.pl>, 2008.
 # Piotr Zaryk <pzaryk@aviary.pl>, 2008.
 # Tomasz Dominikowski <dominikowski@gmail.com>, 2009.
-# Piotr Drąg <piotrdrag@gmail.com>, 2012-2013.
-# Aviary.pl <gnomepl@aviary.pl>, 2008-2013.
+# Piotr Drąg <piotrdrag@gmail.com>, 2012-2015.
+# Aviary.pl <gnomepl@aviary.pl>, 2008-2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-04 19:00+0200\n"
-"PO-Revision-Date: 2013-06-04 19:01+0200\n"
+"POT-Creation-Date: 2015-09-02 03:34+0200\n"
+"PO-Revision-Date: 2015-09-02 03:35+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -62,7 +62,7 @@ msgstr "Wszystkie"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 - 2011 Novell, Inc i współtwórcy."
+msgstr "Copyright © 2008-2011 Novell, Inc i współtwórcy."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
 #, csharp-format
@@ -99,8 +99,8 @@ msgstr ""
 "Wadim Dziedzic <wdziedzic@aviary.pl>, 2008\n"
 "Piotr Zaryk <pzaryk@aviary.pl>, 2008\n"
 "Tomasz Dominikowski <dominikowski@gmail.com>, 2009\n"
-"Piotr Drąg <piotrdrag@gmail.com>, 2012-2013\n"
-"Aviary.pl <gnomepl@aviary.pl>, 2008-2013"
+"Piotr Drąg <piotrdrag@gmail.com>, 2012-2015\n"
+"Aviary.pl <gnomepl@aviary.pl>, 2008-2015"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
 msgid "A Useful Task List"
@@ -112,11 +112,11 @@ msgstr "Witryna projektu Tasque"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
 msgid "New Task ..."
-msgstr "Nowe zadanie..."
+msgstr "Nowe zadanie…"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:168
 msgid "Refresh Tasks ..."
-msgstr "Odśwież zadania..."
+msgstr "Odśwież zadania…"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Toggle Task Window"
@@ -167,7 +167,7 @@ msgstr "Wyświetlanie _ukończonych zadań"
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "_Wyświetlanie poniższych list tylko, gdy \"Wszystkie\" jest wybrane:"
+msgstr "_Wyświetlanie poniższych list tylko, gdy „Wszystkie” jest wybrane:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
 msgid "Task List"
@@ -183,7 +183,7 @@ msgstr "Utworzono nowe zadanie."
 #: ../src/Gtk.Tasque/TaskWindow.cs:874 ../src/Gtk.Tasque/TaskWindow.cs:884
 #: ../src/Gtk.Tasque/TaskWindow.cs:895
 msgid "New task..."
-msgstr "Nowe zadanie..."
+msgstr "Nowe zadanie…"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:172
 msgid "_Add"
@@ -241,7 +241,7 @@ msgstr "Pomyślnie utworzono zadanie"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1070
 msgid "_Notes..."
-msgstr "_Notatki..."
+msgstr "_Notatki…"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1077
 msgid "_Delete task"
@@ -349,7 +349,7 @@ msgstr "Proszę ustawić domyślną przeglądarkę i spróbować ponownie"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
 msgid "Processing..."
-msgstr "Przetwarzanie..."
+msgstr "Przetwarzanie…"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:146
 msgid "Failed, Try Again"
@@ -362,12 +362,12 @@ msgstr "Dziękujemy"
 #: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:81
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:98
 msgid "Task Completed"
-msgstr "Zadanie ukończone"
+msgstr "Ukończono zadanie"
 
 #: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:83
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:114
 msgid "Action Canceled"
-msgstr "Działanie anulowane"
+msgstr "Anulowano działanie"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:40
 msgid "Due Date"
@@ -400,7 +400,7 @@ msgstr "W ciągu tygodnia"
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:67
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:128
 msgid "Choose Date..."
-msgstr "Wybierz datę..."
+msgstr "Wybierz datę…"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
 msgid "M/d/yy - ddd"
