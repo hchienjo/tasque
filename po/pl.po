@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-02 03:34+0200\n"
-"PO-Revision-Date: 2015-09-02 03:35+0200\n"
+"POT-Creation-Date: 2015-09-10 20:11+0200\n"
+"PO-Revision-Date: 2015-09-10 20:12+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -297,7 +297,7 @@ msgstr "W ciągu {0} dni"
 
 #: ../src/Gtk.Tasque/Utilities.cs:306
 msgid "MMMM d, h:mm tt"
-msgstr "d MMMM, h:mm tt"
+msgstr "d MMMM, h∶mm tt"
 
 #: ../src/Gtk.Tasque/Utilities.cs:307
 msgid "MMMM d"
@@ -311,7 +311,7 @@ msgstr "Brak daty"
 
 #: ../src/Gtk.Tasque/Utilities.cs:312
 msgid "MMMM d yyyy, h:mm tt"
-msgstr "d MMMM yyyy, h:mm tt"
+msgstr "d MMMM yyyy, h∶mm tt"
 
 #: ../src/Gtk.Tasque/Utilities.cs:313
 msgid "MMMM d yyyy"
