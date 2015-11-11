@@ -1,22 +1,25 @@
 # Swedish translation of tasque
-# Copyright (C) 2008, 2009, 2010 Free Software Foundation, Inc.
+# Copyright © 2008, 2009, 2010, 2015 Free Software Foundation, Inc.
 # This file is distributed under the same license as the tasque package.
 # Kalle Persson <kalle@kallepersson.se>, 2008.
 # Daniel Nylander <po@danielnylander.se>, 2008, 2009, 2010.
+# Josef Andersson <josef.andersson@fripost.org>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2010-12-31 12:13+0100\n"
-"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-09-03 23:54+0000\n"
+"PO-Revision-Date: 2015-11-01 23:52+0100\n"
+"Last-Translator: Josef Andersson <josef.andersson@fripost.org>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -53,30 +56,29 @@ msgid "All"
 msgstr "Alla"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © 2008 - 2011 Novell, Inc och bidragsgivare."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} aktivitet har förfallit\n"
-msgstr[1] "{0} aktiviteter har förfallit\n"
+msgstr[0] "{0} aktivitet har förfallit"
+msgstr[1] "{0} aktiviteter har förfallit"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} aktivitet ska vara klara idag\n"
-msgstr[1] "{0} aktiviteter ska vara klara idag\n"
+msgstr[0] "{0} aktivitet ska vara klara idag"
+msgstr[1] "{0} aktiviteter ska vara klara idag"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} aktivitet ska vara klara imorgon\n"
-msgstr[1] "{0} aktiviteter ska vara klara imorgon\n"
+msgstr[0] "{0} aktivitet ska vara klara imorgon"
+msgstr[1] "{0} aktiviteter ska vara klara imorgon"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -93,7 +95,6 @@ msgstr ""
 "<tp-sv@listor.tp-sv.se>."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
 msgstr "En användbar aktivitetslista"
 
@@ -102,17 +103,16 @@ msgid "Tasque Project Homepage"
 msgstr "Tasque-projektets webbplats"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
-msgstr "Ny aktivitet..."
+msgstr "Ny aktivitet …"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:168
 msgid "Refresh Tasks ..."
-msgstr "Uppdatera aktiviteter ..."
+msgstr "Uppdatera aktiviteter …"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Växla aktivitetsfönster"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
 #, csharp-format
@@ -145,12 +145,10 @@ msgid "Overdue:"
 msgstr "Förfallna:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
 msgstr "Aktivitetshanteringssystem"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
 msgstr "Aktivitetsfiltrering"
 
@@ -160,14 +158,12 @@ msgstr "Visa a_vklarade aktiviteter"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr "_Visa endast dessa kategorier när \"Alla\" är valda:"
+msgstr "_Visa endast dessa kategorier när ”Alla” är valda:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "En användbar aktivitetslista"
+msgstr "Aktivitetslista"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -179,14 +175,13 @@ msgstr "Ny aktivitet skapad."
 #: ../src/Gtk.Tasque/TaskWindow.cs:874 ../src/Gtk.Tasque/TaskWindow.cs:884
 #: ../src/Gtk.Tasque/TaskWindow.cs:895
 msgid "New task..."
-msgstr "Ny aktivitet..."
+msgstr "Ny aktivitet…"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:172
 msgid "_Add"
 msgstr "_Lägg till"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
 msgstr "_Lägg till aktivitet"
 
@@ -233,13 +228,12 @@ msgstr "Fel vid skapande av ny aktivitet"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Aktiviteten skapades"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1070
 msgid "_Notes..."
-msgstr "_Anteckningar"
+msgstr "_Anteckningar…"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1077
 msgid "_Delete task"
@@ -251,12 +245,10 @@ msgstr "_Redigera aktivitet"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "_Byt kategori"
+msgstr "_Byt lista"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
 msgstr "Aktiviteten borttagen"
 
@@ -349,7 +341,7 @@ msgstr "Ställ in standardwebbläsaren och försök igen"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
 msgid "Processing..."
-msgstr "Behandlar..."
+msgstr "Behandlar…"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:146
 msgid "Failed, Try Again"
@@ -400,7 +392,7 @@ msgstr "Inom en vecka"
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:67
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:128
 msgid "Choose Date..."
-msgstr "Välj datum..."
+msgstr "Välj datum…"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
 msgid "M/d/yy - ddd"
@@ -510,7 +502,7 @@ msgstr "nästa"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/DateFormatters/TaskParser.cs:239
 msgid "on"
-msgstr ""
+msgstr "den|på"
 
 #. Token "i". Examples could be: "In 2 weeks", "In 3 months"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
@@ -572,9 +564,8 @@ msgstr "T|D|M O|M N|O|A"
 #~ msgid "Show Tasks ..."
 #~ msgstr "Visa aktiviteter ..."
 
-#, fuzzy
 #~ msgid "New task1..."
-#~ msgstr "Ny aktivitet..."
+#~ msgstr "Ny aktivitet1..."
 
 #~ msgid "Sunday"
 #~ msgstr "söndag"
