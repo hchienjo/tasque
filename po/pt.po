@@ -2,20 +2,24 @@
 # Copyright © 2009 tasque.
 # This file is distributed under the same license as the tasque package.
 # António Lima <amrlima@gmail.com>, 2009, 2010.
+# Pedro Albuquerque <palbuquerque73@gmail.com>, 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: tasque\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-03 19:29+0200\n"
-"PO-Revision-Date: 2010-04-07 21:38+0000\n"
-"Last-Translator: António Lima <amrlima@gmail.com>\n"
-"Language-Team: gnome_pt@yahoogroups.com\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-10-19 12:45+0000\n"
+"PO-Revision-Date: 2015-11-17 10:39+0000\n"
+"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
+"Language-Team: Pedro Albuquerque\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.5.2\n"
+"X-Generator: Gtranslator 2.91.6\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/tasque.desktop.in.h:1
 msgid "Tasque"
@@ -27,7 +31,7 @@ msgstr "Gestão de tarefas fácil e rápida"
 
 #: ../data/tasque.desktop.in.h:3
 msgid "Task Manager"
-msgstr "Gestor de Tarefas"
+msgstr "Gestor de tarefas"
 
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
 #: ../src/Gtk.Tasque/Utilities.cs:283
@@ -36,15 +40,15 @@ msgstr "Ontem"
 
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
 msgid "Last 7 Days"
-msgstr "Últimos 7 Dias"
+msgstr "Últimos 7 dias"
 
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
 msgid "Last Month"
-msgstr "Último Mês"
+msgstr "Último mês"
 
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:173
 msgid "Last Year"
-msgstr "Último Ano"
+msgstr "Último ano"
 
 #: ../src/Gtk.Tasque/CompletedTaskGroup.cs:176
 #: ../src/libtasque/Utils/AllList.cs:85
@@ -52,30 +56,29 @@ msgid "All"
 msgstr "Todas"
 
 #: ../src/Gtk.Tasque/Defines.cs.in:59
-#, fuzzy
 msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
-msgstr "Copyright © 2008 Novell, Inc."
+msgstr "Copyright © 2008 - 2011 Novell, Inc e contribuintes."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:87
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task is Overdue"
 msgid_plural "{0} tasks are Overdue"
-msgstr[0] "{0} tarefa expirou\n"
-msgstr[1] "{0} tarefas expiraram\n"
+msgstr[0] "{0} tarefa expirou"
+msgstr[1] "{0} tarefas expiraram"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:97
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Today"
 msgid_plural "{0} tasks for Today"
-msgstr[0] "{0} tarefa hoje\n"
-msgstr[1] "{0} tarefas hoje\n"
+msgstr[0] "{0} tarefa hoje"
+msgstr[1] "{0} tarefas hoje"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:108
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} task for Tomorrow"
 msgid_plural "{0} tasks for Tomorrow"
-msgstr[0] "{0} tarefa para amanhã\n"
-msgstr[1] "{0} tarefas para amanhã\n"
+msgstr[0] "{0} tarefa para amanhã"
+msgstr[1] "{0} tarefas para amanhã"
 
 #. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
 #: ../src/Gtk.Tasque/GtkTray.cs:115
@@ -84,29 +87,30 @@ msgstr "O Tasque é fixe"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:138
 msgid "translator-credits"
-msgstr "António Lima <amrlima@gmail.com>"
+msgstr ""
+"António Lima <amrlima@gmail.com>\n"
+"Tiago S. <almosthumane@portugalmail.pt>\n"
+"Pedro Albuquerque <palbuquerque73@gmail.com>"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:147
-#, fuzzy
 msgid "A Useful Task List"
-msgstr "Uma Lista de Tarefas Últil"
+msgstr "Uma lista de tarefas útil"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:149
 msgid "Tasque Project Homepage"
-msgstr "Página Web do Projecto Tasque"
+msgstr "Página web do projeto Tasque"
 
 #: ../src/Gtk.Tasque/GtkTray.cs:161
-#, fuzzy
 msgid "New Task ..."
-msgstr "Nova Tarefa..."
+msgstr "Nova tarefa ..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:168
 msgid "Refresh Tasks ..."
-msgstr "Actualizar Tarefas..."
+msgstr "Atualizar tarefas..."
 
 #: ../src/Gtk.Tasque/GtkTray.cs:184
 msgid "Toggle Task Window"
-msgstr ""
+msgstr "Alternar janela de tarefas"
 
 #: ../src/Gtk.Tasque/NoteDialog.cs:26
 #, csharp-format
@@ -139,30 +143,25 @@ msgid "Overdue:"
 msgstr "Expiradas:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:249
-#, fuzzy
 msgid "Task Management System"
-msgstr "Sistema de Gestão de Tarefas"
+msgstr "Sistema de gestão de tarefas"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:291
-#, fuzzy
 msgid "Task Filtering"
-msgstr "Filtragem de Tarefas"
+msgstr "Filtragem de tarefas"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:310
 msgid "Sh_ow completed tasks"
-msgstr "M_ostrar tarefas termindas"
+msgstr "_Mostrar tarefas terminadas"
 
 #. TaskLists TreeView
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:319
-#, fuzzy
 msgid "Only _show these lists when \"All\" is selected:"
-msgstr ""
-"Apenas mo_strar estas categorias quando \"Todas\" estiver seleccionado:"
+msgstr "Mostrar estas categorias _Só quando \"Todas\" estiver selecionado:"
 
 #: ../src/Gtk.Tasque/PreferencesDialog.cs:337
-#, fuzzy
 msgid "Task List"
-msgstr "Uma Lista de Tarefas Últil"
+msgstr "Lista de tarefas"
 
 #: ../src/Gtk.Tasque/RemoteControl.cs:177
 msgid "New task created."
@@ -181,9 +180,8 @@ msgid "_Add"
 msgstr "_Adicionar"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:176
-#, fuzzy
 msgid "_Add Task"
-msgstr "_Adicionar Tarefa"
+msgstr "_Adicionar tarefa"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:260
 msgid "Overdue"
@@ -203,7 +201,7 @@ msgstr "Amanhã"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:311
 msgid "Next 7 Days"
-msgstr "Próximos 7 Dias"
+msgstr "Próximos 7 dias"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:327
 msgid "Future"
@@ -228,7 +226,6 @@ msgstr "Erro ao criar nova tarefa"
 
 #. Show successful status
 #: ../src/Gtk.Tasque/TaskWindow.cs:786
-#, fuzzy
 msgid "Task created successfully"
 msgstr "Tarefa criada com sucesso"
 
@@ -238,7 +235,7 @@ msgstr "_Notas..."
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1077
 msgid "_Delete task"
-msgstr "A_pagar tarefa"
+msgstr "_Eliminar tarefa"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1082
 msgid "_Edit task"
@@ -246,14 +243,12 @@ msgstr "_Editar tarefa"
 
 #. TODO Needs translation.
 #: ../src/Gtk.Tasque/TaskWindow.cs:1114
-#, fuzzy
 msgid "_Change list"
-msgstr "Alterar _categoria"
+msgstr "_Mudar lista"
 
 #: ../src/Gtk.Tasque/TaskWindow.cs:1172
-#, fuzzy
 msgid "Task deleted"
-msgstr "Tarefa apagada"
+msgstr "Tarefa eliminada"
 
 #: ../src/Gtk.Tasque/Utilities.cs:275
 #, csharp-format
@@ -302,7 +297,7 @@ msgstr "MMMM d"
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:66
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:123
 msgid "No Date"
-msgstr "Sem Data"
+msgstr "Sem data"
 
 #: ../src/Gtk.Tasque/Utilities.cs:312
 msgid "MMMM d yyyy, h:mm tt"
@@ -314,7 +309,7 @@ msgstr "MMMM d aaaa"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:78
 msgid "Click Here to Connect"
-msgstr "Clique Aqui para Ligar"
+msgstr "Clique aqui para ligar"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:84
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:153
@@ -332,15 +327,15 @@ msgstr "Não está ligado"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:123
 msgid "Remember the Milk not responding. Try again later."
-msgstr "Remember the Milk não está a responder. Tende de novo mais tarde."
+msgstr "Remember the Milk não está a responder. Tente de novo mais tarde."
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:130
 msgid "Click Here After Authorizing"
-msgstr "Clique Aqui Após Autorizar"
+msgstr "Clique aqui após autorizar"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:133
 msgid "Set the default browser and try again"
-msgstr "Definir o navegador por omissão e tentar de novo"
+msgstr "Definir o navegador predefinido e tentar de novo"
 
 #: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
 msgid "Processing..."
@@ -357,16 +352,16 @@ msgstr "Obrigado"
 #: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:81
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:98
 msgid "Task Completed"
-msgstr "Tarefa Terminada"
+msgstr "Tarefa terminada"
 
 #: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:83
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:114
 msgid "Action Canceled"
-msgstr "Acção Cancelada"
+msgstr "Ação cancelada"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:40
 msgid "Due Date"
-msgstr "Date de Expiração"
+msgstr "Date de expiração"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
@@ -390,12 +385,12 @@ msgstr "M/d - ddd"
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:126
 msgid "In 1 Week"
-msgstr "Daqui a 1 Semana"
+msgstr "Daqui a 1 semana"
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:67
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:128
 msgid "Choose Date..."
-msgstr "Escolher Data..."
+msgstr "Escolher data..."
 
 #: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
 msgid "M/d/yy - ddd"
@@ -437,12 +432,12 @@ msgstr "-"
 
 #: ../src/Addins/Gtk.Tasque.Columns/TaskNameColumn.cs:42
 msgid "Task Name"
-msgstr "Nome da Tarefa"
+msgstr "Nome da tarefa"
 
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:108
 #, csharp-format
 msgid "Completing Task In: {0}"
-msgstr "Tarefa Termina em: {0}"
+msgstr "Tarefa termina em: {0}"
 
 #: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/TimerColumn.cs:43
 msgid "Timer"
@@ -493,13 +488,13 @@ msgstr "dia|dias"
 #. Token "u". More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/DateFormatters/TaskParser.cs:207
 msgid "due before|due by|due"
-msgstr "expira antes|expira|expirou"
+msgstr "expira antes de|expira a|expira"
 
 #. Token "n". Examples could be: "Next Month", "Next Monday"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
 #: ../src/libtasque/DateFormatters/TaskParser.cs:233
 msgid "next"
-msgstr "próxima"
+msgstr "próximo(a)"
 
 #. Token "o". Examples could be: "On April 1st", "On Wednesday"
 #. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
