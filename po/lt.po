@@ -1,0 +1,547 @@
+# Lithuanian translation for tasque.
+# Copyright (C) 2015 tasque's COPYRIGHT HOLDER
+# This file is distributed under the same license as the tasque package.
+# Moo <hazap@hotmail.com>, 2015.
+# Aurimas Černius <aurisc4@gmail.com>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tasque master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=tasque&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-11-12 14:37+0000\n"
+"PO-Revision-Date: 2015-11-20 20:40+0200\n"
+"Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
+"Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 2.91.7\n"
+
+#: ../data/tasque.desktop.in.h:1
+msgid "Tasque"
+msgstr "Tasque"
+
+#: ../data/tasque.desktop.in.h:2
+msgid "Easy quick task management"
+msgstr "Lengvas bei greitas užduočių valdymas"
+
+#: ../data/tasque.desktop.in.h:3
+msgid "Task Manager"
+msgstr "Užduočių tvarkytuvė"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:167
+#: ../src/Gtk.Tasque/Utilities.cs:283
+msgid "Yesterday"
+msgstr "Vakar"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:169
+msgid "Last 7 Days"
+msgstr "Praėjusios 7 dienos"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:171
+msgid "Last Month"
+msgstr "Praėjęs mėnuo"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:173
+msgid "Last Year"
+msgstr "Praeiti metai"
+
+#: ../src/Gtk.Tasque/CompletedTaskGroup.cs:176
+#: ../src/libtasque/Utils/AllList.cs:85
+msgid "All"
+msgstr "Visos"
+
+#: ../src/Gtk.Tasque/Defines.cs.in:59
+msgid "Copyright © 2008 - 2011 Novell, Inc and contributors."
+msgstr "Autorių Teisės © 2008 - 2011 Novell, Inc ir talkininkai."
+
+#: ../src/Gtk.Tasque/GtkTray.cs:87
+#, csharp-format
+msgid "{0} task is Overdue"
+msgid_plural "{0} tasks are Overdue"
+msgstr[0] "Yra {0} vėluojanti užduotis"
+msgstr[1] "Yra {0} vėluojančios užduotys"
+msgstr[2] "Yra {0} vėluojančių užduočių"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:97
+#, csharp-format
+msgid "{0} task for Today"
+msgid_plural "{0} tasks for Today"
+msgstr[0] "Šiandienai yra {0} užduotis"
+msgstr[1] "Šiandienai yra {0} užduotys"
+msgstr[2] "Šiandienai yra {0} užduočių"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:108
+#, csharp-format
+msgid "{0} task for Tomorrow"
+msgid_plural "{0} tasks for Tomorrow"
+msgstr[0] "Rytojui yra {0} užduotis"
+msgstr[1] "Rytojui yra {0} užduotys"
+msgstr[2] "Rytojui yra {0} užduočių"
+
+#. Translators: This is the status icon's tooltip. When no tasks are overdue, due today, or due tomorrow, it displays this fun message
+#: ../src/Gtk.Tasque/GtkTray.cs:115
+msgid "Tasque Rocks"
+msgstr "Tasque valdo"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:138
+msgid "translator-credits"
+msgstr ""
+"Išvertė:\n"
+"Moo <hazap@hotmail.com>"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:147
+msgid "A Useful Task List"
+msgstr "Naudingas užduočių sąrašas"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:149
+msgid "Tasque Project Homepage"
+msgstr "Tasque projekto internetinė svetainė"
+
+#: ../src/Gtk.Tasque/GtkTray.cs:161
+msgid "New Task ..."
+msgstr "Nauja užduotis ..."
+
+#: ../src/Gtk.Tasque/GtkTray.cs:168
+msgid "Refresh Tasks ..."
+msgstr "Atnaujinti užduotis ..."
+
+#: ../src/Gtk.Tasque/GtkTray.cs:184
+msgid "Toggle Task Window"
+msgstr "Perjungti užduočių langą"
+
+#: ../src/Gtk.Tasque/NoteDialog.cs:26
+#, csharp-format
+msgid "Notes for: {0:s}"
+msgstr "Pastabos užduočiai: {0:s}"
+
+#. Update the window title
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:103
+msgid "Tasque Preferences"
+msgstr "Tasque nustatymai"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:122
+msgid "General"
+msgstr "Bendra"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:130
+msgid "Appearance"
+msgstr "Išvaizda"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:166
+msgid "Color Management"
+msgstr "Spalvų valdymas"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:177
+msgid "Today:"
+msgstr "Šiandien:"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:205
+msgid "Overdue:"
+msgstr "Vėluojančios:"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:249
+msgid "Task Management System"
+msgstr "Užduočių valdymo sistema"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:291
+msgid "Task Filtering"
+msgstr "Užduočių filtravimas"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:310
+msgid "Sh_ow completed tasks"
+msgstr "R_odyti atliktas užduotis"
+
+#. TaskLists TreeView
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:319
+msgid "Only _show these lists when \"All\" is selected:"
+msgstr "Kai pasirinkta „Visos“, rodyti tik šiuos sąrašus:"
+
+#: ../src/Gtk.Tasque/PreferencesDialog.cs:337
+msgid "Task List"
+msgstr "Užduočių sąrašas"
+
+#: ../src/Gtk.Tasque/RemoteControl.cs:177
+msgid "New task created."
+msgstr "Nauja užduotis sukurta."
+
+#. The new task entry widget
+#. Clear the entry if it contains the default text
+#: ../src/Gtk.Tasque/TaskWindow.cs:156 ../src/Gtk.Tasque/TaskWindow.cs:818
+#: ../src/Gtk.Tasque/TaskWindow.cs:874 ../src/Gtk.Tasque/TaskWindow.cs:884
+#: ../src/Gtk.Tasque/TaskWindow.cs:895
+msgid "New task..."
+msgstr "Nauja užduotis..."
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:172
+msgid "_Add"
+msgstr "_Pridėti"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:176
+msgid "_Add Task"
+msgstr "_Pridėti užduotį"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:260
+msgid "Overdue"
+msgstr "Vėluojančios"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:277 ../src/Gtk.Tasque/Utilities.cs:277
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
+msgid "Today"
+msgstr "Šiandien"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:294 ../src/Gtk.Tasque/Utilities.cs:296
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:121
+msgid "Tomorrow"
+msgstr "Rytoj"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:311
+msgid "Next 7 Days"
+msgstr "Kitos 7 dienos"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:327
+msgid "Future"
+msgstr "Ateitis"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:340
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:40
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:40
+msgid "Completed"
+msgstr "Atlikta"
+
+#. Translators: This status shows the date and time when the task list was last refreshed
+#: ../src/Gtk.Tasque/TaskWindow.cs:477 ../src/Gtk.Tasque/TaskWindow.cs:1210
+#, csharp-format
+msgid "Tasks loaded: {0}"
+msgstr "Užduotys įkeltos: {0}"
+
+#. Show error status
+#: ../src/Gtk.Tasque/TaskWindow.cs:782
+msgid "Error creating a new task"
+msgstr "Klaida kuriant naują užduotį"
+
+#. Show successful status
+#: ../src/Gtk.Tasque/TaskWindow.cs:786
+msgid "Task created successfully"
+msgstr "Užduotis sėkmingai sukurta"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1070
+msgid "_Notes..."
+msgstr "_Pastabos..."
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1077
+msgid "_Delete task"
+msgstr "_Ištrinti užduotį"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1082
+msgid "_Edit task"
+msgstr "R_edaguoti užduotį"
+
+#. TODO Needs translation.
+#: ../src/Gtk.Tasque/TaskWindow.cs:1114
+msgid "_Change list"
+msgstr "_Keisti sąrašą"
+
+#: ../src/Gtk.Tasque/TaskWindow.cs:1172
+msgid "Task deleted"
+msgstr "Užduotis ištrinta"
+
+#: ../src/Gtk.Tasque/Utilities.cs:275
+#, csharp-format
+msgid "Today, {0}"
+msgstr "Šiandien, {0}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:281
+#, csharp-format
+msgid "Yesterday, {0}"
+msgstr "Vakar, {0}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:287
+#, csharp-format
+msgid "{0} days ago, {1}"
+msgstr "Prieš {0} dienų, {1}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:289
+#, csharp-format
+msgid "{0} days ago"
+msgstr "Prieš {0} dienų"
+
+#: ../src/Gtk.Tasque/Utilities.cs:294
+#, csharp-format
+msgid "Tomorrow, {0}"
+msgstr "Rytoj, {0}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:300
+#, csharp-format
+msgid "In {0} days, {1}"
+msgstr "Po {0} dienų, {1}"
+
+#: ../src/Gtk.Tasque/Utilities.cs:302
+#, csharp-format
+msgid "In {0} days"
+msgstr "Po {0} dienų"
+
+#: ../src/Gtk.Tasque/Utilities.cs:306
+msgid "MMMM d, h:mm tt"
+msgstr "MMMM d, h:mm tt"
+
+#: ../src/Gtk.Tasque/Utilities.cs:307
+msgid "MMMM d"
+msgstr "MMMM d"
+
+#: ../src/Gtk.Tasque/Utilities.cs:309
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:66
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:123
+msgid "No Date"
+msgstr "Be datos"
+
+#: ../src/Gtk.Tasque/Utilities.cs:312
+msgid "MMMM d yyyy, h:mm tt"
+msgstr "yyyy MMMM d, h:mm tt"
+
+#: ../src/Gtk.Tasque/Utilities.cs:313
+msgid "MMMM d yyyy"
+msgstr "yyyy MMMM d"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:78
+msgid "Click Here to Connect"
+msgstr "Spustelėkite čia, kad prisijungtumėte"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:84
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:153
+msgid "You are currently connected"
+msgstr "Šiuo metu esate prisijungę"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:88
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:157
+msgid "You are currently connected as"
+msgstr "Šiuo metu esate prisijungę kaip"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:92
+msgid "You are not connected"
+msgstr "Jūs nesate prisijungę"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:123
+msgid "Remember the Milk not responding. Try again later."
+msgstr "Remember the Milk neatsako. Bandykite vėliau dar kartą."
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:130
+msgid "Click Here After Authorizing"
+msgstr "Po leidimo spustelėkite čia"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:133
+msgid "Set the default browser and try again"
+msgstr "Nustatykite numatytąją naršyklę ir bandykite dar kartą"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:136
+msgid "Processing..."
+msgstr "Vykdoma..."
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:146
+msgid "Failed, Try Again"
+msgstr "Nepavyko, bandykite dar kartą"
+
+#: ../src/Addins/Backends/Rtm/Gtk/RtmPreferencesWidget.cs:150
+msgid "Thank You"
+msgstr "Ačiū"
+
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:81
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:98
+msgid "Task Completed"
+msgstr "Užduotis atlikta"
+
+#: ../src/Addins/Gtk.Tasque.Columns/CompleteColumn.cs:83
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:114
+msgid "Action Canceled"
+msgstr "Veiksmas atšauktas"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:40
+msgid "Due Date"
+msgstr "Atlikimo data"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:53
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:118
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:120
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:125
+msgid "M/d - "
+msgstr "M d - "
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:55
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:57
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:59
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:61
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:63
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:135
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:189
+msgid "M/d - ddd"
+msgstr "M d - ddd"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:65
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:126
+msgid "In 1 Week"
+msgstr "Po 1 savaitės"
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:67
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:128
+msgid "Choose Date..."
+msgstr "Pasirinkti datą..."
+
+#: ../src/Addins/Gtk.Tasque.Columns/DueDateColumn.cs:191
+msgid "M/d/yy - ddd"
+msgstr "yy M d - ddd"
+
+#: ../src/Addins/Gtk.Tasque.Columns/NotesColumn.cs:47
+msgid "Notes"
+msgstr "Pastabos"
+
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:40
+msgid "Priority"
+msgstr "Pirmenybė"
+
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:49
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:89
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:150
+msgid "1"
+msgstr "1"
+
+#. High
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:50
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:87
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:147
+msgid "2"
+msgstr "2"
+
+#. Medium
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:51
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:85
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:144
+msgid "3"
+msgstr "3"
+
+#. Low
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:52
+#: ../src/Addins/Gtk.Tasque.Columns/PriorityColumn.cs:153
+msgid "-"
+msgstr "-"
+
+#: ../src/Addins/Gtk.Tasque.Columns/TaskNameColumn.cs:42
+msgid "Task Name"
+msgstr "Užduoties pavadinimas"
+
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/CompleteWithTimerColumn.cs:108
+#, csharp-format
+msgid "Completing Task In: {0}"
+msgstr "Užduotis taps atlikta po: {0}"
+
+#: ../src/Addins/Gtk.Tasque.TimerCompleteColumns/TimerColumn.cs:43
+msgid "Timer"
+msgstr "Laikmatis"
+
+#. Token "O". Notice only the suffix is translated.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:49
+msgid "th,st,nd,rd"
+msgstr "ma,mą,mos,ra,rą,ros,čia,čią,čios,ta,tą,tos"
+
+#. Token "T"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:53
+msgid "today"
+msgstr "šiandien|siandien|siandiena|šiandieną|šiandienos|siandienos"
+
+#. Token "T"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:57
+msgid "tomorrow"
+msgstr "rytoj|rytojaus"
+
+#. Token "m". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:61
+msgid "month|months"
+msgstr "mėnesį|menesi|mėnesius|menesius|mėnesio|menesio|mėnesių|menesiu"
+
+#. Token "w". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:65
+msgid "week|weeks"
+msgstr "savaitę|savaites|savaite|savaitės|savaites|savaičių|savaiciu"
+
+#. Token "y". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:69
+msgid "year|years"
+msgstr "metais|metus|metų|metu"
+
+#. Token "d". Don't forget to include the plural value, if any
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:73
+msgid "day|days"
+msgstr "dieną|dienas|diena|dienų|dienu|dienos"
+
+#. Token "u". More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:207
+msgid "due before|due by|due"
+msgstr "iki"
+
+#. Token "n". Examples could be: "Next Month", "Next Monday"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:233
+msgid "next"
+msgstr "kitą|kita|kitais|kitas|kitus|kito|kitos"
+
+#. Token "o". Examples could be: "On April 1st", "On Wednesday"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:239
+msgid "on"
+msgstr "per"
+
+#. Token "i". Examples could be: "In 2 weeks", "In 3 months"
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:245
+msgid "in"
+msgstr "po"
+
+#. Represents "Today and Tomorrow" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:260
+msgid "u T"
+msgstr "u T"
+
+#. Represents: "Next" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:263
+msgid "n w|n m|n y|n D"
+msgstr "n w|n m|n y|n D"
+
+#. Represents "Due" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:266
+msgid "u o D|u M O|u M N|u O|u M"
+msgstr "u n D|u M O|u M N|u O|u M"
+
+#. Represents "On" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:269
+msgid "o D|o O"
+msgstr "o D|o O|D|O"
+
+#. Represents "In" expression.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:272
+msgid "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
+msgstr "i N d|i d|i N w|i w|i N m|i m|i N y|i y"
+
+#. Represents all other expressions not using tokens.
+#. More information in http://git.gnome.org/browse/tasque/tree/TRANSLATORS
+#: ../src/libtasque/DateFormatters/TaskParser.cs:275
+msgid "T|D|M O|M N|O|A"
+msgstr "T|D|M O|M N|O|A"
